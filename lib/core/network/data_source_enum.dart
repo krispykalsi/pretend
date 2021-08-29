@@ -1,0 +1,4 @@
+enum DataSource {
+  NETWORK,
+  LOCAL,
+}
