@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:pretend/core/error/exceptions.dart';
+import 'package:pretend/features/timetable/data/data_sources/hive_datasource.dart';
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
 
 abstract class SubjectsLocalDataSourceContract {
@@ -9,28 +10,15 @@ abstract class SubjectsLocalDataSourceContract {
   Future<void> addSubject(SubjectModel subject);
 }
 
-class HiveBoxKeys {
-  static const SUBJECTS = 'subjects';
-}
+const _SUBJECTS = 'subjects';
 
-class SubjectsLocalDataSource implements SubjectsLocalDataSourceContract {
-  final HiveInterface hive;
-
-  SubjectsLocalDataSource({required this.hive});
-
-  Future<Box> _openBox(String type) async {
-    try {
-      final box = await hive.openBox(type);
-      return box;
-    } catch (e) {
-      throw CacheException();
-    }
-  }
+class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDataSourceContract {
+  SubjectsLocalDataSource({required HiveInterface hive}) : super(hive);
 
   @override
   Future<void> addSubject(SubjectModel subject) async {
     try {
-      final subjectBox = await _openBox(HiveBoxKeys.SUBJECTS);
+      final subjectBox = await openBox(_SUBJECTS);
       subjectBox.add(subject.toJson());
     } catch (e) {
       throw CacheException();
@@ -40,7 +28,7 @@ class SubjectsLocalDataSource implements SubjectsLocalDataSourceContract {
   @override
   Future<void> addSubjects(List<SubjectModel> subjects) async {
     try {
-      final subjectBox = await _openBox(HiveBoxKeys.SUBJECTS);
+      final subjectBox = await openBox(_SUBJECTS);
       subjects.forEach((subject) {
         subjectBox.add(subject.toJson());
       });
@@ -52,7 +40,7 @@ class SubjectsLocalDataSource implements SubjectsLocalDataSourceContract {
   @override
   Future<void> clearSubjects() async {
     try {
-      final subjectBox = await _openBox(HiveBoxKeys.SUBJECTS);
+      final subjectBox = await openBox(_SUBJECTS);
       subjectBox.deleteFromDisk();
     } catch (e) {
       throw CacheException();
@@ -62,7 +50,7 @@ class SubjectsLocalDataSource implements SubjectsLocalDataSourceContract {
   @override
   Future<List<SubjectModel>> getSubjects() async {
     try {
-      final subjectBox = await _openBox(HiveBoxKeys.SUBJECTS);
+      final subjectBox = await openBox(_SUBJECTS);
       List<SubjectModel> subjects = [];
       subjectBox.values.forEach((subjectJson) {
         subjects.add(SubjectModel.fromJson(subjectJson));
