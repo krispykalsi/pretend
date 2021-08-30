@@ -3,7 +3,6 @@ import 'package:pretend/features/timetable/data/models/timetable_model.dart';
 import 'package:pretend/features/timetable/domain/entities/class_category_enum.dart';
 import 'package:pretend/features/timetable/domain/entities/days_enum.dart';
 import 'package:pretend/features/timetable/domain/entities/time_set_enum.dart';
-import 'package:pretend/features/timetable/domain/entities/timetable.dart';
 
 final _tTimetableMap = {
   Days.FRIDAY: {
@@ -38,5 +37,4 @@ final _tTimetableMap = {
   }
 };
 
-Timetable get getTestTimetable => Timetable(_tTimetableMap);
 TimetableModel get getTestTimetableModel => TimetableModel(_tTimetableMap);

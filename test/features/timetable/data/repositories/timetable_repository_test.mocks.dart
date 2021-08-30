@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart'
     as _i3;
-import 'package:pretend/features/timetable/domain/entities/timetable.dart'
+import 'package:pretend/features/timetable/data/models/timetable_model.dart'
     as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -18,7 +18,7 @@ import 'package:pretend/features/timetable/domain/entities/timetable.dart'
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeTimetable_0 extends _i1.Fake implements _i2.Timetable {}
+class _FakeTimetableModel_0 extends _i1.Fake implements _i2.TimetableModel {}
 
 /// A class which mocks [TimetableLocalDataSourceContract].
 ///
@@ -30,12 +30,13 @@ class MockTimetableLocalDataSourceContract extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Timetable> getTimetable() =>
+  _i4.Future<_i2.TimetableModel> getTimetable() =>
       (super.noSuchMethod(Invocation.method(#getTimetable, []),
-              returnValue: Future<_i2.Timetable>.value(_FakeTimetable_0()))
-          as _i4.Future<_i2.Timetable>);
+              returnValue:
+                  Future<_i2.TimetableModel>.value(_FakeTimetableModel_0()))
+          as _i4.Future<_i2.TimetableModel>);
   @override
-  _i4.Future<void> setTimetable(_i2.Timetable? timetable) =>
+  _i4.Future<void> setTimetable(_i2.TimetableModel? timetable) =>
       (super.noSuchMethod(Invocation.method(#setTimetable, [timetable]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);

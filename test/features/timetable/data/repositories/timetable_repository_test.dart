@@ -20,7 +20,7 @@ void main() {
     repository = TimetableRepository(mockLocalDataSource);
   });
 
-  final tTimetable = getTestTimetable;
+  final tTimetable = getTestTimetableModel;
 
   group('get Timetable', () {
     test(

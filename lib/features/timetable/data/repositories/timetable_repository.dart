@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart';
-import 'package:pretend/features/timetable/domain/entities/timetable.dart';
+import 'package:pretend/features/timetable/data/models/timetable_model.dart';
 import 'package:pretend/features/timetable/domain/repositories/timetable_repository_contract.dart';
 
 
@@ -12,7 +12,7 @@ class TimetableRepository implements TimetableRepositoryContract {
   TimetableRepository(this.localDataSource);
 
   @override
-  Future<Either<Failure, Timetable>> getTimetable() async {
+  Future<Either<Failure, TimetableModel>> getTimetable() async {
     try {
       final timetable = await localDataSource.getTimetable();
       return Right(timetable);
@@ -22,7 +22,7 @@ class TimetableRepository implements TimetableRepositoryContract {
   }
 
   @override
-  Future<Either<Failure, void>> setTimetable(Timetable timetable) async {
+  Future<Either<Failure, void>> setTimetable(TimetableModel timetable) async {
     try {
       await localDataSource.setTimetable(timetable);
       return Right(null);

@@ -29,12 +29,15 @@ void main() {
       final tSubjects = SubjectModel.fromJsonList(tSubjectsJson);
 
       when(mockHiveInterface.openBox(any)).thenAnswer((_) async => mockHiveBox);
-      when(mockHiveBox.values)
-          .thenReturn(tSubjectsJson);
+      when(mockHiveBox.values).thenReturn(tSubjectsJson);
 
       final result = await localDataSource.getSubjects();
 
       expect(result, tSubjects);
+      verify(mockHiveInterface.openBox(any));
+      verify(mockHiveBox.values);
+      verifyNoMoreInteractions(mockHiveBox);
+      verifyNoMoreInteractions(mockHiveInterface);
     },
   );
 
@@ -43,12 +46,14 @@ void main() {
         () async {
       final tSubjectsJson = fixture("no_subject.json");
       when(mockHiveInterface.openBox(any)).thenAnswer((_) async => mockHiveBox);
-      when(mockHiveBox.values)
-          .thenReturn(tSubjectsJson);
+      when(mockHiveBox.values).thenReturn(tSubjectsJson);
 
       final call = localDataSource.getSubjects;
 
-      expect(call(), throwsA(TypeMatcher<NoLocalDataException>()));
+      expect(call, throwsA(TypeMatcher<NoLocalDataException>()));
+      verify(mockHiveInterface.openBox(any));
+      verifyNoMoreInteractions(mockHiveBox);
+      verifyNoMoreInteractions(mockHiveInterface);
     },
   );
 }

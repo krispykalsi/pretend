@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/usecases/usecase.dart';
-import 'package:pretend/features/timetable/domain/entities/timetable.dart';
+import 'package:pretend/features/timetable/data/models/timetable_model.dart';
 import 'package:pretend/features/timetable/domain/repositories/timetable_repository_contract.dart';
 
 class SetTimetable extends UseCase<void, SetTimetableParams> {
@@ -17,7 +17,7 @@ class SetTimetable extends UseCase<void, SetTimetableParams> {
 }
 
 class SetTimetableParams extends Equatable {
-  final Timetable timetable;
+  final TimetableModel timetable;
 
   SetTimetableParams(this.timetable);
 

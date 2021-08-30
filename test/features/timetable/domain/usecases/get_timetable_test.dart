@@ -19,7 +19,7 @@ void main() {
     usecase = GetTimetable(mockRepository);
   });
 
-  final tTimetable = getTestTimetable;
+  final tTimetable = getTestTimetableModel;
 
   test('should get timetable from the repository', () async {
     when(mockRepository.getTimetable())

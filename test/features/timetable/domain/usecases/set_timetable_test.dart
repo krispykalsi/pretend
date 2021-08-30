@@ -18,7 +18,7 @@ void main() {
     usecase = SetTimetable(mockRepository);
   });
 
-  final tTimetable = getTestTimetable;
+  final tTimetable = getTestTimetableModel;
 
   test('should set timetable using the repository', () async {
     when(mockRepository.setTimetable(tTimetable))
