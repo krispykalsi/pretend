@@ -3,23 +3,23 @@ import 'package:hive/hive.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pretend/core/error/exceptions.dart';
-import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart';
+import 'package:pretend/features/timetable/data/data_sources/subjects_local_datasource.dart';
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
-import 'timetable_local_datasource_implementation_test.mocks.dart';
+import 'subjects_local_datasource_test.mocks.dart';
 
 @GenerateMocks([HiveInterface, Box])
 void main() {
   late MockHiveInterface mockHiveInterface;
   late MockBox mockHiveBox;
-  late TimetableLocalDataSourceImplementation localDataSource;
+  late SubjectsLocalDataSource localDataSource;
 
   setUp(() {
     mockHiveInterface = MockHiveInterface();
     mockHiveBox = MockBox();
     localDataSource =
-        TimetableLocalDataSourceImplementation(hive: mockHiveInterface);
+        SubjectsLocalDataSource(hive: mockHiveInterface);
   });
 
   test(

@@ -6,30 +6,30 @@ import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/network/data_source_enum.dart';
 import 'package:pretend/core/network/network_info.dart';
-import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart';
-import 'package:pretend/features/timetable/data/data_sources/timetable_remote_datasource.dart';
+import 'package:pretend/features/timetable/data/data_sources/subjects_local_datasource.dart';
+import 'package:pretend/features/timetable/data/data_sources/subjects_remote_datasource.dart';
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
-import 'package:pretend/features/timetable/data/repositories/timetable_repository_implementation.dart';
+import 'package:pretend/features/timetable/data/repositories/subjects_repository.dart';
 
-import 'timetable_repository_implementation_test.mocks.dart';
+import 'subjects_repository_test.mocks.dart';
 
 @GenerateMocks([
-  TimetableLocalDataSource,
-  TimetableRemoteDataSource,
+  SubjectsLocalDataSourceContract,
+  SubjectsRemoteDataSourceContract,
   NetworkInfo,
 ])
 void main() {
-  late MockTimetableLocalDataSource mockLocalDataSource;
-  late MockTimetableRemoteDataSource mockRemoteDataSource;
+  late MockSubjectsLocalDataSourceContract mockLocalDataSource;
+  late MockSubjectsRemoteDataSourceContract mockRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
-  late TimetableRepositoryImplementation repository;
+  late SubjectsRepository repository;
 
   setUp(() {
-    mockLocalDataSource = MockTimetableLocalDataSource();
-    mockRemoteDataSource = MockTimetableRemoteDataSource();
+    mockLocalDataSource = MockSubjectsLocalDataSourceContract();
+    mockRemoteDataSource = MockSubjectsRemoteDataSourceContract();
     mockNetworkInfo = MockNetworkInfo();
 
-    repository = TimetableRepositoryImplementation(
+    repository = SubjectsRepository(
       localDataSource: mockLocalDataSource,
       remoteDataSource: mockRemoteDataSource,
       networkInfo: mockNetworkInfo,

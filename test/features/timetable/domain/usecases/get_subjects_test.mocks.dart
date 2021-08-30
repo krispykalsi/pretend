@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:pretend/core/error/failures.dart' as _i5;
 import 'package:pretend/core/network/data_source_enum.dart' as _i7;
 import 'package:pretend/features/timetable/domain/entities/subject.dart' as _i6;
-import 'package:pretend/features/timetable/domain/repositories/timetable_repository.dart'
+import 'package:pretend/features/timetable/domain/repositories/subjects_repository_contract.dart'
     as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,12 +22,12 @@ import 'package:pretend/features/timetable/domain/repositories/timetable_reposit
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-/// A class which mocks [TimetableRepository].
+/// A class which mocks [SubjectsRepositoryContract].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTimetableRepository extends _i1.Mock
-    implements _i3.TimetableRepository {
-  MockTimetableRepository() {
+class MockSubjectsRepositoryContract extends _i1.Mock
+    implements _i3.SubjectsRepositoryContract {
+  MockSubjectsRepositoryContract() {
     _i1.throwOnMissingStub(this);
   }
 

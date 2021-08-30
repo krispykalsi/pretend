@@ -3,17 +3,17 @@ import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/network/data_source_enum.dart';
 import 'package:pretend/core/network/network_info.dart';
-import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart';
-import 'package:pretend/features/timetable/data/data_sources/timetable_remote_datasource.dart';
+import 'package:pretend/features/timetable/data/data_sources/subjects_local_datasource.dart';
+import 'package:pretend/features/timetable/data/data_sources/subjects_remote_datasource.dart';
 import 'package:pretend/features/timetable/domain/entities/subject.dart';
-import 'package:pretend/features/timetable/domain/repositories/timetable_repository.dart';
+import 'package:pretend/features/timetable/domain/repositories/subjects_repository_contract.dart';
 
-class TimetableRepositoryImplementation implements TimetableRepository {
-  final TimetableLocalDataSource localDataSource;
-  final TimetableRemoteDataSource remoteDataSource;
+class SubjectsRepository implements SubjectsRepositoryContract {
+  final SubjectsLocalDataSourceContract localDataSource;
+  final SubjectsRemoteDataSourceContract remoteDataSource;
   final NetworkInfo networkInfo;
 
-  TimetableRepositoryImplementation({
+  SubjectsRepository({
     required this.localDataSource,
     required this.remoteDataSource,
     required this.networkInfo,

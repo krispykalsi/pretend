@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
 
-abstract class TimetableLocalDataSource {
+abstract class SubjectsLocalDataSourceContract {
   Future<List<SubjectModel>> getSubjects();
   Future<void> clearSubjects();
   Future<void> addSubjects(List<SubjectModel> subjects);
@@ -13,11 +13,10 @@ class HiveBoxKeys {
   static const SUBJECTS = 'subjects';
 }
 
-class TimetableLocalDataSourceImplementation
-    implements TimetableLocalDataSource {
+class SubjectsLocalDataSource implements SubjectsLocalDataSourceContract {
   final HiveInterface hive;
 
-  TimetableLocalDataSourceImplementation({required this.hive});
+  SubjectsLocalDataSource({required this.hive});
 
   Future<Box> _openBox(String type) async {
     try {

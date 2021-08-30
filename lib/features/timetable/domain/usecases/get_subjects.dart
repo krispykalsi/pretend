@@ -4,11 +4,11 @@ import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/network/data_source_enum.dart';
 import 'package:pretend/core/usecases/usecase.dart';
 import 'package:pretend/features/timetable/domain/entities/subject.dart';
-import 'package:pretend/features/timetable/domain/repositories/timetable_repository.dart';
+import 'package:pretend/features/timetable/domain/repositories/subjects_repository_contract.dart';
 
 
 class GetSubjects extends UseCase<List<Subject>, Params> {
-  final TimetableRepository repository;
+  final SubjectsRepositoryContract repository;
 
   GetSubjects(this.repository);
 
