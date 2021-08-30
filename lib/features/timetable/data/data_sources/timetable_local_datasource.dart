@@ -1,4 +1,4 @@
-import 'package:pretend/features/timetable/domain/entities/time_set.dart';
+import 'package:pretend/features/timetable/domain/entities/timetable.dart';
 
 abstract class TimetableLocalDataSourceContract {
   Future<Timetable> getTimetable();

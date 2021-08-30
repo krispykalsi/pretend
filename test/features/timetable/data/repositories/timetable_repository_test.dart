@@ -6,11 +6,8 @@ import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/features/timetable/data/data_sources/timetable_local_datasource.dart';
 import 'package:pretend/features/timetable/data/repositories/timetable_repository.dart';
-import 'package:pretend/features/timetable/domain/entities/class_category_enum.dart';
-import 'package:pretend/features/timetable/domain/entities/days_enum.dart';
-import 'package:pretend/features/timetable/domain/entities/time_set.dart';
-import 'package:pretend/features/timetable/domain/entities/time_set_enum.dart';
 
+import '../../../../fixtures/timetable.dart';
 import 'timetable_repository_test.mocks.dart';
 
 @GenerateMocks([TimetableLocalDataSourceContract])
@@ -23,38 +20,7 @@ void main() {
     repository = TimetableRepository(mockLocalDataSource);
   });
 
-  final tTimetable = {
-    Days.FRIDAY: {
-      TimeSets.T8AM: TimeSet(
-        start: "8 AM",
-        end: "10 AM",
-        duration: 2,
-        classCategory: ClassCategories.THEORY,
-        subjectKey: "dsfFSFS3",
-      ),
-      TimeSets.T9AM: TimeSet(
-        start: "8 AM",
-        end: "10 AM",
-        duration: 2,
-        classCategory: ClassCategories.THEORY,
-        subjectKey: "dsfFSFS3",
-      ),
-      TimeSets.T1PM: TimeSet(
-        start: "1 PM",
-        end: "2 PM",
-        duration: 1,
-        classCategory: ClassCategories.LAB,
-        subjectKey: "fdsdfEv",
-      ),
-      TimeSets.T11AM: TimeSet(
-        start: "11 AM",
-        end: "12 PM",
-        duration: 1,
-        classCategory: ClassCategories.THEORY,
-        subjectKey: "FHVBVsf356",
-      ),
-    }
-  };
+  final tTimetable = getTestTimetable;
 
   group('get Timetable', () {
     test(

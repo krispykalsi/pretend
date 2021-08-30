@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-typedef Timetable = Map<String, Map<int, TimeSet>>;
-
 class TimeSet extends Equatable {
   final String start;
   final String end;

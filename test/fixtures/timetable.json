@@ -1,0 +1,32 @@
+{
+  "friday": {
+    "0": {
+      "start": "8 AM",
+      "end": "10 AM",
+      "duration": 2,
+      "classCategory": "theory",
+      "subjectKey": "dsfFSFS3"
+    },
+    "1": {
+      "start": "8 AM",
+      "end": "10 AM",
+      "duration": 2,
+      "classCategory": "theory",
+      "subjectKey": "dsfFSFS3"
+    },
+    "5": {
+      "start": "1 PM",
+      "end": "2 PM",
+      "duration": 1,
+      "classCategory": "lab",
+      "subjectKey": "fdsdfEv"
+    },
+    "3": {
+      "start": "11 AM",
+      "end": "12 PM",
+      "duration": 1,
+      "classCategory": "theory",
+      "subjectKey": "FHVBVsf356"
+    }
+  }
+}
