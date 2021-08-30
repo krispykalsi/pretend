@@ -30,7 +30,7 @@ void main() {
   test('should get subject list from the repository', () async {
     when(mockSubjectsRepository.getSubjects(tDataSource))
         .thenAnswer((_) async => Right(tSubjectList));
-    final result = await usecase(Params(tDataSource));
+    final result = await usecase(GetSubjectsParams(tDataSource));
     expect(result, Right(tSubjectList));
     verify(mockSubjectsRepository.getSubjects(tDataSource));
     verifyNoMoreInteractions(mockSubjectsRepository);
