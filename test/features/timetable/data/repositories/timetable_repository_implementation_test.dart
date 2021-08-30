@@ -156,6 +156,20 @@ void main() {
           expect(result, equals(Left(NoLocalDataFailure())));
         },
       );
+
+      test(
+        'should return CacheFailure when call to local datasource is unsuccessful',
+            () async {
+          when(mockLocalDataSource.getSubjects())
+              .thenThrow(CacheException());
+
+          final result = await repository.getSubjects(tDataSource);
+
+          verify(mockLocalDataSource.getSubjects());
+          verifyZeroInteractions(mockRemoteDataSource);
+          expect(result, equals(Left(CacheFailure())));
+        },
+      );
     },
   );
 }

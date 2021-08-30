@@ -37,7 +37,7 @@ class MockTimetableLocalDataSource extends _i1.Mock
                   Future<List<_i4.SubjectModel>>.value(<_i4.SubjectModel>[]))
           as _i3.Future<List<_i4.SubjectModel>>);
   @override
-  _i3.Future<void> clearDatabase() =>
+  _i3.Future<void> clearSubjects() =>
       (super.noSuchMethod(Invocation.method(#clearDatabase, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);

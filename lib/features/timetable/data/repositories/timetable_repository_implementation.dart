@@ -40,6 +40,8 @@ class TimetableRepositoryImplementation implements TimetableRepository {
           return Right(subjects);
         } on NoLocalDataException {
           return Left(NoLocalDataFailure());
+        } on CacheException {
+          return Left(CacheFailure());
         }
     }
   }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
 import 'package:pretend/features/timetable/domain/entities/subject.dart';
@@ -19,9 +17,29 @@ void main() {
   test(
     'should return a valid SubjectModel',
     () async {
-      final Map<String, dynamic> jsonMap = json.decode(fixture("subject.json"));
+      final Map<String, dynamic> jsonMap = fixture("subject.json");
       final result = SubjectModel.fromJson(jsonMap);
       expect(result, tSubjectModel);
+    },
+  );
+
+  test(
+    'should return a valid List of SubjectModels',
+    () async {
+      final List<dynamic> jsonList = fixture("subjects.json");
+      final result = SubjectModel.fromJsonList(jsonList);
+
+      final expectedSubjects = [
+        SubjectModel(
+          name: "Computer Networks",
+          code: "IT-502",
+        ),
+        SubjectModel(
+          name: "International Trade",
+          code: "HU-351a",
+        ),
+      ];
+      expect(result, expectedSubjects);
     },
   );
 
