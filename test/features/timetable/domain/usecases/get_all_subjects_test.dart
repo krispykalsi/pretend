@@ -5,19 +5,19 @@ import 'package:mockito/mockito.dart';
 import 'package:pretend/core/network/data_source_enum.dart';
 import 'package:pretend/features/timetable/domain/entities/subject.dart';
 import 'package:pretend/features/timetable/domain/repositories/subjects_repository_contract.dart';
-import 'package:pretend/features/timetable/domain/usecases/get_subjects.dart';
+import 'package:pretend/features/timetable/domain/usecases/get_all_subjects.dart';
 
-import 'get_subjects_test.mocks.dart';
+import 'get_all_subjects_test.mocks.dart';
 
 
 @GenerateMocks([SubjectsRepositoryContract])
 void main() {
-  late GetSubjects usecase;
+  late GetAllSubjects usecase;
   late MockSubjectsRepositoryContract mockSubjectsRepository;
 
   setUp(() {
     mockSubjectsRepository = MockSubjectsRepositoryContract();
-    usecase = GetSubjects(mockSubjectsRepository);
+    usecase = GetAllSubjects(mockSubjectsRepository);
   });
 
   final tDataSource = DataSource.LOCAL;
@@ -30,7 +30,7 @@ void main() {
   test('should get subject list from the repository', () async {
     when(mockSubjectsRepository.getSubjects(tDataSource))
         .thenAnswer((_) async => Right(tSubjectList));
-    final result = await usecase(GetSubjectsParams(tDataSource));
+    final result = await usecase(GetAllSubjectsParams(tDataSource));
     expect(result, Right(tSubjectList));
     verify(mockSubjectsRepository.getSubjects(tDataSource));
     verifyNoMoreInteractions(mockSubjectsRepository);

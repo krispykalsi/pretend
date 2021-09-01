@@ -7,21 +7,21 @@ import 'package:pretend/features/timetable/domain/entities/subject.dart';
 import 'package:pretend/features/timetable/domain/repositories/subjects_repository_contract.dart';
 
 
-class GetSubjects extends UseCase<List<Subject>, GetSubjectsParams> {
+class GetAllSubjects extends UseCase<List<Subject>, GetAllSubjectsParams> {
   final SubjectsRepositoryContract repository;
 
-  GetSubjects(this.repository);
+  GetAllSubjects(this.repository);
 
   @override
-  Future<Either<Failure, List<Subject>>> call(GetSubjectsParams params) async {
+  Future<Either<Failure, List<Subject>>> call(GetAllSubjectsParams params) async {
     return await repository.getSubjects(params.dataSource);
   }
 }
 
-class GetSubjectsParams extends Equatable {
+class GetAllSubjectsParams extends Equatable {
   final DataSource dataSource;
 
-  GetSubjectsParams(this.dataSource);
+  GetAllSubjectsParams(this.dataSource);
 
   @override
   List<Object?> get props => [dataSource];
