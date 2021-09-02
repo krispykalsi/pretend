@@ -4,7 +4,8 @@ import 'package:pretend/features/timetable/data/data_sources/hive_datasource.dar
 import 'package:pretend/features/timetable/data/models/subject_model.dart';
 
 abstract class SubjectsLocalDataSourceContract {
-  Future<List<SubjectModel>> getSubjects();
+  Future<List<SubjectModel>> getAllSubjects();
+  Future<Map<String, SubjectModel>> getSubjects(List<String> keys);
   Future<void> clearSubjects();
   Future<void> addSubjects(List<SubjectModel> subjects);
   Future<void> addSubject(SubjectModel subject);
@@ -48,7 +49,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   }
 
   @override
-  Future<List<SubjectModel>> getSubjects() async {
+  Future<List<SubjectModel>> getAllSubjects() async {
     try {
       final subjectBox = await openBox(_SUBJECTS);
       List<SubjectModel> subjects = [];
@@ -62,6 +63,21 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
       }
     } on NoLocalDataException {
       throw NoLocalDataException();
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<Map<String, SubjectModel>> getSubjects(List<String> keys) async {
+    try {
+      final subjectBox = await openBox(_SUBJECTS);
+      Map<String, SubjectModel> subjects = {};
+      keys.forEach((subjectKey) {
+        final subjectJson = subjectBox.get(subjectKey);
+        subjects[subjectKey] = SubjectModel.fromJson(subjectJson);
+      });
+      return subjects;
     } catch (e) {
       throw CacheException();
     }

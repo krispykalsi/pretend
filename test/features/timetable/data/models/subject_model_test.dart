@@ -27,7 +27,7 @@ void main() {
     'should return a valid List of SubjectModels',
     () async {
       final List<dynamic> jsonList = fixture("subjects.json");
-      final result = SubjectModel.fromJsonList(jsonList);
+      final result = SubjectModel.listFromJson(jsonList);
 
       final expectedSubjects = [
         SubjectModel(
@@ -51,6 +51,22 @@ void main() {
         SubjectModelFields.NAME: "Computer Networks",
         SubjectModelFields.CODE: "IT-502"
       };
+      expect(result, expectedJsonMap);
+    },
+  );
+
+  test(
+    'should return a valid JSON map of SubjectModels',
+    () async {
+      final expectedJsonMap = {
+        "dsfFSFS3": SubjectModel(name: "International Trade", code: "HU-351a"),
+        "fdsdfEv": SubjectModel(name: "Computer Networks", code: "IT-502"),
+        "FHVBVsf356": SubjectModel(name: "Theory of Computing", code: "IT-504")
+      };
+
+      final jsonMap = fixture("timetable_subjects.json");
+      final result = SubjectModel.mapFromJson(jsonMap);
+
       expect(result, expectedJsonMap);
     },
   );

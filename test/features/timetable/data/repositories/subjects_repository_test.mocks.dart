@@ -31,11 +31,17 @@ class MockSubjectsLocalDataSourceContract extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.SubjectModel>> getSubjects() =>
-      (super.noSuchMethod(Invocation.method(#getSubjects, []),
+  _i3.Future<List<_i4.SubjectModel>> getAllSubjects() =>
+      (super.noSuchMethod(Invocation.method(#getAllSubjects, []),
               returnValue:
                   Future<List<_i4.SubjectModel>>.value(<_i4.SubjectModel>[]))
           as _i3.Future<List<_i4.SubjectModel>>);
+  @override
+  _i3.Future<Map<String, _i4.SubjectModel>> getSubjects(List<String>? keys) =>
+      (super.noSuchMethod(Invocation.method(#getSubjects, [keys]),
+              returnValue: Future<Map<String, _i4.SubjectModel>>.value(
+                  <String, _i4.SubjectModel>{}))
+          as _i3.Future<Map<String, _i4.SubjectModel>>);
   @override
   _i3.Future<void> clearSubjects() =>
       (super.noSuchMethod(Invocation.method(#clearSubjects, []),

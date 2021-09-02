@@ -36,13 +36,23 @@ class SubjectsRepository implements SubjectsRepositoryContract {
 
       case DataSource.LOCAL:
         try {
-          final subjects = await localDataSource.getSubjects();
+          final subjects = await localDataSource.getAllSubjects();
           return Right(subjects);
         } on NoLocalDataException {
           return Left(NoLocalDataFailure());
         } on CacheException {
           return Left(CacheFailure());
         }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, Subject>>> getSubjectsFromKeys(List<String> keys) async {
+    try {
+      final subjectMap = await localDataSource.getSubjects(keys);
+      return Right(subjectMap);
+    } on CacheException {
+      return Left(CacheFailure());
     }
   }
 }

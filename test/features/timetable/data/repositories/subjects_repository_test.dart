@@ -120,7 +120,7 @@ void main() {
       test(
         'should not check device network info',
         () async {
-          when(mockLocalDataSource.getSubjects())
+          when(mockLocalDataSource.getAllSubjects())
               .thenAnswer((_) async => tSubjectModelList);
 
           await repository.getSubjects(tDataSource);
@@ -129,47 +129,88 @@ void main() {
         },
       );
 
-      test(
-        'should return local data when call to local datasource is successful',
-        () async {
-          when(mockLocalDataSource.getSubjects())
-              .thenAnswer((_) async => tSubjectModelList);
+      group('GetAllSubjects', () {
+        test(
+          'should return local data when call to local datasource is successful',
+          () async {
+            when(mockLocalDataSource.getAllSubjects())
+                .thenAnswer((_) async => tSubjectModelList);
 
-          final result = await repository.getSubjects(tDataSource);
+            final result = await repository.getSubjects(tDataSource);
 
-          verify(mockLocalDataSource.getSubjects());
-          verifyZeroInteractions(mockRemoteDataSource);
-          expect(result, equals(Right(tSubjectModelList)));
-        },
-      );
+            verify(mockLocalDataSource.getAllSubjects());
+            verifyZeroInteractions(mockRemoteDataSource);
+            expect(result, equals(Right(tSubjectModelList)));
+          },
+        );
 
-      test(
-        'should return NoLocalDataFailure when there is no local data present',
-        () async {
-          when(mockLocalDataSource.getSubjects())
-              .thenThrow(NoLocalDataException());
+        test(
+          'should return NoLocalDataFailure when there is no local data present',
+          () async {
+            when(mockLocalDataSource.getAllSubjects())
+                .thenThrow(NoLocalDataException());
 
-          final result = await repository.getSubjects(tDataSource);
+            final result = await repository.getSubjects(tDataSource);
 
-          verify(mockLocalDataSource.getSubjects());
-          verifyZeroInteractions(mockRemoteDataSource);
-          expect(result, equals(Left(NoLocalDataFailure())));
-        },
-      );
+            verify(mockLocalDataSource.getAllSubjects());
+            verifyZeroInteractions(mockRemoteDataSource);
+            expect(result, equals(Left(NoLocalDataFailure())));
+          },
+        );
 
-      test(
-        'should return CacheFailure when call to local datasource is unsuccessful',
-            () async {
-          when(mockLocalDataSource.getSubjects())
-              .thenThrow(CacheException());
+        test(
+          'should return CacheFailure when call to local datasource is unsuccessful',
+          () async {
+            when(mockLocalDataSource.getAllSubjects())
+                .thenThrow(CacheException());
 
-          final result = await repository.getSubjects(tDataSource);
+            final result = await repository.getSubjects(tDataSource);
 
-          verify(mockLocalDataSource.getSubjects());
-          verifyZeroInteractions(mockRemoteDataSource);
-          expect(result, equals(Left(CacheFailure())));
-        },
-      );
+            verify(mockLocalDataSource.getAllSubjects());
+            verifyZeroInteractions(mockRemoteDataSource);
+            expect(result, equals(Left(CacheFailure())));
+          },
+        );
+      });
+
+      group('GetSubjects', () {
+        final tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+        final tSubjectMap = {
+          "dsfFSFS3":
+              SubjectModel(name: "International Trade", code: "HU-351a"),
+          "fdsdfEv": SubjectModel(name: "Computer Networks", code: "IT-502"),
+          "FHVBVsf356":
+              SubjectModel(name: "Theory of Computing", code: "IT-504")
+        };
+
+        test(
+          'should return local data when call to local datasource is successful',
+          () async {
+            when(mockLocalDataSource.getSubjects(tSubjectKeys))
+                .thenAnswer((_) async => tSubjectMap);
+
+            final result = await repository.getSubjectsFromKeys(tSubjectKeys);
+
+            verify(mockLocalDataSource.getSubjects(tSubjectKeys));
+            verifyZeroInteractions(mockRemoteDataSource);
+            expect(result, equals(Right(tSubjectMap)));
+          },
+        );
+
+        test(
+          'should return CacheFailure when call to local datasource is unsuccessful',
+          () async {
+            when(mockLocalDataSource.getSubjects(tSubjectKeys))
+                .thenThrow(CacheException());
+
+            final result = await repository.getSubjectsFromKeys(tSubjectKeys);
+
+            verify(mockLocalDataSource.getSubjects(tSubjectKeys));
+            verifyZeroInteractions(mockRemoteDataSource);
+            expect(result, equals(Left(CacheFailure())));
+          },
+        );
+      });
     },
   );
 }

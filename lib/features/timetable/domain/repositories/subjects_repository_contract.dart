@@ -5,4 +5,5 @@ import 'package:pretend/features/timetable/domain/entities/subject.dart';
 
 abstract class SubjectsRepositoryContract {
   Future<Either<Failure, List<Subject>>> getSubjects(DataSource dataSource);
+  Future<Either<Failure, Map<String, Subject>>> getSubjectsFromKeys(List<String> keys);
 }

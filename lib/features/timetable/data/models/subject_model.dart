@@ -16,11 +16,19 @@ class SubjectModel extends Subject {
     );
   }
 
-  static List<SubjectModel> fromJsonList(List<dynamic> list) {
+  static List<SubjectModel> listFromJson(List<dynamic> list) {
     List<SubjectModel> subjects = [];
     list.forEach((subject) {
       subjects.add(SubjectModel.fromJson(subject));
     });
+    return subjects;
+  }
+
+  static Map<String, SubjectModel> mapFromJson(Map<String, dynamic> json) {
+    Map<String, SubjectModel> subjects = {};
+    for (String subjectKey in json.keys) {
+      subjects[subjectKey] = SubjectModel.fromJson(json[subjectKey]);
+    }
     return subjects;
   }
 

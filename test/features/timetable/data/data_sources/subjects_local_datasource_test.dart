@@ -18,42 +18,88 @@ void main() {
   setUp(() {
     mockHiveInterface = MockHiveInterface();
     mockHiveBox = MockBox();
-    localDataSource =
-        SubjectsLocalDataSource(hive: mockHiveInterface);
+    localDataSource = SubjectsLocalDataSource(hive: mockHiveInterface);
   });
 
-  test(
-    'should return Subjects from Hive when there are some',
-    () async {
-      final tSubjectsJson = fixture("subjects.json");
-      final tSubjects = SubjectModel.fromJsonList(tSubjectsJson);
+  void runCacheExceptionTestOn(Function closure) {
+    test(
+      'should throw CacheException in case of any other exceptions/errors',
+      () async {
+        when(mockHiveInterface.openBox(any)).thenThrow(Exception());
+        expect(closure, throwsA(TypeMatcher<CacheException>()));
+        verify(mockHiveInterface.openBox(any));
+        verifyNoMoreInteractions(mockHiveBox);
+        verifyNoMoreInteractions(mockHiveInterface);
+      },
+    );
+  }
 
-      when(mockHiveInterface.openBox(any)).thenAnswer((_) async => mockHiveBox);
-      when(mockHiveBox.values).thenReturn(tSubjectsJson);
+  group('GetAllSubjects', () {
+    test(
+      'should return Subjects from Hive when there are some',
+      () async {
+        final tSubjectsJson = fixture("subjects.json");
+        final tSubjects = SubjectModel.listFromJson(tSubjectsJson);
 
-      final result = await localDataSource.getSubjects();
+        when(mockHiveInterface.openBox(any))
+            .thenAnswer((_) async => mockHiveBox);
+        when(mockHiveBox.values).thenReturn(tSubjectsJson);
 
-      expect(result, tSubjects);
-      verify(mockHiveInterface.openBox(any));
-      verify(mockHiveBox.values);
-      verifyNoMoreInteractions(mockHiveBox);
-      verifyNoMoreInteractions(mockHiveInterface);
-    },
-  );
+        final result = await localDataSource.getAllSubjects();
 
-  test(
-    'should return NoLocalDataFailure when no subjects present',
-        () async {
-      final tSubjectsJson = fixture("no_subject.json");
-      when(mockHiveInterface.openBox(any)).thenAnswer((_) async => mockHiveBox);
-      when(mockHiveBox.values).thenReturn(tSubjectsJson);
+        expect(result, tSubjects);
+        verify(mockHiveInterface.openBox(any));
+        verify(mockHiveBox.values);
+        verifyNoMoreInteractions(mockHiveBox);
+        verifyNoMoreInteractions(mockHiveInterface);
+      },
+    );
 
-      final call = localDataSource.getSubjects;
+    test(
+      'should throw NoLocalDataException when no subjects present',
+      () async {
+        final tSubjectsJson = fixture("no_subject.json");
+        when(mockHiveInterface.openBox(any))
+            .thenAnswer((_) async => mockHiveBox);
+        when(mockHiveBox.values).thenReturn(tSubjectsJson);
 
-      expect(call, throwsA(TypeMatcher<NoLocalDataException>()));
-      verify(mockHiveInterface.openBox(any));
-      verifyNoMoreInteractions(mockHiveBox);
-      verifyNoMoreInteractions(mockHiveInterface);
-    },
-  );
+        final call = localDataSource.getAllSubjects;
+
+        expect(call, throwsA(TypeMatcher<NoLocalDataException>()));
+        verify(mockHiveInterface.openBox(any));
+        verifyNoMoreInteractions(mockHiveBox);
+        verifyNoMoreInteractions(mockHiveInterface);
+      },
+    );
+
+    runCacheExceptionTestOn(() => localDataSource.getAllSubjects());
+  });
+
+  group('GetSubjects', () {
+    final tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+    final tSubjectsJson = fixture("timetable_subjects.json");
+    final tSubjects = SubjectModel.mapFromJson(tSubjectsJson);
+    test(
+      'should return map of Subjects of the given keys from Hive',
+      () async {
+        when(mockHiveInterface.openBox(any))
+            .thenAnswer((_) async => mockHiveBox);
+        for (String key in tSubjectsJson.keys) {
+          when(mockHiveBox.get(key)).thenReturn(tSubjectsJson[key]);
+        }
+
+        final result = await localDataSource.getSubjects(tSubjectKeys);
+
+        expect(result, tSubjects);
+        verify(mockHiveInterface.openBox(any));
+        for (String key in tSubjectsJson.keys) {
+          verify(mockHiveBox.get(key));
+        }
+        verifyNoMoreInteractions(mockHiveBox);
+        verifyNoMoreInteractions(mockHiveInterface);
+      },
+    );
+
+    runCacheExceptionTestOn(() => localDataSource.getSubjects(tSubjectKeys));
+  });
 }
