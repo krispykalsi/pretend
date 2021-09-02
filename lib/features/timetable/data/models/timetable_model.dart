@@ -7,20 +7,26 @@ typedef TimetableJSONMap = Map<String, Map<String, dynamic>>;
 class TimetableModel extends Timetable {
   final TimetableModelMap timetable;
 
-  TimetableModel(this.timetable) : super(timetable);
+  TimetableModel(this.timetable, List<String> subjectKeys)
+      : super(timetable, subjectKeys);
 
   factory TimetableModel.fromJson(Map<String, dynamic> json) {
     TimetableModelMap timetable = {};
-    for (String day in json.keys) {
+    final timetableJson = json[KEY_TIMETABLE]!;
+    for (String day in timetableJson.keys) {
       timetable[day] = {};
-      for (String timeSet in json[day]!.keys) {
-        timetable[day]![timeSet] = TimeSetModel.fromJson(json[day]![timeSet]);
+      for (String timeSet in timetableJson[day].keys) {
+        timetable[day]![timeSet] =
+            TimeSetModel.fromJson(timetableJson[day][timeSet]);
       }
     }
-    return TimetableModel(timetable);
+    final subjectKeys = (json[KEY_SUBJECTS] as List)
+        .map((e) => e as String)
+        .toList(growable: false);
+    return TimetableModel(timetable, subjectKeys);
   }
 
-  TimetableJSONMap toJson() {
+  Map<String, dynamic> toJson() {
     TimetableJSONMap timetable = {};
     for (String day in this.timetable.keys) {
       timetable[day] = {};
@@ -28,6 +34,13 @@ class TimetableModel extends Timetable {
         timetable[day]![timeSet] = this.timetable[day]![timeSet]!.toJson();
       }
     }
-    return timetable;
+    final timetableWithSubjects = {
+      KEY_TIMETABLE: timetable,
+      KEY_SUBJECTS: subjectKeys,
+    };
+    return timetableWithSubjects;
   }
+
+  static const KEY_SUBJECTS = 'subjects';
+  static const KEY_TIMETABLE = 'timetable';
 }

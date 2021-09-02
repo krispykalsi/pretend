@@ -37,4 +37,6 @@ final _tTimetableMap = {
   }
 };
 
-TimetableModel get getTestTimetableModel => TimetableModel(_tTimetableMap);
+final _tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+
+TimetableModel get getTestTimetableModel => TimetableModel(_tTimetableMap, _tSubjectKeys);

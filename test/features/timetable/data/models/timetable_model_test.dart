@@ -18,7 +18,7 @@ void main() {
 
   test(
     'should return a valid TimetableModel',
-        () async {
+    () async {
       final Map<String, dynamic> jsonMap = fixture("timetable.json");
       final result = TimetableModel.fromJson(jsonMap);
       expect(result, tTimetable);
@@ -27,39 +27,42 @@ void main() {
 
   test(
     'should return a JSON map containing proper data',
-        () async {
+    () async {
       final result = tTimetable.toJson();
       final expectedJsonMap = {
-        Days.FRIDAY: {
-          TimeSets.T8AM: TimeSetModel(
-            start: "8 AM",
-            end: "10 AM",
-            duration: 2,
-            classCategory: ClassCategories.THEORY,
-            subjectKey: "dsfFSFS3",
-          ).toJson(),
-          TimeSets.T9AM: TimeSetModel(
-            start: "8 AM",
-            end: "10 AM",
-            duration: 2,
-            classCategory: ClassCategories.THEORY,
-            subjectKey: "dsfFSFS3",
-          ).toJson(),
-          TimeSets.T1PM: TimeSetModel(
-            start: "1 PM",
-            end: "2 PM",
-            duration: 1,
-            classCategory: ClassCategories.LAB,
-            subjectKey: "fdsdfEv",
-          ).toJson(),
-          TimeSets.T11AM: TimeSetModel(
-            start: "11 AM",
-            end: "12 PM",
-            duration: 1,
-            classCategory: ClassCategories.THEORY,
-            subjectKey: "FHVBVsf356",
-          ).toJson(),
-        }
+        TimetableModel.KEY_TIMETABLE: {
+          Days.FRIDAY: {
+            TimeSets.T8AM: TimeSetModel(
+              start: "8 AM",
+              end: "10 AM",
+              duration: 2,
+              classCategory: ClassCategories.THEORY,
+              subjectKey: "dsfFSFS3",
+            ).toJson(),
+            TimeSets.T9AM: TimeSetModel(
+              start: "8 AM",
+              end: "10 AM",
+              duration: 2,
+              classCategory: ClassCategories.THEORY,
+              subjectKey: "dsfFSFS3",
+            ).toJson(),
+            TimeSets.T1PM: TimeSetModel(
+              start: "1 PM",
+              end: "2 PM",
+              duration: 1,
+              classCategory: ClassCategories.LAB,
+              subjectKey: "fdsdfEv",
+            ).toJson(),
+            TimeSets.T11AM: TimeSetModel(
+              start: "11 AM",
+              end: "12 PM",
+              duration: 1,
+              classCategory: ClassCategories.THEORY,
+              subjectKey: "FHVBVsf356",
+            ).toJson(),
+          }
+        },
+        TimetableModel.KEY_SUBJECTS: ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"]
       };
 
       expect(result, expectedJsonMap);

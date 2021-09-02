@@ -5,8 +5,9 @@ typedef TimetableMap = Map<String, Map<String, TimeSet>>;
 
 class Timetable extends Equatable {
   final TimetableMap timetable;
+  final List<String> subjectKeys;
 
-  Timetable(this.timetable);
+  Timetable(this.timetable, this.subjectKeys);
 
   @override
   List<Object?> get props => [timetable];
