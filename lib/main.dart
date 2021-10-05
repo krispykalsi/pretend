@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'features/timetable/presentation/widgets/timetable_view.dart';
+import 'package:pretend/presentation/widgets/setup_timetable/setup_timetable_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,7 +50,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: TimetableView(),
+      home: Material(
+        color: DARK,
+        child: SetupTimetableView(),
+      ),
     );
   }
 }

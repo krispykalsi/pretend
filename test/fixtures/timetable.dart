@@ -1,8 +1,8 @@
-import 'package:pretend/features/timetable/data/models/time_set_model.dart';
-import 'package:pretend/features/timetable/data/models/timetable_model.dart';
-import 'package:pretend/features/timetable/domain/entities/class_category_enum.dart';
-import 'package:pretend/features/timetable/domain/entities/days_enum.dart';
-import 'package:pretend/features/timetable/domain/entities/time_set_enum.dart';
+import 'package:pretend/data/models/time_set_model.dart';
+import 'package:pretend/data/models/timetable_model.dart';
+import 'package:pretend/domain/entities/class_category_enum.dart';
+import 'package:pretend/domain/entities/days_enum.dart';
+import 'package:pretend/domain/entities/time_set_enum.dart';
 
 final _tTimetableMap = {
   Days.FRIDAY: {
