@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-const DARK = Color(0xff242424);
+import 'package:pretend/presentation/common/app_colors.dart';
 
 class SubjectCategoryBadge extends StatelessWidget {
   final Color color;
@@ -30,7 +29,7 @@ class SubjectCategoryBadge extends StatelessWidget {
               letterSpacing: 1.5 * MediaQuery.of(context).textScaleFactor,
               fontSize: 11,
               fontWeight: FontWeight.w900,
-              color: DARK,
+              color: AppColors.DARK,
             ),
           ),
         ),

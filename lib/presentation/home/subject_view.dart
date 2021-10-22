@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/time_set.dart';
-import 'package:pretend/presentation/widgets/subject_category_badge.dart';
-import 'package:pretend/presentation/widgets/time_components.dart';
+import 'package:pretend/presentation/home/subject_category_badge.dart';
+import 'package:pretend/presentation/home/time_components.dart';
 
 const YELLOW = Color(0xfffff733);
 const CYAN = Color(0xff33f3ff);

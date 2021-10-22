@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pretend/presentation/widgets/setup_timetable/setup_timetable_view.dart';
+import 'package:pretend/presentation/common/app_colors.dart';
+import 'package:pretend/presentation/setup/branch_selection/setup_branch_page.dart';
 
 void main() {
   runApp(MyApp());
 }
-
-const PRIMARY = Color(0xffffffff);
-const SECONDARY = Color(0xff9c9c9c);
-const ACCENT = Color(0xffffc2c2);
-const DARK = Color(0xff242424);
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,39 +17,36 @@ class MyApp extends StatelessWidget {
           headline1: GoogleFonts.yanoneKaffeesatz(
             textStyle: TextStyle(
               fontSize: 72,
-              color: SECONDARY,
+              color: AppColors.SECONDARY,
             ),
           ),
           headline2: GoogleFonts.yanoneKaffeesatz(
             textStyle: TextStyle(
               fontSize: 48,
-              color: ACCENT,
+              color: AppColors.ACCENT,
             ),
           ),
           headline3: GoogleFonts.ptSansNarrow(
             textStyle: TextStyle(
               fontSize: 24,
-              color: PRIMARY,
+              color: AppColors.PRIMARY,
             ),
           ),
           bodyText1: GoogleFonts.ptSansNarrow(
             textStyle: TextStyle(
               fontSize: 18,
-              color: PRIMARY,
+              color: AppColors.PRIMARY,
             ),
           ),
           bodyText2: GoogleFonts.ptSansNarrow(
             textStyle: TextStyle(
               fontSize: 18,
-              color: SECONDARY,
+              color: AppColors.SECONDARY,
             ),
           ),
         ),
       ),
-      home: Material(
-        color: DARK,
-        child: SetupTimetableView(),
-      ),
+      home: SetupBranchPage(),
     );
   }
 }

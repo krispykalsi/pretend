@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/time_set.dart';
-import 'package:pretend/presentation/widgets/subject_view.dart';
+import 'package:pretend/presentation/home/subject_view.dart';
 
 class TimetableView extends StatelessWidget {
   const TimetableView({Key? key}) : super(key: key);
