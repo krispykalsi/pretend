@@ -42,7 +42,6 @@ class _SelectedSubjectListState extends State<SelectedSubjectList> {
   @override
   void dispose() {
     widget.listModelNotifier.value = null;
-    widget.listModelNotifier.dispose();
     super.dispose();
   }
 
