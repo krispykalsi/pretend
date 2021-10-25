@@ -33,7 +33,6 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
             onTap: (isSelected) {
               _selectionState[subject.code] = isSelected;
               widget.onOptionTap(subject, isSelected);
-              print(_selectionState);
             },
             selected: _selectionState[subject.code] ?? false,
           );

@@ -9,31 +9,31 @@ import 'subject_option_list.dart';
 
 class SetupSubjects extends StatefulWidget {
   final List<Subject> allSubjects;
+  final Function(List<Subject>) onSelectedSubjectsUpdate;
 
-  const SetupSubjects(this.allSubjects, {Key? key}) : super(key: key);
+  const SetupSubjects({
+    Key? key,
+    required this.allSubjects,
+    required this.onSelectedSubjectsUpdate,
+  }) : super(key: key);
 
   @override
   _SetupSubjectsState createState() => _SetupSubjectsState();
 }
 
 class _SetupSubjectsState extends State<SetupSubjects> {
-  final selectedSubjectListModelNotifier =
-      ValueNotifier<AnimatedListModel<Subject>?>(null);
+  final _selectedListNotifier = ValueNotifier<AnimatedListModel<Subject>?>(null);
   var _textEditingController = TextEditingController();
   Iterable<Subject> _subjectOptions = Iterable.empty();
 
   void _addToSelectedSubjects(Subject subject) {
-    if (selectedSubjectListModelNotifier.value != null) {
-      final len = selectedSubjectListModelNotifier.value!.length;
-      selectedSubjectListModelNotifier.value!.insert(len, subject);
-    }
+    final len = _selectedListNotifier.value!.length;
+    _selectedListNotifier.value!.insert(len, subject);
   }
 
   void _removeFromSelectedSubjects(Subject subject) {
-    if (selectedSubjectListModelNotifier.value != null) {
-      final index = selectedSubjectListModelNotifier.value!.indexOf(subject);
-      selectedSubjectListModelNotifier.value!.removeAt(index);
-    }
+    final index = _selectedListNotifier.value!.indexOf(subject);
+    _selectedListNotifier.value!.removeAt(index);
   }
 
   RegExp _getRegexpForIntelligentAutoComplete(String text) {
@@ -64,6 +64,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
   @override
   void dispose() {
     _textEditingController.dispose();
+    _selectedListNotifier.dispose();
     super.dispose();
   }
 
@@ -80,9 +81,15 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 flex: 2,
                 child: SubjectOptionList(
                   _subjectOptions,
-                  onOptionTap: (subject, isSelected) => isSelected
-                      ? _addToSelectedSubjects(subject)
-                      : _removeFromSelectedSubjects(subject),
+                  onOptionTap: (subject, isSelected) {
+                    if (_selectedListNotifier.value != null) {
+                      isSelected
+                          ? _addToSelectedSubjects(subject)
+                          : _removeFromSelectedSubjects(subject);
+                      final subjects = _selectedListNotifier.value!.items;
+                      widget.onSelectedSubjectsUpdate(subjects);
+                    }
+                  },
                 ),
               ),
               Container(
@@ -92,7 +99,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
               Expanded(
                 flex: 1,
                 child: SelectedSubjectList(
-                  listModelNotifier: selectedSubjectListModelNotifier,
+                  listModelNotifier: _selectedListNotifier,
                 ),
               )
             ],

@@ -14,6 +14,7 @@ class AnimatedListModel<E> {
   final RemovedItemBuilder<E> removedItemBuilder;
   final List<E> _items;
 
+  List<E> get items => _items;
   AnimatedListState? get _animatedList => listKey.currentState;
 
   void insert(int index, E item) {
