@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pretend/presentation/common/button_next.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
-import 'package:pretend/presentation/setup/branch_selection/setup_branch_page_item.dart';
+import 'package:pretend/presentation/setup/branch/setup_branch_page_item.dart';
 
 class SetupBranchPage extends StatefulWidget {
   const SetupBranchPage({Key? key}) : super(key: key);

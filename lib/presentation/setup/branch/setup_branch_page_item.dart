@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/presentation/common/custom_choice_chip.dart';
-import 'package:pretend/presentation/setup/branch_selection/side_heading.dart';
+import 'package:pretend/presentation/setup/branch/side_heading.dart';
 
 void _defaultOnSelected(int _) {}
 
