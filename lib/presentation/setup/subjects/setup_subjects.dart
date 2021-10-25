@@ -22,7 +22,8 @@ class SetupSubjects extends StatefulWidget {
 }
 
 class _SetupSubjectsState extends State<SetupSubjects> {
-  final _selectedListNotifier = ValueNotifier<AnimatedListModel<Subject>?>(null);
+  final _selectedListNotifier =
+      ValueNotifier<AnimatedListModel<Subject>?>(null);
   var _textEditingController = TextEditingController();
   Iterable<Subject> _subjectOptions = Iterable.empty();
 
@@ -34,6 +35,16 @@ class _SetupSubjectsState extends State<SetupSubjects> {
   void _removeFromSelectedSubjects(Subject subject) {
     final index = _selectedListNotifier.value!.indexOf(subject);
     _selectedListNotifier.value!.removeAt(index);
+  }
+
+  void _onOptionTap(Subject subject, bool isSelected) {
+    if (_selectedListNotifier.value != null) {
+      isSelected
+          ? _addToSelectedSubjects(subject)
+          : _removeFromSelectedSubjects(subject);
+      final subjects = _selectedListNotifier.value!.items;
+      widget.onSelectedSubjectsUpdate(subjects);
+    }
   }
 
   RegExp _getRegexpForIntelligentAutoComplete(String text) {
@@ -81,15 +92,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 flex: 2,
                 child: SubjectOptionList(
                   _subjectOptions,
-                  onOptionTap: (subject, isSelected) {
-                    if (_selectedListNotifier.value != null) {
-                      isSelected
-                          ? _addToSelectedSubjects(subject)
-                          : _removeFromSelectedSubjects(subject);
-                      final subjects = _selectedListNotifier.value!.items;
-                      widget.onSelectedSubjectsUpdate(subjects);
-                    }
-                  },
+                  onOptionTap: _onOptionTap,
                 ),
               ),
               Container(
