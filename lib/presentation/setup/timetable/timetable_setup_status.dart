@@ -23,9 +23,7 @@ class TimetableSetupStatus extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 300),
             child: SubjectListTile(
-              onTap: () {
-
-              },
+              onTap: () {},
               isConfigured: true,
               subject: _subjects[index],
             ),
@@ -35,4 +33,3 @@ class TimetableSetupStatus extends StatelessWidget {
     );
   }
 }
-

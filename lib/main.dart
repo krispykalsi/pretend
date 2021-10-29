@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
-import 'package:pretend/presentation/setup/timetable/timetable_setup_page.dart';
+import 'package:pretend/presentation/setup/timetable/timetable_setup_status_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: TimetableSetupPage(),
+      home: TimetableSetupStatusPage(),
     );
   }
 }
