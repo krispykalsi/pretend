@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
-import 'package:pretend/domain/entities/time_set.dart';
+import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/home/subject_category_badge.dart';
 import 'package:pretend/presentation/home/time_components.dart';
-
-const YELLOW = Color(0xfffff733);
-const CYAN = Color(0xff33f3ff);
-const GREEN = Color(0xff99ff33);
-const DARK = Color(0xff242424);
-const OFF_WHITE = Color(0xffe5e5e5);
 
 class SubjectView extends StatelessWidget {
   final isOnGoing;
   final Subject subject;
-  final TimeSet timeSet;
+  final Timeslot timeSet;
 
   const SubjectView({
     Key? key,
@@ -46,7 +41,7 @@ class SubjectView extends StatelessWidget {
                   ),
                   SubjectCategoryBadge(
                     text: timeSet.classCategory,
-                    color: YELLOW,
+                    color: AppColors.LAB,
                   ),
                 ],
               )
@@ -72,7 +67,7 @@ class CustomVerticalDivider extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Center(
           child: Container(
-            color: OFF_WHITE,
+            color: AppColors.SECONDARY,
             width: 1,
           ),
         ),

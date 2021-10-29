@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pretend/data/models/time_set_model.dart';
+import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/data/models/timetable_model.dart';
 import 'package:pretend/domain/entities/class_category_enum.dart';
 import 'package:pretend/domain/entities/days_enum.dart';
-import 'package:pretend/domain/entities/time_set_enum.dart';
+import 'package:pretend/domain/entities/timeslot_enum.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 
 import '../../fixtures/fixture_reader.dart';
@@ -32,28 +32,28 @@ void main() {
       final expectedJsonMap = {
         TimetableModel.KEY_TIMETABLE: {
           Days.FRIDAY: {
-            TimeSets.T8AM: TimeSetModel(
+            TimeSets.T8AM: TimeslotModel(
               start: "8 AM",
               end: "10 AM",
               duration: 2,
               classCategory: ClassCategories.THEORY,
               subjectKey: "dsfFSFS3",
             ).toJson(),
-            TimeSets.T9AM: TimeSetModel(
+            TimeSets.T9AM: TimeslotModel(
               start: "8 AM",
               end: "10 AM",
               duration: 2,
               classCategory: ClassCategories.THEORY,
               subjectKey: "dsfFSFS3",
             ).toJson(),
-            TimeSets.T1PM: TimeSetModel(
+            TimeSets.T1PM: TimeslotModel(
               start: "1 PM",
               end: "2 PM",
               duration: 1,
               classCategory: ClassCategories.LAB,
               subjectKey: "fdsdfEv",
             ).toJson(),
-            TimeSets.T11AM: TimeSetModel(
+            TimeSets.T11AM: TimeslotModel(
               start: "11 AM",
               end: "12 PM",
               duration: 1,

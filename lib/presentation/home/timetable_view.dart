@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
-import 'package:pretend/domain/entities/time_set.dart';
+import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/presentation/home/subject_view.dart';
 
 class TimetableView extends StatelessWidget {
@@ -9,7 +9,7 @@ class TimetableView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tSubject = Subject("Machine Learning", "IT-102");
-    final tTimeSet = TimeSet(
+    final tTimeSet = Timeslot(
       start: "1:00 PM",
       end: "2:00 PM",
       duration: 1,

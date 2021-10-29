@@ -1,7 +1,7 @@
-import 'package:pretend/data/models/time_set_model.dart';
+import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 
-typedef TimetableModelMap = Map<String, Map<String, TimeSetModel>>;
+typedef TimetableModelMap = Map<String, Map<String, TimeslotModel>>;
 typedef TimetableJSONMap = Map<String, Map<String, dynamic>>;
 
 class TimetableModel extends Timetable {
@@ -17,7 +17,7 @@ class TimetableModel extends Timetable {
       timetable[day] = {};
       for (String timeSet in timetableJson[day].keys) {
         timetable[day]![timeSet] =
-            TimeSetModel.fromJson(timetableJson[day][timeSet]);
+            TimeslotModel.fromJson(timetableJson[day][timeSet]);
       }
     }
     final subjectKeys = (json[KEY_SUBJECTS] as List)
