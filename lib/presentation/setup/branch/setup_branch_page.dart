@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pretend/presentation/common/button_next.dart';
+import 'package:pretend/presentation/common/accent_button.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
 import 'package:pretend/presentation/setup/branch/setup_branch_page_item.dart';
 
@@ -45,7 +45,7 @@ class _SetupBranchPageState extends State<SetupBranchPage> {
           Spacer(flex: 2),
           Align(
             alignment: Alignment(1, 0),
-            child: ButtonNext(
+            child: NextAccentButton(
               onTap: () => print("$_year $_batch $_group"),
             ),
           ),

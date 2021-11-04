@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
-import 'package:pretend/presentation/common/button_next.dart';
+import 'package:pretend/presentation/common/accent_button.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
+import 'package:pretend/presentation/common/custom_dialog.dart';
 
 import 'timetable_notifier.dart';
 import 'timetable_setup_status.dart';
@@ -56,24 +57,35 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
     return CustomScaffold(
       title: "Timetable",
       subtitle: "configure timetable for your subjects",
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment(0, -0.5),
-            child: TimetableSetupStatus(
-              onSetupStatusChanged: _onSetupStatusChanged,
-              subjects: widget._selectedSubjects,
-              notifier: _timetableNotifier,
+      body: WillPopScope(
+        onWillPop: () => context.showConfirmationDialog(),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment(0, -0.5),
+              child: TimetableSetupStatus(
+                onSetupStatusChanged: _onSetupStatusChanged,
+                subjects: widget._selectedSubjects,
+                notifier: _timetableNotifier,
+              ),
             ),
-          ),
-          _showNextButton
-              ? Positioned(
-                  right: 0,
-                  bottom: 100,
-                  child: ButtonNext(onTap: _onNextTap),
-                )
-              : SizedBox.shrink(),
-        ],
+            Positioned(
+              left: 0,
+              bottom: 100,
+              child: BackAccentButton(onTap: () async {
+                var shouldGoBack = await context.showConfirmationDialog();
+                if (shouldGoBack) Navigator.of(context).pop();
+              }),
+            ),
+            _showNextButton
+                ? Positioned(
+                    right: 0,
+                    bottom: 100,
+                    child: DoneAccentButton(onTap: _onNextTap),
+                  )
+                : SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }

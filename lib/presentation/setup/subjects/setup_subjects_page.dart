@@ -5,7 +5,7 @@ import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/injection_container.dart';
-import 'package:pretend/presentation/common/button_next.dart';
+import 'package:pretend/presentation/common/accent_button.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
 
 import 'setup_subjects.dart';
@@ -19,6 +19,7 @@ class SetupSubjectsPage extends StatefulWidget {
 
 class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
   var _selectedSubjects = List<Subject>.empty();
+  bool _shouldShowNext = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +35,16 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
             } else if (state is Loading) {
               return CircularProgressIndicator();
             } else if (state is Initial) {
-              BlocProvider.of<SubjectsBloc>(context).add(const GetAllSubjectsEvent());
+              BlocProvider.of<SubjectsBloc>(context)
+                  .add(const GetAllSubjectsEvent());
               return SizedBox.shrink();
             } else {
               return Center(
                 child: ElevatedButton(
                   child: Text("load subs"),
                   onPressed: () {
-                    BlocProvider.of<SubjectsBloc>(context).add(const GetAllSubjectsEvent());
+                    BlocProvider.of<SubjectsBloc>(context)
+                        .add(const GetAllSubjectsEvent());
                   },
                 ),
               );
@@ -57,12 +60,18 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
       children: [
         SetupSubjects(
           allSubjects: state.subjects,
-          onSelectedSubjectsUpdate: (subjects) => _selectedSubjects = subjects,
+          onSelectedSubjectsUpdate: (subjects) {
+            _selectedSubjects = subjects;
+            setState(() {
+              _shouldShowNext = _selectedSubjects.isNotEmpty;
+            });
+          },
         ),
-        Positioned(
-          right: 0,
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 200),
+          right: _shouldShowNext ? 0 : -100,
           bottom: 100,
-          child: ButtonNext(
+          child: NextAccentButton(
             onTap: () => context.router
                 .push(TimetableSetupStatusRoute(subjects: _selectedSubjects)),
           ),
