@@ -8,12 +8,12 @@ import 'package:pretend/presentation/home/time_components.dart';
 class SubjectView extends StatelessWidget {
   final isOnGoing;
   final Subject subject;
-  final Timeslot timeSet;
+  final Timeslot timeslot;
 
   const SubjectView({
     Key? key,
     required this.subject,
-    required this.timeSet,
+    required this.timeslot,
     this.isOnGoing = false,
   }) : super(key: key);
 
@@ -40,7 +40,7 @@ class SubjectView extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SubjectCategoryBadge(
-                    text: timeSet.classCategory,
+                    text: timeslot.classCategory,
                     color: AppColors.LAB,
                   ),
                 ],

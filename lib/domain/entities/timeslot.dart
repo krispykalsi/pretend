@@ -5,16 +5,16 @@ class Timeslot extends Equatable {
   final String end;
   final int duration;
   final String classCategory;
-  final String subjectKey;
+  final String subjectCode;
 
   Timeslot({
     required this.start,
     required this.end,
     required this.duration,
     required this.classCategory,
-    required this.subjectKey
+    required this.subjectCode
   });
 
   @override
-  List<Object?> get props => [start, end, subjectKey, classCategory];
+  List<Object?> get props => [start, end, subjectCode, classCategory];
 }

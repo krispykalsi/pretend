@@ -46,7 +46,7 @@ class _SetupBranchPageState extends State<SetupBranchPage> {
           Align(
             alignment: Alignment(1, 0),
             child: ButtonNext(
-              callback: () => print("$_year $_batch $_group"),
+              onTap: () => print("$_year $_batch $_group"),
             ),
           ),
           Spacer(),

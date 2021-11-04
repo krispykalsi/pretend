@@ -11,10 +11,6 @@ import 'package:pretend/domain/usecases/set_timetable.dart';
 part 'timetable_event.dart';
 part 'timetable_state.dart';
 
-const String SERVER_FAILURE_MESSAGE = 'Server Failure';
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
-const String UNEXPECTED_FAILURE_MESSAGE = 'Unexpected error occurred';
-
 class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
   final GetTimetable getTimetable;
   final SetTimetable setTimetable;

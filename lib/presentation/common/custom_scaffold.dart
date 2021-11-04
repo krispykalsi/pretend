@@ -16,6 +16,7 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.DARK,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         toolbarHeight: 120,
         backgroundColor: Colors.transparent,

@@ -12,7 +12,7 @@ import '../../fixtures/timetable.dart';
 void main() {
   final tTimetable = getTestTimetableModel;
 
-  test('should be a subclass of TimeSet entity', () {
+  test('should be a subclass of Timeslot entity', () {
     expect(tTimetable, isA<Timetable>());
   });
 
@@ -32,37 +32,37 @@ void main() {
       final expectedJsonMap = {
         TimetableModel.KEY_TIMETABLE: {
           Days.FRIDAY: {
-            TimeSets.T8AM: TimeslotModel(
+            TimeSlots.T8AM: TimeslotModel(
               start: "8 AM",
               end: "10 AM",
               duration: 2,
               classCategory: ClassCategories.THEORY,
-              subjectKey: "dsfFSFS3",
+              subjectCode: "HU-351a",
             ).toJson(),
-            TimeSets.T9AM: TimeslotModel(
+            TimeSlots.T9AM: TimeslotModel(
               start: "8 AM",
               end: "10 AM",
               duration: 2,
               classCategory: ClassCategories.THEORY,
-              subjectKey: "dsfFSFS3",
+              subjectCode: "HU-351a",
             ).toJson(),
-            TimeSets.T1PM: TimeslotModel(
+            TimeSlots.T1PM: TimeslotModel(
               start: "1 PM",
               end: "2 PM",
               duration: 1,
               classCategory: ClassCategories.LAB,
-              subjectKey: "fdsdfEv",
+              subjectCode: "IT-502",
             ).toJson(),
-            TimeSets.T11AM: TimeslotModel(
+            TimeSlots.T11AM: TimeslotModel(
               start: "11 AM",
               end: "12 PM",
               duration: 1,
               classCategory: ClassCategories.THEORY,
-              subjectKey: "FHVBVsf356",
+              subjectCode: "IT-504",
             ).toJson(),
           }
         },
-        TimetableModel.KEY_SUBJECTS: ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"]
+        TimetableModel.KEY_SUBJECTS: ["HU-351a", "IT-502", "IT-504"]
       };
 
       expect(result, expectedJsonMap);

@@ -76,7 +76,7 @@ void main() {
   });
 
   group('GetSubjects', () {
-    final tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+    final tSubjectKeys = ["HU-351a", "IT-502", "IT-504"];
     final tSubjectsJson = fixture("timetable_subjects.json");
     final tSubjects = SubjectModel.mapFromJson(tSubjectsJson);
     test(

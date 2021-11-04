@@ -5,7 +5,7 @@ class TimeslotModelFields {
   static const END = "end";
   static const DURATION = "duration";
   static const CLASS_CATEGORY = "classCategory";
-  static const SUBJECT_KEY = "subjectKey";
+  static const SUBJECT_KEY = "subjectCode";
 }
 
 class TimeslotModel extends Timeslot {
@@ -14,13 +14,13 @@ class TimeslotModel extends Timeslot {
     required String end,
     required int duration,
     required String classCategory,
-    required String subjectKey,
+    required String subjectCode,
   }) : super(
           start: start,
           end: end,
           duration: duration,
           classCategory: classCategory,
-          subjectKey: subjectKey,
+          subjectCode: subjectCode,
         );
 
   factory TimeslotModel.fromJson(Map<String, dynamic> json) {
@@ -29,7 +29,7 @@ class TimeslotModel extends Timeslot {
       end: json[TimeslotModelFields.END],
       duration: json[TimeslotModelFields.DURATION],
       classCategory: json[TimeslotModelFields.CLASS_CATEGORY],
-      subjectKey: json[TimeslotModelFields.SUBJECT_KEY],
+      subjectCode: json[TimeslotModelFields.SUBJECT_KEY],
     );
   }
 
@@ -39,7 +39,7 @@ class TimeslotModel extends Timeslot {
       TimeslotModelFields.END: end,
       TimeslotModelFields.DURATION: duration,
       TimeslotModelFields.CLASS_CATEGORY: classCategory,
-      TimeslotModelFields.SUBJECT_KEY: subjectKey,
+      TimeslotModelFields.SUBJECT_KEY: subjectCode,
     };
   }
 }

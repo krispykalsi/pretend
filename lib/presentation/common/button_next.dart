@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 
 class ButtonNext extends StatelessWidget {
-  final Function()? callback;
+  final Function()? onTap;
 
-  const ButtonNext({Key? key, this.callback}) : super(key: key);
+  const ButtonNext({Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: callback,
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(

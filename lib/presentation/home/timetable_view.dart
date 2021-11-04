@@ -9,12 +9,12 @@ class TimetableView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tSubject = Subject("Machine Learning", "IT-102");
-    final tTimeSet = Timeslot(
+    final tTimeslot = Timeslot(
       start: "1:00 PM",
       end: "2:00 PM",
       duration: 1,
       classCategory: "theory",
-      subjectKey: "randomKey",
+      subjectCode: "randomKey",
     );
 
     return Padding(
@@ -29,7 +29,7 @@ class TimetableView extends StatelessWidget {
               SizedBox(height: 10),
               SubjectView(
                 subject: tSubject,
-                timeSet: tTimeSet,
+                timeslot: tTimeslot,
                 isOnGoing: true,
               ),
             ],
@@ -46,7 +46,7 @@ class TimetableView extends StatelessWidget {
                     itemBuilder: (context, idx) {
                       return SubjectView(
                         subject: tSubject,
-                        timeSet: tTimeSet,
+                        timeslot: tTimeslot,
                       );
                     },
                     itemCount: 4,

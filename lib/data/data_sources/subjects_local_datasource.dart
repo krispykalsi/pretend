@@ -31,7 +31,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
     try {
       final subjectBox = await openBox(_SUBJECTS);
       subjects.forEach((subject) {
-        subjectBox.add(subject.toJson());
+        subjectBox.put(subject.code, subject.toJson());
       });
     } catch (e) {
       throw CacheException();
@@ -73,9 +73,9 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
     try {
       final subjectBox = await openBox(_SUBJECTS);
       Map<String, SubjectModel> subjects = {};
-      keys.forEach((subjectKey) {
-        final subjectJson = subjectBox.get(subjectKey);
-        subjects[subjectKey] = SubjectModel.fromJson(subjectJson);
+      keys.forEach((subjectCode) {
+        final subjectJson = subjectBox.get(subjectCode);
+        subjects[subjectCode] = SubjectModel.fromJson(subjectJson);
       });
       return subjects;
     } catch (e) {

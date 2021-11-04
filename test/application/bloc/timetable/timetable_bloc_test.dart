@@ -6,7 +6,7 @@ import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/usecases/usecase.dart';
 import 'package:pretend/domain/usecases/get_timetable.dart';
 import 'package:pretend/domain/usecases/set_timetable.dart';
-import 'package:pretend/application/timetable/bloc/timetable_bloc.dart';
+import 'package:pretend/application/bloc/setup/timetable/timetable_bloc.dart';
 
 import '../../../fixtures/timetable.dart';
 import 'timetable_bloc_test.mocks.dart';

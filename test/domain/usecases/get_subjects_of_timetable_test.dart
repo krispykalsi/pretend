@@ -18,15 +18,15 @@ void main() {
     usecase = GetSubjectsOfTimetable(repository);
   });
 
-  final tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+  final tSubjectKeys = ["HU-351a", "IT-502", "IT-504"];
   final tSubjectMap = {
-    "dsfFSFS3": Subject("International Trade", "HU-351a"),
-    "fdsdfEv": Subject("Computer Networks", "IT-502"),
-    "FHVBVsf356": Subject("Theory of Computing", "IT-504")
+    "HU-351a": Subject("International Trade", "HU-351a"),
+    "IT-502": Subject("Computer Networks", "IT-502"),
+    "IT-504": Subject("Theory of Computing", "IT-504")
   };
 
   test(
-    'should get map of subjects from a list of subjectKeys of the timetable from the repository',
+    'should get map of subjects from a list of subjectCodes of the timetable from the repository',
     () async {
       when(repository.getSubjectsFromKeys(tSubjectKeys))
           .thenAnswer((_) async => Right(tSubjectMap));

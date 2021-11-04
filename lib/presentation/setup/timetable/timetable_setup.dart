@@ -6,18 +6,16 @@ import 'package:pretend/presentation/common/button_done.dart';
 import 'package:pretend/presentation/common/custom_choice_chip.dart';
 import 'package:pretend/presentation/setup/timetable/selection_state_notifier.dart';
 import 'package:pretend/presentation/setup/timetable/subject_timetable.dart';
-import 'package:pretend/presentation/setup/timetable/timeslot_grid_tile_state.dart';
 
-import 'typedefs.dart';
 import 'timeslot_grid.dart';
 
 class TimetableSetup extends StatefulWidget {
-  final void Function(WeekSelectionState) onTimetableUpdate;
+  final SelectionStateNotifier selectionStateNotifier;
   final VoidCallback onDone;
 
   const TimetableSetup({
     Key? key,
-    required this.onTimetableUpdate,
+    required this.selectionStateNotifier,
     required this.onDone,
   }) : super(key: key);
 
@@ -28,24 +26,13 @@ class TimetableSetup extends StatefulWidget {
 class _TimetableSetupState extends State<TimetableSetup> {
   final _selectedDayNotifier = ValueNotifier<String>(Days.MONDAY);
   final _selectionColorNotifier = ValueNotifier<Color>(AppColors.THEORY);
-  final _selectionStateNotifier = SelectionStateNotifier();
 
   static const _CHIP_HEIGHT = 40.0;
-
-  void _onTimeslotTap(String timeslot, TimeslotGridTileState state) {
-    final _selectionState = _selectionStateNotifier.value;
-    _selectionState.putIfAbsent(
-        _selectedDayNotifier.value, () => DaySelectionState());
-    _selectionState[_selectedDayNotifier.value]![timeslot] = state;
-    _selectionStateNotifier.notifyListeners();
-    widget.onTimetableUpdate(_selectionState);
-  }
 
   @override
   void dispose() {
     _selectedDayNotifier.dispose();
     _selectionColorNotifier.dispose();
-    _selectionStateNotifier.dispose();
     super.dispose();
   }
 
@@ -53,7 +40,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SubjectTimetable(selectionStateNotifier: _selectionStateNotifier),
+        SubjectTimetable(selectionStateNotifier: widget.selectionStateNotifier),
         Align(
           alignment: Alignment.bottomCenter,
           child: Column(
@@ -93,7 +80,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
         maxHeight: _CHIP_HEIGHT * 6,
       ),
       child: TimeslotGrid(
-        onTap: _onTimeslotTap,
+        selectionState: widget.selectionStateNotifier,
         selectedDay: _selectedDayNotifier,
         selectionColor: _selectionColorNotifier,
       ),

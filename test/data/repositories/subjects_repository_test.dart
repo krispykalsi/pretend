@@ -174,12 +174,12 @@ void main() {
       });
 
       group('GetSubjects', () {
-        final tSubjectKeys = ["dsfFSFS3", "fdsdfEv", "FHVBVsf356"];
+        final tSubjectKeys = ["HU-351a", "IT-502", "IT-504"];
         final tSubjectMap = {
-          "dsfFSFS3":
+          "HU-351a":
               SubjectModel(name: "International Trade", code: "HU-351a"),
-          "fdsdfEv": SubjectModel(name: "Computer Networks", code: "IT-502"),
-          "FHVBVsf356":
+          "IT-502": SubjectModel(name: "Computer Networks", code: "IT-502"),
+          "IT-504":
               SubjectModel(name: "Theory of Computing", code: "IT-504")
         };
 

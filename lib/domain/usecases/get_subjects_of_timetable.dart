@@ -14,15 +14,15 @@ class GetSubjectsOfTimetable
   @override
   Future<Either<Failure, Map<String, Subject>>> call(
       GetSubjectsOfTimetableParams params) async {
-    return await repository.getSubjectsFromKeys(params.subjectKeys);
+    return await repository.getSubjectsFromKeys(params.subjectCodes);
   }
 }
 
 class GetSubjectsOfTimetableParams extends Equatable {
-  final List<String> subjectKeys;
+  final List<String> subjectCodes;
 
-  GetSubjectsOfTimetableParams(this.subjectKeys);
+  GetSubjectsOfTimetableParams(this.subjectCodes);
 
   @override
-  List<Object?> get props => [subjectKeys];
+  List<Object?> get props => [subjectCodes];
 }

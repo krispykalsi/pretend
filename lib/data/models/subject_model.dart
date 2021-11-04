@@ -26,8 +26,8 @@ class SubjectModel extends Subject {
 
   static Map<String, SubjectModel> mapFromJson(Map<String, dynamic> json) {
     Map<String, SubjectModel> subjects = {};
-    for (String subjectKey in json.keys) {
-      subjects[subjectKey] = SubjectModel.fromJson(json[subjectKey]);
+    for (String subjectCode in json.keys) {
+      subjects[subjectCode] = SubjectModel.fromJson(json[subjectCode]);
     }
     return subjects;
   }

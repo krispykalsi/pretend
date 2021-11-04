@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pretend/application/router/router.gr.dart';
+import 'package:pretend/injection_container.dart' as di;
 import 'package:pretend/presentation/common/app_colors.dart';
-import 'package:pretend/presentation/setup/timetable/timetable_setup_status_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final _appDelegate = AppRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Number Trivia',
+    return MaterialApp.router(
       theme: ThemeData(
         textTheme: TextTheme(
           headline1: GoogleFonts.yanoneKaffeesatz(
@@ -46,7 +50,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: TimetableSetupStatusPage(),
+      routerDelegate: _appDelegate.delegate(),
+      routeInformationParser: _appDelegate.defaultRouteParser(),
     );
   }
 }
