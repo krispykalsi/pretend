@@ -30,9 +30,9 @@ Dialog _confirmationDialogBuilder(BuildContext context) => Dialog(
                   child: Text(
                     'YES',
                     style: TextStyle(
-                      color: AppColors.PRIMARY,
+                      color: Colors.red,
                       fontSize: 18.0,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -41,7 +41,7 @@ Dialog _confirmationDialogBuilder(BuildContext context) => Dialog(
                   child: Text(
                     'NO',
                     style: TextStyle(
-                      color: Colors.green,
+                      color: AppColors.PRIMARY,
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
