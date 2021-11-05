@@ -39,7 +39,6 @@ void main() {
         'should emit [Loading, Loaded] when data is gotten successfully',
         () async {
           when(mockGetTimetable(any)).thenAnswer((_) async => Right(tTimetable));
-          bloc.add(GetTimetableEvent());
           final expectedOrder = [
             TimetableLoading(),
             TimetableLoaded(timetable: tTimetable),
@@ -54,7 +53,6 @@ void main() {
           () async {
         final cacheFailure = CacheFailure();
         when(mockGetTimetable(any)).thenAnswer((_) async => Left(cacheFailure));
-        bloc.add(GetTimetableEvent());
         final expectedOrder = [
           TimetableLoading(),
           TimetableError(message: cacheFailure.message),
