@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
-import 'package:pretend/presentation/home/subject_category_badge.dart';
-import 'package:pretend/presentation/home/time_components.dart';
 
-class SubjectView extends StatelessWidget {
-  final isOnGoing;
+import 'subject_category_badge.dart';
+import 'time_components.dart';
+
+part 'custom_vertical_divider.dart';
+
+class SubjectListTile extends StatelessWidget {
+  final bool isOnGoing;
   final Subject subject;
   final Timeslot timeslot;
 
-  const SubjectView({
+  const SubjectListTile(
+    this.subject,
+    this.timeslot, {
     Key? key,
-    required this.subject,
-    required this.timeslot,
     this.isOnGoing = false,
   }) : super(key: key);
 
@@ -31,7 +34,7 @@ class SubjectView extends StatelessWidget {
           Row(
             children: [
               isOnGoing ? TimeLeftTimeComponent() : StartsAtTimeComponent(),
-              CustomVerticalDivider(),
+              _CustomVerticalDivider(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -41,7 +44,8 @@ class SubjectView extends StatelessWidget {
                   ),
                   SubjectCategoryBadge(
                     text: timeslot.classCategory,
-                    color: AppColors.LAB,
+                    color: AppColors.classCategory[timeslot.classCategory] ??
+                        AppColors.PRIMARY,
                   ),
                 ],
               )
@@ -49,29 +53,6 @@ class SubjectView extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class CustomVerticalDivider extends StatelessWidget {
-  const CustomVerticalDivider({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      width: 20,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Center(
-          child: Container(
-            color: AppColors.SECONDARY,
-            width: 1,
-          ),
-        ),
-      )
     );
   }
 }

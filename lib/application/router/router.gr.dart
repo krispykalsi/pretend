@@ -8,52 +8,62 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
-import '../../domain/entities/subject.dart' as _i6;
-import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i1;
+import '../../domain/entities/subject.dart' as _i7;
+import '../../presentation/home/home_page.dart' as _i1;
+import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i2;
 import '../../presentation/setup/timetable/timeslot_grid_tile_state.dart'
-    as _i7;
-import '../../presentation/setup/timetable/timetable_setup_page.dart' as _i3;
+    as _i8;
+import '../../presentation/setup/timetable/timetable_setup_page.dart' as _i4;
 import '../../presentation/setup/timetable/timetable_setup_status_page.dart'
-    as _i2;
+    as _i3;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
-    SetupSubjectsRoute.name: (routeData) {
-      return _i4.CustomPage<dynamic>(
+  final Map<String, _i5.PageFactory> pagesMap = {
+    HomeRoute.name: (routeData) {
+      return _i5.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i1.SetupSubjectsPage(),
-          transitionsBuilder: _i4.TransitionsBuilders.slideLeftWithFade,
+          child: const _i1.HomePage(),
+          transitionsBuilder: _i5.TransitionsBuilders.slideLeftWithFade,
+          durationInMilliseconds: 200,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    SetupSubjectsRoute.name: (routeData) {
+      return _i5.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i2.SetupSubjectsPage(),
+          transitionsBuilder: _i5.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
           opaque: true,
           barrierDismissible: false);
     },
     TimetableSetupStatusRoute.name: (routeData) {
       final args = routeData.argsAs<TimetableSetupStatusRouteArgs>();
-      return _i4.CustomPage<dynamic>(
+      return _i5.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i2.TimetableSetupStatusPage(
+          child: _i3.TimetableSetupStatusPage(
               key: args.key, subjects: args.subjects),
-          transitionsBuilder: _i4.TransitionsBuilders.slideLeftWithFade,
+          transitionsBuilder: _i5.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
           opaque: true,
           barrierDismissible: false);
     },
     TimetableSetupRoute.name: (routeData) {
       final args = routeData.argsAs<TimetableSetupRouteArgs>();
-      return _i4.CustomPage<dynamic>(
+      return _i5.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i3.TimetableSetupPage(
+          child: _i4.TimetableSetupPage(
               key: args.key,
               subject: args.subject,
               selectionState: args.selectionState),
-          transitionsBuilder: _i4.TransitionsBuilders.slideLeftWithFade,
+          transitionsBuilder: _i5.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
           opaque: true,
           barrierDismissible: false);
@@ -61,25 +71,33 @@ class AppRouter extends _i4.RootStackRouter {
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(SetupSubjectsRoute.name, path: '/'),
-        _i4.RouteConfig(TimetableSetupStatusRoute.name,
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(HomeRoute.name, path: '/'),
+        _i5.RouteConfig(SetupSubjectsRoute.name, path: '/setup-subjects-page'),
+        _i5.RouteConfig(TimetableSetupStatusRoute.name,
             path: '/timetable-setup-status-page'),
-        _i4.RouteConfig(TimetableSetupRoute.name, path: '/timetable-setup-page')
+        _i5.RouteConfig(TimetableSetupRoute.name, path: '/timetable-setup-page')
       ];
 }
 
-/// generated route for [_i1.SetupSubjectsPage]
-class SetupSubjectsRoute extends _i4.PageRouteInfo<void> {
-  const SetupSubjectsRoute() : super(name, path: '/');
+/// generated route for [_i1.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute() : super(name, path: '/');
+
+  static const String name = 'HomeRoute';
+}
+
+/// generated route for [_i2.SetupSubjectsPage]
+class SetupSubjectsRoute extends _i5.PageRouteInfo<void> {
+  const SetupSubjectsRoute() : super(name, path: '/setup-subjects-page');
 
   static const String name = 'SetupSubjectsRoute';
 }
 
-/// generated route for [_i2.TimetableSetupStatusPage]
+/// generated route for [_i3.TimetableSetupStatusPage]
 class TimetableSetupStatusRoute
-    extends _i4.PageRouteInfo<TimetableSetupStatusRouteArgs> {
-  TimetableSetupStatusRoute({_i5.Key? key, required List<_i6.Subject> subjects})
+    extends _i5.PageRouteInfo<TimetableSetupStatusRouteArgs> {
+  TimetableSetupStatusRoute({_i6.Key? key, required List<_i7.Subject> subjects})
       : super(name,
             path: '/timetable-setup-status-page',
             args: TimetableSetupStatusRouteArgs(key: key, subjects: subjects));
@@ -90,17 +108,17 @@ class TimetableSetupStatusRoute
 class TimetableSetupStatusRouteArgs {
   const TimetableSetupStatusRouteArgs({this.key, required this.subjects});
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final List<_i6.Subject> subjects;
+  final List<_i7.Subject> subjects;
 }
 
-/// generated route for [_i3.TimetableSetupPage]
-class TimetableSetupRoute extends _i4.PageRouteInfo<TimetableSetupRouteArgs> {
+/// generated route for [_i4.TimetableSetupPage]
+class TimetableSetupRoute extends _i5.PageRouteInfo<TimetableSetupRouteArgs> {
   TimetableSetupRoute(
-      {_i5.Key? key,
-      required _i6.Subject subject,
-      Map<String, Map<String, _i7.TimeslotGridTileState>>? selectionState})
+      {_i6.Key? key,
+      required _i7.Subject subject,
+      Map<String, Map<String, _i8.TimeslotGridTileState>>? selectionState})
       : super(name,
             path: '/timetable-setup-page',
             args: TimetableSetupRouteArgs(
@@ -113,9 +131,9 @@ class TimetableSetupRouteArgs {
   const TimetableSetupRouteArgs(
       {this.key, required this.subject, this.selectionState});
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i6.Subject subject;
+  final _i7.Subject subject;
 
-  final Map<String, Map<String, _i7.TimeslotGridTileState>>? selectionState;
+  final Map<String, Map<String, _i8.TimeslotGridTileState>>? selectionState;
 }
