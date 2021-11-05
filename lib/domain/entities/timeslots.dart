@@ -44,11 +44,11 @@ extension ParseToString on Timeslots {
   }
 
   String get start {
-    return _extractPart(1);
+    return _appendMeridiem(_extractPart(1));
   }
 
   String get end {
-    return _extractPart(2);
+    return _appendMeridiem(_extractPart(2));
   }
 
   int get integer {
@@ -59,7 +59,7 @@ extension ParseToString on Timeslots {
     final regex = RegExp(r'(\d+)-(\d+)');
     final match = regex.firstMatch(dashed)!;
     final slot = match.group(part)!;
-    return _appendMeridiem(slot);
+    return slot;
   }
 
   String _appendMeridiem(String slot) {
