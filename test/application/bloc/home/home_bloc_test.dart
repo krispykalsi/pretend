@@ -2,27 +2,23 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/usecases/usecase.dart';
 import 'package:pretend/domain/usecases/get_timetable.dart';
-import 'package:pretend/domain/usecases/set_timetable.dart';
-import 'package:pretend/application/bloc/setup/timetable/timetable_bloc.dart';
 
 import '../../../fixtures/timetable.dart';
-import 'timetable_bloc_test.mocks.dart';
+import 'home_bloc_test.mocks.dart';
 
-@GenerateMocks([GetTimetable, SetTimetable])
+@GenerateMocks([GetTimetable])
 void main() {
   late MockGetTimetable mockGetTimetable;
-  late MockSetTimetable mockSetTimetable;
-  late TimetableBloc bloc;
+  late HomeBloc bloc;
 
   setUp(() {
     mockGetTimetable = MockGetTimetable();
-    mockSetTimetable = MockSetTimetable();
-    bloc = TimetableBloc(
+    bloc = HomeBloc(
       getTimetable: mockGetTimetable,
-      setTimetable: mockSetTimetable,
     );
   });
   
@@ -56,11 +52,12 @@ void main() {
     test(
       'should emit [Loading, Error] when data is NOT gotten successfully',
           () async {
-        when(mockGetTimetable(any)).thenAnswer((_) async => Left(CacheFailure()));
+        final cacheFailure = CacheFailure();
+        when(mockGetTimetable(any)).thenAnswer((_) async => Left(cacheFailure));
         bloc.add(GetTimetableEvent());
         final expectedOrder = [
           TimetableLoading(),
-          TimetableError(message: CACHE_FAILURE_MESSAGE),
+          TimetableError(message: cacheFailure.message),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
         bloc.add(GetTimetableEvent());
