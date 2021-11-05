@@ -22,13 +22,9 @@ class TimetableSetupBloc
     if (event is SaveTimetableEvent) {
       yield TimetableSaving();
       final either = await setTimetable(SetTimetableParams(event.timetable));
-      yield* either.fold(
-        (failure) async* {
-          yield TimetableNotSavedError(message: failure.message);
-        },
-        (success) async* {
-          yield TimetableSaved();
-        },
+      yield either.fold(
+        (failure) => TimetableNotSavedError(message: failure.message),
+        (success) => TimetableSaved(),
       );
     } else if (event is ResetSetupEvent) {
       yield TimetableSetupInitial();

@@ -22,13 +22,9 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
     yield Loading();
     final subs =
         await _getAllSubjects.call(GetAllSubjectsParams(DataSource.NETWORK));
-    yield* subs.fold(
-      (failure) async* {
-        yield Error(msg: failure.message);
-      },
-      (subs) async* {
-        yield Loaded(subjects: subs);
-      },
+    yield subs.fold(
+      (failure) => Error(msg: failure.message),
+      (subs) => Loaded(subjects: subs),
     );
   }
 }
