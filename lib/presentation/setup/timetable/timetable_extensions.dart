@@ -2,10 +2,11 @@ import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
+import 'package:pretend/presentation/setup/timetable/timeslot_grid_tile_state.dart';
 
 import 'typedefs.dart';
 
-extension DayWiseTimetable on Timetable {
+extension DayWise on Timetable {
   void addSubject(String subjectCode, WeekSelectionState selectionState) {
     selectionState
         .removeWhere((_, daySelectionState) => daySelectionState.isEmpty);
@@ -37,10 +38,31 @@ extension DayWiseTimetable on Timetable {
   void removeSubject(String subjectCode) {
     timetable.forEach((_, timeslots) {
       timeslots.removeWhere(
-            (_, timeslot) => timeslot.subjectCode == subjectCode,
+        (_, timeslot) => timeslot.subjectCode == subjectCode,
       );
     });
     timetable.removeWhere((_, timeslots) => timeslots.isEmpty);
     subjectCodes.remove(subjectCode);
+  }
+}
+
+extension SubjectWise on Timetable {
+  SubjectWiseTimetable subjectWise() {
+    final swTimetable = SubjectWiseTimetable();
+    subjectCodes.forEach((subjectCode) {
+      swTimetable[subjectCode] = {};
+      timetable.forEach((day, timeslots) {
+        timeslots.forEach((slotDashed, timeslot) {
+          if (timeslot.subjectCode == subjectCode) {
+            final timeslotEnum = timeslotFromDashed(slotDashed);
+            final color = AppColors.classCategory[timeslot.classCategory]!;
+            final selectionState = TimeslotGridTileState(true, color);
+            swTimetable[subjectCode]!.putIfAbsent(day, () => {});
+            swTimetable[subjectCode]![day]![timeslotEnum] = selectionState;
+          }
+        });
+      });
+    });
+    return swTimetable;
   }
 }

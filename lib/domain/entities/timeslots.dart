@@ -13,6 +13,37 @@ enum Timeslots {
   T7PM,
 }
 
+Timeslots timeslotFromDashed(String dashed) {
+  switch (dashed) {
+    case "8-9":
+      return Timeslots.T8AM;
+    case "9-10":
+      return Timeslots.T9AM;
+    case "10-11":
+      return Timeslots.T10AM;
+    case "11-12":
+      return Timeslots.T11AM;
+    case "12-1":
+      return Timeslots.T12PM;
+    case "1-2":
+      return Timeslots.T1PM;
+    case "2-3":
+      return Timeslots.T2PM;
+    case "3-4":
+      return Timeslots.T3PM;
+    case "4-5":
+      return Timeslots.T4PM;
+    case "5-6":
+      return Timeslots.T5PM;
+    case "6-7":
+      return Timeslots.T6PM;
+    case "7-8":
+      return Timeslots.T7PM;
+    default:
+      throw Exception("invalid dashed timeslot");
+  }
+}
+
 extension ParseToString on Timeslots {
   String get dashed {
     switch (this) {
@@ -51,10 +82,6 @@ extension ParseToString on Timeslots {
     return _appendMeridiem(_extractPart(2));
   }
 
-  int get integer {
-    return int.parse(_extractPart(1));
-  }
-
   String _extractPart(int part) {
     final regex = RegExp(r'(\d+)-(\d+)');
     final match = regex.firstMatch(dashed)!;
@@ -69,6 +96,12 @@ extension ParseToString on Timeslots {
     } else {
       return slot + " PM";
     }
+  }
+}
+
+extension Comparison on Timeslots {
+  int get integer {
+    return int.parse(_extractPart(1));
   }
 
   int compareTo(Timeslots other) {

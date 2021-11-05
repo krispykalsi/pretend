@@ -16,9 +16,14 @@ import 'timetable_extensions.dart';
 
 class TimetableSetupStatusPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
+  final Timetable? _timetable;
 
-  TimetableSetupStatusPage({Key? key, required List<Subject> subjects})
-      : _selectedSubjects = subjects,
+  TimetableSetupStatusPage({
+    Key? key,
+    Timetable? timetable,
+    required List<Subject> subjects,
+  })  : _selectedSubjects = subjects,
+        _timetable = timetable,
         super(key: key);
 
   @override
@@ -27,7 +32,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
 }
 
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
-  final _timetableNotifier = TimetableNotifier();
+  late final _timetableNotifier = TimetableNotifier(widget._timetable?.subjectWise());
   final _timetable = Timetable(TimetableMap(), []);
 
   final _timetableSetupBloc = sl<TimetableSetupBloc>();

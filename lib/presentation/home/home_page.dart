@@ -5,6 +5,7 @@ import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
@@ -23,10 +24,11 @@ class _HomePageState extends State<HomePage> {
   late Map<String, Timeslot> _timetableForToday;
   late Map<String, Subject> _subjects;
 
-  void _onEditPressed() {
+  void _onEditPressed(Timetable timetable) {
     context.router.push(
       TimetableSetupStatusRoute(
         subjects: _subjects.values.toList(growable: false),
+        timetable: timetable,
       ),
     );
   }
@@ -47,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                    onPressed: _onEditPressed,
+                    onPressed: () => _onEditPressed(state.timetable),
                     child: Text("Edit"),
                   ),
                   _buildOngoingSection(),

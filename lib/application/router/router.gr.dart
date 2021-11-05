@@ -11,12 +11,13 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
-import '../../domain/entities/subject.dart' as _i7;
-import '../../domain/entities/timeslots.dart' as _i8;
+import '../../domain/entities/subject.dart' as _i8;
+import '../../domain/entities/timeslots.dart' as _i9;
+import '../../domain/entities/timetable.dart' as _i7;
 import '../../presentation/home/home_page.dart' as _i1;
 import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i2;
 import '../../presentation/setup/timetable/timeslot_grid_tile_state.dart'
-    as _i9;
+    as _i10;
 import '../../presentation/setup/timetable/timetable_setup_page.dart' as _i4;
 import '../../presentation/setup/timetable/timetable_setup_status_page.dart'
     as _i3;
@@ -50,7 +51,9 @@ class AppRouter extends _i5.RootStackRouter {
       return _i5.CustomPage<dynamic>(
           routeData: routeData,
           child: _i3.TimetableSetupStatusPage(
-              key: args.key, subjects: args.subjects),
+              key: args.key,
+              timetable: args.timetable,
+              subjects: args.subjects),
           transitionsBuilder: _i5.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
           opaque: true,
@@ -98,28 +101,35 @@ class SetupSubjectsRoute extends _i5.PageRouteInfo<void> {
 /// generated route for [_i3.TimetableSetupStatusPage]
 class TimetableSetupStatusRoute
     extends _i5.PageRouteInfo<TimetableSetupStatusRouteArgs> {
-  TimetableSetupStatusRoute({_i6.Key? key, required List<_i7.Subject> subjects})
+  TimetableSetupStatusRoute(
+      {_i6.Key? key,
+      _i7.Timetable? timetable,
+      required List<_i8.Subject> subjects})
       : super(name,
             path: '/timetable-setup-status-page',
-            args: TimetableSetupStatusRouteArgs(key: key, subjects: subjects));
+            args: TimetableSetupStatusRouteArgs(
+                key: key, timetable: timetable, subjects: subjects));
 
   static const String name = 'TimetableSetupStatusRoute';
 }
 
 class TimetableSetupStatusRouteArgs {
-  const TimetableSetupStatusRouteArgs({this.key, required this.subjects});
+  const TimetableSetupStatusRouteArgs(
+      {this.key, this.timetable, required this.subjects});
 
   final _i6.Key? key;
 
-  final List<_i7.Subject> subjects;
+  final _i7.Timetable? timetable;
+
+  final List<_i8.Subject> subjects;
 }
 
 /// generated route for [_i4.TimetableSetupPage]
 class TimetableSetupRoute extends _i5.PageRouteInfo<TimetableSetupRouteArgs> {
   TimetableSetupRoute(
       {_i6.Key? key,
-      required _i7.Subject subject,
-      Map<String, Map<_i8.Timeslots, _i9.TimeslotGridTileState>>?
+      required _i8.Subject subject,
+      Map<String, Map<_i9.Timeslots, _i10.TimeslotGridTileState>>?
           selectionState})
       : super(name,
             path: '/timetable-setup-page',
@@ -135,8 +145,8 @@ class TimetableSetupRouteArgs {
 
   final _i6.Key? key;
 
-  final _i7.Subject subject;
+  final _i8.Subject subject;
 
-  final Map<String, Map<_i8.Timeslots, _i9.TimeslotGridTileState>>?
+  final Map<String, Map<_i9.Timeslots, _i10.TimeslotGridTileState>>?
       selectionState;
 }
