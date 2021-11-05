@@ -39,6 +39,7 @@ dependencies:
   # Hive
   hive: ^2.0.4
   hive_flutter: ^1.1.0
+  path_provider: ^2.0.6
   # Fonts
   google_fonts: ^2.1.0
   # Router

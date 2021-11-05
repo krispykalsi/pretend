@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pretend/application/bloc/setup/timetable/timetable_setup_bloc.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
+import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/accent_button.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
 import 'package:pretend/presentation/common/custom_dialog.dart';
@@ -24,7 +27,10 @@ class TimetableSetupStatusPage extends StatefulWidget {
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   final _timetableNotifier = TimetableNotifier();
   final _timetable = Timetable(TimetableMap(), []);
-  bool _showNextButton = false;
+  bool _shouldShowDoneButton = false;
+  bool _savingTimetable = false;
+
+  final _timetableSetupBloc = sl<TimetableSetupBloc>();
 
   @override
   void dispose() {
@@ -33,23 +39,34 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   }
 
   void _onSetupStatusChanged() {
-    var shouldShowNextButton = true;
+    var allSubjectsConfigured = true;
     widget._selectedSubjects.forEach((subject) {
-      shouldShowNextButton &= _timetableNotifier.value[subject.code] != null;
+      allSubjectsConfigured &= _timetableNotifier.value[subject.code] != null;
     });
-    if (shouldShowNextButton != _showNextButton) {
+    if (allSubjectsConfigured != _shouldShowDoneButton) {
       setState(() {
-        _showNextButton = shouldShowNextButton;
+        _shouldShowDoneButton = allSubjectsConfigured;
+        if (!(_timetableSetupBloc.state is TimetableSetupInitial) &&
+            _shouldShowDoneButton == false) {
+          _timetableSetupBloc.add(ResetSetupEvent());
+        }
+        _savingTimetable = false;
       });
     }
   }
 
-  void _onNextTap() {
+  void _onDoneTap() {
     _timetableNotifier.value.forEach((subjectCode, selectionState) {
       _timetable.addSubject(subjectCode, selectionState);
     });
-    print(_timetable);
-    print(_timetable.subjectCodes);
+
+    _timetableSetupBloc.add(SaveTimetableEvent(timetable: _timetable));
+    setState(() => _savingTimetable = true);
+  }
+
+  void _onBackTap() async {
+    var shouldGoBack = await context.showConfirmationDialog();
+    if (shouldGoBack) Navigator.of(context).pop();
   }
 
   @override
@@ -63,30 +80,68 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
           children: [
             Align(
               alignment: Alignment(0, -0.5),
-              child: TimetableSetupStatus(
-                onSetupStatusChanged: _onSetupStatusChanged,
-                subjects: widget._selectedSubjects,
-                notifier: _timetableNotifier,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TimetableSetupStatus(
+                    onSetupStatusChanged: _onSetupStatusChanged,
+                    subjects: widget._selectedSubjects,
+                    notifier: _timetableNotifier,
+                  ),
+                  SizedBox(height: 10),
+                  _buildHelperMessage,
+                ],
               ),
             ),
-            Positioned(
-              left: 0,
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              left: !_savingTimetable ? 0 : -100,
               bottom: 100,
-              child: BackAccentButton(onTap: () async {
-                var shouldGoBack = await context.showConfirmationDialog();
-                if (shouldGoBack) Navigator.of(context).pop();
-              }),
+              child: BackAccentButton(onTap: _onBackTap),
             ),
-            _showNextButton
-                ? Positioned(
-                    right: 0,
-                    bottom: 100,
-                    child: DoneAccentButton(onTap: _onNextTap),
-                  )
-                : SizedBox.shrink(),
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              right: _shouldShowDoneButton && !_savingTimetable ? 0 : -100,
+              bottom: 100,
+              child: DoneAccentButton(onTap: _onDoneTap),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget get _buildHelperMessage {
+    return BlocBuilder(
+      bloc: _timetableSetupBloc,
+      builder: (context, state) {
+        if (state is TimetableSetupInitial) {
+          if (_shouldShowDoneButton) {
+            return Text("All done! Tap done to continue");
+          } else {
+            return Text("Tap on a subject to configure");
+          }
+        } else if (state is TimetableSaving) {
+          return CircularProgressIndicator();
+        } else if (state is TimetableSaved) {
+          return Text(
+            "Timetable saved successfully",
+            style: TextStyle(color: Colors.lightGreen),
+          );
+        } else if (state is TimetableNotSavedError) {
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            setState(() {
+              _savingTimetable = false;
+            });
+          });
+          return Text(
+            state.message,
+            style: TextStyle(color: Colors.redAccent),
+          );
+        } else {
+          return SizedBox.shrink();
+        }
+      },
     );
   }
 }
