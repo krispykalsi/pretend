@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:pretend/domain/entities/timeslot.dart';
 
 const _STARTS_AT = "starts @";
 const _FINISHES_AT = "finishes @";
 const _TIME_LEFT = "time left";
 
-class StartsAtTimeComponent extends StatelessWidget {
-  const StartsAtTimeComponent({Key? key}) : super(key: key);
+class TimeComponent extends StatefulWidget {
+  final Timeslot _timeslot;
+  final bool _showTimeLeft;
 
+  const TimeComponent(Timeslot timeslot,
+      {Key? key, bool showTimeLeft = false})
+      : _timeslot = timeslot,
+        _showTimeLeft = showTimeLeft,
+        super(key: key);
+
+  @override
+  State<TimeComponent> createState() => _TimeComponentState();
+}
+
+class _TimeComponentState extends State<TimeComponent> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _TimeRow(_STARTS_AT, "1:00 PM"),
-        _TimeRow(_FINISHES_AT, "2:00 PM"),
-      ],
-    );
-  }
-}
-
-class TimeLeftTimeComponent extends StatefulWidget {
-  const TimeLeftTimeComponent({Key? key}) : super(key: key);
-
-  @override
-  State<TimeLeftTimeComponent> createState() => _TimeLeftTimeComponentState();
-}
-
-class _TimeLeftTimeComponentState extends State<TimeLeftTimeComponent> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _TimeRow(_TIME_LEFT, "1h 06m"),
-        _TimeRow(_FINISHES_AT, "2:00 PM"),
+        widget._showTimeLeft
+            ? _TimeRow(_TIME_LEFT, "1h 06m")
+            : _TimeRow(_STARTS_AT, widget._timeslot.start),
+        _TimeRow(_FINISHES_AT, widget._timeslot.end),
       ],
     );
   }
 }
 
 class _TimeRow extends StatelessWidget {
-  const _TimeRow(this.leftString, this.rightString, {Key? key}) : super(key: key);
+  const _TimeRow(this.leftString, this.rightString, {Key? key})
+      : super(key: key);
 
   final String leftString;
   final String rightString;

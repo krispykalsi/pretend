@@ -12,10 +12,11 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
 import '../../domain/entities/subject.dart' as _i7;
+import '../../domain/entities/timeslots.dart' as _i8;
 import '../../presentation/home/home_page.dart' as _i1;
 import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i2;
 import '../../presentation/setup/timetable/timeslot_grid_tile_state.dart'
-    as _i8;
+    as _i9;
 import '../../presentation/setup/timetable/timetable_setup_page.dart' as _i4;
 import '../../presentation/setup/timetable/timetable_setup_status_page.dart'
     as _i3;
@@ -118,7 +119,8 @@ class TimetableSetupRoute extends _i5.PageRouteInfo<TimetableSetupRouteArgs> {
   TimetableSetupRoute(
       {_i6.Key? key,
       required _i7.Subject subject,
-      Map<String, Map<String, _i8.TimeslotGridTileState>>? selectionState})
+      Map<String, Map<_i8.Timeslots, _i9.TimeslotGridTileState>>?
+          selectionState})
       : super(name,
             path: '/timetable-setup-page',
             args: TimetableSetupRouteArgs(
@@ -135,5 +137,6 @@ class TimetableSetupRouteArgs {
 
   final _i7.Subject subject;
 
-  final Map<String, Map<String, _i8.TimeslotGridTileState>>? selectionState;
+  final Map<String, Map<_i8.Timeslots, _i9.TimeslotGridTileState>>?
+      selectionState;
 }

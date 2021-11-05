@@ -32,28 +32,28 @@ void main() {
       final expectedJsonMap = {
         TimetableModel.KEY_TIMETABLE: {
           Days.FRIDAY: {
-            TimeSlots.T8AM: {
+            Timeslots.T8AM.dashed: {
               TimeslotModel.KEY_START: "8 AM",
               TimeslotModel.KEY_END: "10 AM",
               TimeslotModel.KEY_DURATION: 2,
               TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
               TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
             },
-            TimeSlots.T9AM: {
+            Timeslots.T9AM.dashed: {
               TimeslotModel.KEY_START: "8 AM",
               TimeslotModel.KEY_END: "10 AM",
               TimeslotModel.KEY_DURATION: 2,
               TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
               TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
             },
-            TimeSlots.T1PM: {
+            Timeslots.T1PM.dashed: {
               TimeslotModel.KEY_START: "1 PM",
               TimeslotModel.KEY_END: "2 PM",
               TimeslotModel.KEY_DURATION: 1,
               TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.LAB,
               TimeslotModel.KEY_SUBJECT_CODE: "IT-502",
             },
-            TimeSlots.T11AM: {
+            Timeslots.T11AM.dashed: {
               TimeslotModel.KEY_START: "11 AM",
               TimeslotModel.KEY_END: "12 PM",
               TimeslotModel.KEY_DURATION: 1,

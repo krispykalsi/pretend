@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:pretend/domain/entities/days.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 
 import 'typedefs.dart';
@@ -47,7 +48,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
         final timeslots = _selectionState[day]!.keys.where((timeslot) {
           return _selectionState[day]![timeslot]?.isSelected ?? false;
         });
-        final sortedTimeslots = timeslots.sorted();
+        final sortedTimeslots = timeslots.sorted((a, b) => a.compareTo(b));
         return Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,7 +64,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
     );
   }
 
-  Column _buildSelectedTimeslots(List<String> sortedTimeslots, String day) {
+  Column _buildSelectedTimeslots(List<Timeslots> sortedTimeslots, String day) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                timeslot,
+                timeslot.dashed,
                 style: TextStyle(color: AppColors.PRIMARY),
               ),
               Text(

@@ -1,4 +1,5 @@
 import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 
@@ -15,11 +16,11 @@ extension DayWiseTimetable on Timetable {
         daySelectionState.map((timeslot, tileState) {
           final classCategory = getClassCategoryFromColor(tileState.color);
           return MapEntry(
-            timeslot,
+            timeslot.dashed,
             Timeslot(
-              start: "",
-              end: "",
-              duration: 0,
+              start: timeslot.start,
+              end: timeslot.end,
+              duration: 1,
               classCategory: classCategory,
               subjectCode: subjectCode,
             ),

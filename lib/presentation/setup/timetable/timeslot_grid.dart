@@ -9,9 +9,9 @@ import 'timeslot_grid_tile_state.dart';
 
 class TimeslotGrid extends StatefulWidget {
   static const _timeslots = [
-    [TimeSlots.T8AM, TimeSlots.T9AM, TimeSlots.T10AM, TimeSlots.T11AM],
-    [TimeSlots.T12PM, TimeSlots.T1PM, TimeSlots.T2PM, TimeSlots.T3PM],
-    [TimeSlots.T4PM, TimeSlots.T5PM, TimeSlots.T6PM, TimeSlots.T7PM],
+    [Timeslots.T8AM, Timeslots.T9AM, Timeslots.T10AM, Timeslots.T11AM],
+    [Timeslots.T12PM, Timeslots.T1PM, Timeslots.T2PM, Timeslots.T3PM],
+    [Timeslots.T4PM, Timeslots.T5PM, Timeslots.T6PM, Timeslots.T7PM],
   ];
 
   final ValueNotifier<String> selectedDay;
@@ -30,7 +30,7 @@ class TimeslotGrid extends StatefulWidget {
 }
 
 class _TimeslotGridState extends State<TimeslotGrid> {
-  void _onTimeslotTap(String timeslot, bool isSelected) {
+  void _onTimeslotTap(Timeslots timeslot, bool isSelected) {
     final _selectedDay = widget.selectedDay.value;
     final _selectionColor = widget.selectionColor.value;
     final _selectionState = widget.selectionState.value;
@@ -76,13 +76,13 @@ class _TimeslotGridState extends State<TimeslotGrid> {
     );
   }
 
-  TimeslotGridTile buildTile(String timeslot) {
+  TimeslotGridTile buildTile(Timeslots timeslot) {
     final _selectionState = widget.selectionState.value;
     final _selectedDay = widget.selectedDay.value;
     final _selectionColor = widget.selectionColor.value;
 
     return TimeslotGridTile(
-      timeslot,
+      timeslot.dashed,
       key: UniqueKey(),
       onTap: (isSelected) => _onTimeslotTap(timeslot, isSelected),
       selected: _selectionState[_selectedDay]?[timeslot]?.isSelected,

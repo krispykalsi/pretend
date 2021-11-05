@@ -33,7 +33,7 @@ class SubjectListTile extends StatelessWidget {
           ),
           Row(
             children: [
-              isOnGoing ? TimeLeftTimeComponent() : StartsAtTimeComponent(),
+              TimeComponent(timeslot, showTimeLeft: isOnGoing),
               _CustomVerticalDivider(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
