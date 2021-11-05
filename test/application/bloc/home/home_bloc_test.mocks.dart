@@ -2,16 +2,20 @@
 // in pretend/test/application/bloc/home/home_bloc_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pretend/core/error/failures.dart' as _i6;
-import 'package:pretend/core/usecases/usecase.dart' as _i8;
-import 'package:pretend/domain/entities/timetable.dart' as _i7;
+import 'package:pretend/core/error/failures.dart' as _i7;
+import 'package:pretend/core/usecases/usecase.dart' as _i9;
+import 'package:pretend/domain/entities/subject.dart' as _i11;
+import 'package:pretend/domain/entities/timetable.dart' as _i8;
+import 'package:pretend/domain/repositories/subjects_repository_contract.dart'
+    as _i4;
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart'
     as _i2;
-import 'package:pretend/domain/usecases/get_timetable.dart' as _i4;
+import 'package:pretend/domain/usecases/get_subjects_of_timetable.dart' as _i10;
+import 'package:pretend/domain/usecases/get_timetable.dart' as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -26,10 +30,13 @@ class _FakeTimetableRepositoryContract_0 extends _i1.Fake
 
 class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 
+class _FakeSubjectsRepositoryContract_2 extends _i1.Fake
+    implements _i4.SubjectsRepositoryContract {}
+
 /// A class which mocks [GetTimetable].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetTimetable extends _i1.Mock implements _i4.GetTimetable {
+class MockGetTimetable extends _i1.Mock implements _i5.GetTimetable {
   MockGetTimetable() {
     _i1.throwOnMissingStub(this);
   }
@@ -40,12 +47,38 @@ class MockGetTimetable extends _i1.Mock implements _i4.GetTimetable {
               returnValue: _FakeTimetableRepositoryContract_0())
           as _i2.TimetableRepositoryContract);
   @override
-  _i5.Future<_i3.Either<_i6.Failure, _i7.Timetable>> call(
-          _i8.NoParams? params) =>
+  _i6.Future<_i3.Either<_i7.Failure, _i8.Timetable>> call(
+          _i9.NoParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-              returnValue: Future<_i3.Either<_i6.Failure, _i7.Timetable>>.value(
-                  _FakeEither_1<_i6.Failure, _i7.Timetable>()))
-          as _i5.Future<_i3.Either<_i6.Failure, _i7.Timetable>>);
+              returnValue: Future<_i3.Either<_i7.Failure, _i8.Timetable>>.value(
+                  _FakeEither_1<_i7.Failure, _i8.Timetable>()))
+          as _i6.Future<_i3.Either<_i7.Failure, _i8.Timetable>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [GetSubjectsOfTimetable].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetSubjectsOfTimetable extends _i1.Mock
+    implements _i10.GetSubjectsOfTimetable {
+  MockGetSubjectsOfTimetable() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.SubjectsRepositoryContract get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+              returnValue: _FakeSubjectsRepositoryContract_2())
+          as _i4.SubjectsRepositoryContract);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, Map<String, _i11.Subject>>> call(
+          _i10.GetSubjectsOfTimetableParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<
+                      _i3.Either<_i7.Failure, Map<String, _i11.Subject>>>.value(
+                  _FakeEither_1<_i7.Failure, Map<String, _i11.Subject>>()))
+          as _i6.Future<_i3.Either<_i7.Failure, Map<String, _i11.Subject>>>);
   @override
   String toString() => super.toString();
 }
