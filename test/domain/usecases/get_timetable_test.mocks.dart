@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:pretend/core/error/failures.dart' as _i5;
-import 'package:pretend/data/models/timetable_model.dart' as _i6;
+import 'package:pretend/domain/entities/timetable.dart' as _i6;
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart'
     as _i3;
 
@@ -31,15 +31,14 @@ class MockTimetableRepositoryContract extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.TimetableModel>> getTimetable() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Timetable>> getTimetable() =>
       (super.noSuchMethod(Invocation.method(#getTimetable, []),
-              returnValue:
-                  Future<_i2.Either<_i5.Failure, _i6.TimetableModel>>.value(
-                      _FakeEither_0<_i5.Failure, _i6.TimetableModel>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i6.TimetableModel>>);
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.Timetable>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Timetable>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Timetable>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, void>> setTimetable(
-          _i6.TimetableModel? timetable) =>
+          _i6.Timetable? timetable) =>
       (super.noSuchMethod(Invocation.method(#setTimetable, [timetable]),
               returnValue: Future<_i2.Either<_i5.Failure, void>>.value(
                   _FakeEither_0<_i5.Failure, void>()))

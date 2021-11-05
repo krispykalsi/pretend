@@ -32,11 +32,11 @@ void main() {
         () async {
       final result = tTimeslotModel.toJson();
       final expectedJsonMap = {
-        TimeslotModelFields.START: "8 AM",
-        TimeslotModelFields.END: "10 AM",
-        TimeslotModelFields.DURATION: 2,
-        TimeslotModelFields.CLASS_CATEGORY: ClassCategories.THEORY,
-        TimeslotModelFields.SUBJECT_KEY: "HU-351a",
+        TimeslotModel.KEY_START: "8 AM",
+        TimeslotModel.KEY_END: "10 AM",
+        TimeslotModel.KEY_DURATION: 2,
+        TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
+        TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
       };
       expect(result, expectedJsonMap);
     },

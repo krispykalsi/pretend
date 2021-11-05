@@ -32,34 +32,34 @@ void main() {
       final expectedJsonMap = {
         TimetableModel.KEY_TIMETABLE: {
           Days.FRIDAY: {
-            TimeSlots.T8AM: TimeslotModel(
-              start: "8 AM",
-              end: "10 AM",
-              duration: 2,
-              classCategory: ClassCategories.THEORY,
-              subjectCode: "HU-351a",
-            ).toJson(),
-            TimeSlots.T9AM: TimeslotModel(
-              start: "8 AM",
-              end: "10 AM",
-              duration: 2,
-              classCategory: ClassCategories.THEORY,
-              subjectCode: "HU-351a",
-            ).toJson(),
-            TimeSlots.T1PM: TimeslotModel(
-              start: "1 PM",
-              end: "2 PM",
-              duration: 1,
-              classCategory: ClassCategories.LAB,
-              subjectCode: "IT-502",
-            ).toJson(),
-            TimeSlots.T11AM: TimeslotModel(
-              start: "11 AM",
-              end: "12 PM",
-              duration: 1,
-              classCategory: ClassCategories.THEORY,
-              subjectCode: "IT-504",
-            ).toJson(),
+            TimeSlots.T8AM: {
+              TimeslotModel.KEY_START: "8 AM",
+              TimeslotModel.KEY_END: "10 AM",
+              TimeslotModel.KEY_DURATION: 2,
+              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
+              TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
+            },
+            TimeSlots.T9AM: {
+              TimeslotModel.KEY_START: "8 AM",
+              TimeslotModel.KEY_END: "10 AM",
+              TimeslotModel.KEY_DURATION: 2,
+              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
+              TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
+            },
+            TimeSlots.T1PM: {
+              TimeslotModel.KEY_START: "1 PM",
+              TimeslotModel.KEY_END: "2 PM",
+              TimeslotModel.KEY_DURATION: 1,
+              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.LAB,
+              TimeslotModel.KEY_SUBJECT_CODE: "IT-502",
+            },
+            TimeSlots.T11AM: {
+              TimeslotModel.KEY_START: "11 AM",
+              TimeslotModel.KEY_END: "12 PM",
+              TimeslotModel.KEY_DURATION: 1,
+              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
+              TimeslotModel.KEY_SUBJECT_CODE: "IT-504",
+            },
           }
         },
         TimetableModel.KEY_SUBJECTS: ["HU-351a", "IT-502", "IT-504"]
