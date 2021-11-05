@@ -17,8 +17,8 @@ class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalD
   @override
   Future<TimetableModel> getTimetable() async {
     try {
-      final subjectBox = await openBox(_TIMETABLE);
-      return TimetableModel.fromJson(subjectBox.toMap().cast());
+      final timetableBox = await openBox(_TIMETABLE);
+      return TimetableModel.fromJson(timetableBox.toMap().cast());
     } catch (e) {
       throw CacheException();
     }
@@ -27,8 +27,8 @@ class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalD
   @override
   Future<void> setTimetable(TimetableModel timetable) async {
     try {
-      final subjectBox = await openBox(_TIMETABLE);
-      await subjectBox.putAll(timetable.toJson());
+      final timetableBox = await openBox(_TIMETABLE);
+      await timetableBox.putAll(timetable.toJson());
     } catch (e) {
       throw CacheException();
     }
