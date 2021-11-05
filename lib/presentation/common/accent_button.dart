@@ -58,3 +58,8 @@ class DoneAccentButton extends AccentButton {
   const DoneAccentButton({required VoidCallback onTap})
       : super("Done", onTap: onTap);
 }
+
+class ContinueAccentButton extends AccentButton {
+  const ContinueAccentButton({required VoidCallback onTap})
+      : super("Continue", onTap: onTap);
+}

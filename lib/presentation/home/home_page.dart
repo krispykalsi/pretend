@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
+import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'subject_list_tile.dart';
 
@@ -20,6 +22,14 @@ class _HomePageState extends State<HomePage> {
   final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent());
   late Map<String, Timeslot> _timetableForToday;
   late Map<String, Subject> _subjects;
+
+  void _onEditPressed() {
+    context.router.push(
+      TimetableSetupStatusRoute(
+        subjects: _subjects.values.toList(growable: false),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +46,10 @@ class _HomePageState extends State<HomePage> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  TextButton(
+                    onPressed: _onEditPressed,
+                    child: Text("Edit"),
+                  ),
                   _buildOngoingSection(),
                   SizedBox(height: 50),
                   _buildLaterTodaySection(),

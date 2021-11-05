@@ -28,6 +28,8 @@ class TimetableSetupBloc
       );
     } else if (event is ResetSetupEvent) {
       yield TimetableSetupInitial();
+    } else if (event is AllSubjectsConfiguredEvent) {
+      yield AllSubjectsConfigured();
     }
   }
 }

@@ -19,3 +19,10 @@ class ResetSetupEvent extends TimetableSetupEvent {
   @override
   List<Object> get props => [];
 }
+
+class AllSubjectsConfiguredEvent extends TimetableSetupEvent {
+  const AllSubjectsConfiguredEvent();
+
+  @override
+  List<Object> get props => [];
+}
