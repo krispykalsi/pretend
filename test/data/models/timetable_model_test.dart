@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/data/models/timetable_model.dart';
 import 'package:pretend/domain/entities/class_category_enum.dart';
-import 'package:pretend/domain/entities/days_enum.dart';
-import 'package:pretend/domain/entities/timeslot_enum.dart';
+import 'package:pretend/domain/entities/days.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 
 import '../../fixtures/fixture_reader.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
-import 'package:pretend/domain/entities/days_enum.dart';
+import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/injection_container.dart';

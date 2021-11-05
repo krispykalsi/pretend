@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pretend/domain/entities/days_enum.dart';
+import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/common/button_done.dart';
 import 'package:pretend/presentation/common/custom_choice_chip.dart';

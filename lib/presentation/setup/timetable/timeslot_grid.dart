@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pretend/domain/entities/timeslot_enum.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/setup/timetable/selection_state_notifier.dart';
 
