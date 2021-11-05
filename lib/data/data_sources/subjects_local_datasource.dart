@@ -74,7 +74,8 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
       final subjectBox = await openBox(_SUBJECTS);
       Map<String, SubjectModel> subjects = {};
       keys.forEach((subjectCode) {
-        final subjectJson = subjectBox.get(subjectCode);
+        final subjectDynamic = subjectBox.get(subjectCode);
+        final subjectJson = Map<String, dynamic>.from(subjectDynamic);
         subjects[subjectCode] = SubjectModel.fromJson(subjectJson);
       });
       return subjects;
