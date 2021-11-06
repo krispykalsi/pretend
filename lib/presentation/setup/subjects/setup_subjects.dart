@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/presentation/common/animated_list_model.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
+import 'package:pretend/presentation/setup/subjects/add_new_subject_dialog.dart';
 
 import 'selected_subject_list.dart';
 import 'subject_search_field.dart';
 import 'subject_option_list.dart';
+import 'add_new_subject_button.dart';
 
 class SetupSubjects extends StatefulWidget {
   final List<Subject> allSubjects;
@@ -47,6 +49,11 @@ class _SetupSubjectsState extends State<SetupSubjects> {
       final subjects = _selectedListNotifier.value!.items;
       widget.onSelectedSubjectsUpdate(subjects);
     }
+  }
+
+  void _onAddNewSubject() async {
+    final sub = await showAddNewSubjectDialog(context);
+    print(sub);
   }
 
   RegExp _getRegexpForIntelligentAutoComplete(String text) {
@@ -92,10 +99,20 @@ class _SetupSubjectsState extends State<SetupSubjects> {
             children: [
               Expanded(
                 flex: 2,
-                child: SubjectOptionList(
-                  _subjectOptions,
-                  previousState: widget.previouslySelected,
-                  onOptionTap: _onOptionTap,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: SubjectOptionList(
+                        _subjectOptions,
+                        previousState: widget.previouslySelected,
+                        onOptionTap: _onOptionTap,
+                      ),
+                    ),
+                    _textEditingController.text.isNotEmpty
+                        ? AddNewSubjectButton(onTap: _onAddNewSubject)
+                        : SizedBox.shrink(),
+                  ],
                 ),
               ),
               Container(
