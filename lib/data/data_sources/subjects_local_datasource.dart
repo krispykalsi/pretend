@@ -54,7 +54,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
       final subjectBox = await openBox(_SUBJECTS);
       List<SubjectModel> subjects = [];
       subjectBox.values.forEach((subjectJson) {
-        subjects.add(SubjectModel.fromJson(subjectJson));
+        subjects.add(SubjectModel.fromJson(Map.from(subjectJson)));
       });
       if (subjects.length == 0) {
         throw NoLocalDataException();

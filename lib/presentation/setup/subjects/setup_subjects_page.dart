@@ -44,6 +44,19 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
               return _buildLoadedState(state.subjects);
             } else if (state is Loading) {
               return CircularProgressIndicator();
+            } else if (state is Error) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Cache Failure",
+                      style: TextStyle(color: Colors.redAccent),
+                    ),
+                    Text(state.msg),
+                  ],
+                ),
+              );
             }
             return Center(
               child: ElevatedButton(
