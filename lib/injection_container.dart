@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
+import 'package:pretend/application/bloc/setup/subjects/new_subject/new_subject_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
 import 'package:pretend/application/bloc/setup/timetable/timetable_setup_bloc.dart';
 import 'package:pretend/core/network/network_info.dart';
@@ -13,6 +14,7 @@ import 'package:pretend/data/repositories/subjects_repository.dart';
 import 'package:pretend/data/repositories/timetable_repository.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
+import 'package:pretend/domain/usecases/add_subject.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 import 'package:pretend/domain/usecases/get_subjects_of_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable.dart';
@@ -33,11 +35,15 @@ Future<void> init() async {
   sl.registerFactory(
     () => HomeBloc(getTimetable: sl(), getSubjectsOfTimetable: sl()),
   );
+  sl.registerFactory(
+    () => NewSubjectBloc(sl()),
+  );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
   sl.registerLazySingleton(() => GetTimetable(sl()));
   sl.registerLazySingleton(() => SetTimetable(sl()));
   sl.registerLazySingleton(() => GetSubjectsOfTimetable(sl()));
+  sl.registerLazySingleton(() => AddSubject(sl()));
 
   sl.registerLazySingleton<SubjectsRepositoryContract>(
     () => SubjectsRepository(

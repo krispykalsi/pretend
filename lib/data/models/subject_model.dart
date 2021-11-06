@@ -16,6 +16,13 @@ class SubjectModel extends Subject {
     );
   }
 
+  factory SubjectModel.fromEntity(Subject subject) {
+    return SubjectModel(
+      name: subject.name,
+      code: subject.code,
+    );
+  }
+
   static List<SubjectModel> listFromJson(List<dynamic> list) {
     List<SubjectModel> subjects = [];
     list.forEach((subject) {
@@ -33,9 +40,6 @@ class SubjectModel extends Subject {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      SubjectModelFields.NAME: name,
-      SubjectModelFields.CODE: code
-    };
+    return {SubjectModelFields.NAME: name, SubjectModelFields.CODE: code};
   }
 }

@@ -20,7 +20,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   Future<void> addSubject(SubjectModel subject) async {
     try {
       final subjectBox = await openBox(_SUBJECTS);
-      subjectBox.add(subject.toJson());
+      subjectBox.put(subject.code, subject.toJson());
     } catch (e) {
       throw CacheException();
     }
