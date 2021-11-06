@@ -17,14 +17,25 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
       : _getAllSubjects = getAllSubjects,
         super(Initial());
 
+  late List<Subject> _subjects;
+
   @override
   Stream<SubjectsState> mapEventToState(SubjectsEvent event) async* {
-    yield Loading();
-    final subs =
-        await _getAllSubjects.call(GetAllSubjectsParams(DataSource.NETWORK));
-    yield subs.fold(
-      (failure) => Error(msg: failure.message),
-      (subs) => Loaded(subjects: subs),
-    );
+    if (event is GetAllSubjectsEvent) {
+      yield Loading();
+      final subjectsOrFailure =
+          await _getAllSubjects.call(GetAllSubjectsParams(DataSource.NETWORK));
+      yield subjectsOrFailure.fold(
+        (failure) => Error(msg: failure.message),
+        (subs) {
+          _subjects = subs;
+          return Loaded(subjects: subs);
+        },
+      );
+    } else if (event is OneOrMoreSubjectsSelectedEvent) {
+      yield OneOrMoreSubjectsSelected(subjects: _subjects);
+    } else if (event is NoSubjectsSelectedEvent) {
+      yield Loaded(subjects: _subjects);
+    }
   }
 }

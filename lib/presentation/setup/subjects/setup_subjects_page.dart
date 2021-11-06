@@ -26,57 +26,62 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
     return CustomScaffold(
       title: "Subjects",
       subtitle: "select all your subjects",
-      body: BlocProvider(
-        create: (context) => sl<SubjectsBloc>(),
-        child: BlocBuilder<SubjectsBloc, SubjectsState>(
-          builder: (context, state) {
-            if (state is Loaded) {
-              return _buildLoadedState(state);
-            } else if (state is Loading) {
-              return CircularProgressIndicator();
-            } else if (state is Initial) {
-              BlocProvider.of<SubjectsBloc>(context)
-                  .add(const GetAllSubjectsEvent());
-              return SizedBox.shrink();
-            } else {
-              return Center(
-                child: ElevatedButton(
-                  child: Text("load subs"),
-                  onPressed: () {
-                    BlocProvider.of<SubjectsBloc>(context)
-                        .add(const GetAllSubjectsEvent());
-                  },
-                ),
-              );
-            }
-          },
-        ),
+      body: BlocBuilder<SubjectsBloc, SubjectsState>(
+        bloc: _subjectsBloc,
+        builder: (context, state) {
+          if (state is Loaded) {
+            return _buildLoadedState(state.subjects);
+          } else if (state is OneOrMoreSubjectsSelected) {
+            return _buildLoadedState(state.subjects);
+          } else if (state is Loading) {
+            return CircularProgressIndicator();
+          }
+          return Center(
+            child: ElevatedButton(
+              child: Text("load subs"),
+              onPressed: () {
+                _subjectsBloc.add(const GetAllSubjectsEvent());
+              },
+            ),
+          );
+        },
       ),
     );
   }
 
-  Stack _buildLoadedState(Loaded state) {
+  Stack _buildLoadedState(List<Subject> subs) {
     return Stack(
       children: [
         SetupSubjects(
-          allSubjects: state.subjects,
+          allSubjects: subs,
           onSelectedSubjectsUpdate: (subjects) {
             _selectedSubjects = subjects;
-            setState(() {
-              _shouldShowNext = _selectedSubjects.isNotEmpty;
-            });
+            if (_selectedSubjects.isNotEmpty) {
+              _subjectsBloc.add(OneOrMoreSubjectsSelectedEvent());
+            } else {
+              _subjectsBloc.add(NoSubjectsSelectedEvent());
+            }
           },
         ),
-        AnimatedPositioned(
+        _buildNextButton
+      ],
+    );
+  }
+
+  Widget get _buildNextButton {
+    return BlocBuilder<SubjectsBloc, SubjectsState>(
+      bloc: _subjectsBloc,
+      builder: (context, state) {
+        return AnimatedPositioned(
           duration: const Duration(milliseconds: 200),
-          right: _shouldShowNext ? 0 : -100,
+          right: state is OneOrMoreSubjectsSelected ? 0 : -100,
           bottom: 100,
           child: NextAccentButton(
             onTap: () => context.router
                 .push(TimetableSetupStatusRoute(subjects: _selectedSubjects)),
           ),
-        )
-      ],
+        );
+      },
     );
   }
 }

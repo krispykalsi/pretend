@@ -10,3 +10,17 @@ class GetAllSubjectsEvent extends SubjectsEvent {
   @override
   List<Object?> get props => [];
 }
+
+class OneOrMoreSubjectsSelectedEvent extends SubjectsEvent {
+  const OneOrMoreSubjectsSelectedEvent();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class NoSubjectsSelectedEvent extends SubjectsEvent {
+  const NoSubjectsSelectedEvent();
+
+  @override
+  List<Object?> get props => [];
+}

@@ -23,6 +23,15 @@ class Loaded extends SubjectsState {
   List<Object> get props => [subjects];
 }
 
+class OneOrMoreSubjectsSelected extends SubjectsState {
+  final List<Subject> subjects;
+
+  const OneOrMoreSubjectsSelected({required this.subjects});
+
+  @override
+  List<Object> get props => [];
+}
+
 class Error extends SubjectsState {
   final String msg;
 
