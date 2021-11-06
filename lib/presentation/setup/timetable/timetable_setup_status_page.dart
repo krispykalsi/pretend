@@ -32,7 +32,8 @@ class TimetableSetupStatusPage extends StatefulWidget {
 }
 
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
-  late final _timetableNotifier = TimetableNotifier(widget._timetable?.subjectWise());
+  late final _timetableNotifier =
+      TimetableNotifier(widget._timetable?.subjectWise());
   final _timetable = Timetable(TimetableMap(), []);
 
   final _timetableSetupBloc = sl<TimetableSetupBloc>();
@@ -110,28 +111,29 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
     return BlocBuilder<TimetableSetupBloc, TimetableSetupState>(
       bloc: _timetableSetupBloc,
       builder: (context, state) {
+        bool _continue = false;
+        bool _done = false;
         if (state is AllSubjectsConfigured || state is TimetableNotSavedError) {
-          return AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
-            right: 0,
-            bottom: 100,
-            child: DoneAccentButton(onTap: _onDoneTap),
-          );
+          _done = true;
         } else if (state is TimetableSaved) {
-          return AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
-            right: 0,
-            bottom: 100,
-            child: ContinueAccentButton(onTap: _onContinueTap),
-          );
-        } else {
-          return AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
-            right: -100,
-            bottom: 100,
-            child: DoneAccentButton(onTap: _onDoneTap),
-          );
+          _continue = true;
         }
+        return Stack(
+          children: [
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              right: _done ? 0 : -100,
+              bottom: 100,
+              child: DoneAccentButton(onTap: _onDoneTap),
+            ),
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 200),
+              right: _continue ? 0 : -100,
+              bottom: 100,
+              child: ContinueAccentButton(onTap: _onContinueTap),
+            ),
+          ],
+        );
       },
     );
   }
