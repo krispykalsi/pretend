@@ -9,10 +9,12 @@ import 'subject_option_list.dart';
 
 class SetupSubjects extends StatefulWidget {
   final List<Subject> allSubjects;
+  final List<Subject> previouslySelected;
   final Function(List<Subject>) onSelectedSubjectsUpdate;
 
   const SetupSubjects({
     Key? key,
+    this.previouslySelected = const [],
     required this.allSubjects,
     required this.onSelectedSubjectsUpdate,
   }) : super(key: key);
@@ -92,6 +94,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 flex: 2,
                 child: SubjectOptionList(
                   _subjectOptions,
+                  previousState: widget.previouslySelected,
                   onOptionTap: _onOptionTap,
                 ),
               ),
@@ -103,6 +106,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 flex: 1,
                 child: SelectedSubjectList(
                   listModelNotifier: _selectedListNotifier,
+                  previouslySelected: widget.previouslySelected,
                 ),
               )
             ],

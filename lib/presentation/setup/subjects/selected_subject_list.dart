@@ -7,9 +7,13 @@ import 'selected_subject_list_tile.dart';
 
 class SelectedSubjectList extends StatefulWidget {
   final ValueNotifier<AnimatedListModel<Subject>?> listModelNotifier;
+  final List<Subject> previouslySelected;
 
-  const SelectedSubjectList({Key? key, required this.listModelNotifier})
-      : super(key: key);
+  const SelectedSubjectList({
+    Key? key,
+    required this.listModelNotifier,
+    this.previouslySelected = const [],
+  }) : super(key: key);
 
   @override
   _SelectedSubjectListState createState() => _SelectedSubjectListState();
@@ -17,13 +21,14 @@ class SelectedSubjectList extends StatefulWidget {
 
 class _SelectedSubjectListState extends State<SelectedSubjectList> {
   final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
-  late final AnimatedListModel<Subject> list = AnimatedListModel<Subject>(
+  late final AnimatedListModel<Subject> listModel = AnimatedListModel<Subject>(
     listKey: listKey,
     removedItemBuilder: _buildRemovedItem,
+    initialItems: widget.previouslySelected,
   );
 
-  Widget _buildRemovedItem(Subject subject, BuildContext context,
-      Animation<double> animation) {
+  Widget _buildRemovedItem(
+      Subject subject, BuildContext context, Animation<double> animation) {
     return SizeTransition(
       sizeFactor: CurvedAnimation(
         parent: animation,
@@ -36,7 +41,7 @@ class _SelectedSubjectListState extends State<SelectedSubjectList> {
   @override
   void initState() {
     super.initState();
-    widget.listModelNotifier.value = list;
+    widget.listModelNotifier.value = listModel;
   }
 
   @override
@@ -49,15 +54,15 @@ class _SelectedSubjectListState extends State<SelectedSubjectList> {
   Widget build(BuildContext context) {
     return AnimatedList(
       key: listKey,
-      initialItemCount: list.length,
+      initialItemCount: listModel.length,
       itemBuilder: _buildItem,
     );
   }
 
-  Widget _buildItem(BuildContext context, int index,
-      Animation<double> animation) {
+  Widget _buildItem(
+      BuildContext context, int index, Animation<double> animation) {
     return SelectedSubjectListTile(
-      list[index],
+      listModel[index],
       animation: animation,
       onTap: (subject) {
         print(subject);

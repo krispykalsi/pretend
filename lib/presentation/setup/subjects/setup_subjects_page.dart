@@ -11,40 +11,50 @@ import 'package:pretend/presentation/common/custom_scaffold.dart';
 import 'setup_subjects.dart';
 
 class SetupSubjectsPage extends StatefulWidget {
-  const SetupSubjectsPage({Key? key}) : super(key: key);
+  final List<Subject> _selectedSubjects;
+
+  const SetupSubjectsPage({Key? key, List<Subject> selectedSubjects = const []})
+      : _selectedSubjects = selectedSubjects,
+        super(key: key);
 
   @override
   _SetupSubjectsPageState createState() => _SetupSubjectsPageState();
 }
 
 class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
-  var _selectedSubjects = List<Subject>.empty();
-  bool _shouldShowNext = false;
+  late List<Subject> _selectedSubjects = widget._selectedSubjects;
+  final _subjectsBloc = sl<SubjectsBloc>()..add(const GetAllSubjectsEvent());
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       title: "Subjects",
       subtitle: "select all your subjects",
-      body: BlocBuilder<SubjectsBloc, SubjectsState>(
-        bloc: _subjectsBloc,
-        builder: (context, state) {
-          if (state is Loaded) {
-            return _buildLoadedState(state.subjects);
-          } else if (state is OneOrMoreSubjectsSelected) {
-            return _buildLoadedState(state.subjects);
-          } else if (state is Loading) {
-            return CircularProgressIndicator();
-          }
-          return Center(
-            child: ElevatedButton(
-              child: Text("load subs"),
-              onPressed: () {
-                _subjectsBloc.add(const GetAllSubjectsEvent());
-              },
-            ),
-          );
+      body: WillPopScope(
+        onWillPop: () async {
+          Navigator.of(context).pop(_selectedSubjects);
+          return false;
         },
+        child: BlocBuilder<SubjectsBloc, SubjectsState>(
+          bloc: _subjectsBloc,
+          builder: (context, state) {
+            if (state is Loaded) {
+              return _buildLoadedState(state.subjects);
+            } else if (state is OneOrMoreSubjectsSelected) {
+              return _buildLoadedState(state.subjects);
+            } else if (state is Loading) {
+              return CircularProgressIndicator();
+            }
+            return Center(
+              child: ElevatedButton(
+                child: Text("load subs"),
+                onPressed: () {
+                  _subjectsBloc.add(const GetAllSubjectsEvent());
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -54,6 +64,7 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
       children: [
         SetupSubjects(
           allSubjects: subs,
+          previouslySelected: widget._selectedSubjects,
           onSelectedSubjectsUpdate: (subjects) {
             _selectedSubjects = subjects;
             if (_selectedSubjects.isNotEmpty) {
@@ -77,8 +88,9 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
           right: state is OneOrMoreSubjectsSelected ? 0 : -100,
           bottom: 100,
           child: NextAccentButton(
-            onTap: () => context.router
-                .push(TimetableSetupStatusRoute(subjects: _selectedSubjects)),
+            onTap: () => context.router.replace(
+              TimetableSetupStatusRoute(subjects: _selectedSubjects),
+            ),
           ),
         );
       },

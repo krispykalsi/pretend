@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/timetable/timetable_setup_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/accent_button.dart';
+import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
 import 'package:pretend/presentation/common/custom_dialog.dart';
 import 'package:auto_route/auto_route.dart';
@@ -71,8 +73,13 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   }
 
   void _onBackTap() async {
-    var shouldGoBack = await context.showConfirmationDialog();
-    if (shouldGoBack) Navigator.of(context).pop();
+    context.router.pop();
+  }
+
+  void _addOrRemoveSubjectsTap() async {
+    context.router.replace(SetupSubjectsRoute(
+      selectedSubjects: widget._selectedSubjects,
+    ));
   }
 
   @override
@@ -85,17 +92,18 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment(0, -0.5),
+              alignment: Alignment(0, -0.7),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  _buildHelperMessage,
+                  SizedBox(height: 40),
                   TimetableSetupStatus(
                     onSetupStatusChanged: _onSetupStatusChanged,
                     subjects: widget._selectedSubjects,
                     notifier: _timetableNotifier,
                   ),
-                  SizedBox(height: 10),
-                  _buildHelperMessage,
+                  _buildAddRemoveSubjectsButton,
                 ],
               ),
             ),
@@ -104,6 +112,42 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget get _buildAddRemoveSubjectsButton {
+    return BlocBuilder<TimetableSetupBloc, TimetableSetupState>(
+      bloc: _timetableSetupBloc,
+      builder: (context, state) {
+        bool _visible = true;
+        if (state is TimetableSaving || state is TimetableSaved) {
+          _visible = false;
+        }
+        return AnimatedOpacity(
+          opacity: _visible ? 1 : 0,
+          duration: const Duration(milliseconds: 200),
+          child: TextButton(
+            onPressed: _addOrRemoveSubjectsTap,
+            style: ButtonStyle(
+              textStyle: MaterialStateProperty.all(TextStyle(
+                fontFamily: Theme.of(context).textTheme.bodyText1!.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              )),
+              foregroundColor: MaterialStateProperty.all(AppColors.SECONDARY),
+              splashFactory: NoSplash.splashFactory,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.library_books),
+                SizedBox(width: 10),
+                Text("Add/remove subjects"),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -122,13 +166,13 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
           children: [
             AnimatedPositioned(
               duration: const Duration(milliseconds: 200),
-              right: _done ? 0 : -100,
+              right: _done ? 0 : -150,
               bottom: 100,
               child: DoneAccentButton(onTap: _onDoneTap),
             ),
             AnimatedPositioned(
               duration: const Duration(milliseconds: 200),
-              right: _continue ? 0 : -100,
+              right: _continue ? 0 : -150,
               bottom: 100,
               child: ContinueAccentButton(onTap: _onContinueTap),
             ),

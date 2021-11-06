@@ -6,18 +6,26 @@ import 'subject_option_list_tile.dart';
 class SubjectOptionList extends StatefulWidget {
   final Iterable<Subject> _subjects;
   final Function(Subject, bool) onOptionTap;
+  final Iterable<Subject> _previouslySelected;
 
-  const SubjectOptionList(this._subjects, {
+  const SubjectOptionList(
+    this._subjects, {
     Key? key,
     required this.onOptionTap,
-  }) : super(key: key);
+    Iterable<Subject> previousState = const [],
+  })  : _previouslySelected = previousState,
+        super(key: key);
 
   @override
   _SubjectOptionListState createState() => _SubjectOptionListState();
 }
 
 class _SubjectOptionListState extends State<SubjectOptionList> {
-  var _selectionState = Map<String, bool>();
+  late Map<String, bool> _selectionState = Map.fromIterable(
+    widget._previouslySelected,
+    key: (sub) => sub.code,
+    value: (_) => true,
+  );
 
   @override
   Widget build(BuildContext context) {
