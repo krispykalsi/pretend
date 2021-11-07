@@ -31,21 +31,35 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: ListView.builder(
-        padding: const EdgeInsets.all(0),
-        itemBuilder: (ctx, idx) {
-          final subject = widget._subjects.elementAt(idx);
-          return SubjectOptionListTile(
-            subject,
-            key: ValueKey(subject.code),
-            onTap: (isSelected) {
-              _selectionState[subject.code] = isSelected;
-              widget.onOptionTap(subject, isSelected);
-            },
-            selected: _selectionState[subject.code] ?? false,
-          );
+      child: ShaderMask(
+        shaderCallback: (rect) {
+          return LinearGradient(
+            begin: Alignment(0, 0.7),
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Colors.transparent],
+          ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
         },
-        itemCount: widget._subjects.length,
+        blendMode: BlendMode.dstIn,
+        child: ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(overscroll: false),
+          child: ListView.builder(
+            physics: ClampingScrollPhysics(),
+            padding: const EdgeInsets.all(0),
+            itemBuilder: (ctx, idx) {
+              final subject = widget._subjects.elementAt(idx);
+              return SubjectOptionListTile(
+                subject,
+                key: ValueKey(subject.code),
+                onTap: (isSelected) {
+                  _selectionState[subject.code] = isSelected;
+                  widget.onOptionTap(subject, isSelected);
+                },
+                selected: _selectionState[subject.code] ?? false,
+              );
+            },
+            itemCount: widget._subjects.length,
+          ),
+        ),
       ),
     );
   }
