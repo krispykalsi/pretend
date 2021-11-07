@@ -134,7 +134,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               )),
-              foregroundColor: MaterialStateProperty.all(AppColors.SECONDARY),
+              foregroundColor: MaterialStateProperty.all(AppColors.ACCENT),
               splashFactory: NoSplash.splashFactory,
             ),
             child: Row(
