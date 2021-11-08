@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 enum Timeslots {
   T8AM,
   T9AM,
@@ -91,7 +93,7 @@ extension ParseToString on Timeslots {
 
   String _appendMeridiem(String slot) {
     final slotInt = int.parse(slot);
-    if (slotInt > 7) {
+    if (slotInt > 7 && slotInt != 12) {
       return slot + " AM";
     } else {
       return slot + " PM";
@@ -100,16 +102,27 @@ extension ParseToString on Timeslots {
 }
 
 extension Comparison on Timeslots {
-  int get integer {
-    return int.parse(_extractPart(1));
+  int get startInt {
+    final hour12 = int.parse(_extractPart(1));
+    return hour12 < 8 ? hour12 + 12 : hour12;
+  }
+
+  int get endInt {
+    final hour12 = int.parse(_extractPart(2));
+    return hour12 < 8 ? hour12 + 12 : hour12;
   }
 
   int compareTo(Timeslots other) {
-    var a = integer;
-    var b = other.integer;
+    return startInt.compareTo(other.startInt);
+  }
+}
 
-    if (a < 8) a += 12;
-    if (b < 8) b += 12;
-    return a.compareTo(b);
+extension MapperToDateTime on Timeslots {
+  DateTime get startTime {
+    return DateFormat("h a").parse(start);
+  }
+
+  DateTime get endTime {
+    return DateFormat("h a").parse(end);
   }
 }
