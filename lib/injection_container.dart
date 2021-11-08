@@ -15,6 +15,7 @@ import 'package:pretend/data/repositories/timetable_repository.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
 import 'package:pretend/domain/usecases/add_subject.dart';
+import 'package:pretend/domain/usecases/generate_schedule_for_today.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 import 'package:pretend/domain/usecases/get_subjects_of_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable.dart';
@@ -33,7 +34,7 @@ Future<void> init() async {
     () => TimetableSetupBloc(setTimetable: sl()),
   );
   sl.registerFactory(
-    () => HomeBloc(getTimetable: sl(), getSubjectsOfTimetable: sl()),
+    () => HomeBloc(generateScheduleForToday: sl()),
   );
   sl.registerFactory(
     () => NewSubjectBloc(sl()),
@@ -43,6 +44,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetTimetable(sl()));
   sl.registerLazySingleton(() => SetTimetable(sl()));
   sl.registerLazySingleton(() => GetSubjectsOfTimetable(sl()));
+  sl.registerLazySingleton(() => GenerateScheduleForToday(sl(), sl()));
   sl.registerLazySingleton(() => AddSubject(sl()));
 
   sl.registerLazySingleton<SubjectsRepositoryContract>(

@@ -5,7 +5,9 @@ abstract class HomeEvent extends Equatable {
 }
 
 class GetTimetableEvent extends HomeEvent {
-  const GetTimetableEvent();
+  final DateTime _now;
+
+  const GetTimetableEvent(this._now);
 
   @override
   List<Object?> get props => [];

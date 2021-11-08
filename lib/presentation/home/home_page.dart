@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/days.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent());
+  final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent(DateFormat("H:mm").parse("11:05")));
   late Map<String, Timeslot> _timetableForToday;
   late Map<String, Subject> _subjects;
 

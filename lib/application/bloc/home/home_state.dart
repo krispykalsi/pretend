@@ -21,8 +21,9 @@ class TimetableLoading extends HomeState {
 class TimetableLoaded extends HomeState {
   final Timetable timetable;
   final Map<String, Subject> subjects;
+  final FilteredSchedule filteredSchedule;
 
-  const TimetableLoaded(this.timetable, this.subjects);
+  const TimetableLoaded(this.timetable, this.subjects, this.filteredSchedule);
 
   @override
   List<Object?> get props => [timetable];

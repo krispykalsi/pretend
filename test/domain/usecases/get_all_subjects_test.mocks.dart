@@ -47,5 +47,11 @@ class MockSubjectsRepositoryContract extends _i1.Mock
                   _FakeEither_0<_i5.Failure, Map<String, _i6.Subject>>()))
           as _i4.Future<_i2.Either<_i5.Failure, Map<String, _i6.Subject>>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> addSubject(_i6.Subject? subject) =>
+      (super.noSuchMethod(Invocation.method(#addSubject, [subject]),
+              returnValue: Future<_i2.Either<_i5.Failure, void>>.value(
+                  _FakeEither_0<_i5.Failure, void>()))
+          as _i4.Future<_i2.Either<_i5.Failure, void>>);
+  @override
   String toString() => super.toString();
 }
