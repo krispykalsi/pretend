@@ -54,7 +54,7 @@ extension SubjectWise on Timetable {
       timetable.forEach((day, timeslots) {
         timeslots.forEach((slotDashed, timeslot) {
           if (timeslot.subjectCode == subjectCode) {
-            final timeslotEnum = timeslotFromDashed(slotDashed);
+            final timeslotEnum = getTimeslotFromDashed(slotDashed);
             final color = AppColors.classCategory[timeslot.classCategory]!;
             final selectionState = TimeslotGridTileState(true, color);
             swTimetable[subjectCode]!.putIfAbsent(day, () => {});

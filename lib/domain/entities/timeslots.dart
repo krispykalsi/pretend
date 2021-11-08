@@ -13,7 +13,7 @@ enum Timeslots {
   T7PM,
 }
 
-Timeslots timeslotFromDashed(String dashed) {
+Timeslots getTimeslotFromDashed(String dashed) {
   switch (dashed) {
     case "8-9":
       return Timeslots.T8AM;
