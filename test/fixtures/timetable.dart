@@ -8,15 +8,15 @@ final _tTimetableMap = {
   Days.FRIDAY: {
     Timeslots.T8AM.dashed: TimeslotModel(
       start: "8 AM",
-      end: "10 AM",
-      duration: 2,
+      end: "9 AM",
+      duration: 1,
       classCategory: ClassCategories.THEORY,
       subjectCode: "HU-351a",
     ),
     Timeslots.T9AM.dashed: TimeslotModel(
-      start: "8 AM",
+      start: "9 AM",
       end: "10 AM",
-      duration: 2,
+      duration: 1,
       classCategory: ClassCategories.THEORY,
       subjectCode: "HU-351a",
     ),

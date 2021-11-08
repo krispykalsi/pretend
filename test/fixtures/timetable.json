@@ -3,13 +3,13 @@
     "friday": {
       "8-9": {
         "start": "8 AM",
-        "end": "10 AM",
+        "end": "9 AM",
         "duration": 2,
         "classCategory": "theory",
         "subjectCode": "HU-351a"
       },
       "9-10": {
-        "start": "8 AM",
+        "start": "9 AM",
         "end": "10 AM",
         "duration": 2,
         "classCategory": "theory",
