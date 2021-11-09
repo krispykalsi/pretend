@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pretend/core/error/failures.dart';
+import 'package:pretend/core/extensions/date_time.dart';
 import 'package:pretend/core/usecases/usecase.dart';
 import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/filters.dart';
@@ -60,22 +61,24 @@ class GenerateScheduleForToday extends UseCase<GenerateScheduleForTodayOutput,
 
   FilteredSchedule _filterSchedule(
       Map<Timeslots, Timeslot> scheduleForToday, DateTime now) {
-    final dividedTimetable = FilteredSchedule();
+    final filteredSchedule = FilteredSchedule();
     Filters.values.forEach((division) {
-      dividedTimetable[division] = {};
+      filteredSchedule[division] = {};
     });
     scheduleForToday.forEach((slot, info) {
-      late Filters division;
-      if (now.isBefore(slot.endTime)) {
-        if (now.isAfter(slot.startTime)) {
-          division = Filters.onGoing;
+      late Filters filter;
+      if (now.isTimeBefore(slot.endTime)) {
+        if (now.isTimeAfter(slot.startTime)) {
+          filter = Filters.onGoing;
         } else {
-          division = Filters.laterToday;
+          filter = Filters.laterToday;
         }
+      } else {
+        filter = Filters.passed;
       }
-      dividedTimetable[division]![slot] = info;
+      filteredSchedule[filter]![slot] = info;
     });
-    return dividedTimetable;
+    return filteredSchedule;
   }
 }
 
