@@ -34,15 +34,15 @@ void main() {
           Days.FRIDAY: {
             Timeslots.T8AM.dashed: {
               TimeslotModel.KEY_START: "8 AM",
-              TimeslotModel.KEY_END: "10 AM",
-              TimeslotModel.KEY_DURATION: 2,
+              TimeslotModel.KEY_END: "9 AM",
+              TimeslotModel.KEY_DURATION: 1,
               TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
               TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
             },
             Timeslots.T9AM.dashed: {
-              TimeslotModel.KEY_START: "8 AM",
+              TimeslotModel.KEY_START: "9 AM",
               TimeslotModel.KEY_END: "10 AM",
-              TimeslotModel.KEY_DURATION: 2,
+              TimeslotModel.KEY_DURATION: 1,
               TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
               TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
             },
