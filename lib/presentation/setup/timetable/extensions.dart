@@ -7,35 +7,45 @@ import 'package:pretend/presentation/setup/timetable/timeslot_grid_tile_state.da
 import 'typedefs.dart';
 
 extension DayWise on Timetable {
-  void addSubject(String subjectCode, WeekSelectionState selectionState) {
-    selectionState
-        .removeWhere((_, daySelectionState) => daySelectionState.isEmpty);
-    timetable.addAll(selectionState.map((day, daySelectionState) {
+  void update(SubjectWiseTimetable swTimetable) {
+    swTimetable.forEach(_addSubject);
+    final List<String> subjectsToRemove = [];
+    subjectCodes.forEach((subjectCode) {
+      if (!swTimetable.keys.contains(subjectCode)) subjectsToRemove.add(subjectCode);
+    });
+    subjectsToRemove.forEach(_removeSubject);
+  }
+
+  void _addSubject(String subjectCode, WeekSelectionState selectionState) {
+    selectionState.forEach((day, daySelectionState) {
       daySelectionState.removeWhere((_, tileState) => !tileState.isSelected);
-      return MapEntry(
+      if (daySelectionState.isEmpty) return;
+      final newTimeslots = daySelectionState.map((timeslot, tileState) {
+        final classCategory = getClassCategoryFromColor(tileState.color);
+        return MapEntry(
+          timeslot.dashed,
+          Timeslot(
+            start: timeslot.start,
+            end: timeslot.end,
+            duration: 1,
+            classCategory: classCategory,
+            subjectCode: subjectCode,
+          ),
+        );
+      });
+      timetable.update(
         day,
-        daySelectionState.map((timeslot, tileState) {
-          final classCategory = getClassCategoryFromColor(tileState.color);
-          return MapEntry(
-            timeslot.dashed,
-            Timeslot(
-              start: timeslot.start,
-              end: timeslot.end,
-              duration: 1,
-              classCategory: classCategory,
-              subjectCode: subjectCode,
-            ),
-          );
-        }),
+        (prevTimeslotMap) => prevTimeslotMap..addAll(newTimeslots),
+        ifAbsent: () => newTimeslots,
       );
-    }));
+    });
 
     if (!subjectCodes.contains(subjectCode)) {
       subjectCodes.add(subjectCode);
     }
   }
 
-  void removeSubject(String subjectCode) {
+  void _removeSubject(String subjectCode) {
     timetable.forEach((_, timeslots) {
       timeslots.removeWhere(
         (_, timeslot) => timeslot.subjectCode == subjectCode,

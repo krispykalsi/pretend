@@ -14,7 +14,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'timetable_notifier.dart';
 import 'timetable_setup_status.dart';
-import 'timetable_extensions.dart';
+import 'extensions.dart';
 
 class TimetableSetupStatusPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
@@ -66,9 +66,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   }
 
   void _onDoneTap() {
-    _timetableNotifier.value.forEach((subjectCode, selectionState) {
-      _timetable.addSubject(subjectCode, selectionState);
-    });
+    _timetable.update(_timetableNotifier.value);
     _timetableSetupBloc.add(SaveTimetableEvent(timetable: _timetable));
   }
 
