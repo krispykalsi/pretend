@@ -13,7 +13,7 @@ class Days {
         WEDNESDAY,
         THURSDAY,
         FRIDAY,
-        SATURDAY,
-        SUNDAY,
+        // SATURDAY,
+        // SUNDAY,
       ];
 }

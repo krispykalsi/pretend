@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
-import 'package:pretend/domain/entities/days.dart';
+import 'package:pretend/core/extensions/date_time.dart';
+import 'package:pretend/domain/entities/filters.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
@@ -21,8 +22,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent(DateFormat("H:mm").parse("11:05")));
-  late Map<String, Timeslot> _timetableForToday;
+  final _homeBloc = sl<HomeBloc>()
+    ..add(GetTimetableEvent(DateTime.now().update(
+      hour: 11,
+      minute: 5,
+      day: DateTime.friday,
+    )));
   late Map<String, Subject> _subjects;
 
   void _onEditPressed(Timetable timetable) {
@@ -44,18 +49,21 @@ class _HomePageState extends State<HomePage> {
           bloc: _homeBloc,
           builder: (context, state) {
             if (state is TimetableLoaded) {
-              _timetableForToday = state.timetable.timetable[Days.MONDAY] ?? {};
               _subjects = state.subjects;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                    onPressed: () => _onEditPressed(state.timetable),
+                    onPressed: () {
+                      _onEditPressed(state.timetable);
+                    },
                     child: Text("Edit"),
                   ),
-                  _buildOngoingSection(),
+                  _buildOngoingSection(
+                      state.filteredSchedule[Filters.onGoing]!),
                   SizedBox(height: 50),
-                  _buildLaterTodaySection(),
+                  _buildLaterTodaySection(
+                      state.filteredSchedule[Filters.laterToday]!),
                 ],
               );
             } else if (state is TimetableLoading) {
@@ -74,26 +82,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildLaterTodaySection() {
+  Widget _buildLaterTodaySection(Map<Timeslots, Timeslot> laterToday) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSectionHeading("Later today"),
           Expanded(
-            // child: ListView.builder(
-            //   clipBehavior: Clip.none,
-            //   itemBuilder: (context, idx) {
-            //     return SubjectListTile(
-            //       subject: tSubject,
-            //       timeslot: tTimeslot,
-            //     );
-            //   },
-            //   itemCount: _timetable.keys.length,
-            // ),
             child: ListView(
-              children: _timetableForToday.entries.map<Widget>((entry) {
-                final timeslot = entry.value;
+              children: laterToday.values.map<Widget>((timeslot) {
                 final subject = _subjects[timeslot.subjectCode] ??
                     Subject("NOT FOUND", "NOT FOUND");
                 return SubjectListTile(subject, timeslot);
@@ -105,20 +102,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildOngoingSection() {
-    // return Column(
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     _buildSectionHeading("Ongoing"),
-    //     SizedBox(height: 10),
-    //     SubjectListTile(
-    //       subject: tSubject,
-    //       timeslot: tTimeslot,
-    //       isOnGoing: true,
-    //     ),
-    //   ],
-    // );
-    return SizedBox.shrink();
+  Widget _buildOngoingSection(Map<Timeslots, Timeslot> onGoing) {
+    late Timeslot timeslot;
+    late Subject subject;
+    if (onGoing.isNotEmpty) {
+      timeslot = onGoing.values.elementAt(0);
+      subject =
+          _subjects[timeslot.subjectCode] ?? Subject("NOT FOUND", "NOT FOUND");
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionHeading("Ongoing"),
+        SizedBox(height: 10),
+        onGoing.isNotEmpty
+            ? SubjectListTile(
+                subject,
+                timeslot,
+                isOnGoing: true,
+              )
+            : Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Text("Nothing to see here!"),
+              ),
+      ],
+    );
   }
 
   Text _buildSectionHeading(String text) {
