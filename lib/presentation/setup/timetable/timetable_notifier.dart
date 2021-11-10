@@ -4,5 +4,5 @@ import 'typedefs.dart';
 
 class TimetableNotifier extends ValueNotifier<SubjectWiseTimetable> {
   TimetableNotifier([SubjectWiseTimetable? timetable])
-      : super(timetable == null ? SubjectWiseTimetable() : timetable);
+      : super(timetable ?? SubjectWiseTimetable());
 }
