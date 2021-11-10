@@ -19,7 +19,7 @@ class TimetableModel extends Timetable {
       for (String timeslot in timetableJson[day]!.keys) {
         final timeslotJson =
             Map<String, dynamic>.from(timetableJson[day]![timeslot]);
-        timetable[day]![timeslot] = TimeslotModel.fromJson(timeslotJson);
+        timetable[day]![timeslot] = TimeslotModel.fromJson(timeslotJson).toEntity();
       }
     }
     final subjectCodes = List<String>.from(json[KEY_SUBJECTS]);

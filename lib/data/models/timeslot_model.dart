@@ -37,6 +37,16 @@ class TimeslotModel extends Timeslot {
     );
   }
 
+  Timeslot toEntity() {
+    return Timeslot(
+      start: start,
+      end: end,
+      duration: duration,
+      subjectCode: subjectCode,
+      classCategory: classCategory,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       KEY_START: start,

@@ -27,7 +27,7 @@ void main() {
     );
   });
 
-  final tTimetable = getTestTimetableModel;
+  final tTimetable = getTestTimetable;
   final tSubjects = getTestSubjectsOfTimetable;
   final tFilteredSchedule = getTestFilteredSchedule;
 
