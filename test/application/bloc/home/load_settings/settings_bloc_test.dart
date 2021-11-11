@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pretend/application/bloc/home/load_settings/settings_bloc.dart';
+import 'package:pretend/application/bloc/settings/settings_bloc.dart';
 import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/core/usecases/usecase.dart';
 import 'package:pretend/domain/usecases/get_app_settings.dart';
