@@ -45,7 +45,7 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
                 fontSize: 28.0,
               ),
             ),
-            Text('Enter subjects details'),
+            Text('Enter subject details'),
             SizedBox(height: 30),
             _buildTextField(
               "Name",
