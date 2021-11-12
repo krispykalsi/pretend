@@ -17,12 +17,12 @@ class AppSettingsLoading extends SettingsState {
 }
 
 class AppSettingsLoaded extends SettingsState {
-  final AppSettings _settings;
+  final AppSettings settings;
 
-  const AppSettingsLoaded(this._settings);
+  const AppSettingsLoaded(this.settings);
 
   @override
-  List<Object?> get props => [_settings];
+  List<Object?> get props => [settings];
 }
 
 class AppSettingsError extends SettingsState {
