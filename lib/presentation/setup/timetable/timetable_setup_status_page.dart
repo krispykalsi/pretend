@@ -199,7 +199,9 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
       bloc: _timetableSetupBloc,
       builder: (context, state) {
         if (state is TimetableSetupInitial) {
-          return Text("Tap on a subject to configure");
+          return widget._selectedSubjects.isEmpty
+              ? SizedBox.shrink()
+              : Text("Tap on a subject to configure");
         } else if (state is AllSubjectsConfigured) {
           return Text("All done! Tap done to continue");
         } else if (state is TimetableSaving) {
