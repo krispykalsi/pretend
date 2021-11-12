@@ -11,6 +11,7 @@ import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:pretend/presentation/dynamic_theme_app.dart';
 
 import 'subject_list_tile.dart';
 
@@ -51,19 +52,26 @@ class _HomePageState extends State<HomePage> {
             if (state is TimetableLoaded) {
               _subjects = state.subjects;
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      _onEditPressed(state.timetable);
-                    },
-                    child: Text("Edit"),
-                  ),
                   _buildOngoingSection(
                       state.filteredSchedule[Filters.onGoing]!),
                   SizedBox(height: 50),
                   _buildLaterTodaySection(
                       state.filteredSchedule[Filters.laterToday]!),
+                  Spacer(),
+                  ElevatedButton(
+                    onPressed: () {
+                      _onEditPressed(state.timetable);
+                    },
+                    child: Text("Edit"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      ThemeChanger.of(context)?.accentColor = Colors.orangeAccent;
+                    },
+                    child: Text("Change Color"),
+                  ),
                 ],
               );
             } else if (state is TimetableLoading) {
