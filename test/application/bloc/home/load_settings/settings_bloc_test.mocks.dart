@@ -68,7 +68,8 @@ class MockMarkAppVisitedFirstTime extends _i1.Mock
               returnValue: _FakeSettingsRepositoryContract_0())
           as _i2.SettingsRepositoryContract);
   @override
-  _i5.Future<_i3.Either<_i6.Failure, void>> call(_i8.NoParams? params) =>
+  _i5.Future<_i3.Either<_i6.Failure, void>> call(
+          _i9.MarkAppVisitedFirstTimeParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
               returnValue: Future<_i3.Either<_i6.Failure, void>>.value(
                   _FakeEither_1<_i6.Failure, void>()))

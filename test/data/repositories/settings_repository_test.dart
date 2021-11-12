@@ -45,19 +45,20 @@ void main() {
   });
 
   group('set first time flag', () {
+    final tFlag = true;
     test('should call datasource to set first time flag', () async {
-      when(mockDatasource.setFirstTimeFlag())
+      when(mockDatasource.setFirstTimeFlag(tFlag))
           .thenAnswer((_) => Future.value(null));
-      final actual = await repo.setFirstTimeFlag();
-      verify(mockDatasource.setFirstTimeFlag());
+      final actual = await repo.setFirstTimeFlag(tFlag);
+      verify(mockDatasource.setFirstTimeFlag(tFlag));
       expect(actual, Right(null));
     });
 
     test('should return CacheFailure on CacheException from local datasource',
         () async {
-      when(mockDatasource.setFirstTimeFlag()).thenThrow(CacheException());
-      final actual = await repo.setFirstTimeFlag();
-      verify(mockDatasource.setFirstTimeFlag());
+      when(mockDatasource.setFirstTimeFlag(tFlag)).thenThrow(CacheException());
+      final actual = await repo.setFirstTimeFlag(tFlag);
+      verify(mockDatasource.setFirstTimeFlag(tFlag));
       expect(actual, Left(CacheFailure()));
     });
   });

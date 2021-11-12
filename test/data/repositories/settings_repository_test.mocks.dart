@@ -31,8 +31,8 @@ class MockSettingsLocalDatasourceContract extends _i1.Mock
           returnValue: Future<Map<String, dynamic>>.value(<String, dynamic>{}))
       as _i3.Future<Map<String, dynamic>>);
   @override
-  _i3.Future<void> setFirstTimeFlag() =>
-      (super.noSuchMethod(Invocation.method(#setFirstTimeFlag, []),
+  _i3.Future<void> setFirstTimeFlag(bool? flag) =>
+      (super.noSuchMethod(Invocation.method(#setFirstTimeFlag, [flag]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override

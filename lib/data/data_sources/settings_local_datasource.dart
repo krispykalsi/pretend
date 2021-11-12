@@ -6,7 +6,7 @@ import 'package:pretend/data/models/app_settings_model.dart';
 abstract class SettingsLocalDatasourceContract {
   Future<Map<String, dynamic>> getAppSettings();
 
-  Future<void> setFirstTimeFlag();
+  Future<void> setFirstTimeFlag(bool flag);
 
   Future<void> setThemeColor(int color);
 }
@@ -28,10 +28,10 @@ class SettingsLocalDatasource extends HiveDataSource
   }
 
   @override
-  Future<void> setFirstTimeFlag() async {
+  Future<void> setFirstTimeFlag(bool flag) async {
     try {
       final box = await openBox(_APP_SETTINGS);
-      await box.put(AppSettingsModel.KEY_FIRST_TIME_STARTUP, true);
+      await box.put(AppSettingsModel.KEY_FIRST_TIME_STARTUP, flag);
     } catch (e) {
       throw CacheException();
     }

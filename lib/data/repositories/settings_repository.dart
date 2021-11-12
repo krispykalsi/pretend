@@ -24,9 +24,9 @@ class SettingsRepository implements SettingsRepositoryContract {
   }
 
   @override
-  Future<Either<Failure, void>> setFirstTimeFlag() async {
+  Future<Either<Failure, void>> setFirstTimeFlag(bool flag) async {
     try {
-      await _localDatasource.setFirstTimeFlag();
+      await _localDatasource.setFirstTimeFlag(flag);
       return Right(null);
     } on CacheException {
       return Left(CacheFailure());

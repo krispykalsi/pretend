@@ -38,7 +38,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       );
     } else if (event is SetFirstTimeVisitedFlagEvent) {
       yield SettingsChangeInProgress();
-      final settingsEither = await _markAppVisitedFirstTime(NoParams());
+      final settingsEither = await _markAppVisitedFirstTime(
+          MarkAppVisitedFirstTimeParams(event.flag));
       yield settingsEither.fold(
         (failure) => SettingsChangeError(failure.message),
         (_) => SettingsChangedSuccessfully(),

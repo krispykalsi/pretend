@@ -85,14 +85,14 @@ void main() {
   });
 
   group('MarkAppVisitedFirstTime usecase', () {
-    final tParams = NoParams();
-    
+    final tFlag = true;
+    final tParams = MarkAppVisitedFirstTimeParams(tFlag);
     test(
       'should set app visited first flag to true from usecase',
           () async {
         when(mockMarkAppVisitedFirstTime(tParams))
             .thenAnswer((_) async => Right(null));
-        bloc.add(SetFirstTimeVisitedFlagEvent());
+        bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
         await untilCalled(mockMarkAppVisitedFirstTime(tParams));
         verify(mockMarkAppVisitedFirstTime(tParams));
       },
@@ -108,7 +108,7 @@ void main() {
           SettingsChangedSuccessfully(),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
-        bloc.add(SetFirstTimeVisitedFlagEvent());
+        bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
         await untilCalled(mockMarkAppVisitedFirstTime(tParams));
         verify(mockMarkAppVisitedFirstTime(tParams));
       },
@@ -128,7 +128,7 @@ void main() {
               SettingsChangeError(cacheFailure.message),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
-            bloc.add(SetFirstTimeVisitedFlagEvent());
+            bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
             await untilCalled(mockMarkAppVisitedFirstTime(tParams));
             verify(mockMarkAppVisitedFirstTime(tParams));
           },

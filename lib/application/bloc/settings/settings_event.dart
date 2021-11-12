@@ -12,7 +12,9 @@ class GetAppSettingsEvent extends SettingsEvent {
 }
 
 class SetFirstTimeVisitedFlagEvent extends SettingsEvent {
-  const SetFirstTimeVisitedFlagEvent();
+  final bool flag;
+
+  const SetFirstTimeVisitedFlagEvent(this.flag);
 
   @override
   List<Object?> get props => [];
