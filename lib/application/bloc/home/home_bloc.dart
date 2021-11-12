@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:pretend/core/error/failures.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/domain/usecases/generate_schedule_for_today.dart';
@@ -26,7 +27,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         GenerateScheduleForTodayParams(event._now),
       );
       yield scheduleForTodayEither.fold(
-        (failure) => TimetableError(failure.message),
+        (failure) => failure is NoLocalDataFailure
+            ? TimetableNotFound()
+            : TimetableError(failure.message),
         (scheduleForToday) => TimetableLoaded(
           scheduleForToday.timetable,
           scheduleForToday.subjects,

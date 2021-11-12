@@ -29,6 +29,13 @@ class TimetableLoaded extends HomeState {
   List<Object?> get props => [timetable];
 }
 
+class TimetableNotFound extends HomeState {
+  const TimetableNotFound();
+
+  @override
+  List<Object?> get props => const [];
+}
+
 class TimetableError extends HomeState {
   final String message;
 

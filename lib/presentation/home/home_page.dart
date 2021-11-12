@@ -68,6 +68,9 @@ class _HomePageState extends State<HomePage> {
               );
             } else if (state is TimetableLoading) {
               return Center(child: CircularProgressIndicator());
+            } else if (state is TimetableNotFound) {
+              context.router
+                  .replace(TimetableSetupStatusRoute(subjects: const []));
             } else if (state is TimetableError) {
               return Text(
                 state.message,
