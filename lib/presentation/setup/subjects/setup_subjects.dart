@@ -99,6 +99,12 @@ class _SetupSubjectsState extends State<SetupSubjects> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.allSubjects.isEmpty
+        ? _buildAddNewSubjectButton
+        : _buildSubjectSearchSection;
+  }
+
+  Widget get _buildSubjectSearchSection {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -137,6 +143,24 @@ class _SetupSubjectsState extends State<SetupSubjects> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget get _buildAddNewSubjectButton {
+    return Center(
+      child: ElevatedButton(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.add),
+            SizedBox(width: 10),
+            Text(
+              "Add Subject Manually",
+            ),
+          ],
+        ),
+        onPressed: _onAddNewSubject,
+      ),
     );
   }
 

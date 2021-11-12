@@ -32,6 +32,11 @@ class OneOrMoreSubjectsSelected extends SubjectsState {
   List<Object> get props => [];
 }
 
+class NoSubjectsFound extends SubjectsState {
+  @override
+  List<Object?> get props => [];
+}
+
 class Error extends SubjectsState {
   final String msg;
 

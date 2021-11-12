@@ -57,6 +57,8 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
                   ],
                 ),
               );
+            } else if (state is NoSubjectsFound) {
+              return _buildLoadedState([]);
             }
             return Center(
               child: ElevatedButton(
