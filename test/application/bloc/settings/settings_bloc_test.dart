@@ -11,7 +11,7 @@ import 'package:pretend/domain/usecases/get_app_settings.dart';
 import 'package:pretend/domain/usecases/mark_app_visited_first_time.dart';
 import 'package:pretend/domain/usecases/set_app_theme_color.dart';
 
-import '../../../../fixtures/app_settings.dart';
+import '../../../fixtures/app_settings.dart';
 import 'settings_bloc_test.mocks.dart';
 
 @GenerateMocks([GetAppSettings, MarkAppVisitedFirstTime, SetAppThemeColor])
