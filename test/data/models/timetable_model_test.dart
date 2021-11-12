@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/data/models/timetable_model.dart';
 import 'package:pretend/domain/entities/class_category_enum.dart';
@@ -68,4 +69,12 @@ void main() {
       expect(result, expectedJsonMap);
     },
   );
+
+  test('should throw NoLocalDataException when no timetable found in json', () {
+    final Map<String, dynamic> jsonMap = {};
+    expect(
+      () => TimetableModel.fromJson(jsonMap),
+      throwsA(TypeMatcher<NoLocalDataException>()),
+    );
+  });
 }

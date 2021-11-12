@@ -35,6 +35,17 @@ void main() {
     );
 
     test(
+      'should return NoLocalDataFailure when no timetable is found in json',
+          () async {
+        when(mockLocalDataSource.getTimetable())
+            .thenThrow(NoLocalDataException());
+        final result = await repository.getTimetable();
+        verify(mockLocalDataSource.getTimetable());
+        expect(result, equals(Left(NoLocalDataFailure())));
+      },
+    );
+
+    test(
       'should return CacheFailure when call to local datasource is unsuccessful',
           () async {
         when(mockLocalDataSource.getTimetable())

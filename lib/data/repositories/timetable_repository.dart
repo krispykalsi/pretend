@@ -19,6 +19,8 @@ class TimetableRepository implements TimetableRepositoryContract {
       return Right(timetable);
     } on CacheException {
       return Left(CacheFailure());
+    } on NoLocalDataException {
+      return Left(NoLocalDataFailure());
     }
   }
 

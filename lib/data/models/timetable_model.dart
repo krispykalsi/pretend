@@ -1,3 +1,4 @@
+import 'package:pretend/core/error/exceptions.dart';
 import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 
@@ -12,6 +13,9 @@ class TimetableModel extends Timetable {
   }
 
   factory TimetableModel.fromJson(Map<String, dynamic> json) {
+    if (json[KEY_TIMETABLE] == null) {
+      throw NoLocalDataException();
+    }
     TimetableMap timetable = {};
     final timetableJson = Map<String, Map>.from(json[KEY_TIMETABLE]);
     for (String day in timetableJson.keys) {

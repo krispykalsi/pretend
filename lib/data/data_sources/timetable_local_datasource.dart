@@ -19,6 +19,8 @@ class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalD
     try {
       final timetableBox = await openBox(_TIMETABLE);
       return TimetableModel.fromJson(timetableBox.toMap().cast());
+    } on NoLocalDataException {
+      throw NoLocalDataException();
     } catch (e) {
       throw CacheException();
     }
