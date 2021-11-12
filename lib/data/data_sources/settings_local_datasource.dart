@@ -21,7 +21,7 @@ class SettingsLocalDatasource extends HiveDataSource
   Future<Map<String, dynamic>> getAppSettings() async {
     try {
       final box = await openBox(_APP_SETTINGS);
-      return box.toMap() as Map<String, dynamic>;
+      return box.toMap().cast();
     } catch (e) {
       throw CacheException();
     }
