@@ -4,7 +4,7 @@ abstract class SettingsState extends Equatable {
   const SettingsState();
 }
 
-class LoadSettingsInitial extends SettingsState {
+class SettingsInitial extends SettingsState {
   @override
   List<Object> get props => [];
 }

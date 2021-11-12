@@ -25,7 +25,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   })  : _getAppSettings = getAppSettings,
         _markAppVisitedFirstTime = markAppVisitedFirstTime,
         _setAppThemeColor = setAppThemeColor,
-        super(LoadSettingsInitial());
+        super(SettingsInitial());
 
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
