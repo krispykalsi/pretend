@@ -6,7 +6,6 @@ import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:pretend/presentation/common/accent_button.dart';
-import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/common/custom_scaffold.dart';
 
 import 'setup_subjects.dart';
@@ -61,15 +60,6 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
             }
             return Center(
               child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.ACCENT),
-                  foregroundColor: MaterialStateProperty.all(AppColors.DARK),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
                 child: Text("Reload Subjects"),
                 onPressed: () {
                   _subjectsBloc.add(GetAllSubjectsEvent());

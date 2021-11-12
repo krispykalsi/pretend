@@ -17,6 +17,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStateProperty.all(GoogleFonts.ptSansNarrow(
+              textStyle: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: AppColors.DARK,
+              ),
+            )),
+            backgroundColor: MaterialStateProperty.all(AppColors.ACCENT),
+            foregroundColor: MaterialStateProperty.all(AppColors.DARK),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+              ),
+            ),
+            padding: MaterialStateProperty.all(
+              const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+            ),
+          ),
+        ),
         textTheme: TextTheme(
           headline1: GoogleFonts.yanoneKaffeesatz(
             textStyle: TextStyle(
