@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'common/app_colors.dart';
+import '../app_colors.dart';
 
 part 'get_theme_data.dart';
 part 'theme_changer.dart';

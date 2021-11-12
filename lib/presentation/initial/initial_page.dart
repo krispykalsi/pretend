@@ -6,7 +6,7 @@ import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
-import 'package:pretend/presentation/dynamic_theme_app.dart';
+import 'package:pretend/presentation/common/dynamic_theme_app/dynamic_theme_app.dart';
 import 'package:pretend/presentation/initial/theme_setter.dart';
 
 class InitialPage extends StatefulWidget {
