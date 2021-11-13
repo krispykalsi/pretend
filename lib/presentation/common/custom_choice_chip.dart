@@ -5,6 +5,7 @@ class CustomChoiceChip extends StatelessWidget {
   final String labelText;
   final bool selected;
   final Function(bool) onSelected;
+  final bool expandWidth;
   final double? width;
   final double? height;
   final Alignment? labelAlignment;
@@ -20,7 +21,8 @@ class CustomChoiceChip extends StatelessWidget {
     this.height,
     this.labelAlignment,
     this.selectedColor,
-    this.unselectedLabelColor
+    this.unselectedLabelColor,
+    this.expandWidth = false,
   }) : super(key: key);
 
   @override
@@ -53,11 +55,16 @@ class CustomChoiceChip extends StatelessWidget {
         constraints: BoxConstraints(
           minWidth: width ?? 0,
           minHeight: height ?? 0,
+          maxWidth: width ?? double.infinity,
+          maxHeight: height ?? double.infinity,
         ),
         child: Stack(
-          alignment: labelAlignment ?? Alignment.center,
+          fit: expandWidth ? StackFit.expand : StackFit.loose,
           children: [
-            Text(labelText),
+            Align(
+              alignment: labelAlignment ?? Alignment.center,
+              child: Text(labelText),
+            ),
           ],
         ),
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pretend/domain/entities/class_category_enum.dart';
 import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/presentation/common/app_colors.dart';
 import 'package:pretend/presentation/common/button_done.dart';
@@ -92,7 +93,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
       children: AppColors.classCategory.entries.map<Widget>((entry) {
         final classCategory = entry.key;
         final categoryColor = entry.value;
-        return CustomChoiceChip(
+        final chip = CustomChoiceChip(
           labelText: classCategory.toUpperCase(),
           selected: _selectionColorNotifier.value == categoryColor,
           selectedColor: categoryColor,
@@ -103,7 +104,14 @@ class _TimetableSetupState extends State<TimetableSetup> {
             });
           },
           height: _CHIP_HEIGHT,
+          expandWidth: classCategory == ClassCategories.LAB,
         );
+
+        if (classCategory == ClassCategories.LAB) {
+          return Expanded(child: chip);
+        } else {
+          return chip;
+        }
       }).toList(growable: false),
     );
   }
@@ -120,7 +128,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
               _selectedDayNotifier.value = day;
             });
           },
-          width: 52,
+          width: 50,
           height: _CHIP_HEIGHT,
         );
       }).toList(growable: false),
