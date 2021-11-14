@@ -26,7 +26,7 @@ class SettingsRepository implements SettingsRepositoryContract {
   Future<Either<Failure, void>> setFirstTimeFlag(bool flag) async {
     try {
       await _localDatasource.setFirstTimeFlag(flag);
-      return Right(null);
+      return const Right(null);
     } on CacheException {
       return Left(CacheFailure());
     }
@@ -36,7 +36,7 @@ class SettingsRepository implements SettingsRepositoryContract {
   Future<Either<Failure, void>> setThemeColor(Color color) async {
     try {
       await _localDatasource.setThemeColor(color.value);
-      return Right(null);
+      return const Right(null);
     } on CacheException {
       return Left(CacheFailure());
     }

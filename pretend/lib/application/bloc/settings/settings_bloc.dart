@@ -30,27 +30,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
     if (event is GetAppSettingsEvent) {
-      yield AppSettingsLoading();
+      yield const AppSettingsLoading();
       final settingsEither = await _getAppSettings(NoParams());
       yield settingsEither.fold(
         (failure) => AppSettingsError(failure.message),
         (appSettings) => AppSettingsLoaded(appSettings),
       );
     } else if (event is SetFirstTimeVisitedFlagEvent) {
-      yield SettingsChangeInProgress();
+      yield const SettingsChangeInProgress();
       final settingsEither = await _markAppVisitedFirstTime(
           MarkAppVisitedFirstTimeParams(event.flag));
       yield settingsEither.fold(
         (failure) => SettingsChangeError(failure.message),
-        (_) => SettingsChangedSuccessfully(),
+        (_) => const SettingsChangedSuccessfully(),
       );
     } else if (event is SetThemeColorEvent) {
-      yield SettingsChangeInProgress();
+      yield const SettingsChangeInProgress();
       final settingsEither =
           await _setAppThemeColor(SetAppThemeColorParams(event.color));
       yield settingsEither.fold(
         (failure) => SettingsChangeError(failure.message),
-        (_) => SettingsChangedSuccessfully(),
+        (_) => const SettingsChangedSuccessfully(),
       );
     }
   }

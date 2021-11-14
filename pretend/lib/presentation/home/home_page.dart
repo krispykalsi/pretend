@@ -55,31 +55,31 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   _buildOngoingSection(
                       state.filteredSchedule[Filters.onGoing]!),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   _buildLaterTodaySection(
                       state.filteredSchedule[Filters.laterToday]!),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     onPressed: () {
                       _onEditPressed(state.timetable);
                     },
-                    child: Text("Edit"),
+                    child: const Text("Edit"),
                   ),
                 ],
               );
             } else if (state is TimetableLoading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is TimetableNotFound) {
               context.router
                   .replace(TimetableSetupStatusRoute(subjects: const []));
             } else if (state is TimetableError) {
               return Text(
                 state.message,
-                style: TextStyle(color: Colors.redAccent),
+                style: const TextStyle(color: Colors.redAccent),
               );
             }
 
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           },
         ),
       ),
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               children: laterToday.values.map<Widget>((timeslot) {
                 final subject = _subjects[timeslot.subjectCode] ??
-                    Subject("NOT FOUND", "NOT FOUND");
+                    const Subject("NOT FOUND", "NOT FOUND");
                 return SubjectListTile(subject, timeslot);
               }).toList(growable: false),
             ),
@@ -112,21 +112,21 @@ class _HomePageState extends State<HomePage> {
     if (onGoing.isNotEmpty) {
       timeslot = onGoing.values.elementAt(0);
       subject =
-          _subjects[timeslot.subjectCode] ?? Subject("NOT FOUND", "NOT FOUND");
+          _subjects[timeslot.subjectCode] ?? const Subject("NOT FOUND", "NOT FOUND");
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionHeading("Ongoing"),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         onGoing.isNotEmpty
             ? SubjectListTile(
                 subject,
                 timeslot,
                 isOnGoing: true,
               )
-            : Padding(
-                padding: const EdgeInsets.all(32.0),
+            : const Padding(
+                padding: EdgeInsets.all(32.0),
                 child: Text("Nothing to see here!"),
               ),
       ],

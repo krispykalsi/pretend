@@ -27,7 +27,7 @@ class TimetableRepository implements TimetableRepositoryContract {
   Future<Either<Failure, void>> setTimetable(Timetable timetable) async {
     try {
       await localDataSource.setTimetable(TimetableModel.fromEntity(timetable));
-      return Right(null);
+      return const Right(null);
     } on CacheException {
       return Left(CacheFailure());
     }

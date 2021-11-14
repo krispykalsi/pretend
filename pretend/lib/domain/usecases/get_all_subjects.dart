@@ -21,7 +21,7 @@ class GetAllSubjects extends UseCase<List<Subject>, GetAllSubjectsParams> {
 class GetAllSubjectsParams extends Equatable {
   final DataSource dataSource;
 
-  GetAllSubjectsParams(this.dataSource);
+  const GetAllSubjectsParams(this.dataSource);
 
   @override
   List<Object?> get props => [dataSource];

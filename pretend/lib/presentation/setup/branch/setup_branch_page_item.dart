@@ -33,9 +33,9 @@ class _SetupBranchPageItemState extends State<SetupBranchPageItem> {
       child: Row(
         children: [
           SideHeading(widget.category),
-          Spacer(),
+          const Spacer(),
           widget.child != null ? widget.child! : chips,
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

@@ -19,7 +19,7 @@ class AddSubject extends UseCase<void, AddSubjectParams> {
 class AddSubjectParams extends Equatable {
   final Subject subject;
 
-  AddSubjectParams(this.subject);
+  const AddSubjectParams(this.subject);
 
   @override
   List<Object?> get props => [subject];

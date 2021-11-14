@@ -17,18 +17,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required GenerateScheduleForToday generateScheduleForToday,
   })  : _generateScheduleForToday = generateScheduleForToday,
-        super(HomeInitial());
+        super(const HomeInitial());
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is GetTimetableEvent) {
-      yield TimetableLoading();
+      yield const TimetableLoading();
       final scheduleForTodayEither = await _generateScheduleForToday(
         GenerateScheduleForTodayParams(event._now),
       );
       yield scheduleForTodayEither.fold(
         (failure) => failure is NoLocalDataFailure
-            ? TimetableNotFound()
+            ? const TimetableNotFound()
             : TimetableError(failure.message),
         (scheduleForToday) => TimetableLoaded(
           scheduleForToday.timetable,

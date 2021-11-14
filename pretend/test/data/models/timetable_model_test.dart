@@ -31,39 +31,39 @@ void main() {
     () async {
       final result = tTimetable.toJson();
       final expectedJsonMap = {
-        TimetableModel.KEY_TIMETABLE: {
-          Days.FRIDAY: {
-            Timeslots.T8AM.dashed: {
-              TimeslotModel.KEY_START: "8 AM",
-              TimeslotModel.KEY_END: "9 AM",
-              TimeslotModel.KEY_DURATION: 1,
-              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
-              TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
+        TimetableModel.keyTimetable: {
+          Days.friday: {
+            Timeslots.t8AM.dashed: {
+              TimeslotModel.keyStart: "8 AM",
+              TimeslotModel.keyEnd: "9 AM",
+              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keyClassCategory: ClassCategories.theory,
+              TimeslotModel.keySubjectCode: "HU-351a",
             },
-            Timeslots.T9AM.dashed: {
-              TimeslotModel.KEY_START: "9 AM",
-              TimeslotModel.KEY_END: "10 AM",
-              TimeslotModel.KEY_DURATION: 1,
-              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
-              TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
+            Timeslots.t9AM.dashed: {
+              TimeslotModel.keyStart: "9 AM",
+              TimeslotModel.keyEnd: "10 AM",
+              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keyClassCategory: ClassCategories.theory,
+              TimeslotModel.keySubjectCode: "HU-351a",
             },
-            Timeslots.T1PM.dashed: {
-              TimeslotModel.KEY_START: "1 PM",
-              TimeslotModel.KEY_END: "2 PM",
-              TimeslotModel.KEY_DURATION: 1,
-              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.LAB,
-              TimeslotModel.KEY_SUBJECT_CODE: "IT-502",
+            Timeslots.t1PM.dashed: {
+              TimeslotModel.keyStart: "1 PM",
+              TimeslotModel.keyEnd: "2 PM",
+              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keyClassCategory: ClassCategories.lab,
+              TimeslotModel.keySubjectCode: "IT-502",
             },
-            Timeslots.T11AM.dashed: {
-              TimeslotModel.KEY_START: "11 AM",
-              TimeslotModel.KEY_END: "12 PM",
-              TimeslotModel.KEY_DURATION: 1,
-              TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
-              TimeslotModel.KEY_SUBJECT_CODE: "IT-504",
+            Timeslots.t11AM.dashed: {
+              TimeslotModel.keyStart: "11 AM",
+              TimeslotModel.keyEnd: "12 PM",
+              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keyClassCategory: ClassCategories.theory,
+              TimeslotModel.keySubjectCode: "IT-504",
             },
           }
         },
-        TimetableModel.KEY_SUBJECTS: ["HU-351a", "IT-502", "IT-504"]
+        TimetableModel.keySubjects: ["HU-351a", "IT-502", "IT-504"]
       };
 
       expect(result, expectedJsonMap);
@@ -74,7 +74,7 @@ void main() {
     final Map<String, dynamic> jsonMap = {};
     expect(
       () => TimetableModel.fromJson(jsonMap),
-      throwsA(TypeMatcher<NoLocalDataException>()),
+      throwsA(const TypeMatcher<NoLocalDataException>()),
     );
   });
 }

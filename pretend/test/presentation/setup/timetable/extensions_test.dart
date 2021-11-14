@@ -26,12 +26,12 @@ void main() {
   test('should update schedule for existing timeslots', () {
     final timetable = Timetable(
       {
-        Days.FRIDAY: {
-          Timeslots.T1PM.dashed: Timeslot(
-            start: Timeslots.T1PM.start,
-            end: Timeslots.T1PM.start,
+        Days.friday: {
+          Timeslots.t1PM.dashed: Timeslot(
+            start: Timeslots.t1PM.start,
+            end: Timeslots.t1PM.start,
             duration: 1,
-            classCategory: ClassCategories.TUTORIAL,
+            classCategory: ClassCategories.tutorial,
             subjectCode: "HU-351a",
           )
         }
@@ -45,12 +45,12 @@ void main() {
   test('should remove subject key if its not present in the new timetable', () {
     final timetable = Timetable(
       {
-        Days.MONDAY: {
-          Timeslots.T3PM.dashed: Timeslot(
-            start: Timeslots.T3PM.start,
-            end: Timeslots.T3PM.start,
+        Days.monday: {
+          Timeslots.t3PM.dashed: Timeslot(
+            start: Timeslots.t3PM.start,
+            end: Timeslots.t3PM.start,
             duration: 1,
-            classCategory: ClassCategories.TUTORIAL,
+            classCategory: ClassCategories.tutorial,
             subjectCode: "xyz-subject-code",
           )
         }

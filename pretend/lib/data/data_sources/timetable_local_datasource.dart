@@ -9,7 +9,7 @@ abstract class TimetableLocalDataSourceContract {
   Future<void> setTimetable(TimetableModel timetable);
 }
 
-const _TIMETABLE = 'timetable';
+const _timetable = 'timetable';
 
 class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalDataSourceContract {
   TimetableLocalDataSource({required HiveInterface hive}) : super(hive);
@@ -17,7 +17,7 @@ class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalD
   @override
   Future<TimetableModel> getTimetable() async {
     try {
-      final timetableBox = await openBox(_TIMETABLE);
+      final timetableBox = await openBox(_timetable);
       return TimetableModel.fromJson(timetableBox.toMap().cast());
     } on NoLocalDataException {
       throw NoLocalDataException();
@@ -29,7 +29,7 @@ class TimetableLocalDataSource extends HiveDataSource implements TimetableLocalD
   @override
   Future<void> setTimetable(TimetableModel timetable) async {
     try {
-      final timetableBox = await openBox(_TIMETABLE);
+      final timetableBox = await openBox(_timetable);
       await timetableBox.putAll(timetable.toJson());
     } catch (e) {
       throw CacheException();

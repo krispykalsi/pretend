@@ -18,7 +18,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
   final Timetable? _timetable;
 
-  TimetableSetupStatusPage({
+  const TimetableSetupStatusPage({
     Key? key,
     Timetable? timetable,
     required List<Subject> subjects,
@@ -34,7 +34,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   late final _timetableNotifier =
       TimetableNotifier(widget._timetable?.subjectWise());
-  final _timetable = Timetable(TimetableMap(), []);
+  final _timetable = const Timetable({}, []);
 
   final _timetableSetupBloc = sl<TimetableSetupBloc>();
 
@@ -46,19 +46,19 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
 
   void _onSetupStatusChanged() {
     var allSubjectsConfigured = true;
-    widget._selectedSubjects.forEach((subject) {
+    for (var subject in widget._selectedSubjects) {
       allSubjectsConfigured &= _timetableNotifier.value[subject.code] != null;
-    });
+    }
     if (allSubjectsConfigured == true) {
-      _timetableSetupBloc.add(AllSubjectsConfiguredEvent());
+      _timetableSetupBloc.add(const AllSubjectsConfiguredEvent());
     } else {
-      _timetableSetupBloc.add(ResetSetupEvent());
+      _timetableSetupBloc.add(const ResetSetupEvent());
     }
   }
 
   void _onContinueTap() {
     context.router.pushAndPopUntil(
-      HomeRoute(),
+      const HomeRoute(),
       predicate: (_) => false,
     );
   }
@@ -88,12 +88,12 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment(0, -0.7),
+              alignment: const Alignment(0, -0.7),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildHelperMessage,
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   TimetableSetupStatus(
                     onSetupStatusChanged: _onSetupStatusChanged,
                     subjects: widget._selectedSubjects,
@@ -130,12 +130,12 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               )),
-              foregroundColor: MaterialStateProperty.all(AppColors.ACCENT),
+              foregroundColor: MaterialStateProperty.all(AppColors.accent),
               splashFactory: NoSplash.splashFactory,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Icon(Icons.library_books),
                 SizedBox(width: 10),
                 Text("Add/remove subjects"),
@@ -198,16 +198,16 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
       builder: (context, state) {
         if (state is TimetableSetupInitial) {
           return widget._selectedSubjects.isEmpty
-              ? SizedBox.shrink()
-              : Text("Tap on a subject to configure");
+              ? const SizedBox.shrink()
+              : const Text("Tap on a subject to configure");
         } else if (state is AllSubjectsConfigured) {
-          return Text("All done! Tap done to continue");
+          return const Text("All done! Tap done to continue");
         } else if (state is TimetableSaving) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (state is TimetableSaved) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 "Timetable saved successfully",
                 style: TextStyle(color: Colors.lightGreen),
@@ -218,10 +218,10 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
         } else if (state is TimetableNotSavedError) {
           return Text(
             state.message,
-            style: TextStyle(color: Colors.redAccent),
+            style: const TextStyle(color: Colors.redAccent),
           );
         } else {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
       },
     );

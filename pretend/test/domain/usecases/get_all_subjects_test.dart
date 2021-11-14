@@ -20,17 +20,17 @@ void main() {
     usecase = GetAllSubjects(mockSubjectsRepository);
   });
 
-  final tDataSource = DataSource.LOCAL;
+  const tDataSource = DataSource.LOCAL;
   final tSubjectList = [
-    Subject("International Trade", "HU-351a"),
-    Subject("Computer Networks", "IT-502"),
-    Subject("Theory of Computing", "IT-504"),
+    const Subject("International Trade", "HU-351a"),
+    const Subject("Computer Networks", "IT-502"),
+    const Subject("Theory of Computing", "IT-504"),
   ];
 
   test('should get subject list from the repository', () async {
     when(mockSubjectsRepository.getSubjects(tDataSource))
         .thenAnswer((_) async => Right(tSubjectList));
-    final result = await usecase(GetAllSubjectsParams(tDataSource));
+    final result = await usecase(const GetAllSubjectsParams(tDataSource));
     expect(result, Right(tSubjectList));
     verify(mockSubjectsRepository.getSubjects(tDataSource));
     verifyNoMoreInteractions(mockSubjectsRepository);

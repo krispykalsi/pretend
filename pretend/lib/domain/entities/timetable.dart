@@ -7,7 +7,7 @@ class Timetable extends Equatable {
   final TimetableMap timetable;
   final List<String> subjectCodes;
 
-  Timetable(this.timetable, this.subjectCodes);
+  const Timetable(this.timetable, this.subjectCodes);
 
   @override
   List<Object?> get props => [timetable];

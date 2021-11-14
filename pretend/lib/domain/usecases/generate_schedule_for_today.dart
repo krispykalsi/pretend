@@ -61,10 +61,10 @@ class GenerateScheduleForToday extends UseCase<GenerateScheduleForTodayOutput,
 
   FilteredSchedule _filterSchedule(
       Map<Timeslots, Timeslot> scheduleForToday, DateTime now) {
-    final filteredSchedule = FilteredSchedule();
-    Filters.values.forEach((division) {
+    final FilteredSchedule filteredSchedule = {};
+    for (final division in Filters.values) {
       filteredSchedule[division] = {};
-    });
+    }
     scheduleForToday.forEach((slot, info) {
       late Filters filter;
       if (now.isTimeBefore(slot.endTime)) {
@@ -85,7 +85,7 @@ class GenerateScheduleForToday extends UseCase<GenerateScheduleForTodayOutput,
 class GenerateScheduleForTodayParams extends Equatable {
   final DateTime now;
 
-  GenerateScheduleForTodayParams(this.now);
+  const GenerateScheduleForTodayParams(this.now);
 
   @override
   List<Object?> get props => [now];

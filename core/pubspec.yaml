@@ -12,6 +12,7 @@ dependencies:
   equatable: ^2.0.3
   internet_connection_checker: ^0.0.1+2
   google_fonts: ^2.1.0
+  flutter_lints: ^1.0.0
 
 dev_dependencies:
   flutter_test:

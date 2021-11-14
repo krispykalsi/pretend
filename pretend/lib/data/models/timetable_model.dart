@@ -5,7 +5,7 @@ import 'package:pretend/domain/entities/timetable.dart';
 typedef TimetableJSONMap = Map<String, Map<String, Map<String, dynamic>>>;
 
 class TimetableModel extends Timetable {
-  TimetableModel(TimetableMap timetable, List<String> subjectCodes)
+  const TimetableModel(TimetableMap timetable, List<String> subjectCodes)
       : super(timetable, subjectCodes);
 
   factory TimetableModel.fromEntity(Timetable timetable) {
@@ -13,11 +13,11 @@ class TimetableModel extends Timetable {
   }
 
   factory TimetableModel.fromJson(Map<String, dynamic> json) {
-    if (json[KEY_TIMETABLE] == null) {
+    if (json[keyTimetable] == null) {
       throw NoLocalDataException();
     }
     TimetableMap timetable = {};
-    final timetableJson = Map<String, Map>.from(json[KEY_TIMETABLE]);
+    final timetableJson = Map<String, Map>.from(json[keyTimetable]);
     for (String day in timetableJson.keys) {
       timetable[day] = {};
       for (String timeslot in timetableJson[day]!.keys) {
@@ -26,7 +26,7 @@ class TimetableModel extends Timetable {
         timetable[day]![timeslot] = TimeslotModel.fromJson(timeslotJson).toEntity();
       }
     }
-    final subjectCodes = List<String>.from(json[KEY_SUBJECTS]);
+    final subjectCodes = List<String>.from(json[keySubjects]);
     return TimetableModel(timetable, subjectCodes);
   }
 
@@ -40,12 +40,12 @@ class TimetableModel extends Timetable {
       }
     }
     final timetableWithSubjects = {
-      KEY_TIMETABLE: timetable,
-      KEY_SUBJECTS: subjectCodes,
+      keyTimetable: timetable,
+      keySubjects: subjectCodes,
     };
     return timetableWithSubjects;
   }
 
-  static const KEY_SUBJECTS = 'subjects';
-  static const KEY_TIMETABLE = 'timetable';
+  static const keySubjects = 'subjects';
+  static const keyTimetable = 'timetable';
 }

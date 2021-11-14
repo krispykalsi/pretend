@@ -44,13 +44,13 @@ void main() {
   });
 
   group('set first time flag', () {
-    final tFlag = true;
+    const tFlag = true;
     test('should call datasource to set first time flag', () async {
       when(mockDatasource.setFirstTimeFlag(tFlag))
           .thenAnswer((_) => Future.value(null));
       final actual = await repo.setFirstTimeFlag(tFlag);
       verify(mockDatasource.setFirstTimeFlag(tFlag));
-      expect(actual, Right(null));
+      expect(actual, const Right(null));
     });
 
     test('should return CacheFailure on CacheException from local datasource',
@@ -63,14 +63,14 @@ void main() {
   });
 
   group('set app theme color', () {
-    final tColorValue = 0x123;
-    final tColor = Color(tColorValue);
+    const tColorValue = 0x123;
+    const tColor = Color(tColorValue);
     test('should call datasource to set app theme color', () async {
       when(mockDatasource.setThemeColor(tColorValue))
           .thenAnswer((_) => Future.value(null));
       final actual = await repo.setThemeColor(tColor);
       verify(mockDatasource.setThemeColor(tColorValue));
-      expect(actual, Right(null));
+      expect(actual, const Right(null));
     });
 
     test('should return CacheFailure on CacheException from local datasource',

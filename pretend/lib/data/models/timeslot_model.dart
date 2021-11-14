@@ -3,7 +3,7 @@ import 'package:pretend/domain/entities/timeslot.dart';
 
 class TimeslotModel extends Timeslot {
   @visibleForTesting
-  TimeslotModel({
+  const TimeslotModel({
     required String start,
     required String end,
     required int duration,
@@ -29,11 +29,11 @@ class TimeslotModel extends Timeslot {
 
   factory TimeslotModel.fromJson(Map<String, dynamic> json) {
     return TimeslotModel(
-      start: json[KEY_START],
-      end: json[KEY_END],
-      duration: json[KEY_DURATION],
-      classCategory: json[KEY_CLASS_CATEGORY],
-      subjectCode: json[KEY_SUBJECT_CODE],
+      start: json[keyStart],
+      end: json[keyEnd],
+      duration: json[keyDuration],
+      classCategory: json[keyClassCategory],
+      subjectCode: json[keySubjectCode],
     );
   }
 
@@ -49,17 +49,17 @@ class TimeslotModel extends Timeslot {
 
   Map<String, dynamic> toJson() {
     return {
-      KEY_START: start,
-      KEY_END: end,
-      KEY_DURATION: duration,
-      KEY_CLASS_CATEGORY: classCategory,
-      KEY_SUBJECT_CODE: subjectCode,
+      keyStart: start,
+      keyEnd: end,
+      keyDuration: duration,
+      keyClassCategory: classCategory,
+      keySubjectCode: subjectCode,
     };
   }
 
-  static const KEY_START = "start";
-  static const KEY_END = "end";
-  static const KEY_DURATION = "duration";
-  static const KEY_CLASS_CATEGORY = "classCategory";
-  static const KEY_SUBJECT_CODE = "subjectCode";
+  static const keyStart = "start";
+  static const keyEnd = "end";
+  static const keyDuration = "duration";
+  static const keyClassCategory = "classCategory";
+  static const keySubjectCode = "subjectCode";
 }

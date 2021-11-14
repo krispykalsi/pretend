@@ -1,8 +1,8 @@
 import 'package:pretend/domain/entities/subject.dart';
 
 class SubjectModelFields {
-  static const NAME = 'name';
-  static const CODE = 'code';
+  static const name = 'name';
+  static const code = 'code';
 }
 
 class SubjectModel extends Subject {
@@ -11,8 +11,8 @@ class SubjectModel extends Subject {
 
   factory SubjectModel.fromJson(Map<String, dynamic> json) {
     return SubjectModel(
-      name: json[SubjectModelFields.NAME],
-      code: json[SubjectModelFields.CODE],
+      name: json[SubjectModelFields.name],
+      code: json[SubjectModelFields.code],
     );
   }
 
@@ -25,9 +25,9 @@ class SubjectModel extends Subject {
 
   static List<SubjectModel> listFromJson(List<dynamic> list) {
     List<SubjectModel> subjects = [];
-    list.forEach((subject) {
+    for (final subject in list) {
       subjects.add(SubjectModel.fromJson(subject));
-    });
+    }
     return subjects;
   }
 
@@ -40,6 +40,6 @@ class SubjectModel extends Subject {
   }
 
   Map<String, dynamic> toJson() {
-    return {SubjectModelFields.NAME: name, SubjectModelFields.CODE: code};
+    return {SubjectModelFields.name: name, SubjectModelFields.code: code};
   }
 }

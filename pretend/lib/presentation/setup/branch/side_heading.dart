@@ -9,7 +9,7 @@ class SideHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(20),
           bottomRight: Radius.circular(20),
@@ -21,7 +21,7 @@ class SideHeading extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            shadows: [
+            shadows: const [
               BoxShadow(
                 color: Colors.black45,
                 offset: Offset(-2, 2),

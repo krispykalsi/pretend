@@ -23,31 +23,31 @@ class _SetupBranchPageState extends State<SetupBranchPage> {
         children: [
           SetupBranchPageItem(
             category: "Year",
-            chipLabels: ["1", "2", "3", "4"],
+            chipLabels: const ["1", "2", "3", "4"],
             onSelected: (int index) => _year = index,
           ),
-          SetupBranchPageItem(
+          const SetupBranchPageItem(
             category: "Branch",
             child: Text("<BRANCHES>"),
           ),
           SetupBranchPageItem(
             category: "Batch",
-            chipLabels: ["1", "2"],
+            chipLabels: const ["1", "2"],
             onSelected: (int index) => _batch = index,
           ),
           SetupBranchPageItem(
             category: "Group",
-            chipLabels: ["A", "B", "C"],
+            chipLabels: const ["A", "B", "C"],
             onSelected: (int index) => _group = index,
           ),
-          Spacer(flex: 2),
+          const Spacer(flex: 2),
           Align(
-            alignment: Alignment(1, 0),
+            alignment: const Alignment(1, 0),
             child: NextAccentButton(
               onTap: () => print("$_year $_batch $_group"),
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

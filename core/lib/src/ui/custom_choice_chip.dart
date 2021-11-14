@@ -44,7 +44,7 @@ class CustomChoiceChip extends StatelessWidget {
   ChoiceChip get chip => ChoiceChip(
         shape: ContinuousRectangleBorder(),
         backgroundColor: Color(0xff555555),
-        selectedColor: selectedColor ?? AppColors.ACCENT,
+        selectedColor: selectedColor ?? AppColors.accent,
         padding: const EdgeInsets.all(10),
         label: label,
         selected: selected,

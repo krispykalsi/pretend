@@ -12,21 +12,21 @@ part 'new_subject_state.dart';
 class NewSubjectBloc extends Bloc<NewSubjectEvent, NewSubjectState> {
   final AddSubject _addSubject;
 
-  NewSubjectBloc(this._addSubject) : super(NewSubjectInitial());
+  NewSubjectBloc(this._addSubject) : super(const NewSubjectInitial());
 
   @override
   Stream<NewSubjectState> mapEventToState(NewSubjectEvent event) async* {
     if (event is AddNewSubjectEvent) {
-      yield NewSubjectBeingAdded();
+      yield const NewSubjectBeingAdded();
       final eitherAddedOrNot =
           await _addSubject(AddSubjectParams(event.subject));
       yield eitherAddedOrNot.fold(
         (failure) => CouldNotAddNewSubject(failure.message),
-        (_) => NewSubjectAdded(),
+        (_) => const NewSubjectAdded(),
       );
       yield await Future.delayed(
         const Duration(seconds: 2),
-        () => NewSubjectInitial(),
+        () => const NewSubjectInitial(),
       );
     }
   }

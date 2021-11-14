@@ -8,19 +8,19 @@ class AppSettingsModel extends AppSettings {
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) {
     return AppSettingsModel(
-      firstTimeStartup: json[KEY_FIRST_TIME_STARTUP] ?? true,
+      firstTimeStartup: json[keyFirstTimeStartup] ?? true,
       themeColor:
-          json[KEY_THEME_COLOR] != null ? Color(json[KEY_THEME_COLOR]) : null,
+          json[keyThemeColor] != null ? Color(json[keyThemeColor]) : null,
     );
   }
 
   Map<String, dynamic> toJson() {
-    final appSettings = Map<String, dynamic>();
-    appSettings[KEY_FIRST_TIME_STARTUP] = firstTimeStartup;
-    appSettings[KEY_THEME_COLOR] = themeColor?.value;
+    final appSettings = <String, dynamic>{};
+    appSettings[keyFirstTimeStartup] = firstTimeStartup;
+    appSettings[keyThemeColor] = themeColor?.value;
     return appSettings;
   }
 
-  static const KEY_FIRST_TIME_STARTUP = "first-time-startup";
-  static const KEY_THEME_COLOR = "theme-color";
+  static const keyFirstTimeStartup = "first-time-startup";
+  static const keyThemeColor = "theme-color";
 }

@@ -60,7 +60,7 @@ class SubjectsRepository implements SubjectsRepositoryContract {
     try {
       final subjectModel = SubjectModel.fromEntity(subject);
       await localDataSource.addSubject(subjectModel);
-      return Right(null);
+      return const Right(null);
     } on CacheException {
       return Left(CacheFailure());
     }

@@ -35,7 +35,7 @@ class SubjectListTile extends StatelessWidget {
           Row(
             children: [
               TimeComponent(timeslot, showTimeLeft: isOnGoing),
-              _CustomVerticalDivider(),
+              const _CustomVerticalDivider(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

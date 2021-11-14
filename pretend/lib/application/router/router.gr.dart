@@ -77,11 +77,9 @@ class AppRouter extends _i6.RootStackRouter {
           barrierDismissible: false);
     },
     InitialRoute.name: (routeData) {
-      final args = routeData.argsAs<InitialRouteArgs>(
-          orElse: () => const InitialRouteArgs());
       return _i6.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i5.InitialPage(key: args.key),
+          child: const _i5.InitialPage(),
           transitionsBuilder: _i6.TransitionsBuilders.fadeIn,
           opaque: true,
           barrierDismissible: false);
@@ -181,15 +179,8 @@ class TimetableSetupRouteArgs {
 }
 
 /// generated route for [_i5.InitialPage]
-class InitialRoute extends _i6.PageRouteInfo<InitialRouteArgs> {
-  InitialRoute({_i7.Key? key})
-      : super(name, path: '/', args: InitialRouteArgs(key: key));
+class InitialRoute extends _i6.PageRouteInfo<void> {
+  const InitialRoute() : super(name, path: '/');
 
   static const String name = 'InitialRoute';
-}
-
-class InitialRouteArgs {
-  const InitialRouteArgs({this.key});
-
-  final _i7.Key? key;
 }

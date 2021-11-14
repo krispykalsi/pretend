@@ -21,11 +21,9 @@ class SubjectOptionList extends StatefulWidget {
 }
 
 class _SubjectOptionListState extends State<SubjectOptionList> {
-  late Map<String, bool> _selectionState = Map.fromIterable(
-    widget._previouslySelected,
-    key: (sub) => sub.code,
-    value: (_) => true,
-  );
+  late final Map<String, bool> _selectionState = {
+    for (var sub in widget._previouslySelected) sub.code: true
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
       color: Colors.transparent,
       child: ShaderMask(
         shaderCallback: (rect) {
-          return LinearGradient(
+          return const LinearGradient(
             begin: Alignment(0, 0.7),
             end: Alignment.bottomCenter,
             colors: [Colors.black, Colors.transparent],
@@ -43,7 +41,7 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: ListView.builder(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.all(0),
             itemBuilder: (ctx, idx) {
               final subject = widget._subjects.elementAt(idx);

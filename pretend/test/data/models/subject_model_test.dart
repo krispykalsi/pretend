@@ -5,7 +5,7 @@ import 'package:pretend/domain/entities/subject.dart';
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tSubjectModel = SubjectModel(
+  const tSubjectModel = SubjectModel(
     name: "Computer Networks",
     code: "IT-502",
   );
@@ -30,11 +30,11 @@ void main() {
       final result = SubjectModel.listFromJson(jsonList);
 
       final expectedSubjects = [
-        SubjectModel(
+        const SubjectModel(
           name: "Computer Networks",
           code: "IT-502",
         ),
-        SubjectModel(
+        const SubjectModel(
           name: "International Trade",
           code: "HU-351a",
         ),
@@ -48,8 +48,8 @@ void main() {
     () async {
       final result = tSubjectModel.toJson();
       final expectedJsonMap = {
-        SubjectModelFields.NAME: "Computer Networks",
-        SubjectModelFields.CODE: "IT-502"
+        SubjectModelFields.name: "Computer Networks",
+        SubjectModelFields.code: "IT-502"
       };
       expect(result, expectedJsonMap);
     },
@@ -59,9 +59,9 @@ void main() {
     'should return a valid JSON map of SubjectModels',
     () async {
       final expectedJsonMap = {
-        "HU-351a": SubjectModel(name: "International Trade", code: "HU-351a"),
-        "IT-502": SubjectModel(name: "Computer Networks", code: "IT-502"),
-        "IT-504": SubjectModel(name: "Theory of Computing", code: "IT-504")
+        "HU-351a": const SubjectModel(name: "International Trade", code: "HU-351a"),
+        "IT-502": const SubjectModel(name: "Computer Networks", code: "IT-502"),
+        "IT-504": const SubjectModel(name: "Theory of Computing", code: "IT-504")
       };
 
       final jsonMap = fixture("timetable_subjects.json");

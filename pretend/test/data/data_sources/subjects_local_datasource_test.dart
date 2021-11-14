@@ -26,7 +26,7 @@ void main() {
       'should throw CacheException in case of any other exceptions/errors',
       () async {
         when(mockHiveInterface.openBox(any)).thenThrow(Exception());
-        expect(closure, throwsA(TypeMatcher<CacheException>()));
+        expect(closure, throwsA(const TypeMatcher<CacheException>()));
         verify(mockHiveInterface.openBox(any));
         verifyNoMoreInteractions(mockHiveBox);
         verifyNoMoreInteractions(mockHiveInterface);
@@ -65,7 +65,7 @@ void main() {
 
         final call = localDataSource.getAllSubjects;
 
-        expect(call, throwsA(TypeMatcher<NoLocalDataException>()));
+        expect(call, throwsA(const TypeMatcher<NoLocalDataException>()));
         verify(mockHiveInterface.openBox(any));
         verifyNoMoreInteractions(mockHiveBox);
         verifyNoMoreInteractions(mockHiveInterface);

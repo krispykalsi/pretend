@@ -7,7 +7,7 @@ abstract class SubjectsRemoteDataSourceContract {
 class SubjectsRemoteDataSource implements SubjectsRemoteDataSourceContract {
   @override
   Future<List<SubjectModel>> getSubjects() {
-    final _subjects = const [
+    const _subjects = [
       SubjectModel(name: "Computer Networks", code: "IT-124"),
       SubjectModel(name: "Theory of Computing", code: "IT-128"),
       SubjectModel(name: "International Trade Very Long Subject Name", code: "HU-351a"),

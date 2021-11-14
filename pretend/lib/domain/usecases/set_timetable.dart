@@ -19,7 +19,7 @@ class SetTimetable extends UseCase<void, SetTimetableParams> {
 class SetTimetableParams extends Equatable {
   final Timetable timetable;
 
-  SetTimetableParams(this.timetable);
+  const SetTimetableParams(this.timetable);
 
   @override
   List<Object?> get props => [timetable];

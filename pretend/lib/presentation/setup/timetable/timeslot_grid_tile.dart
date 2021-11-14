@@ -40,7 +40,7 @@ class _TimeslotGridTileState extends State<TimeslotGridTile> {
         child: Center(
           child: Text(
             widget.timeslot,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.PRIMARY,
             ),
           ),

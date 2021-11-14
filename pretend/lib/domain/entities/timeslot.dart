@@ -7,7 +7,7 @@ class Timeslot extends Equatable {
   final String classCategory;
   final String subjectCode;
 
-  Timeslot({
+  const Timeslot({
     required this.start,
     required this.end,
     required this.duration,

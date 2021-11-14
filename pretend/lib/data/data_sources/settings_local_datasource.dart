@@ -11,7 +11,7 @@ abstract class SettingsLocalDatasourceContract {
   Future<void> setThemeColor(int color);
 }
 
-const _APP_SETTINGS = "app-settings";
+const _appSettings = "app-settings";
 
 class SettingsLocalDatasource extends HiveDataSource
     implements SettingsLocalDatasourceContract {
@@ -20,7 +20,7 @@ class SettingsLocalDatasource extends HiveDataSource
   @override
   Future<Map<String, dynamic>> getAppSettings() async {
     try {
-      final box = await openBox(_APP_SETTINGS);
+      final box = await openBox(_appSettings);
       return box.toMap().cast();
     } catch (e) {
       throw CacheException();
@@ -30,8 +30,8 @@ class SettingsLocalDatasource extends HiveDataSource
   @override
   Future<void> setFirstTimeFlag(bool flag) async {
     try {
-      final box = await openBox(_APP_SETTINGS);
-      await box.put(AppSettingsModel.KEY_FIRST_TIME_STARTUP, flag);
+      final box = await openBox(_appSettings);
+      await box.put(AppSettingsModel.keyFirstTimeStartup, flag);
     } catch (e) {
       throw CacheException();
     }
@@ -40,8 +40,8 @@ class SettingsLocalDatasource extends HiveDataSource
   @override
   Future<void> setThemeColor(int color) async {
     try {
-      final box = await openBox(_APP_SETTINGS);
-      await box.put(AppSettingsModel.KEY_THEME_COLOR, color);
+      final box = await openBox(_appSettings);
+      await box.put(AppSettingsModel.keyThemeColor, color);
     } catch (e) {
       throw CacheException();
     }

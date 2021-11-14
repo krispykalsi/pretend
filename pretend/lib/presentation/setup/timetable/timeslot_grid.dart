@@ -9,9 +9,9 @@ import 'timeslot_grid_tile_state.dart';
 
 class TimeslotGrid extends StatefulWidget {
   static const _timeslots = [
-    [Timeslots.T8AM, Timeslots.T9AM, Timeslots.T10AM, Timeslots.T11AM],
-    [Timeslots.T12PM, Timeslots.T1PM, Timeslots.T2PM, Timeslots.T3PM],
-    [Timeslots.T4PM, Timeslots.T5PM, Timeslots.T6PM, Timeslots.T7PM],
+    [Timeslots.t8AM, Timeslots.t9AM, Timeslots.t10AM, Timeslots.t11AM],
+    [Timeslots.t12PM, Timeslots.t1PM, Timeslots.t2PM, Timeslots.t3PM],
+    [Timeslots.t4PM, Timeslots.t5PM, Timeslots.t6PM, Timeslots.t7PM],
   ];
 
   final ValueNotifier<String> selectedDay;

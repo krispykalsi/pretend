@@ -61,10 +61,10 @@ void main() {
       'should set Timetable when call to local datasource is successful',
           () async {
         when(mockLocalDataSource.setTimetable(tTimetable))
-            .thenAnswer((_) async => Right(null));
+            .thenAnswer((_) async => const Right(null));
         final result = await repository.setTimetable(tTimetable);
         verify(mockLocalDataSource.setTimetable(tTimetable));
-        expect(result, equals(Right(null)));
+        expect(result, equals(const Right(null)));
       },
     );
 

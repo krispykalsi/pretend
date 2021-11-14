@@ -24,7 +24,7 @@ class SelectedSubjectListTile extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Text(
             subject.code,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.PRIMARY,
               fontWeight: FontWeight.bold,
             ),

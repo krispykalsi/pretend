@@ -41,7 +41,7 @@ void main() {
       () async {
         when(mockGetAppSettings(tParams))
             .thenAnswer((_) async => Right(tAppSettings));
-        bloc.add(GetAppSettingsEvent());
+        bloc.add(const GetAppSettingsEvent());
         await untilCalled(mockGetAppSettings(tParams));
         verify(mockGetAppSettings(tParams));
       },
@@ -53,11 +53,11 @@ void main() {
         when(mockGetAppSettings(any))
             .thenAnswer((_) async => Right(tAppSettings));
         final expectedOrder = [
-          AppSettingsLoading(),
+          const AppSettingsLoading(),
           AppSettingsLoaded(tAppSettings),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
-        bloc.add(GetAppSettingsEvent());
+        bloc.add(const GetAppSettingsEvent());
       },
     );
 
@@ -71,11 +71,11 @@ void main() {
             when(mockGetAppSettings(any))
                 .thenAnswer((_) async => Left(cacheFailure));
             final expectedOrder = [
-              AppSettingsLoading(),
+              const AppSettingsLoading(),
               AppSettingsError(cacheFailure.message),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
-            bloc.add(GetAppSettingsEvent());
+            bloc.add(const GetAppSettingsEvent());
             await untilCalled(mockGetAppSettings(tParams));
             verify(mockGetAppSettings(tParams));
           },
@@ -85,14 +85,14 @@ void main() {
   });
 
   group('MarkAppVisitedFirstTime usecase', () {
-    final tFlag = true;
-    final tParams = MarkAppVisitedFirstTimeParams(tFlag);
+    const tFlag = true;
+    const tParams = MarkAppVisitedFirstTimeParams(tFlag);
     test(
       'should set app visited first flag to true from usecase',
           () async {
         when(mockMarkAppVisitedFirstTime(tParams))
-            .thenAnswer((_) async => Right(null));
-        bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
+            .thenAnswer((_) async => const Right(null));
+        bloc.add(const SetFirstTimeVisitedFlagEvent(tFlag));
         await untilCalled(mockMarkAppVisitedFirstTime(tParams));
         verify(mockMarkAppVisitedFirstTime(tParams));
       },
@@ -102,13 +102,13 @@ void main() {
       'should emit [ChangeInProgress, ChangedSuccessfully] when settings are changed successfully',
           () async {
         when(mockMarkAppVisitedFirstTime(tParams))
-            .thenAnswer((_) async => Right(null));
+            .thenAnswer((_) async => const Right(null));
         final expectedOrder = [
-          SettingsChangeInProgress(),
-          SettingsChangedSuccessfully(),
+          const SettingsChangeInProgress(),
+          const SettingsChangedSuccessfully(),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
-        bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
+        bloc.add(const SetFirstTimeVisitedFlagEvent(tFlag));
         await untilCalled(mockMarkAppVisitedFirstTime(tParams));
         verify(mockMarkAppVisitedFirstTime(tParams));
       },
@@ -124,11 +124,11 @@ void main() {
             when(mockMarkAppVisitedFirstTime(tParams))
                 .thenAnswer((_) async => Left(cacheFailure));
             final expectedOrder = [
-              SettingsChangeInProgress(),
+              const SettingsChangeInProgress(),
               SettingsChangeError(cacheFailure.message),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
-            bloc.add(SetFirstTimeVisitedFlagEvent(tFlag));
+            bloc.add(const SetFirstTimeVisitedFlagEvent(tFlag));
             await untilCalled(mockMarkAppVisitedFirstTime(tParams));
             verify(mockMarkAppVisitedFirstTime(tParams));
           },
@@ -138,15 +138,15 @@ void main() {
   });
 
   group('SetAppThemeColor usecase', () {
-    final tColor = Color(0x123);
-    final tParams = SetAppThemeColorParams(tColor);
+    const tColor = Color(0x00000123);
+    const tParams = SetAppThemeColorParams(tColor);
 
     test(
       'should set app\'s theme color from usecase',
           () async {
         when(mockSetAppThemeColor(tParams))
-            .thenAnswer((_) async => Right(null));
-        bloc.add(SetThemeColorEvent(tColor));
+            .thenAnswer((_) async => const Right(null));
+        bloc.add(const SetThemeColorEvent(tColor));
         await untilCalled(mockSetAppThemeColor(tParams));
         verify(mockSetAppThemeColor(tParams));
       },
@@ -156,13 +156,13 @@ void main() {
       'should emit [ChangeInProgress, ChangedSuccessfully] when settings are changed successfully',
           () async {
         when(mockSetAppThemeColor(any))
-            .thenAnswer((_) async => Right(null));
+            .thenAnswer((_) async => const Right(null));
         final expectedOrder = [
-          SettingsChangeInProgress(),
-          SettingsChangedSuccessfully(),
+          const SettingsChangeInProgress(),
+          const SettingsChangedSuccessfully(),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
-        bloc.add(SetThemeColorEvent(tColor));
+        bloc.add(const SetThemeColorEvent(tColor));
         await untilCalled(mockSetAppThemeColor(tParams));
         verify(mockSetAppThemeColor(tParams));
       },
@@ -178,11 +178,11 @@ void main() {
             when(mockSetAppThemeColor(any))
                 .thenAnswer((_) async => Left(cacheFailure));
             final expectedOrder = [
-              SettingsChangeInProgress(),
+              const SettingsChangeInProgress(),
               SettingsChangeError(cacheFailure.message),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
-            bloc.add(SetThemeColorEvent(tColor));
+            bloc.add(const SetThemeColorEvent(tColor));
             await untilCalled(mockSetAppThemeColor(tParams));
             verify(mockSetAppThemeColor(tParams));
           },

@@ -11,7 +11,7 @@ ThemeData get _getThemeData {
             color: AppColors.DARK,
           ),
         )),
-        backgroundColor: MaterialStateProperty.all(AppColors.ACCENT),
+        backgroundColor: MaterialStateProperty.all(AppColors.accent),
         foregroundColor: MaterialStateProperty.all(AppColors.DARK),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
@@ -33,7 +33,7 @@ ThemeData get _getThemeData {
       headline2: GoogleFonts.yanoneKaffeesatz(
         textStyle: TextStyle(
           fontSize: 48,
-          color: AppColors.ACCENT,
+          color: AppColors.accent,
         ),
       ),
       headline3: GoogleFonts.ptSansNarrow(

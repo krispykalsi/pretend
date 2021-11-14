@@ -24,10 +24,10 @@ class TimetableSetup extends StatefulWidget {
 }
 
 class _TimetableSetupState extends State<TimetableSetup> {
-  final _selectedDayNotifier = ValueNotifier<String>(Days.MONDAY);
+  final _selectedDayNotifier = ValueNotifier<String>(Days.monday);
   final _selectionColorNotifier = ValueNotifier<Color>(AppColors.THEORY);
 
-  static const _CHIP_HEIGHT = 40.0;
+  static const _chipHeight = 40.0;
 
   @override
   void dispose() {
@@ -76,8 +76,8 @@ class _TimetableSetupState extends State<TimetableSetup> {
 
   Widget get _timeslotGrid {
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: _CHIP_HEIGHT * 6,
+      constraints: const BoxConstraints(
+        maxHeight: _chipHeight * 6,
       ),
       child: TimeslotGrid(
         selectionState: widget.selectionStateNotifier,
@@ -102,11 +102,11 @@ class _TimetableSetupState extends State<TimetableSetup> {
               _selectionColorNotifier.value = categoryColor;
             });
           },
-          height: _CHIP_HEIGHT,
-          expandWidth: classCategory == ClassCategories.LAB,
+          height: _chipHeight,
+          expandWidth: classCategory == ClassCategories.lab,
         );
 
-        if (classCategory == ClassCategories.LAB) {
+        if (classCategory == ClassCategories.lab) {
           return Expanded(child: chip);
         } else {
           return chip;
@@ -128,7 +128,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
             });
           },
           width: 50,
-          height: _CHIP_HEIGHT,
+          height: _chipHeight,
         );
       }).toList(growable: false),
     );

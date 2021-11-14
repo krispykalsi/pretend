@@ -59,7 +59,7 @@ class _TimetableSetupStatusState extends State<TimetableSetupStatus> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 300),
+            constraints: const BoxConstraints(maxWidth: 300),
             child: SubjectListTile(
               onTap: () => _onSubjectTap(index),
               isConfigured: _isConfigured[subject.code] ?? false,

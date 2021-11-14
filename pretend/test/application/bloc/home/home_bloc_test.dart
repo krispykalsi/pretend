@@ -55,7 +55,7 @@ void main() {
         when(mockGenerateScheduleForToday(any))
             .thenAnswer((_) async => Right(generateScheduleForTodayOutput));
         final expectedOrder = [
-          TimetableLoading(),
+          const TimetableLoading(),
           TimetableLoaded(tTimetable, tSubjects, tFilteredSchedule),
         ];
         expectLater(bloc.stream, emitsInOrder(expectedOrder));
@@ -73,7 +73,7 @@ void main() {
             when(mockGenerateScheduleForToday(any))
                 .thenAnswer((_) async => Left(cacheFailure));
             final expectedOrder = [
-              TimetableLoading(),
+              const TimetableLoading(),
               TimetableError(cacheFailure.message),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
@@ -86,13 +86,13 @@ void main() {
         test(
           'on GenerateScheduleFailure',
           () async {
-            final tMsg = "xyz error";
+            const tMsg = "xyz error";
             final generateScheduleFailure = GenerateScheduleFailure(tMsg);
             when(mockGenerateScheduleForToday(any))
                 .thenAnswer((_) async => Left(generateScheduleFailure));
             final expectedOrder = [
-              TimetableLoading(),
-              TimetableError(tMsg),
+              const TimetableLoading(),
+              const TimetableError(tMsg),
             ];
             expectLater(bloc.stream, emitsInOrder(expectedOrder));
             bloc.add(GetTimetableEvent(tDateTime));

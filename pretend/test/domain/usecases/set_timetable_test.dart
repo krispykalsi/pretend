@@ -22,7 +22,7 @@ void main() {
 
   test('should set timetable using the repository', () async {
     when(mockRepository.setTimetable(tTimetable))
-        .thenAnswer((_) async => Right(null));
+        .thenAnswer((_) async => const Right(null));
     await usecase(SetTimetableParams(tTimetable));
 
     verify(mockRepository.setTimetable(tTimetable));

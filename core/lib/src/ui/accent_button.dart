@@ -26,7 +26,7 @@ abstract class AccentButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: _borderRadius,
-          color: AppColors.ACCENT,
+          color: AppColors.accent,
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),

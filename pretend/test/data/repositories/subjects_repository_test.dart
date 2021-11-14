@@ -35,9 +35,9 @@ void main() {
   });
 
   final tSubjectModelList = <SubjectModel>[
-    SubjectModel(name: "International Trade", code: "HU-351a"),
-    SubjectModel(name: "Computer Networks", code: "IT-502"),
-    SubjectModel(name: "Theory of Computing", code: "IT-504"),
+    const SubjectModel(name: "International Trade", code: "HU-351a"),
+    const SubjectModel(name: "Computer Networks", code: "IT-502"),
+    const SubjectModel(name: "Theory of Computing", code: "IT-504"),
   ];
 
   group(
@@ -175,10 +175,11 @@ void main() {
         final tSubjectKeys = ["HU-351a", "IT-502", "IT-504"];
         final tSubjectMap = {
           "HU-351a":
-              SubjectModel(name: "International Trade", code: "HU-351a"),
-          "IT-502": SubjectModel(name: "Computer Networks", code: "IT-502"),
+              const SubjectModel(name: "International Trade", code: "HU-351a"),
+          "IT-502":
+              const SubjectModel(name: "Computer Networks", code: "IT-502"),
           "IT-504":
-              SubjectModel(name: "Theory of Computing", code: "IT-504")
+              const SubjectModel(name: "Theory of Computing", code: "IT-504")
         };
 
         test(

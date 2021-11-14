@@ -4,9 +4,9 @@
 
 import 'dart:async' as _i4;
 
+import 'package:core/error.dart' as _i5;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:core/error.dart' as _i5;
 import 'package:pretend/domain/entities/timetable.dart' as _i6;
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart'
     as _i3;

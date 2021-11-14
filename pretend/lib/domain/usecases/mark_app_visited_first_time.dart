@@ -19,7 +19,7 @@ class MarkAppVisitedFirstTime
 class MarkAppVisitedFirstTimeParams extends Equatable {
   final bool flag;
 
-  MarkAppVisitedFirstTimeParams(this.flag);
+  const MarkAppVisitedFirstTimeParams(this.flag);
 
   @override
   List<Object?> get props => [flag];

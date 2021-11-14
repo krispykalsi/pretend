@@ -3,18 +3,18 @@ import 'dart:ui';
 import 'package:core/app_colors.dart';
 
 class ClassCategories {
-  static const LAB = "lab";
-  static const THEORY = "theory";
-  static const TUTORIAL = "tutorial";
+  static const lab = "lab";
+  static const theory = "theory";
+  static const tutorial = "tutorial";
 
-  static List<String> get values => const [LAB, THEORY, TUTORIAL];
+  static List<String> get values => const [lab, theory, tutorial];
 }
 
 extension ClassCategory on AppColors {
   static Map<String, Color> colors = const {
-    ClassCategories.LAB: AppColors.LAB,
-    ClassCategories.THEORY: AppColors.THEORY,
-    ClassCategories.TUTORIAL: AppColors.TUTORIAL,
+    ClassCategories.lab: AppColors.LAB,
+    ClassCategories.theory: AppColors.THEORY,
+    ClassCategories.tutorial: AppColors.TUTORIAL,
   };
 }
 

@@ -4,7 +4,7 @@ import 'package:pretend/domain/entities/timeslots.dart';
 
 void main() {
   group('should correctly parse Timeslots to corresponding DateTime object', () {
-    Timeslots.values.forEach((slot) {
+    for (var slot in Timeslots.values) {
       group(slot.toString(), () {
         test('start', () {
           final actual = slot.startTime;
@@ -18,7 +18,7 @@ void main() {
           expect(actual.minute, 0);
         });
       });
-    });
+    }
   });
 
   group('should compare Timeslots correctly', () {

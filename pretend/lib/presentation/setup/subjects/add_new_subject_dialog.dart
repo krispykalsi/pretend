@@ -11,7 +11,7 @@ Future<Subject?> showAddNewSubjectDialog(BuildContext context) =>
 extension ContextWithCustomDialog on BuildContext {
   Future<Subject?> showAddNewSubjectDialog() => showDialog<Subject>(
         context: this,
-        builder: (context) => Dialog(
+        builder: (context) => const Dialog(
           shape: ContinuousRectangleBorder(),
           elevation: 0,
           child: AddNewSubjectDialogBody(),

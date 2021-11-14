@@ -21,7 +21,7 @@ class GetSubjectsOfTimetable
 class GetSubjectsOfTimetableParams extends Equatable {
   final List<String> subjectCodes;
 
-  GetSubjectsOfTimetableParams(this.subjectCodes);
+  const GetSubjectsOfTimetableParams(this.subjectCodes);
 
   @override
   List<Object?> get props => [subjectCodes];

@@ -42,13 +42,13 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
             } else if (state is OneOrMoreSubjectsSelected) {
               return _buildLoadedState(state.subjects);
             } else if (state is Loading) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (state is Error) {
               return Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       "Cache Failure",
                       style: TextStyle(color: Colors.redAccent),
                     ),
@@ -61,9 +61,9 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
             }
             return Center(
               child: ElevatedButton(
-                child: Text("Reload Subjects"),
+                child: const Text("Reload Subjects"),
                 onPressed: () {
-                  _subjectsBloc.add(GetAllSubjectsEvent());
+                  _subjectsBloc.add(const GetAllSubjectsEvent());
                 },
               ),
             );
@@ -80,14 +80,14 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
           allSubjects: subs,
           previouslySelected: widget._selectedSubjects,
           onSubjectListUpdate: () {
-            _subjectsBloc.add(GetAllSubjectsEvent());
+            _subjectsBloc.add(const GetAllSubjectsEvent());
           },
           onSelectedSubjectsUpdate: (subjects) {
             _selectedSubjects = subjects;
             if (_selectedSubjects.isNotEmpty) {
-              _subjectsBloc.add(OneOrMoreSubjectsSelectedEvent());
+              _subjectsBloc.add(const OneOrMoreSubjectsSelectedEvent());
             } else {
-              _subjectsBloc.add(NoSubjectsSelectedEvent());
+              _subjectsBloc.add(const NoSubjectsSelectedEvent());
             }
           },
         ),

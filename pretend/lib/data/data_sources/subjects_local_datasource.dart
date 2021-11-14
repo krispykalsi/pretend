@@ -11,7 +11,7 @@ abstract class SubjectsLocalDataSourceContract {
   Future<void> addSubject(SubjectModel subject);
 }
 
-const _SUBJECTS = 'subjects';
+const _subjects = 'subjects';
 
 class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDataSourceContract {
   SubjectsLocalDataSource({required HiveInterface hive}) : super(hive);
@@ -19,7 +19,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   @override
   Future<void> addSubject(SubjectModel subject) async {
     try {
-      final subjectBox = await openBox(_SUBJECTS);
+      final subjectBox = await openBox(_subjects);
       subjectBox.put(subject.code, subject.toJson());
     } catch (e) {
       throw CacheException();
@@ -29,10 +29,10 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   @override
   Future<void> addSubjects(List<SubjectModel> subjects) async {
     try {
-      final subjectBox = await openBox(_SUBJECTS);
-      subjects.forEach((subject) {
+      final subjectBox = await openBox(_subjects);
+      for (final subject in subjects) {
         subjectBox.put(subject.code, subject.toJson());
-      });
+      }
     } catch (e) {
       throw CacheException();
     }
@@ -41,7 +41,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   @override
   Future<void> clearSubjects() async {
     try {
-      final subjectBox = await openBox(_SUBJECTS);
+      final subjectBox = await openBox(_subjects);
       subjectBox.deleteFromDisk();
     } catch (e) {
       throw CacheException();
@@ -51,12 +51,12 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   @override
   Future<List<SubjectModel>> getAllSubjects() async {
     try {
-      final subjectBox = await openBox(_SUBJECTS);
+      final subjectBox = await openBox(_subjects);
       List<SubjectModel> subjects = [];
-      subjectBox.values.forEach((subjectJson) {
+      for (final subjectJson in subjectBox.values) {
         subjects.add(SubjectModel.fromJson(Map.from(subjectJson)));
-      });
-      if (subjects.length == 0) {
+      }
+      if (subjects.isEmpty) {
         throw NoLocalDataException();
       } else {
         return subjects;
@@ -71,13 +71,13 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   @override
   Future<Map<String, SubjectModel>> getSubjects(List<String> keys) async {
     try {
-      final subjectBox = await openBox(_SUBJECTS);
+      final subjectBox = await openBox(_subjects);
       Map<String, SubjectModel> subjects = {};
-      keys.forEach((subjectCode) {
+      for (final subjectCode in keys) {
         final subjectDynamic = subjectBox.get(subjectCode);
         final subjectJson = Map<String, dynamic>.from(subjectDynamic);
         subjects[subjectCode] = SubjectModel.fromJson(subjectJson);
-      });
+      }
       return subjects;
     } catch (e) {
       throw CacheException();

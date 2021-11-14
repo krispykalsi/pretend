@@ -14,22 +14,22 @@ class TimetableSetupBloc
   final SetTimetable setTimetable;
 
   TimetableSetupBloc({required this.setTimetable})
-      : super(TimetableSetupInitial());
+      : super(const TimetableSetupInitial());
 
   @override
   Stream<TimetableSetupState> mapEventToState(
       TimetableSetupEvent event) async* {
     if (event is SaveTimetableEvent) {
-      yield TimetableSaving();
+      yield const TimetableSaving();
       final either = await setTimetable(SetTimetableParams(event.timetable));
       yield either.fold(
         (failure) => TimetableNotSavedError(message: failure.message),
-        (success) => TimetableSaved(),
+        (success) => const TimetableSaved(),
       );
     } else if (event is ResetSetupEvent) {
-      yield TimetableSetupInitial();
+      yield const TimetableSetupInitial();
     } else if (event is AllSubjectsConfiguredEvent) {
-      yield AllSubjectsConfigured();
+      yield const AllSubjectsConfigured();
     }
   }
 }

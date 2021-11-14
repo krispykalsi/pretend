@@ -24,7 +24,7 @@ class SubjectSearchField extends StatelessWidget {
           },
           style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.search,
               color: AppColors.SECONDARY,
             ),

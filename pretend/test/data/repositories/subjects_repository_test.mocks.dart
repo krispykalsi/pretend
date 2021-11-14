@@ -4,8 +4,8 @@
 
 import 'dart:async' as _i3;
 
+import 'package:core/src/network/network_info.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:core/network.dart' as _i6;
 import 'package:pretend/data/data_sources/subjects_local_datasource.dart'
     as _i2;
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart'

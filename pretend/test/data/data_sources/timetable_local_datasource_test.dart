@@ -46,7 +46,7 @@ void main() {
       final tTimetable = getTestTimetableModel;
       final tTimetableJson = tTimetable.toJson();
       when(mockHiveInterface.openBox(any)).thenAnswer((_) async => mockHiveBox);
-      when(mockHiveBox.putAll(tTimetableJson)).thenAnswer((_) async => null);
+      when(mockHiveBox.putAll(tTimetableJson)).thenAnswer((_) async {});
 
       await localDataSource.setTimetable(tTimetable);
 

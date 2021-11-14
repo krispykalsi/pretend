@@ -14,7 +14,7 @@ class ThemeChanger extends InheritedWidget {
         super(child: child);
 
   set accentColor(Color accent) {
-    AppColors.ACCENT = accent;
+    AppColors.accent = accent;
     (_appThemeKey.currentState as DynamicThemeAppState?)?.theme = _getThemeData;
   }
 

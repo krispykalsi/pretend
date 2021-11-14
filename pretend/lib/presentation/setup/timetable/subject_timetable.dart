@@ -82,7 +82,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
             children: [
               Text(
                 timeslot.dashed,
-                style: TextStyle(color: AppColors.PRIMARY),
+                style: const TextStyle(color: AppColors.PRIMARY),
               ),
               Text(
                 categoryInitial,
@@ -101,7 +101,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
   Text _buildDayHeading(String day) {
     return Text(
       day,
-      style: TextStyle(
+      style: const TextStyle(
         color: AppColors.PRIMARY,
         fontWeight: FontWeight.bold,
       ),

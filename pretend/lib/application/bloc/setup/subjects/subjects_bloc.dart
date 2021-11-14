@@ -25,7 +25,7 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
     if (event is GetAllSubjectsEvent) {
       yield Loading();
       final subjectsOrFailure =
-          await _getAllSubjects(GetAllSubjectsParams(DataSource.LOCAL));
+          await _getAllSubjects(const GetAllSubjectsParams(DataSource.LOCAL));
       yield subjectsOrFailure.fold(
         (failure) => failure is NoLocalDataFailure
             ? NoSubjectsFound()

@@ -59,7 +59,7 @@ extension DayWise on Timetable {
 extension SubjectWise on Timetable {
   SubjectWiseTimetable subjectWise() {
     final swTimetable = SubjectWiseTimetable();
-    subjectCodes.forEach((subjectCode) {
+    for (var subjectCode in subjectCodes) {
       swTimetable[subjectCode] = {};
       timetable.forEach((day, timeslots) {
         timeslots.forEach((slotDashed, timeslot) {
@@ -72,7 +72,7 @@ extension SubjectWise on Timetable {
           }
         });
       });
-    });
+    }
     return swTimetable;
   }
 }

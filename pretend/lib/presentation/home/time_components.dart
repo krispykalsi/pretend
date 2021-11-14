@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 
-const _STARTS_AT = "starts @";
-const _FINISHES_AT = "finishes @";
-const _TIME_LEFT = "time left";
+const _startsAt = "starts @";
+const _finishesAt = "finishes @";
+const _timeLeft = "time left";
 
 class TimeComponent extends StatefulWidget {
   final Timeslot _timeslot;
@@ -25,9 +25,9 @@ class _TimeComponentState extends State<TimeComponent> {
     return Column(
       children: [
         widget._showTimeLeft
-            ? _TimeRow(_TIME_LEFT, "1h 06m")
-            : _TimeRow(_STARTS_AT, widget._timeslot.start),
-        _TimeRow(_FINISHES_AT, widget._timeslot.end),
+            ? const _TimeRow(_timeLeft, "1h 06m")
+            : _TimeRow(_startsAt, widget._timeslot.start),
+        _TimeRow(_finishesAt, widget._timeslot.end),
       ],
     );
   }

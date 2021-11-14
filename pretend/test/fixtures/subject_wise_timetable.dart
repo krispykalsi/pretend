@@ -6,52 +6,52 @@ import 'package:pretend/presentation/setup/timetable/typedefs.dart';
 
 final SubjectWiseTimetable _subjectWiseTimetable = {
   "HU-351a": {
-    Days.MONDAY: {},
-    Days.TUESDAY: {},
-    Days.WEDNESDAY: {},
-    Days.THURSDAY: {},
-    Days.FRIDAY: {
-      Timeslots.T8AM: TimeslotGridTileState(
+    Days.monday: {},
+    Days.tuesday: {},
+    Days.wednesday: {},
+    Days.thursday: {},
+    Days.friday: {
+      Timeslots.t8AM: TimeslotGridTileState(
         true,
-        ClassCategory.colors[ClassCategories.THEORY]!,
+        ClassCategory.colors[ClassCategories.theory]!,
       ),
-      Timeslots.T9AM: TimeslotGridTileState(
+      Timeslots.t9AM: TimeslotGridTileState(
         true,
-        ClassCategory.colors[ClassCategories.THEORY]!,
+        ClassCategory.colors[ClassCategories.theory]!,
       ),
     },
   },
   "IT-502": {
-    Days.MONDAY: {},
-    Days.TUESDAY: {},
-    Days.WEDNESDAY: {
-      Timeslots.T7PM: TimeslotGridTileState(
+    Days.monday: {},
+    Days.tuesday: {},
+    Days.wednesday: {
+      Timeslots.t7PM: TimeslotGridTileState(
         false,
-        ClassCategory.colors[ClassCategories.TUTORIAL]!,
+        ClassCategory.colors[ClassCategories.tutorial]!,
       ),
     },
-    Days.THURSDAY: {},
-    Days.FRIDAY: {
-      Timeslots.T1PM: TimeslotGridTileState(
+    Days.thursday: {},
+    Days.friday: {
+      Timeslots.t1PM: TimeslotGridTileState(
         true,
-        ClassCategory.colors[ClassCategories.LAB]!,
+        ClassCategory.colors[ClassCategories.lab]!,
       ),
     },
   },
   "IT-504": {
-    Days.MONDAY: {
-      Timeslots.T10AM: TimeslotGridTileState(
+    Days.monday: {
+      Timeslots.t10AM: TimeslotGridTileState(
         false,
-        ClassCategory.colors[ClassCategories.TUTORIAL]!,
+        ClassCategory.colors[ClassCategories.tutorial]!,
       ),
     },
-    Days.TUESDAY: {},
-    Days.WEDNESDAY: {},
-    Days.THURSDAY: {},
-    Days.FRIDAY: {
-      Timeslots.T11AM: TimeslotGridTileState(
+    Days.tuesday: {},
+    Days.wednesday: {},
+    Days.thursday: {},
+    Days.friday: {
+      Timeslots.t11AM: TimeslotGridTileState(
         true,
-        ClassCategory.colors[ClassCategories.THEORY]!,
+        ClassCategory.colors[ClassCategories.theory]!,
       ),
     },
   },

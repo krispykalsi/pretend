@@ -10,14 +10,14 @@ import 'package:core/dynamic_theme_app.dart';
 import 'package:pretend/presentation/initial/theme_setter.dart';
 
 class InitialPage extends StatefulWidget {
-  InitialPage({Key? key}) : super(key: key);
+  const InitialPage({Key? key}) : super(key: key);
 
   @override
   State<InitialPage> createState() => _InitialPageState();
 }
 
 class _InitialPageState extends State<InitialPage> {
-  final _settingsBloc = sl<SettingsBloc>()..add(GetAppSettingsEvent());
+  final _settingsBloc = sl<SettingsBloc>()..add(const GetAppSettingsEvent());
 
   Color? _color;
 
@@ -35,12 +35,12 @@ class _InitialPageState extends State<InitialPage> {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               ThemeChanger.of(context)!.accentColor = settings.themeColor!;
             });
-            context.router.replace(HomeRoute());
+            context.router.replace(const HomeRoute());
           }
         } else if (state is AppSettingsError) {
           opacity = 1.0;
         } else if (state is SettingsChangedSuccessfully) {
-          _settingsBloc.add(GetAppSettingsEvent());
+          _settingsBloc.add(const GetAppSettingsEvent());
         }
 
         return Material(
@@ -77,13 +77,13 @@ class _InitialPageState extends State<InitialPage> {
 
   Widget get _buildOkButton {
     return Align(
-      alignment: Alignment(0, 0.45),
+      alignment: const Alignment(0, 0.45),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           ElevatedButton(
             onPressed: () => _settingsBloc.add(SetThemeColorEvent(_color!)),
-            child: Text("Ok"),
+            child: const Text("Ok"),
           ),
         ],
       ),
@@ -92,7 +92,7 @@ class _InitialPageState extends State<InitialPage> {
 
   Widget get _buildHeader {
     return Align(
-      alignment: Alignment(0, -0.85),
+      alignment: const Alignment(0, -0.85),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,

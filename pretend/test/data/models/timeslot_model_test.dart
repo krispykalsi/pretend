@@ -6,11 +6,11 @@ import 'package:pretend/domain/entities/timeslot.dart';
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tTimeslotModel = TimeslotModel(
+  const tTimeslotModel = TimeslotModel(
     start: "8 AM",
     end: "10 AM",
     duration: 2,
-    classCategory: ClassCategories.THEORY,
+    classCategory: ClassCategories.theory,
     subjectCode: "HU-351a",
   );
 
@@ -32,11 +32,11 @@ void main() {
         () async {
       final result = tTimeslotModel.toJson();
       final expectedJsonMap = {
-        TimeslotModel.KEY_START: "8 AM",
-        TimeslotModel.KEY_END: "10 AM",
-        TimeslotModel.KEY_DURATION: 2,
-        TimeslotModel.KEY_CLASS_CATEGORY: ClassCategories.THEORY,
-        TimeslotModel.KEY_SUBJECT_CODE: "HU-351a",
+        TimeslotModel.keyStart: "8 AM",
+        TimeslotModel.keyEnd: "10 AM",
+        TimeslotModel.keyDuration: 2,
+        TimeslotModel.keyClassCategory: ClassCategories.theory,
+        TimeslotModel.keySubjectCode: "HU-351a",
       };
       expect(result, expectedJsonMap);
     },

@@ -37,16 +37,16 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'New subject',
               style: TextStyle(
-                color: AppColors.ACCENT,
+                color: AppColors.accent,
                 fontSize: 28.0,
               ),
             ),
-            Text('Enter subject details'),
-            SizedBox(height: 30),
+            const Text('Enter subject details'),
+            const SizedBox(height: 30),
             _buildTextField(
               "Name",
               onChanged: (name) => _name = name,
@@ -56,7 +56,7 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
               allCaps: true,
               onChanged: (code) => _code = code,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -75,7 +75,7 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
     bool allCaps = false,
     required Function(String) onChanged,
   }) {
-    final errorBorder = OutlineInputBorder(
+    const errorBorder = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.red, width: 3),
       borderRadius: BorderRadius.zero,
     );
@@ -97,13 +97,13 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white12,
-          errorStyle: TextStyle(height: 0),
+          errorStyle: const TextStyle(height: 0),
           errorBorder: errorBorder,
           focusedErrorBorder: errorBorder,
           hintText: hintText,
           hintStyle: Theme.of(context).textTheme.bodyText2,
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.ACCENT, width: 3),
+            borderSide: BorderSide(color: AppColors.accent, width: 3),
             borderRadius: BorderRadius.zero,
           ),
           enabledBorder: InputBorder.none,
@@ -119,7 +119,7 @@ class _AddNewSubjectDialogBodyState extends State<AddNewSubjectDialogBody> {
         child: Text(
           text,
           style: TextStyle(
-            color: highlight ? AppColors.ACCENT : AppColors.PRIMARY,
+            color: highlight ? AppColors.accent : AppColors.PRIMARY,
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
           ),

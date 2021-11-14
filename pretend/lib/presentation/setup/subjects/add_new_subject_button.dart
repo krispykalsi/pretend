@@ -13,7 +13,7 @@ class AddNewSubjectButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        const Text(
           "Didn't find your subject?",
           style: TextStyle(
             fontSize: 20,
@@ -27,7 +27,7 @@ class AddNewSubjectButton extends StatelessWidget {
             child: Text(
               "Add here",
               style: TextStyle(
-                color: AppColors.ACCENT,
+                color: AppColors.accent,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),

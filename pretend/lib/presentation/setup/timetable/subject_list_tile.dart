@@ -15,11 +15,11 @@ class SubjectListTile extends StatelessWidget {
   }) : super(key: key);
 
   Icon get prefixIcon => isConfigured
-      ? Icon(
+      ? const Icon(
           Icons.check,
           color: Colors.green,
         )
-      : Icon(
+      : const Icon(
           Icons.cancel,
           color: Colors.red,
         );

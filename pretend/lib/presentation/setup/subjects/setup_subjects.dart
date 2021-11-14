@@ -33,8 +33,8 @@ class SetupSubjects extends StatefulWidget {
 class _SetupSubjectsState extends State<SetupSubjects> {
   final _selectedListNotifier =
       ValueNotifier<AnimatedListModel<Subject>?>(null);
-  var _textEditingController = TextEditingController();
-  Iterable<Subject> _subjectOptions = Iterable.empty();
+  final _textEditingController = TextEditingController();
+  Iterable<Subject> _subjectOptions = const Iterable.empty();
   final _newSubjectBloc = sl<NewSubjectBloc>();
 
   void _addToSelectedSubjects(Subject subject) {
@@ -151,7 +151,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
       child: ElevatedButton(
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: const [
             Icon(Icons.add),
             SizedBox(width: 10),
             Text(
@@ -171,27 +171,27 @@ class _SetupSubjectsState extends State<SetupSubjects> {
         if (state is NewSubjectInitial) {
           return _textEditingController.text.isNotEmpty
               ? AddNewSubjectButton(onTap: _onAddNewSubject)
-              : SizedBox.shrink();
+              : const SizedBox.shrink();
         } else if (state is NewSubjectBeingAdded) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (state is NewSubjectAdded) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Text(
               "Added successfully!",
               style: TextStyle(color: Colors.green),
             ),
           );
         } else if (state is CouldNotAddNewSubject) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Text(
               "Failed to add subject",
               style: TextStyle(color: Colors.redAccent),
             ),
           );
         } else {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
       },
     );
