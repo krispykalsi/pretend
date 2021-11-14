@@ -1,0 +1,1 @@
+export 'src/ui/dynamic_theme_app/dynamic_theme_app.dart';

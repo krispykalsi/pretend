@@ -1,0 +1,20 @@
+name: core
+description: Core files related to Pretend app
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sprintf: ^6.0.0
+  dartz: ^0.10.0
+  equatable: ^2.0.3
+  internet_connection_checker: ^0.0.1+2
+  google_fonts: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.0.15
+  build_runner: ^2.1.1
