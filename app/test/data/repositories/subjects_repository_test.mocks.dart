@@ -57,6 +57,10 @@ class MockSubjectsLocalDataSourceContract extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
+  _i3.Future<String?> getCollegeID() =>
+      (super.noSuchMethod(Invocation.method(#getCollegeID, []),
+          returnValue: Future<String?>.value()) as _i3.Future<String?>);
+  @override
   String toString() => super.toString();
 }
 
@@ -70,8 +74,8 @@ class MockSubjectsRemoteDataSourceContract extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.SubjectModel>> getSubjects() =>
-      (super.noSuchMethod(Invocation.method(#getSubjects, []),
+  _i3.Future<List<_i4.SubjectModel>> getSubjects(String? collegeID) =>
+      (super.noSuchMethod(Invocation.method(#getSubjects, [collegeID]),
               returnValue:
                   Future<List<_i4.SubjectModel>>.value(<_i4.SubjectModel>[]))
           as _i3.Future<List<_i4.SubjectModel>>);

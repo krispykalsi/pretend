@@ -32,3 +32,8 @@ class CacheFailure extends Failure {
 class GenerateScheduleFailure extends Failure {
   GenerateScheduleFailure(String msg) : super(msg);
 }
+
+class CollegeNotConfiguredFailure extends Failure {
+  @override
+  String get message => "College not selected";
+}

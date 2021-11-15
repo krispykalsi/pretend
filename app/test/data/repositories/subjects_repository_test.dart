@@ -43,17 +43,16 @@ void main() {
   group(
     'when datasource is remote',
     () {
-      late DataSource tDataSource;
-
-      setUp(() {
-        tDataSource = DataSource.NETWORK;
-      });
+      final tDataSource = DataSource.NETWORK;
+      final tCollegeID = "12321";
 
       test(
         'should check if device is online',
         () async {
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-          when(mockRemoteDataSource.getSubjects())
+          when(mockLocalDataSource.getCollegeID())
+              .thenAnswer((_) async => tCollegeID);
+          when(mockRemoteDataSource.getSubjects(any))
               .thenAnswer((_) async => tSubjectModelList);
 
           await repository.getSubjects(tDataSource);
@@ -66,14 +65,30 @@ void main() {
         'should return remote data when call to remote datasource is successful',
         () async {
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-          when(mockRemoteDataSource.getSubjects())
+          when(mockLocalDataSource.getCollegeID())
+              .thenAnswer((_) async => tCollegeID);
+          when(mockRemoteDataSource.getSubjects(tCollegeID))
               .thenAnswer((_) async => tSubjectModelList);
 
           final result = await repository.getSubjects(tDataSource);
 
-          verify(mockRemoteDataSource.getSubjects());
-          verifyZeroInteractions(mockLocalDataSource);
+          verify(mockRemoteDataSource.getSubjects(tCollegeID));
+          verify(mockLocalDataSource.getCollegeID());
           expect(result, equals(Right(tSubjectModelList)));
+        },
+      );
+
+      test(
+        'should return CollegeNotConfiguredFailure when college is not configured',
+            () async {
+          when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+          when(mockLocalDataSource.getCollegeID())
+              .thenAnswer((_) async => null);
+
+          final result = await repository.getSubjects(tDataSource);
+
+          verify(mockLocalDataSource.getCollegeID());
+          expect(result, equals(Left(CollegeNotConfiguredFailure())));
         },
       );
 
@@ -81,12 +96,15 @@ void main() {
         'should return ServerFailure when call to remote datasource is unsuccessful',
         () async {
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-          when(mockRemoteDataSource.getSubjects()).thenThrow(ServerException());
+          when(mockLocalDataSource.getCollegeID())
+              .thenAnswer((_) async => tCollegeID);
+          when(mockRemoteDataSource.getSubjects(tCollegeID))
+              .thenThrow(ServerException());
 
           final result = await repository.getSubjects(tDataSource);
 
-          verify(mockRemoteDataSource.getSubjects());
-          verifyZeroInteractions(mockLocalDataSource);
+          verify(mockRemoteDataSource.getSubjects(tCollegeID));
+          verify(mockLocalDataSource.getCollegeID());
           expect(result, equals(Left(ServerFailure())));
         },
       );

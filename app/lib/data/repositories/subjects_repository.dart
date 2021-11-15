@@ -24,7 +24,11 @@ class SubjectsRepository implements SubjectsRepositoryContract {
       case DataSource.NETWORK:
         if (await networkInfo.isConnected) {
           try {
-            final subjects = await remoteDataSource.getSubjects();
+            final collegeID = await localDataSource.getCollegeID();
+            if (collegeID == null) {
+              return Left(CollegeNotConfiguredFailure());
+            }
+            final subjects = await remoteDataSource.getSubjects(collegeID);
             return Right(subjects);
           } on ServerException {
             return Left(ServerFailure());

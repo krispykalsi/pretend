@@ -1,12 +1,12 @@
 import 'package:pretend/data/models/subject_model.dart';
 
 abstract class SubjectsRemoteDataSourceContract {
-  Future<List<SubjectModel>> getSubjects();
+  Future<List<SubjectModel>> getSubjects(String collegeID);
 }
 
 class SubjectsRemoteDataSource implements SubjectsRemoteDataSourceContract {
   @override
-  Future<List<SubjectModel>> getSubjects() {
+  Future<List<SubjectModel>> getSubjects(String collegeID) {
     const _subjects = [
       SubjectModel(name: "Computer Networks", code: "IT-124"),
       SubjectModel(name: "Theory of Computing", code: "IT-128"),
