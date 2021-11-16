@@ -34,7 +34,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   late final _timetableNotifier =
       TimetableNotifier(widget._timetable?.subjectWise());
-  final _timetable = const Timetable({}, []);
+  final _timetable = Timetable({}, []);
 
   final _timetableSetupBloc = sl<TimetableSetupBloc>();
 

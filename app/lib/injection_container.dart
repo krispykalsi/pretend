@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/bloc/settings/settings_bloc.dart';
+import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/new_subject/new_subject_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
 import 'package:pretend/application/bloc/setup/timetable/timetable_setup_bloc.dart';
@@ -45,6 +46,9 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => NewSubjectBloc(sl()),
+  );
+  sl.registerFactory(
+    () => FetchSubjectsOnlineBloc(getAllSubjects: sl()),
   );
   sl.registerFactory(
     () => SettingsBloc(

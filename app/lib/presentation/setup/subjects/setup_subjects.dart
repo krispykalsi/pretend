@@ -5,6 +5,7 @@ import 'package:pretend/domain/entities/subject.dart';
 import 'package:core/widgets.dart';
 import 'package:core/app_colors.dart';
 import 'package:pretend/presentation/setup/subjects/add_new_subject_dialog.dart';
+import 'package:pretend/presentation/setup/subjects/no_subjects_in_list_section.dart';
 
 import '../../../injection_container.dart';
 import 'selected_subject_list.dart';
@@ -100,7 +101,11 @@ class _SetupSubjectsState extends State<SetupSubjects> {
   @override
   Widget build(BuildContext context) {
     return widget.allSubjects.isEmpty
-        ? _buildAddNewSubjectButton
+        ? NoSubjectsInListSection(
+            onAddNewSubject: _onAddNewSubject,
+            onSubjectListUpdate: widget.onSubjectListUpdate,
+            onCollegeNotConfigured: () {},
+          )
         : _buildSubjectSearchSection;
   }
 
@@ -143,24 +148,6 @@ class _SetupSubjectsState extends State<SetupSubjects> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget get _buildAddNewSubjectButton {
-    return Center(
-      child: ElevatedButton(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            Icon(Icons.add),
-            SizedBox(width: 10),
-            Text(
-              "Add Subject Manually",
-            ),
-          ],
-        ),
-        onPressed: _onAddNewSubject,
-      ),
     );
   }
 

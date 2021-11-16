@@ -19,19 +19,24 @@ class SubjectsRepository implements SubjectsRepositoryContract {
   });
 
   @override
-  Future<Either<Failure, List<Subject>>> getSubjects(DataSource dataSource) async {
+  Future<Either<Failure, List<Subject>>> getSubjects(
+      DataSource dataSource) async {
     switch (dataSource) {
       case DataSource.NETWORK:
         if (await networkInfo.isConnected) {
           try {
             final collegeID = await localDataSource.getCollegeID();
-            if (collegeID == null) {
-              return Left(CollegeNotConfiguredFailure());
-            }
-            final subjects = await remoteDataSource.getSubjects(collegeID);
+            // if (collegeID == null) {
+            //   return Left(CollegeNotConfiguredFailure());
+            // }
+            final subjects =
+                await remoteDataSource.getSubjects(collegeID ?? "");
+            await localDataSource.addSubjects(subjects);
             return Right(subjects);
           } on ServerException {
             return Left(ServerFailure());
+          } on CacheException {
+            return Left(CacheFailure());
           }
         } else {
           return Left(NoInternetFailure());
@@ -50,7 +55,8 @@ class SubjectsRepository implements SubjectsRepositoryContract {
   }
 
   @override
-  Future<Either<Failure, Map<String, Subject>>> getSubjectsFromKeys(List<String> keys) async {
+  Future<Either<Failure, Map<String, Subject>>> getSubjectsFromKeys(
+      List<String> keys) async {
     try {
       final subjectMap = await localDataSource.getSubjects(keys);
       return Right(subjectMap);

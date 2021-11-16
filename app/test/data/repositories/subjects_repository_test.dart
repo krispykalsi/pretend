@@ -54,6 +54,8 @@ void main() {
               .thenAnswer((_) async => tCollegeID);
           when(mockRemoteDataSource.getSubjects(any))
               .thenAnswer((_) async => tSubjectModelList);
+          when(mockLocalDataSource.addSubjects(any))
+              .thenAnswer((_) async => null);
 
           await repository.getSubjects(tDataSource);
 
@@ -62,18 +64,21 @@ void main() {
       );
 
       test(
-        'should return remote data when call to remote datasource is successful',
+        'should return remote data and cache it to local datasource when call to remote datasource is successful',
         () async {
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
           when(mockLocalDataSource.getCollegeID())
               .thenAnswer((_) async => tCollegeID);
           when(mockRemoteDataSource.getSubjects(tCollegeID))
               .thenAnswer((_) async => tSubjectModelList);
+          when(mockLocalDataSource.addSubjects(tSubjectModelList))
+              .thenAnswer((_) async => null);
 
           final result = await repository.getSubjects(tDataSource);
 
-          verify(mockRemoteDataSource.getSubjects(tCollegeID));
           verify(mockLocalDataSource.getCollegeID());
+          verify(mockRemoteDataSource.getSubjects(tCollegeID));
+          verify(mockLocalDataSource.addSubjects(tSubjectModelList));
           expect(result, equals(Right(tSubjectModelList)));
         },
       );
@@ -103,9 +108,29 @@ void main() {
 
           final result = await repository.getSubjects(tDataSource);
 
-          verify(mockRemoteDataSource.getSubjects(tCollegeID));
           verify(mockLocalDataSource.getCollegeID());
+          verify(mockRemoteDataSource.getSubjects(tCollegeID));
           expect(result, equals(Left(ServerFailure())));
+        },
+      );
+
+      test(
+        'should return CacheFailure when caching to local datasource fails',
+            () async {
+          when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+          when(mockLocalDataSource.getCollegeID())
+              .thenAnswer((_) async => tCollegeID);
+          when(mockRemoteDataSource.getSubjects(tCollegeID))
+              .thenAnswer((_) async => tSubjectModelList);
+          when(mockLocalDataSource.addSubjects(tSubjectModelList))
+              .thenThrow(CacheException());
+
+          final result = await repository.getSubjects(tDataSource);
+
+          verify(mockLocalDataSource.getCollegeID());
+          verify(mockRemoteDataSource.getSubjects(tCollegeID));
+          verify(mockLocalDataSource.addSubjects(tSubjectModelList));
+          expect(result, equals(Left(CacheFailure())));
         },
       );
 

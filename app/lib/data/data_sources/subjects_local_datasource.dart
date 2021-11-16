@@ -33,7 +33,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
     try {
       final subjectBox = await openBox(_subjects);
       for (final subject in subjects) {
-        subjectBox.put(subject.code, subject.toJson());
+        await subjectBox.put(subject.code, subject.toJson());
       }
     } catch (e) {
       throw CacheException();
@@ -87,7 +87,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   }
 
   @override
-  Future<String> getCollegeID() async {
+  Future<String?> getCollegeID() async {
     try {
       final subjectBox = await openBox(_subjects);
       return subjectBox.get(_keyCollegeID);
