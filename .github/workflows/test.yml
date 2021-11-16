@@ -1,0 +1,30 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - working-directory: ./core
+        run: flutter pub get
+      - working-directory: ./core
+        run: flutter analyze
+      - working-directory: ./core
+        run: flutter test
+
+  app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - working-directory: ./app
+        run: flutter pub get
+      - working-directory: ./app
+        run: flutter analyze
+      - working-directory: ./app
+        run: flutter test
