@@ -82,870 +82,870 @@ CH428,Energy Conservation and Recycling
 CS251,Data Structure
 MC201,Discrete Mathematics
 MC203,Mathematics-III
-    MC205,Probability & Statistics
+MC205,Probability & Statistics
 MC207,Engineering Analysis and Design (Differential Equations and Applications)
-    CS262,Algorithm Design & Analysis
-    MC202,Real Analysis
-    MC204,Scientific Computing
-    MC206,Computer Organization & Architecture
-    MC208,Linear Algebra
-    MC301,Operating System
-    MC303,Stochastic Processes
-    MG301,Fundamental so Management
-    MC302,Data Base Management System
-    MC304,Theory of Computation
-    MC306,Financial Engineering
-    HU302,Engineering Economics
-    MC401,B.Tech. Project-I
-    MC403,Training Seminar
-    MC402,B.Tech. Project-II
-    MC305,Operations Research
-    MC307,Object Oriented programming
-    MC309,Number Theory
-    MC315,Modern Algebra
-    MC317,Numerical methods for ODE
-    MC319,Complex Analysis
-    MC308,Computer Networks
-    MC312,Artificial Intelligence
-    MC318,Computer Graphics
-    MC320,Web Technology
-    MC322,Cluster & Grid Computing
-    MC324,Big Data Analytics
-    MC411,Data Warehousing & Data Mining
-    MC413,Compiler Design
-    MC415,Wireless & Mobile Computing
-    MC417,Multimedia System Design
-    MC419,Machine Learning
-    MC404,Matrix Computation
-    MC406,Partial Differential Equations
-    MC408,Quality Control & Decision Making
-    MC412,Functional Analysis
-    MC418,Optimization Techniques.
-    MC420,Information Theory & Coding
-    MC422,Finite element methods
-    MC424,Game Theory
-    MC426,Differential Geometry
-    MC432,Fuzzy set & Fuzzy logic
-    MC434,Numerical Methods for PDE
-    MC436,Petrinet Theory & Application
-    MC438,Tensor Calculus
-    MC440,Statistical Inference
-    ME251,Engineering Mechanics
-    EP201,Introduction to Computing
-    EP203,Mathematical Physics
-    EP205,Classical and Quantum Mechanics
+CS262,Algorithm Design & Analysis
+MC202,Real Analysis
+MC204,Scientific Computing
+MC206,Computer Organization & Architecture
+MC208,Linear Algebra
+MC301,Operating System
+MC303,Stochastic Processes
+MG301,Fundamental so Management
+MC302,Data Base Management System
+MC304,Theory of Computation
+MC306,Financial Engineering
+HU302,Engineering Economics
+MC401,B.Tech. Project-I
+MC403,Training Seminar
+MC402,B.Tech. Project-II
+MC305,Operations Research
+MC307,Object Oriented programming
+MC309,Number Theory
+MC315,Modern Algebra
+MC317,Numerical methods for ODE
+MC319,Complex Analysis
+MC308,Computer Networks
+MC312,Artificial Intelligence
+MC318,Computer Graphics
+MC320,Web Technology
+MC322,Cluster & Grid Computing
+MC324,Big Data Analytics
+MC411,Data Warehousing & Data Mining
+MC413,Compiler Design
+MC415,Wireless & Mobile Computing
+MC417,Multimedia System Design
+MC419,Machine Learning
+MC404,Matrix Computation
+MC406,Partial Differential Equations
+MC408,Quality Control & Decision Making
+MC412,Functional Analysis
+MC418,Optimization Techniques.
+MC420,Information Theory & Coding
+MC422,Finite element methods
+MC424,Game Theory
+MC426,Differential Geometry
+MC432,Fuzzy set & Fuzzy logic
+MC434,Numerical Methods for PDE
+MC436,Petrinet Theory & Application
+MC438,Tensor Calculus
+MC440,Statistical Inference
+ME251,Engineering Mechanics
+EP201,Introduction to Computing
+EP203,Mathematical Physics
+EP205,Classical and Quantum Mechanics
 EP207,Digital Electronics (Engineering Analysis and Design)
-    EC272,Communication System
-    EP202,Condensed Matter Physics
-    EP204,Optics
-    EP206,Microprocessor and Interfacing
-    EP208,Computational Methods
-    EP301,Semiconductor Devices
-    EP303,Electromagnetic Theory, antennas and Propagation
-    MG301,Fundamentals of Management
-    EP302,Fiber Optics and Optical Communication
-    EP304,Fabrication and Characterization of Materials
-    EP306,Microwave Engineering
-    HU302,Engineering Economics
-    EP401,B.Tech. Project-I
-    EP403,Training Seminar
-    EP402,B.Tech. Project-II
-    EP305,Atomic and Molecular Physics
-    EP307,Biophysics
-    EP309,Quantum Information and Computing
-    EP311,Computer Networking
-    EP313,Thermodynamics of Materials
-    EP315,Advanced Characterization Techniques in Material Science
-    EP351,Physics of Engineering Materials
-    EP308,Laser and Instrumentation
-    EP312,Fourier optics and holography
-    EP314,Instrumentation and Control
-    EP316,Cosmology and Astrophysics
-    EP318,Science and Technology of Thin Films
-    EP320,Computational Material Science
-    EP322,Mechanical and Electrical Behaviour of Thin Films
-    EP405,VLSI and FPGA design
-    EP407,Mobile and Satellite communication
-    EP409,Information theory and coding
-    EP411,Advanced Simulation Techniques in Physics
-    EP413,Continuum Mechanics
-    EP415,Nano Science and Technology
-    EP417,Optical Electronics
-    EP419,Introduction to Automation and Motion Control
-    EP421,Principles of Nuclear Engineering
-    EP423,Space and Atmospheric Science-I
-    EP425,Plasma Science and Technology-I
-    EP427,Advanced Materials for Photonic Devices
-    EP404,Alternative Energy Storage and Conversion Devices
-    EP406,Introduction to Spintronics
-    EP408,Integrated Optics
-    EP412,Nuclear Materials for Engineering Applications
-    EP414,Space and Atmospheric Science-II
-    EP416,Plasma Science and Technology-II
-    EP418,Digital Signal Processing
-    EP420,Fuzzy Logic and Neural Networks
-    EP422,Embedded Systems Design
-    MC251,Applied Mathematics
-    BT201,Introduction to Biotechnology
-    BT203,Biochemistry
-    BT205,Genetics
-    BT207,Fundamental of Computational Biology
-    CO252,Data Structure and Algorithm
-    BT202,Molecular Biology
-    BT204,Drug Design and Delivery
-    BT206,Microbiology
-    BT208,Advances in Computational Biology
-    BT301,Immunology and Immuno-Technology
-    BT303,Genetic Engineering
-    HU301,Engineering Economics
-    BT302,Plant Biotechnology
-    BT304,Animal Biotechnology
-    BT306,Genomics and Proteomics
-    MG302,Fundamentals of Management
-    BT401,B.Tech Project-I
-    BT403,Training Seminar
-    BT402,B.Tech Project-II
-    BT404,Departmental Elective Course-10
-    BT305,Instrumentation in Biotechnology
-    BT307,Food Biotechnology
-    BT309,Object oriented Programming
-    BT311,Introduction to Biomedical Engineering
-    BT313,Thermodynamics of Biological System
-    BT315,Current topics in Biotechnology
-    BT317,Enzymology and Enzyme Technology
-    BT319,Drug Design and Delivery
-    BT321,Bioprocess Plant Design
-    BT323,Population Genetics
-    BT325,Cell Biology
+EC272,Communication System
+EP202,Condensed Matter Physics
+EP204,Optics
+EP206,Microprocessor and Interfacing
+EP208,Computational Methods
+EP301,Semiconductor Devices
+EP303,Electromagnetic Theory, antennas and Propagation
+MG301,Fundamentals of Management
+EP302,Fiber Optics and Optical Communication
+EP304,Fabrication and Characterization of Materials
+EP306,Microwave Engineering
+HU302,Engineering Economics
+EP401,B.Tech. Project-I
+EP403,Training Seminar
+EP402,B.Tech. Project-II
+EP305,Atomic and Molecular Physics
+EP307,Biophysics
+EP309,Quantum Information and Computing
+EP311,Computer Networking
+EP313,Thermodynamics of Materials
+EP315,Advanced Characterization Techniques in Material Science
+EP351,Physics of Engineering Materials
+EP308,Laser and Instrumentation
+EP312,Fourier optics and holography
+EP314,Instrumentation and Control
+EP316,Cosmology and Astrophysics
+EP318,Science and Technology of Thin Films
+EP320,Computational Material Science
+EP322,Mechanical and Electrical Behaviour of Thin Films
+EP405,VLSI and FPGA design
+EP407,Mobile and Satellite communication
+EP409,Information theory and coding
+EP411,Advanced Simulation Techniques in Physics
+EP413,Continuum Mechanics
+EP415,Nano Science and Technology
+EP417,Optical Electronics
+EP419,Introduction to Automation and Motion Control
+EP421,Principles of Nuclear Engineering
+EP423,Space and Atmospheric Science-I
+EP425,Plasma Science and Technology-I
+EP427,Advanced Materials for Photonic Devices
+EP404,Alternative Energy Storage and Conversion Devices
+EP406,Introduction to Spintronics
+EP408,Integrated Optics
+EP412,Nuclear Materials for Engineering Applications
+EP414,Space and Atmospheric Science-II
+EP416,Plasma Science and Technology-II
+EP418,Digital Signal Processing
+EP420,Fuzzy Logic and Neural Networks
+EP422,Embedded Systems Design
+MC251,Applied Mathematics
+BT201,Introduction to Biotechnology
+BT203,Biochemistry
+BT205,Genetics
+BT207,Fundamental of Computational Biology
+CO252,Data Structure and Algorithm
+BT202,Molecular Biology
+BT204,Drug Design and Delivery
+BT206,Microbiology
+BT208,Advances in Computational Biology
+BT301,Immunology and Immuno-Technology
+BT303,Genetic Engineering
+HU301,Engineering Economics
+BT302,Plant Biotechnology
+BT304,Animal Biotechnology
+BT306,Genomics and Proteomics
+MG302,Fundamentals of Management
+BT401,B.Tech Project-I
+BT403,Training Seminar
+BT402,B.Tech Project-II
+BT404,Departmental Elective Course-10
+BT305,Instrumentation in Biotechnology
+BT307,Food Biotechnology
+BT309,Object oriented Programming
+BT311,Introduction to Biomedical Engineering
+BT313,Thermodynamics of Biological System
+BT315,Current topics in Biotechnology
+BT317,Enzymology and Enzyme Technology
+BT319,Drug Design and Delivery
+BT321,Bioprocess Plant Design
+BT323,Population Genetics
+BT325,Cell Biology
 BT327,Minor Project (Only for students who opt for Minor)
-    BT308,Stem Cells and Regenerative Medicine
-    BT312,Metabolic Engineering
-    BT314,Ecology and Evolution
-    BT316,Transgenic Technology
-    BT318,Bioenergy and Biofuels
-    BT320,Genomics in Medicine
-    BT322,Protein Engineering
-    BT324,Biodiversity and Bioresource Planning
-    BT326,Medical Microbiology
-    BT328,Bioinformatics approaches in Complex disorders
-    BT405,Fundamentals of Computational Biology
-    BT407,Bioprocess Tech & Downstream Process
-    BT409,Concepts in Neurobiology
-    BT411,Industrial Biotechnology
-    BT413,Nanobiotechnology
-    BT415,Medical Physics
-    BT417,Plant Bioinformatics
-    BT419,Cancer Biology
-    BT421,Pharmacogenomics and Personalized Medicine
-    BT423,Technological Application in Food Technology
-    BT425,Biomaterials
-    BT427,Pharmaceutical Sciences
-    BT429,Nano-Biotechnology and nanobiomedicine
-    BT431,Biomaterials and clinical devices
-    BT433,Basic Epidemiology
-    BT435,Principle of imaging processing in medicine
-    BT437,Biomedical Instrumentation, biosensor and transducer
-    BT439,Principles and practice in Public Health
-    BT441,Rehabilitation Engineering
-    BT404,Advances in Computational Biology
-    BT406,Agriculture Microbiology
-    BT408,Bioethics and Intellectual Property Rights
-    BT412,Advanced Bioanalytical Techniques
-    BT414,Clinical Biotechnology
-    BT416,Plant Metabolic Engineering
-    BT418,Crop protection and Pest management
-    BT420,Biosensor
-    BT422,Green Energy Technology
-    BT424,Neutraceuticals
-    BT426,Environmental Biotechnology
-    BT428,Food Engineering & Biotechnology
-    BT430,Waste water treatment
-    BT432,Bioprocess Plant Designing
-    BT434,Biostatistics
-    BT436,Tissue Engineering and Artificial Organs
-    EC251,Basic Electronics & Instrumentation
-    CE201,Civil Engineering Basics and Applications
-    CE203,Engineering Mechanics
-    CE205,Fluid Mechanics
-    CE207,Engineering Analysis and Design
-    EN252,Environmental Engineering
-    CE202,Mechanics of solids
-    CE204,Engineering Survey
-    CE206,Soil Mechanics
-    CE208,Hydraulics & Hydraulic Machines
-    CE301,Analysis of Determinate Structures
-    CE303,Design of RCC structures
-    MG301,Fundamentals of Management
-    CE302,Analysis of Indeterminate Structures
-    CE304,Geotechnical Engineering
-    CE306,Transportation Engineering
-    HU302,Engineering Economics
-    CE401,B. Tech. Project
-    CE403,Training Seminar
-    CE402,B. Tech. Project (Contd. From VII Semester
-            CE305,Mechanics of Materials
-            CE307,Advanced Geo-Technical Engineering
-            CE309,Environmental Engineering Design
-            CE311,Photogrammetry and Astronomy
-            CE313,Earthquake Technology
-            CE315,Rock Engineering
-            CE317,Solid waste management and air pollution control
-            CE319,Application of Geo-Informatics Remote Sensing and GIS in Engineering
-            CE321,Disaster Preparedness and mitigation
-            CE323,Occupational Safety and Health
-            CE325,Human Values and Ethics in Disaster Management
-            CE327,Climate Change and Sustainable Development
-            CE308,Disaster Management
-            CE312,Waterpower System and Design
-            CE314,Tunnel ,Ports and Harbour Engineering
-            CE316,Matrix Methods of Structural Analysis
-            CE318,Analysis and Design of Underground Structures
-            CE320,Computational Hydraulics
-            CE322,Traffic and Transportation Planning
-            CE324,Infrastructure Resilience and Socio-Economic Dynamic
-    CE405,Design of Steel Structure
-    CE407,Water Resource Engineering
-    CE409,Advanced Design of Concrete Structures
-    CE411,Interaction Behaviour of Soil Structures
-    CE413,Water Resources Management
-    CE415,Transportation safety and Environment
-    CE417,Finite element method for 2-D Structure
-    CE419,Soil Dynamics
-    CE421,Hydraulics Structure and flood control works
-    CE423,Advanced Transportation Engineering
-    CE425,Sustainable Construction and Practices
-    CE427,Wind Loads on Structures
-    CE429,Disaster Induced Risk
-    CE431,Cyclonic Hazard Assessment and Mitigation
-    CE433,Seismic Hazard Assessment and Mitigation
-    CE435,Landslide Hazard Assessment and Mitigation
-    CE404,Construction Technology and Management
-    CE406,Advanced Design of Steel Structures
-    CE408,Computational Geo-Mechanics
-    CE412,Construction and design aspects in transportation engineering
-    CE414,Design of Bridges
-    CE416,Geo-environmental and geo-hazard engineering
-    CE418,Ground water and seepage
-    CE420,Traffic Engineering
-    CE422,Vulnerability and Risk Analysis
-    CE424,Hazard Monitoring Prediction and Mitigation
-    CE426,Retrofitting of Structures
-    EC261,Analog Electronics
-    CO201,Data Structures
-    CO203,Object Oriented Programming
-    CO205,Discrete Structures
+BT308,Stem Cells and Regenerative Medicine
+BT312,Metabolic Engineering
+BT314,Ecology and Evolution
+BT316,Transgenic Technology
+BT318,Bioenergy and Biofuels
+BT320,Genomics in Medicine
+BT322,Protein Engineering
+BT324,Biodiversity and Bioresource Planning
+BT326,Medical Microbiology
+BT328,Bioinformatics approaches in Complex disorders
+BT405,Fundamentals of Computational Biology
+BT407,Bioprocess Tech & Downstream Process
+BT409,Concepts in Neurobiology
+BT411,Industrial Biotechnology
+BT413,Nanobiotechnology
+BT415,Medical Physics
+BT417,Plant Bioinformatics
+BT419,Cancer Biology
+BT421,Pharmacogenomics and Personalized Medicine
+BT423,Technological Application in Food Technology
+BT425,Biomaterials
+BT427,Pharmaceutical Sciences
+BT429,Nano-Biotechnology and nanobiomedicine
+BT431,Biomaterials and clinical devices
+BT433,Basic Epidemiology
+BT435,Principle of imaging processing in medicine
+BT437,Biomedical Instrumentation, biosensor and transducer
+BT439,Principles and practice in Public Health
+BT441,Rehabilitation Engineering
+BT404,Advances in Computational Biology
+BT406,Agriculture Microbiology
+BT408,Bioethics and Intellectual Property Rights
+BT412,Advanced Bioanalytical Techniques
+BT414,Clinical Biotechnology
+BT416,Plant Metabolic Engineering
+BT418,Crop protection and Pest management
+BT420,Biosensor
+BT422,Green Energy Technology
+BT424,Neutraceuticals
+BT426,Environmental Biotechnology
+BT428,Food Engineering & Biotechnology
+BT430,Waste water treatment
+BT432,Bioprocess Plant Designing
+BT434,Biostatistics
+BT436,Tissue Engineering and Artificial Organs
+EC251,Basic Electronics & Instrumentation
+CE201,Civil Engineering Basics and Applications
+CE203,Engineering Mechanics
+CE205,Fluid Mechanics
+CE207,Engineering Analysis and Design
+EN252,Environmental Engineering
+CE202,Mechanics of solids
+CE204,Engineering Survey
+CE206,Soil Mechanics
+CE208,Hydraulics & Hydraulic Machines
+CE301,Analysis of Determinate Structures
+CE303,Design of RCC structures
+MG301,Fundamentals of Management
+CE302,Analysis of Indeterminate Structures
+CE304,Geotechnical Engineering
+CE306,Transportation Engineering
+HU302,Engineering Economics
+CE401,B. Tech. Project
+CE403,Training Seminar
+CE402,B. Tech. Project (Contd. From VII Semester
+CE305,Mechanics of Materials
+CE307,Advanced Geo-Technical Engineering
+CE309,Environmental Engineering Design
+CE311,Photogrammetry and Astronomy
+CE313,Earthquake Technology
+CE315,Rock Engineering
+CE317,Solid waste management and air pollution control
+CE319,Application of Geo-Informatics Remote Sensing and GIS in Engineering
+CE321,Disaster Preparedness and mitigation
+CE323,Occupational Safety and Health
+CE325,Human Values and Ethics in Disaster Management
+CE327,Climate Change and Sustainable Development
+CE308,Disaster Management
+CE312,Waterpower System and Design
+CE314,Tunnel ,Ports and Harbour Engineering
+CE316,Matrix Methods of Structural Analysis
+CE318,Analysis and Design of Underground Structures
+CE320,Computational Hydraulics
+CE322,Traffic and Transportation Planning
+CE324,Infrastructure Resilience and Socio-Economic Dynamic
+CE405,Design of Steel Structure
+CE407,Water Resource Engineering
+CE409,Advanced Design of Concrete Structures
+CE411,Interaction Behaviour of Soil Structures
+CE413,Water Resources Management
+CE415,Transportation safety and Environment
+CE417,Finite element method for 2-D Structure
+CE419,Soil Dynamics
+CE421,Hydraulics Structure and flood control works
+CE423,Advanced Transportation Engineering
+CE425,Sustainable Construction and Practices
+CE427,Wind Loads on Structures
+CE429,Disaster Induced Risk
+CE431,Cyclonic Hazard Assessment and Mitigation
+CE433,Seismic Hazard Assessment and Mitigation
+CE435,Landslide Hazard Assessment and Mitigation
+CE404,Construction Technology and Management
+CE406,Advanced Design of Steel Structures
+CE408,Computational Geo-Mechanics
+CE412,Construction and design aspects in transportation engineering
+CE414,Design of Bridges
+CE416,Geo-environmental and geo-hazard engineering
+CE418,Ground water and seepage
+CE420,Traffic Engineering
+CE422,Vulnerability and Risk Analysis
+CE424,Hazard Monitoring Prediction and Mitigation
+CE426,Retrofitting of Structures
+EC261,Analog Electronics
+CO201,Data Structures
+CO203,Object Oriented Programming
+CO205,Discrete Structures
 CO207,Engineering Analysis and Design (Modeling and Simulation)
-    EC262,Digital Electronics
-    CO202,Database Management Systems
-    CO204,Operating Systems Design
-    CO206,Computer Organization and Architecture
-    CO208,Algorithm Design and Analysis
-    CO301,Software Engineering
-    CO303,Theory of Computation
-    HU301,Engineering Economics
-    CO302,Compiler Design
-    CO304,Artificial Intelligence
-    CO306,Computer Networks
-    MG302,Fundamentals of Management
-    CO401,B.Tech. Project-I
-    CO403,Training Seminar
-    CO402,B.Tech. Project-II
-    CO305,Information Theory and coding
-    CO307,Digital Signal Processing
-    CO309,Advanced Data Structures
-    CO311,Microprocessors and Interfacing
-    CO313,Computer Graphics
-    CO315,Optimization Techniques
-    CO317,Soft Computing
-    CO319,Enterprise Java programming
-    CO321,Embedded Systems
-    CO323,Data Compression
-    CO325,Probability and Statistics
-    CO327,Machine Learning
-    CO329,Methods for Data Preparation & Analysis
-    CO331,Minor Project
-    CO308,Parallel Algorithms
-    CO312,Communications Engineering
-    CO314,Optical Networks
-    CO316,High Speed Networks
-    CO318,Advanced Database Management Systems
-    CO320,Multimedia System Design
-    CO322,Real Time System
-    CO324,Pattern Recognition
-    CO326,Object Oriented Software Engineering
-    CO405,Information and Network Security
-    CO407,Distributed Systems
-    CO409,Robotics
-    CO411,Computer Vision
-    CO413,VLSI Design
-    CO415,Wireless and Mobile Computing
-    CO417,Software Testing
-    CO419,High Performance Computing
-    CO421,Grid and Cluster Computing
-    CO423,Swarm & Evolutionary Computing
-    CO427,Web Technology
-    CO429,Neural Networks
-    CO431,Reinforcement Learning
-    CO433,Distributed Systems
-    CO404,Data-Warehousing and Data Mining
-    CO406,Parallel Computer Architecture
-    CO408,Intellectual Property Rights
-    CO412,Software Quality and Metrics
-    CO414,Big Data Analytics
-    CO416,Cloud Computing
-    CO418,Natural Language Processing
-    CO420,Cyber Forensics
-    CO422,Semantic Web and Web Mining
-    CO424,Software Project Management
-    MC261,Numerical and Engineering Optimization Methods
-    EE201,Network Analysis & Synthesis
-    EE203,Electronic Devices and Circuits
-    EE205,Electromechanical Energy Conversion and Transformer
-    EE207,Electromagnetic Field Theory
-    ME252,Power Plant Engineering
-    EE202,Linear Integrated Circuit
-    EE204,Digital circuits and System
-    EE206,Control Systems
-    EE208,Asynchronous and Synchronous Machines
-    EE301,Power Electronics
-    EE303,Power Transmission and Distribution
-    HU301,Engineering Economics
-    EE302,Electric Drives
-    EE304,Power System Analysis
-    EE306,Microprocessors & Microcontroller Applications
-    MG302,Fundamentals of Management
-    EE401,B.Tech Project-I
-    EE403,Training Seminar
-    EE402,B.Tech Project-II
-    EE305,Signals and Systems
-    EE307,Power Station Practices
-    EE309,Special Electrical Machines
-    EE311,Energy Efficient Motors
-    EE313,Engineering Analysis and Design
-    EE315,Digital Control and State Variable Analysis
-    EE317,Renewable Energy Systems
-    EE319,Digital System Design
-    EE321,Soft Computing Techniques
-    EE323,Fundamentals of Machine Learning
-    EE325,Internet of Things
-    EE327,Introduction to Python Programming
-    EE308,Power System Operation and Control
-    EE312,Power System Optimization
-    EE314,Power Electronic Applications to Power Systems
-    EE316,Electrical Energy Storage Systems
-    EE318,Switched Mode Power Supplies
-    EE320,VLSI Design
-    EE322,Advanced Analog Circuit Design
-    EE324,Design, Estimation & Costing of Industrial Electrical Systems
-    EE326,CMOS Analog Integrated Circuits
-    EE328,Deep Learning with Artificial Neural Network
-    EE330,Introduction to ARM Architecture
-    EE332,Wireless Sensor Networks
-    EE405,Digital Signal Processing
-    EE407,Instrumentation and Measurement
-    EE409,Switchgear and Protection
-    EE411,Power System Modeling & Simulation
-    EE413,Power System Reliability
-    EE415,Design of Electrical Machines
-    EE417,Advanced Topics in Electrical Machines
-    EE419,Pulse Width Modulation for Power converters
-    EE421,Advanced Communications
-    EE423,Microcontroller and Embedded Systems
-    EE425,IC Technology
-    EE427,Computer Architecture
-    EE429,Power Electronics Application to Photovoltaic Systems
-    EE404,Power System Dynamics & Stability
-    EE406,Distribution Systems Analysis & Control
-    EE408,Restructured Power Systems
-    EE412,High Voltage Engineering
-    EE414,Distributed Generation
-    EE416,Grid Integration of Renewable Energy Sources
-    EE418,Selected Topics in Power Electronics
-    EE420,Power Quality
-    EE422,HVDC Transmission
-    EE424,Flexible AC Transmission Systems
-    EE426,Smart Grid
-    EE428,Digital Image Processing
-    EE430,Filter Design
-    EE432,AI and Expert Systems
-    EE434,Computer Control of Processes
-    EE436,Nonlinear and Adaptive Control
-    EE438,DSP Applications to Electromechanical Systems
-    EE440,SCADA & Energy Management Systems
-    EE442,Robotics and Machine Vision
-    EE444,Utilization of Electrical Energy & Traction
-    EE446,Data Communication and Computer Networks
-    EE448,Big Data Analytics
-    EE450,Cloud Computing Fundamentals
-    EE251,Electronic Instrumentation and Measurements
-    EC201,Analog Electronics – I
-    EC203,Digital Design – I
-    EC205,Signals & Systems
+EC262,Digital Electronics
+CO202,Database Management Systems
+CO204,Operating Systems Design
+CO206,Computer Organization and Architecture
+CO208,Algorithm Design and Analysis
+CO301,Software Engineering
+CO303,Theory of Computation
+HU301,Engineering Economics
+CO302,Compiler Design
+CO304,Artificial Intelligence
+CO306,Computer Networks
+MG302,Fundamentals of Management
+CO401,B.Tech. Project-I
+CO403,Training Seminar
+CO402,B.Tech. Project-II
+CO305,Information Theory and coding
+CO307,Digital Signal Processing
+CO309,Advanced Data Structures
+CO311,Microprocessors and Interfacing
+CO313,Computer Graphics
+CO315,Optimization Techniques
+CO317,Soft Computing
+CO319,Enterprise Java programming
+CO321,Embedded Systems
+CO323,Data Compression
+CO325,Probability and Statistics
+CO327,Machine Learning
+CO329,Methods for Data Preparation & Analysis
+CO331,Minor Project
+CO308,Parallel Algorithms
+CO312,Communications Engineering
+CO314,Optical Networks
+CO316,High Speed Networks
+CO318,Advanced Database Management Systems
+CO320,Multimedia System Design
+CO322,Real Time System
+CO324,Pattern Recognition
+CO326,Object Oriented Software Engineering
+CO405,Information and Network Security
+CO407,Distributed Systems
+CO409,Robotics
+CO411,Computer Vision
+CO413,VLSI Design
+CO415,Wireless and Mobile Computing
+CO417,Software Testing
+CO419,High Performance Computing
+CO421,Grid and Cluster Computing
+CO423,Swarm & Evolutionary Computing
+CO427,Web Technology
+CO429,Neural Networks
+CO431,Reinforcement Learning
+CO433,Distributed Systems
+CO404,Data-Warehousing and Data Mining
+CO406,Parallel Computer Architecture
+CO408,Intellectual Property Rights
+CO412,Software Quality and Metrics
+CO414,Big Data Analytics
+CO416,Cloud Computing
+CO418,Natural Language Processing
+CO420,Cyber Forensics
+CO422,Semantic Web and Web Mining
+CO424,Software Project Management
+MC261,Numerical and Engineering Optimization Methods
+EE201,Network Analysis & Synthesis
+EE203,Electronic Devices and Circuits
+EE205,Electromechanical Energy Conversion and Transformer
+EE207,Electromagnetic Field Theory
+ME252,Power Plant Engineering
+EE202,Linear Integrated Circuit
+EE204,Digital circuits and System
+EE206,Control Systems
+EE208,Asynchronous and Synchronous Machines
+EE301,Power Electronics
+EE303,Power Transmission and Distribution
+HU301,Engineering Economics
+EE302,Electric Drives
+EE304,Power System Analysis
+EE306,Microprocessors & Microcontroller Applications
+MG302,Fundamentals of Management
+EE401,B.Tech Project-I
+EE403,Training Seminar
+EE402,B.Tech Project-II
+EE305,Signals and Systems
+EE307,Power Station Practices
+EE309,Special Electrical Machines
+EE311,Energy Efficient Motors
+EE313,Engineering Analysis and Design
+EE315,Digital Control and State Variable Analysis
+EE317,Renewable Energy Systems
+EE319,Digital System Design
+EE321,Soft Computing Techniques
+EE323,Fundamentals of Machine Learning
+EE325,Internet of Things
+EE327,Introduction to Python Programming
+EE308,Power System Operation and Control
+EE312,Power System Optimization
+EE314,Power Electronic Applications to Power Systems
+EE316,Electrical Energy Storage Systems
+EE318,Switched Mode Power Supplies
+EE320,VLSI Design
+EE322,Advanced Analog Circuit Design
+EE324,Design, Estimation & Costing of Industrial Electrical Systems
+EE326,CMOS Analog Integrated Circuits
+EE328,Deep Learning with Artificial Neural Network
+EE330,Introduction to ARM Architecture
+EE332,Wireless Sensor Networks
+EE405,Digital Signal Processing
+EE407,Instrumentation and Measurement
+EE409,Switchgear and Protection
+EE411,Power System Modeling & Simulation
+EE413,Power System Reliability
+EE415,Design of Electrical Machines
+EE417,Advanced Topics in Electrical Machines
+EE419,Pulse Width Modulation for Power converters
+EE421,Advanced Communications
+EE423,Microcontroller and Embedded Systems
+EE425,IC Technology
+EE427,Computer Architecture
+EE429,Power Electronics Application to Photovoltaic Systems
+EE404,Power System Dynamics & Stability
+EE406,Distribution Systems Analysis & Control
+EE408,Restructured Power Systems
+EE412,High Voltage Engineering
+EE414,Distributed Generation
+EE416,Grid Integration of Renewable Energy Sources
+EE418,Selected Topics in Power Electronics
+EE420,Power Quality
+EE422,HVDC Transmission
+EE424,Flexible AC Transmission Systems
+EE426,Smart Grid
+EE428,Digital Image Processing
+EE430,Filter Design
+EE432,AI and Expert Systems
+EE434,Computer Control of Processes
+EE436,Nonlinear and Adaptive Control
+EE438,DSP Applications to Electromechanical Systems
+EE440,SCADA & Energy Management Systems
+EE442,Robotics and Machine Vision
+EE444,Utilization of Electrical Energy & Traction
+EE446,Data Communication and Computer Networks
+EE448,Big Data Analytics
+EE450,Cloud Computing Fundamentals
+EE251,Electronic Instrumentation and Measurements
+EC201,Analog Electronics – I
+EC203,Digital Design – I
+EC205,Signals & Systems
 EC207,Engineering Analysis & Design (Network Analysis and Synthesis)
-    EE262,Electromagnetics
-    EC202,Analog Electronics–II
-    EC204,Digital Design – II
-    EC206,Communication Systems
-    EC208,Computer Architecture
-    EC301,Digital Communication
-    EC303,Linear Integrated Circuits
-    HU301,Engineering Economics
-    EC302,VLSI Design
-    EC304,Digital Signal Processing
-    EC306,Embedded Systems
-    MG302,Fundamentals of Management
-    EC401,B. Tech Project-I
-    EC403,Training Seminar
+EE262,Electromagnetics
+EC202,Analog Electronics–II
+EC204,Digital Design – II
+EC206,Communication Systems
+EC208,Computer Architecture
+EC301,Digital Communication
+EC303,Linear Integrated Circuits
+HU301,Engineering Economics
+EC302,VLSI Design
+EC304,Digital Signal Processing
+EC306,Embedded Systems
+MG302,Fundamentals of Management
+EC401,B. Tech Project-I
+EC403,Training Seminar
 EC402,B. Tech Project-II (Contd. From VII Sem.)
-    EC305,Semiconductor Device Electronics
-    EC307,Antenna Design
-    EC309,Bio – Medical Electronics & Instrumentation
-    EC311,Algorithms Design And Analysis
-    EC313,Microprocessors And Interfacing
-    EC315,Computer Communication Networks
-    EC317,Operating Systems
-    EC319,CMOS Analog Integrated Circuits
-    EC321,IC Technology
-    EC323,Control Systems
-    EC325,Probability and Random Process
-    EC327,Time – Frequency Analysis
-    EC329,Analog Signal Processing
-    EC308,Analog Filter Design
-    EC312,Software Defined Radio And Cognitive Radio
-    EC314,RF Design
-    EC316,Wireless Sensor Networks
-    EC318,RF Circuits in CMOS Technology
-    EC320,Soft Computing
-    EC322,Green Sensors
-    EC324,Nano Electronics
-    EC326,Data Converters
-    EC328,Speech Recognition
-    EC330,Digital Image Processing
-    EC332,Information Theory and Coding
-    EC334,Electronics System Design
-    EC336,Flexible Electronics
-    EC338,Design Verification
-    EC340,Robust Analog Circuit Design
-    EC342,Machine Learning
-    EC405,Microwave Engineering
-    EC407,Optical Communication
-    EC409,Computer Vision
-    EC411,Bio – Medical Signal and Image Processing
-    EC413,Power Electronics
-    EC415,System On Chip Design
-    EC417,CAD For VLSI Design
-    EC419,Memory Design
-    EC421,Computer And Numerical Techniques In Electromagnetics
-    EC423,Internet and Web Technologies
-    EC425,Mixed Signal Design
-    EC427,Mathematical Modelling & Simulation
-    EC429,Emerging Semiconductor Devices
-    EC431,MEMS and Sensor Design
-    EC433,Hardware Design Methodology
-    EC435,Quantum Electronics and Communication
-    EC437,Fractals and its application in electronics
-    EC439,Microwave integrated circuit
-    EC441,Radar Signal processing
-    EC443,RF MEMS Design and Technology
-    EC445,Nanophotonic Devices for Communications
-    EC447,Spread Spectrum Techniques and Multiple Access
-    EC449,Adaptive Signal Processing
-    EC451,Reconfigurable Computing
-    EC453,Statistical Signal Processing
-    EC455,Data Analytics
-    EC457,Natural Language Processing
-    EC459,Adaptive Filter Theory
-    EC461,Multi-rate Signal Processing
-    EC404,Wireless Communication
-    EC406,Autonomous Mobile Robots
-    EC408,Low Power VLSI Design
-    EC412,Machine Learning
-    EC414,EMC / EMI
-    EC416,Pattern Recognition
-    EC418,Estimation and Detection Theory
-    EC420,Cloud Computing
-    EC422,Robotics & Machine Vision
-    EC424,Fault Tolerant Computing
-    EC426,Distributed Computing
-    EC428,Neuroelectronics
-    EC430,Advanced Computer Architecture
-    EC432,Bio – Impedance Based Measurements
-    EC434,Fundamentals of MIMO
-    EC436,Advance Microwave & Antenna Design
-    EC438,Radar and Satellite Communication
-    EC440,Photonic Integrated Circuits and Communication
-    EC442,Microwave Digital Communication
-    EC444,Wavelets and its application in Antenna
-    EC446,RF and Microwave Active circuits
-    EC448,Optical Electronics for Communication Systems
-    EC450,Optical Networks
-    EC452,Optical CDMA systems
-    EC454,5G Wireless technologies
-    EC456,Wavelets in Signal Processing
-    EC458,Deep Learning
-    EC460,Computational Optimization
-    EC462,Recent Trends in Artificial Intelligence
-    EC464,Virtual Reality
-    EC466,Human Computer Interaction
-    EC468,Probabilistic Graphical Models
-    CE251,Building Material & Construction
-    EN201,Strength of Materials
-    EN203,Engineering & Environmental Surveying
-    EN205,Environmental Chemistry & Microbiology
-    EN207,Engineering Analysis & Design
-    CE252,Structural Analysis
-    EN202,Geotechnical Engineering
-    EN204,Water Engineering: Design & Application
-    EN206,Engineering Geology, GIS & Remote Sensing
-    EN208,Fluid Mechanics & Hydraulic Machines
-    EN301,Waste Water Engineering: Design and Applications
-    EN303,Instrumentation Techniques for Environmental Monitoring
-    HU301,Engineering Economics
-    EN302,Solid Waste Management
-    EN304,Air Pollution & Control
-    EN306,Hydrology & Ground Water Engineering.
-    MG302,Fundamentals of Management
-    EN401,B. Tech Project-I
-    EN403,Training Seminar
-    EN402,B. Tech Project -II
-    EN404,Environmental Impact Assessment & Audit
-    EN305,Soil Pollution & Remediation
-    EN307,Planning and Design of Environmental Enng. Works
-    EN309,Water Resources System
-    EN311,Climate Change & CDM
-    EN313,Environmental Toxicology & Risk Assessment
-    EN315,Ecology and Bio-monitoring Techniques
-    EN317,Environmental Management
-    EN308,Hazardous & Biomedical Waste Management
-    EN312,Advance Surveying
-    EN314,Green Technology
-    EN316,Environmental Law and Policy
-    EN318,Transportation and Traffic Engineering
-    EN405,Project Management
-    EN407,Vibration Analysis & Control of Noise Pollution
-    EN409,Industrial Waste Management
-    EN411,Occupational Hazards, Health & Safety
-    EN413,Water and Soil Conservation
-    EN415,System Simulation & Modeling
-    EN417,Environmental Risk Assessment
-    EN419,Environmental Economics
-    EN421,Design of water distribution network
-    EN404,Environmental Impact Assessment & Audit
-    EN406,Advanced Open Channel Hydraulics
-    EN408,Risk and Reliability Analysis of Environmental System
-    EN412,Environment and Sustainable Development
-    EN414,Disaster Management
-    EN416,Non-Conventional Energy Systems
-    EN418,Environmental Biotechnology
-    EN420,Life Cycle Assessment
-    EC261,Analog Electronics
-    IT201,Data Structures
-    IT203,Object Oriented Programming
-    IT205,Discrete Structures
+EC305,Semiconductor Device Electronics
+EC307,Antenna Design
+EC309,Bio – Medical Electronics & Instrumentation
+EC311,Algorithms Design And Analysis
+EC313,Microprocessors And Interfacing
+EC315,Computer Communication Networks
+EC317,Operating Systems
+EC319,CMOS Analog Integrated Circuits
+EC321,IC Technology
+EC323,Control Systems
+EC325,Probability and Random Process
+EC327,Time – Frequency Analysis
+EC329,Analog Signal Processing
+EC308,Analog Filter Design
+EC312,Software Defined Radio And Cognitive Radio
+EC314,RF Design
+EC316,Wireless Sensor Networks
+EC318,RF Circuits in CMOS Technology
+EC320,Soft Computing
+EC322,Green Sensors
+EC324,Nano Electronics
+EC326,Data Converters
+EC328,Speech Recognition
+EC330,Digital Image Processing
+EC332,Information Theory and Coding
+EC334,Electronics System Design
+EC336,Flexible Electronics
+EC338,Design Verification
+EC340,Robust Analog Circuit Design
+EC342,Machine Learning
+EC405,Microwave Engineering
+EC407,Optical Communication
+EC409,Computer Vision
+EC411,Bio – Medical Signal and Image Processing
+EC413,Power Electronics
+EC415,System On Chip Design
+EC417,CAD For VLSI Design
+EC419,Memory Design
+EC421,Computer And Numerical Techniques In Electromagnetics
+EC423,Internet and Web Technologies
+EC425,Mixed Signal Design
+EC427,Mathematical Modelling & Simulation
+EC429,Emerging Semiconductor Devices
+EC431,MEMS and Sensor Design
+EC433,Hardware Design Methodology
+EC435,Quantum Electronics and Communication
+EC437,Fractals and its application in electronics
+EC439,Microwave integrated circuit
+EC441,Radar Signal processing
+EC443,RF MEMS Design and Technology
+EC445,Nanophotonic Devices for Communications
+EC447,Spread Spectrum Techniques and Multiple Access
+EC449,Adaptive Signal Processing
+EC451,Reconfigurable Computing
+EC453,Statistical Signal Processing
+EC455,Data Analytics
+EC457,Natural Language Processing
+EC459,Adaptive Filter Theory
+EC461,Multi-rate Signal Processing
+EC404,Wireless Communication
+EC406,Autonomous Mobile Robots
+EC408,Low Power VLSI Design
+EC412,Machine Learning
+EC414,EMC / EMI
+EC416,Pattern Recognition
+EC418,Estimation and Detection Theory
+EC420,Cloud Computing
+EC422,Robotics & Machine Vision
+EC424,Fault Tolerant Computing
+EC426,Distributed Computing
+EC428,Neuroelectronics
+EC430,Advanced Computer Architecture
+EC432,Bio – Impedance Based Measurements
+EC434,Fundamentals of MIMO
+EC436,Advance Microwave & Antenna Design
+EC438,Radar and Satellite Communication
+EC440,Photonic Integrated Circuits and Communication
+EC442,Microwave Digital Communication
+EC444,Wavelets and its application in Antenna
+EC446,RF and Microwave Active circuits
+EC448,Optical Electronics for Communication Systems
+EC450,Optical Networks
+EC452,Optical CDMA systems
+EC454,5G Wireless technologies
+EC456,Wavelets in Signal Processing
+EC458,Deep Learning
+EC460,Computational Optimization
+EC462,Recent Trends in Artificial Intelligence
+EC464,Virtual Reality
+EC466,Human Computer Interaction
+EC468,Probabilistic Graphical Models
+CE251,Building Material & Construction
+EN201,Strength of Materials
+EN203,Engineering & Environmental Surveying
+EN205,Environmental Chemistry & Microbiology
+EN207,Engineering Analysis & Design
+CE252,Structural Analysis
+EN202,Geotechnical Engineering
+EN204,Water Engineering: Design & Application
+EN206,Engineering Geology, GIS & Remote Sensing
+EN208,Fluid Mechanics & Hydraulic Machines
+EN301,Waste Water Engineering: Design and Applications
+EN303,Instrumentation Techniques for Environmental Monitoring
+HU301,Engineering Economics
+EN302,Solid Waste Management
+EN304,Air Pollution & Control
+EN306,Hydrology & Ground Water Engineering.
+MG302,Fundamentals of Management
+EN401,B. Tech Project-I
+EN403,Training Seminar
+EN402,B. Tech Project -II
+EN404,Environmental Impact Assessment & Audit
+EN305,Soil Pollution & Remediation
+EN307,Planning and Design of Environmental Enng. Works
+EN309,Water Resources System
+EN311,Climate Change & CDM
+EN313,Environmental Toxicology & Risk Assessment
+EN315,Ecology and Bio-monitoring Techniques
+EN317,Environmental Management
+EN308,Hazardous & Biomedical Waste Management
+EN312,Advance Surveying
+EN314,Green Technology
+EN316,Environmental Law and Policy
+EN318,Transportation and Traffic Engineering
+EN405,Project Management
+EN407,Vibration Analysis & Control of Noise Pollution
+EN409,Industrial Waste Management
+EN411,Occupational Hazards, Health & Safety
+EN413,Water and Soil Conservation
+EN415,System Simulation & Modeling
+EN417,Environmental Risk Assessment
+EN419,Environmental Economics
+EN421,Design of water distribution network
+EN404,Environmental Impact Assessment & Audit
+EN406,Advanced Open Channel Hydraulics
+EN408,Risk and Reliability Analysis of Environmental System
+EN412,Environment and Sustainable Development
+EN414,Disaster Management
+EN416,Non-Conventional Energy Systems
+EN418,Environmental Biotechnology
+EN420,Life Cycle Assessment
+EC261,Analog Electronics
+IT201,Data Structures
+IT203,Object Oriented Programming
+IT205,Discrete Structures
 IT207,Engineering Analysis and Design (Modeling & Simulation)
-    EC262,Digital Electronics
-    IT202,Database Management Systems
-    IT204,Operating System
-    IT206,Computer Organization and Architecture
-    IT208,Algorithm Design and Analysis
-    IT301,Theory of Computation
-    IT303,Computer Networks
-    HU301,Engineering Economics
-    IT302,Compiler Design
-    IT304,Software Engineering
-    IT306,Artificial Intelligence and Expert Systems
-    MG302,Fundamentals of Management
-    IT401,B.Tech. Project-I
-    IT403,Training Seminar
-    IT402,B.Tech. Project-II
-    IT305,Computer Graphics
-    IT307,Pattern Recognition
-    IT309,Information Theory and coding
-    IT311,Advanced Data Structures
-    IT313,Microprocessor & Interfacing
-    IT315,Distributed Systems
-    IT317,Soft Computing
-    IT319,Data Compression
-    IT321,Malware Analysis
-    IT323,Machine Learning
-    IT325,Secure Coding
-    IT308,Optimization Techniques
-    IT312,Cyber Forensics
-    IT314,Optical Networks
-    IT316,High Speed Networks
-    IT318,Advanced Database Management Systems
-    IT320,Multimedia System Design
-    IT322,Real Time System
-    IT324,Deep Learning
-    IT326,Object Oriented Software Engineering
-    IT328,Ethical Hacking
-    IT405,Data -Warehouse and Data Mining
-    IT407,Information and Network Security
-    IT409,Enterprise Java Programming
-    IT411,Digital Image Processing
-    IT413,VLSI Design
-    IT415,Software Project Management
-    IT417,High Performance Computing
-    IT419,Grid and Cluster Computing
-    IT421,Swarm Optimization & Evolutionary Computing
-    IT423,Computational Number Theory and Cryptography
-    IT425,Natural Language Processing
-    IT427,Intrusion Detection and Information Warfare
-    IT429,Cyber laws
-    IT431,Information Security and Audit
-    IT433,Multi modal data processing
-    IT404,Big data Analytics
-    IT406,Web Technology
-    IT408,Parallel Computer Architecture
-    IT412,Bio Informatics
-    IT414,Software Testing
-    IT416,Nomadic Computing
-    IT418,Cloud Computing
-    IT420,Computer Vision
-    IT422,Embedded Systems
-    IT424,Semantic Web and Web Mining
-    IT426,Software quality and metrics
-    IT428,Mobile and Digital Forensics
-    IT430,Speech & Natural Language Understanding
-    PE251,Engineering Materials & Metallurgy
-    ME201,Mechanics of Solids
-    ME203,Thermal Engineering-I
-    ME205,Machine Drawing and Solid Modeling
-    ME207,Engineering Analysis and Design
-    PE252,Manufacturing Machines
-    ME202,Thermal Engineering-II
-    ME204,Fluid Mechanics
-    ME206,Kinematics of Machines
-    ME208,Manufacturing Technology-I
-    ME301,Fluid Systems
-    ME303,Dynamics of Machines
-    MG301,Fundamentals of Management
-    ME302,Heat And Mass Transfer
-    ME304,Design of Machine Elements
-    ME306,Manufacturing Technology-II
-    HU302,Engineering Economics
-    ME401,B. Tech Project-I
-    ME403,Training Seminar
-    ME402,B. Tech Project-II
-    ME305,Design of Machine Elements
-    ME307,Manufacturing Technology -II
-    ME351,Power Plant Engineering
-    ME353,Renewal Sources of Energy
-    ME355,Thermal Systems
-    ME361,Industrial Engineering
-    ME363,Product Design & Simulation
-    ME365,Computational Fluid Dynamics
-    ME367,Finite Element Methods
-    ME369,Total Life Cycle Management
-    ME371,Value Engineering
-    ME308,Gas Dynamics & Jet Propulsion
-    ME312,Quality Management & Six Sigma Applications
-    ME314,Mechanical Vibrations
-    ME316,Power Plant Engineering
-    ME318,Computer Aided Manufacturing
-    ME320,Reliability & Maintenance Engineering
-    ME322,Design of Mechanical Assemblies
-    ME324,System modeling, simulation and analysis
-    ME326,Pressure vessels and Piping Technology
-    ME328,Composite Material Technology
-    ME330,Production and Operations Management
-    ME332,Finite Element Method
-    ME407,Refrigeration & Air Conditioning
-    ME409,Mechatronics & Control
-    ME411,I.C. Engines
-    ME413,Metrology
-    ME415,Project Management
-    ME419,Robotics & Automation
-    ME421,Computational Fluid Dynamics
-    ME423,Advanced Manufacturing Processes
-    ME427,Operations Research
-    ME429,Industrial Tribology
-    ME431,Non-conventional Energy Sources
-    ME433,Computer Integrated Manufacturing
-    ME435,Optimization techniques
-    ME404,Industrial Engineering
-    ME406,Elastic & Plastic Behaviour of Materials
-    ME408,Combustion Generated Pollution
-    ME412,Supply Chain Management
-    ME414,Fracture Mechanics
-    ME416,Nuclear Energy
-    ME418,Operations and Manufacturing Strategy
-    ME420,Materials management
-    ME422,Fuel Cell
-    PE261,Quantitative Techniques
-    AE201,Engineering Mechanics
-    AE203,Thermodynamics
-    AE205,Manufacturing Machines
-    AE207,Engineering Analysis and Design
-    EE272,Automotive Electrical and Electronics
-    AE202,Heat and Mass Transfer
-    AE204,Theory of Machines
-    AE206,Mechanics of Solids
-    AE208,Material Engineering & Metallurgy
-    AE301,Manufacturing Technology
-    AE303,Fluid Mechanics And Hydraulic Machines
-    MG301,Fundamentals of Management
-    AE302,Design of Machine Elements
-    AE304,Internal Combustion Engines
-    AE306,Alternative Fuels and Energy Systems
-    HU302,Engineering Economics
-    AE401,B.Tech. Project-I
-    AE403,Training Seminar
-    AE402,B.Tech Project-II
-    AE305,Automotive Aerodynamics & CFD
-    AE307,Combustion Generated Pollution
-    AE309,Operation Research
-    AE311,Tyre Technology
-    AE313,Thermal Engineering
-    AE315,Turbo machinery and gas dynamics
-    AE317,Power units and transmission
-    AE319,Computer Simulation of I.C. Engine Process
-    AE321,Advanced strength of material
-    AE323,Finite Element Methods and Applications
-    AE308,Measurement and Instrumentation
-    AE312,Quality Management & Six Sigma Applications
-    AE314,Metrology
-    AE316,Advances in Welding & Casting
-    AE318,Materials for automobile components
-    AE320,Tribology and lubrication
-    AE322,Reliability & Maintenance Engineering
-    AE324,Elastic & Plastic Behaviour of Materials
-    AE326,Production Planning & Inventory Control
-    AE405,Design of Automobile Components
-    AE407,Production And Operations Management
-    AE409,Computer Aided Vehicle Design And Safety
-    AE411,Vehicle Maintenance & Tribology
-    AE413,Vehicle Transport Management
-    AE415,Power Plant Engineering
-    AE417,Robotics & Automation
-    AE419,Nuclear Energy
-    AE404,Computer Integrated Manufacturing Systems
-    AE406,Total Life Cycle Management
-    AE408,Refrigeration & Automobile Air Conditioning
-    AE412,Modern Vehicle Technology
-    AE414,Automobiles Vibration System Analysis
-    AE416,Renewable Sources of Energy
-    AE418,Supply Chain Management
-    AE420,Vehicle Safety Engineering
-    AE422,Packaging Technology
-    AE424,Mechatronics
-    AE426,Financial Management
-    AE428,Fracture mechanics
-    AE430,Product design and development
-    AE432,Tractors and Farm Equipment and Off Road Vehicles
-    AE434,Automobile process control
-    ME261,Kinematic And Dynamic Of Machines
-    PE201,Engineering Materials & Metallurgy
-    PE203,Thermal Engineering-I
-    PE205,Manufacturing Machines
+EC262,Digital Electronics
+IT202,Database Management Systems
+IT204,Operating System
+IT206,Computer Organization and Architecture
+IT208,Algorithm Design and Analysis
+IT301,Theory of Computation
+IT303,Computer Networks
+HU301,Engineering Economics
+IT302,Compiler Design
+IT304,Software Engineering
+IT306,Artificial Intelligence and Expert Systems
+MG302,Fundamentals of Management
+IT401,B.Tech. Project-I
+IT403,Training Seminar
+IT402,B.Tech. Project-II
+IT305,Computer Graphics
+IT307,Pattern Recognition
+IT309,Information Theory and coding
+IT311,Advanced Data Structures
+IT313,Microprocessor & Interfacing
+IT315,Distributed Systems
+IT317,Soft Computing
+IT319,Data Compression
+IT321,Malware Analysis
+IT323,Machine Learning
+IT325,Secure Coding
+IT308,Optimization Techniques
+IT312,Cyber Forensics
+IT314,Optical Networks
+IT316,High Speed Networks
+IT318,Advanced Database Management Systems
+IT320,Multimedia System Design
+IT322,Real Time System
+IT324,Deep Learning
+IT326,Object Oriented Software Engineering
+IT328,Ethical Hacking
+IT405,Data -Warehouse and Data Mining
+IT407,Information and Network Security
+IT409,Enterprise Java Programming
+IT411,Digital Image Processing
+IT413,VLSI Design
+IT415,Software Project Management
+IT417,High Performance Computing
+IT419,Grid and Cluster Computing
+IT421,Swarm Optimization & Evolutionary Computing
+IT423,Computational Number Theory and Cryptography
+IT425,Natural Language Processing
+IT427,Intrusion Detection and Information Warfare
+IT429,Cyber laws
+IT431,Information Security and Audit
+IT433,Multi modal data processing
+IT404,Big data Analytics
+IT406,Web Technology
+IT408,Parallel Computer Architecture
+IT412,Bio Informatics
+IT414,Software Testing
+IT416,Nomadic Computing
+IT418,Cloud Computing
+IT420,Computer Vision
+IT422,Embedded Systems
+IT424,Semantic Web and Web Mining
+IT426,Software quality and metrics
+IT428,Mobile and Digital Forensics
+IT430,Speech & Natural Language Understanding
+PE251,Engineering Materials & Metallurgy
+ME201,Mechanics of Solids
+ME203,Thermal Engineering-I
+ME205,Machine Drawing and Solid Modeling
+ME207,Engineering Analysis and Design
+PE252,Manufacturing Machines
+ME202,Thermal Engineering-II
+ME204,Fluid Mechanics
+ME206,Kinematics of Machines
+ME208,Manufacturing Technology-I
+ME301,Fluid Systems
+ME303,Dynamics of Machines
+MG301,Fundamentals of Management
+ME302,Heat And Mass Transfer
+ME304,Design of Machine Elements
+ME306,Manufacturing Technology-II
+HU302,Engineering Economics
+ME401,B. Tech Project-I
+ME403,Training Seminar
+ME402,B. Tech Project-II
+ME305,Design of Machine Elements
+ME307,Manufacturing Technology -II
+ME351,Power Plant Engineering
+ME353,Renewal Sources of Energy
+ME355,Thermal Systems
+ME361,Industrial Engineering
+ME363,Product Design & Simulation
+ME365,Computational Fluid Dynamics
+ME367,Finite Element Methods
+ME369,Total Life Cycle Management
+ME371,Value Engineering
+ME308,Gas Dynamics & Jet Propulsion
+ME312,Quality Management & Six Sigma Applications
+ME314,Mechanical Vibrations
+ME316,Power Plant Engineering
+ME318,Computer Aided Manufacturing
+ME320,Reliability & Maintenance Engineering
+ME322,Design of Mechanical Assemblies
+ME324,System modeling, simulation and analysis
+ME326,Pressure vessels and Piping Technology
+ME328,Composite Material Technology
+ME330,Production and Operations Management
+ME332,Finite Element Method
+ME407,Refrigeration & Air Conditioning
+ME409,Mechatronics & Control
+ME411,I.C. Engines
+ME413,Metrology
+ME415,Project Management
+ME419,Robotics & Automation
+ME421,Computational Fluid Dynamics
+ME423,Advanced Manufacturing Processes
+ME427,Operations Research
+ME429,Industrial Tribology
+ME431,Non-conventional Energy Sources
+ME433,Computer Integrated Manufacturing
+ME435,Optimization techniques
+ME404,Industrial Engineering
+ME406,Elastic & Plastic Behaviour of Materials
+ME408,Combustion Generated Pollution
+ME412,Supply Chain Management
+ME414,Fracture Mechanics
+ME416,Nuclear Energy
+ME418,Operations and Manufacturing Strategy
+ME420,Materials management
+ME422,Fuel Cell
+PE261,Quantitative Techniques
+AE201,Engineering Mechanics
+AE203,Thermodynamics
+AE205,Manufacturing Machines
+AE207,Engineering Analysis and Design
+EE272,Automotive Electrical and Electronics
+AE202,Heat and Mass Transfer
+AE204,Theory of Machines
+AE206,Mechanics of Solids
+AE208,Material Engineering & Metallurgy
+AE301,Manufacturing Technology
+AE303,Fluid Mechanics And Hydraulic Machines
+MG301,Fundamentals of Management
+AE302,Design of Machine Elements
+AE304,Internal Combustion Engines
+AE306,Alternative Fuels and Energy Systems
+HU302,Engineering Economics
+AE401,B.Tech. Project-I
+AE403,Training Seminar
+AE402,B.Tech Project-II
+AE305,Automotive Aerodynamics & CFD
+AE307,Combustion Generated Pollution
+AE309,Operation Research
+AE311,Tyre Technology
+AE313,Thermal Engineering
+AE315,Turbo machinery and gas dynamics
+AE317,Power units and transmission
+AE319,Computer Simulation of I.C. Engine Process
+AE321,Advanced strength of material
+AE323,Finite Element Methods and Applications
+AE308,Measurement and Instrumentation
+AE312,Quality Management & Six Sigma Applications
+AE314,Metrology
+AE316,Advances in Welding & Casting
+AE318,Materials for automobile components
+AE320,Tribology and lubrication
+AE322,Reliability & Maintenance Engineering
+AE324,Elastic & Plastic Behaviour of Materials
+AE326,Production Planning & Inventory Control
+AE405,Design of Automobile Components
+AE407,Production And Operations Management
+AE409,Computer Aided Vehicle Design And Safety
+AE411,Vehicle Maintenance & Tribology
+AE413,Vehicle Transport Management
+AE415,Power Plant Engineering
+AE417,Robotics & Automation
+AE419,Nuclear Energy
+AE404,Computer Integrated Manufacturing Systems
+AE406,Total Life Cycle Management
+AE408,Refrigeration & Automobile Air Conditioning
+AE412,Modern Vehicle Technology
+AE414,Automobiles Vibration System Analysis
+AE416,Renewable Sources of Energy
+AE418,Supply Chain Management
+AE420,Vehicle Safety Engineering
+AE422,Packaging Technology
+AE424,Mechatronics
+AE426,Financial Management
+AE428,Fracture mechanics
+AE430,Product design and development
+AE432,Tractors and Farm Equipment and Off Road Vehicles
+AE434,Automobile process control
+ME261,Kinematic And Dynamic Of Machines
+PE201,Engineering Materials & Metallurgy
+PE203,Thermal Engineering-I
+PE205,Manufacturing Machines
 PE207,Engineering Analysis And Design(Modeling And Simulation)
-    ME262,Machine Design
-    PE202,Thermal Engineering-II
-    PE204,Industrial Engineering & Operation Research
-    PE206,Fluid Mechanics & Machinery
-    PE208,Metal Cutting &Tool Design
-    PE301,Casting Technology
-    PE303,Production Planning& Control
-    MG301,Fundamentals of Management
-    PE302,Welding Technology
-    PE304,Precision Manufacturing
-    PE306,Metrology & Quality Assurance
-    HU302,Engineering Economics
-    PE401,B. Tech Project-I
-    PE403,Training Seminar
-    PE402,B. Tech Project-II
-    PE305,Advance Machine Design
-    PE307,Finite Element Method
-    PE309,Rapid Prototyping Tooling & Manufacturing
-    PE311,Sustainable Manufacturing
-    PE313,Design Innovation & Manufacturing
-    PE315,Mechatronics
-    PE351,Advance Machining Process
-    PE353,Supply Chain Management
-    PE355,Work Study Design
-    PE357,Product Design & Simulation
-    PE359,Total Life Cycle Management
-    PE361,Total Quality Management
-    PE308,Green Energy Technology
-    PE312,Automobile Engg
-    PE314,Manufacturing of Composite Materials
-    PE316,Advances in Welding
-    PE318,Advances in Casting
-    PE405,Metal Forming & Press Working
-    PE407,Quantitative Techniques
-    PE409,CNC Machine & Programming
-    PE411,Computer Integrated Design and Manufacturing
-    PE413,Robotics and Automation
-    PE415,Financial Management
-    PE417,Materials Management
-    PE419,Project Management
-    PE421,Reliability, Maintenance & Safety Engineering
-    PE423,Thermal Spray Technology
-    PE404,Total Quality Management
-    PE406,Manufacturing & Applications of Polymer Composites
-    PE408,Industrial Tribology
-    PE412,Supply Chain Management & Value Engineering
-    PE414,Flexible Manufacturing System
-    PE416,Work Study & Ergonomic
-    PE418,Advance Manufacturing Processes
-    EC271,Digital Electronics
-    SE201,Data Structures
-    SE203,Object Oriented Programming
-    SE205,Operating System
+ME262,Machine Design
+PE202,Thermal Engineering-II
+PE204,Industrial Engineering & Operation Research
+PE206,Fluid Mechanics & Machinery
+PE208,Metal Cutting &Tool Design
+PE301,Casting Technology
+PE303,Production Planning& Control
+MG301,Fundamentals of Management
+PE302,Welding Technology
+PE304,Precision Manufacturing
+PE306,Metrology & Quality Assurance
+HU302,Engineering Economics
+PE401,B. Tech Project-I
+PE403,Training Seminar
+PE402,B. Tech Project-II
+PE305,Advance Machine Design
+PE307,Finite Element Method
+PE309,Rapid Prototyping Tooling & Manufacturing
+PE311,Sustainable Manufacturing
+PE313,Design Innovation & Manufacturing
+PE315,Mechatronics
+PE351,Advance Machining Process
+PE353,Supply Chain Management
+PE355,Work Study Design
+PE357,Product Design & Simulation
+PE359,Total Life Cycle Management
+PE361,Total Quality Management
+PE308,Green Energy Technology
+PE312,Automobile Engg
+PE314,Manufacturing of Composite Materials
+PE316,Advances in Welding
+PE318,Advances in Casting
+PE405,Metal Forming & Press Working
+PE407,Quantitative Techniques
+PE409,CNC Machine & Programming
+PE411,Computer Integrated Design and Manufacturing
+PE413,Robotics and Automation
+PE415,Financial Management
+PE417,Materials Management
+PE419,Project Management
+PE421,Reliability, Maintenance & Safety Engineering
+PE423,Thermal Spray Technology
+PE404,Total Quality Management
+PE406,Manufacturing & Applications of Polymer Composites
+PE408,Industrial Tribology
+PE412,Supply Chain Management & Value Engineering
+PE414,Flexible Manufacturing System
+PE416,Work Study & Ergonomic
+PE418,Advance Manufacturing Processes
+EC271,Digital Electronics
+SE201,Data Structures
+SE203,Object Oriented Programming
+SE205,Operating System
 SE207,Engineering Analysis and Design(Software Engineering)
-    EC272,Computer System Architecture
-    SE202,Object Oriented Software Engineering
-    SE204,Machine Learning
-    SE206,Database Management Systems
-    SE208,Algorithm Design & Analysis
-    SE301,Software Testing
-    SE303,Software Quality Metrics
-    HU301,Engineering Economics
-    SE302,Empirical Software Testing
-    SE304,Computer Networks
-    SE306,Compiler Design
-    MG302,Fundamentals of Management
-    SE401,B.Tech. Project-I
-    SE403,Training Seminar
-    SE402,B.Tech. Project-II
-    SE305,Software Requirement Engineering
-    SE307,Computer Graphics
-    SE309,Information Theory and coding
-    SE311,Digital Signal Processing
-    SE313,Advanced Data Structures
-    SE315,Microprocessor & Interfacing
-    SE317,Distributed Systems
-    SE319,Soft Computing
-    SE321,Artificial Intelligence
-    SE323,Theory of Computation
-    SE325,Web Technology
-    SE327,Methods for Data Analysis
-    SE329,Predictive Modeling
+EC272,Computer System Architecture
+SE202,Object Oriented Software Engineering
+SE204,Machine Learning
+SE206,Database Management Systems
+SE208,Algorithm Design & Analysis
+SE301,Software Testing
+SE303,Software Quality Metrics
+HU301,Engineering Economics
+SE302,Empirical Software Testing
+SE304,Computer Networks
+SE306,Compiler Design
+MG302,Fundamentals of Management
+SE401,B.Tech. Project-I
+SE403,Training Seminar
+SE402,B.Tech. Project-II
+SE305,Software Requirement Engineering
+SE307,Computer Graphics
+SE309,Information Theory and coding
+SE311,Digital Signal Processing
+SE313,Advanced Data Structures
+SE315,Microprocessor & Interfacing
+SE317,Distributed Systems
+SE319,Soft Computing
+SE321,Artificial Intelligence
+SE323,Theory of Computation
+SE325,Web Technology
+SE327,Methods for Data Analysis
+SE329,Predictive Modeling
 SE333,Minor Project (Only for students who opt for Minor)
-    SE308,Software Reliability
-    SE312,Parallel Computer Architecture
-    SE314,Bio-Informatics
-    SE316,Natural Language Processing
-    SE318,Advanced Database Management Systems
-    SE320,Data Compression
-    SE322,Real Time Systems
-    SE324,Parallel Algorithms
-    SE326,Probability and Statistics
-    SE328,Business Analytics
-    SE409,Software Maintenance
-    SE411,Discrete Structures
-    SE413,Grid & Cluster Computing
-    SE415,Pattern Recognition
-    SE417,Agile Software Process
-    SE419,Cyber-Forensics
-    SE421,Robotics
-    SE423,Wireless and Mobile Computing
-    SE425,Intellectual Property Rights & Cyber Laws
-    SE427,Software Project Management
-    SE429,Data Warehouse & Data Mining
-    SE406,Advances in Software Engineering
-    SE408,Information & Network Security
-    SE412,Semantic Web and Web Mining
-    SE414,Cloud Computing
-    SE416,Big Data Analytics
-    SE418,Data Management and Ethics
+SE308,Software Reliability
+SE312,Parallel Computer Architecture
+SE314,Bio-Informatics
+SE316,Natural Language Processing
+SE318,Advanced Database Management Systems
+SE320,Data Compression
+SE322,Real Time Systems
+SE324,Parallel Algorithms
+SE326,Probability and Statistics
+SE328,Business Analytics
+SE409,Software Maintenance
+SE411,Discrete Structures
+SE413,Grid & Cluster Computing
+SE415,Pattern Recognition
+SE417,Agile Software Process
+SE419,Cyber-Forensics
+SE421,Robotics
+SE423,Wireless and Mobile Computing
+SE425,Intellectual Property Rights & Cyber Laws
+SE427,Software Project Management
+SE429,Data Warehouse & Data Mining
+SE406,Advances in Software Engineering
+SE408,Information & Network Security
+SE412,Semantic Web and Web Mining
+SE414,Cloud Computing
+SE416,Big Data Analytics
+SE418,Data Management and Ethics
