@@ -3,7 +3,7 @@ AC101|Chemistry
 ME101|Basic Mechanical Engineering
 ME103|Workshop Practice
 MA101|Mathematics - I
-AP101|Physics – I
+AP101|Physics - I
 EE101|Basic Electrical Engineering
 CO101|Programming Fundamentals
 ME105|Engineering Graphics
@@ -11,7 +11,7 @@ EE102|Basic Electrical Engineering
 CO102|Programming Fundamentals
 ME102|Engineering Graphics
 MA102|Mathematics-II
-AP102|Physics – II
+AP102|Physics - II
 AC102|Chemistry
 ME104|Basic Mechanical Engineering
 ME106|Workshop Practice
@@ -478,13 +478,13 @@ EE446|Data Communication and Computer Networks
 EE448|Big Data Analytics
 EE450|Cloud Computing Fundamentals
 EE251|Electronic Instrumentation and Measurements
-EC201|Analog Electronics – I
-EC203|Digital Design – I
+EC201|Analog Electronics - I
+EC203|Digital Design - I
 EC205|Signals & Systems
 EC207|Engineering Analysis & Design (Network Analysis and Synthesis)
 EE262|Electromagnetics
-EC202|Analog Electronics–II
-EC204|Digital Design – II
+EC202|Analog Electronics-II
+EC204|Digital Design - II
 EC206|Communication Systems
 EC208|Computer Architecture
 EC301|Digital Communication
@@ -499,7 +499,7 @@ EC403|Training Seminar
 EC402|B. Tech Project-II (Contd. From VII Sem.)
 EC305|Semiconductor Device Electronics
 EC307|Antenna Design
-EC309|Bio – Medical Electronics & Instrumentation
+EC309|Bio - Medical Electronics & Instrumentation
 EC311|Algorithms Design And Analysis
 EC313|Microprocessors And Interfacing
 EC315|Computer Communication Networks
@@ -508,7 +508,7 @@ EC319|CMOS Analog Integrated Circuits
 EC321|IC Technology
 EC323|Control Systems
 EC325|Probability and Random Process
-EC327|Time – Frequency Analysis
+EC327|Time - Frequency Analysis
 EC329|Analog Signal Processing
 EC308|Analog Filter Design
 EC312|Software Defined Radio And Cognitive Radio
@@ -530,7 +530,7 @@ EC342|Machine Learning
 EC405|Microwave Engineering
 EC407|Optical Communication
 EC409|Computer Vision
-EC411|Bio – Medical Signal and Image Processing
+EC411|Bio - Medical Signal and Image Processing
 EC413|Power Electronics
 EC415|System On Chip Design
 EC417|CAD For VLSI Design
@@ -569,7 +569,7 @@ EC424|Fault Tolerant Computing
 EC426|Distributed Computing
 EC428|Neuroelectronics
 EC430|Advanced Computer Architecture
-EC432|Bio – Impedance Based Measurements
+EC432|Bio - Impedance Based Measurements
 EC434|Fundamentals of MIMO
 EC436|Advance Microwave & Antenna Design
 EC438|Radar and Satellite Communication
