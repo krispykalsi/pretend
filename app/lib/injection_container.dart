@@ -1,5 +1,7 @@
+import 'package:csv/csv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
@@ -85,7 +87,10 @@ Future<void> init() async {
   sl.registerLazySingleton<SubjectsLocalDataSourceContract>(
       () => SubjectsLocalDataSource(hive: Hive));
   sl.registerLazySingleton<SubjectsRemoteDataSourceContract>(
-      () => SubjectsRemoteDataSource());
+      () => SubjectsRemoteDataSource(
+            csvParser: CsvToListConverter(),
+            httpClient: Client(),
+          ));
   sl.registerLazySingleton<TimetableLocalDataSourceContract>(
       () => TimetableLocalDataSource(hive: Hive));
   sl.registerLazySingleton<SettingsLocalDatasourceContract>(

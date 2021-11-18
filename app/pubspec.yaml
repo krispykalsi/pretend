@@ -48,6 +48,7 @@ dependencies:
   intl: ^0.17.0
   #Formatted Strings
   sprintf: ^6.0.0
+  csv: ^5.0.0
   core:
     path: ../core
   # The "flutter_lints" package below contains a set of recommended lints to

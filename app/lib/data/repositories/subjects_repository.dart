@@ -26,11 +26,11 @@ class SubjectsRepository implements SubjectsRepositoryContract {
         if (await networkInfo.isConnected) {
           try {
             final collegeID = await localDataSource.getCollegeID();
-            // if (collegeID == null) {
-            //   return Left(CollegeNotConfiguredFailure());
-            // }
+            if (collegeID == null) {
+              return Left(CollegeNotConfiguredFailure());
+            }
             final subjects =
-                await remoteDataSource.getSubjects(collegeID ?? "");
+                await remoteDataSource.getSubjects(collegeID);
             await localDataSource.addSubjects(subjects);
             return Right(subjects);
           } on ServerException {

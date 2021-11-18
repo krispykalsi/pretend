@@ -14,6 +14,11 @@ class NoLocalDataFailure extends Failure {
   String get message => "No data found in local storage";
 }
 
+class NoRemoteDataFailure extends Failure {
+  @override
+  String get message => "No data found in online storage";
+}
+
 class NoInternetFailure extends Failure {
   @override
   String get message => "No internet connectivity found";
