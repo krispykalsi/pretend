@@ -1,3 +1,4 @@
+import 'package:core/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/new_subject/new_subject_bloc.dart';
@@ -66,26 +67,16 @@ class _SetupSubjectsState extends State<SetupSubjects> {
     }
   }
 
-  RegExp _getRegexpForIntelligentAutoComplete(String text) {
-    return RegExp(
-        text == ""
-            ? r'$[\W\D\S-]^'
-            : text.replaceAllMapped(RegExp(r'[^ ]'), (Match m) {
-                return m[0]! + ".*? ?";
-              }),
-        caseSensitive: false);
-  }
-
   @override
   void initState() {
     super.initState();
     _textEditingController.addListener(() {
-      var regexp =
-          _getRegexpForIntelligentAutoComplete(_textEditingController.text);
+      final fieldText = _textEditingController.text;
       setState(() {
         _subjectOptions = widget.allSubjects.where(
           (element) =>
-              element.name.contains(regexp) || element.code.contains(regexp),
+              element.name.containsAnywhere(fieldText) ||
+              element.code.containsAnywhere(fieldText),
         );
       });
     });
