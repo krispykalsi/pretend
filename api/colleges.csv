@@ -1,2 +1,2 @@
-id,name                          ,city
-1 ,Delhi Technological University,Delhi
+id|name|city
+1|Delhi Technological University|Delhi
