@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../app_colors.dart';
 
 part 'get_theme_data.dart';
+
 part 'theme_changer.dart';
 
 final _themeGlobalKey = new GlobalKey(debugLabel: 'app_theme');
@@ -25,7 +26,9 @@ class DynamicThemeAppState extends State<DynamicThemeApp> {
 
   set theme(newTheme) {
     if (newTheme != _theme) {
-      setState(() => _theme = newTheme);
+      WidgetsBinding.instance!.addPostFrameCallback(
+        (_) => setState(() => _theme = newTheme),
+      );
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pretend/presentation/initial/hue_painter.dart';
+
+import 'hue_painter.dart';
 
 class ThemeSetter extends StatefulWidget {
   final void Function(Color) onColorChange;
