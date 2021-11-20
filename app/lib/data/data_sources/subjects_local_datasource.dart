@@ -10,6 +10,7 @@ abstract class SubjectsLocalDataSourceContract {
   Future<void> addSubjects(List<SubjectModel> subjects);
   Future<void> addSubject(SubjectModel subject);
   Future<String?> getCollegeID();
+  Future<void> setCollegeID(String id);
 }
 
 const _subjects = 'subjects';
@@ -56,7 +57,9 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
       final subjectBox = await openBox(_subjects);
       List<SubjectModel> subjects = [];
       for (final subjectJson in subjectBox.values) {
-        subjects.add(SubjectModel.fromJson(Map.from(subjectJson)));
+        if (subjectJson is Map) {
+          subjects.add(SubjectModel.fromJson(Map.from(subjectJson)));
+        }
       }
       if (subjects.isEmpty) {
         throw NoLocalDataException();
@@ -91,6 +94,16 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
     try {
       final subjectBox = await openBox(_subjects);
       return subjectBox.get(_keyCollegeID);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<void> setCollegeID(String id) async {
+    try {
+      final subjectBox = await openBox(_subjects);
+      return subjectBox.put(_keyCollegeID, id);
     } catch (e) {
       throw CacheException();
     }

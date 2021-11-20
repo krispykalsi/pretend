@@ -1,4 +1,5 @@
 import 'package:csv/csv.dart';
+import 'package:csv/csv_settings_autodetection.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
@@ -6,6 +7,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/bloc/settings/settings_bloc.dart';
+import 'package:pretend/application/bloc/setup/subjects/college/college_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/new_subject/new_subject_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
@@ -25,10 +27,12 @@ import 'package:pretend/domain/usecases/add_subject.dart';
 import 'package:pretend/domain/usecases/generate_schedule_for_today.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 import 'package:pretend/domain/usecases/get_app_settings.dart';
+import 'package:pretend/domain/usecases/get_colleges.dart';
 import 'package:pretend/domain/usecases/get_subjects_of_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable.dart';
 import 'package:pretend/domain/usecases/mark_app_visited_first_time.dart';
 import 'package:pretend/domain/usecases/set_app_theme_color.dart';
+import 'package:pretend/domain/usecases/set_college_id.dart';
 import 'package:pretend/domain/usecases/set_timetable.dart';
 
 final sl = GetIt.instance;
@@ -59,6 +63,9 @@ Future<void> init() async {
       setAppThemeColor: sl(),
     ),
   );
+  sl.registerFactory(
+    () => CollegeBloc(getColleges: sl(), setCollegeID: sl()),
+  );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
   sl.registerLazySingleton(() => GetTimetable(sl()));
@@ -69,6 +76,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetAppSettings(sl()));
   sl.registerLazySingleton(() => MarkAppVisitedFirstTime(sl()));
   sl.registerLazySingleton(() => SetAppThemeColor(sl()));
+  sl.registerLazySingleton(() => SetCollegeID(sl()));
+  sl.registerLazySingleton(() => GetColleges(sl()));
 
   sl.registerLazySingleton<SubjectsRepositoryContract>(
     () => SubjectsRepository(
@@ -88,7 +97,7 @@ Future<void> init() async {
       () => SubjectsLocalDataSource(hive: Hive));
   sl.registerLazySingleton<SubjectsRemoteDataSourceContract>(
       () => SubjectsRemoteDataSource(
-            csvParser: CsvToListConverter(),
+            csvParser: _csvParser,
             httpClient: Client(),
           ));
   sl.registerLazySingleton<TimetableLocalDataSourceContract>(
@@ -99,3 +108,11 @@ Future<void> init() async {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImplementation(sl()));
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }
+
+CsvToListConverter get _csvParser => CsvToListConverter(
+      csvSettingsDetector: FirstOccurrenceSettingsDetector(
+        eols: ['\n', '\r\n'],
+        fieldDelimiters: ['|'],
+      ),
+      shouldParseNumbers: false,
+    );

@@ -8,8 +8,19 @@ import 'package:pretend/data/data_sources/subjects_local_datasource.dart';
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart';
 import 'package:pretend/data/models/subject_model.dart';
 import 'package:pretend/data/repositories/subjects_repository.dart';
+import 'package:pretend/domain/entities/subject.dart';
 
+import '../../fixtures/college.dart';
 import 'subjects_repository_test.mocks.dart';
+
+@GenerateMocks([
+  SubjectsLocalDataSourceContract,
+  SubjectsRemoteDataSourceContract,
+  NetworkInfo,
+])
+void main() {
+  _SubjectsRepositoryTests().run();
+}
 
 class _SubjectsRepositoryTests {
   late MockSubjectsLocalDataSourceContract mockLocalDataSource;
@@ -173,6 +184,63 @@ class _SubjectsRepositoryTests {
         },
       );
     });
+
+    group('addSubject', () {
+      final tSubject = Subject("IT-504", "Theory of Computing");
+      final tSubjectModel = SubjectModel.fromEntity(tSubject);
+
+      test('should downcast to model and add to local datasource', () async {
+        when(mockLocalDataSource.addSubject(tSubjectModel))
+            .thenAnswer((_) => Future.value(null));
+        final result = await repository.addSubject(tSubject);
+
+        verify(mockLocalDataSource.addSubject(tSubjectModel));
+        verifyZeroInteractions(mockRemoteDataSource);
+        expect(result, equals(Right(null)));
+      });
+
+      test(
+        'should return CacheFailure when call to local datasource is unsuccessful',
+        () async {
+          when(mockLocalDataSource.addSubject(tSubjectModel))
+              .thenThrow(CacheException());
+
+          final result = await repository.addSubject(tSubject);
+
+          verify(mockLocalDataSource.addSubject(tSubjectModel));
+          verifyZeroInteractions(mockRemoteDataSource);
+          expect(result, equals(Left(CacheFailure())));
+        },
+      );
+    });
+
+    group('setCollegeID', () {
+      final tID = "1";
+
+      test('should call local datasource to set id', () async {
+        when(mockLocalDataSource.setCollegeID(tID))
+            .thenAnswer((_) => Future.value(null));
+        final result = await repository.setCollegeID(tID);
+
+        verify(mockLocalDataSource.setCollegeID(tID));
+        verifyZeroInteractions(mockRemoteDataSource);
+        expect(result, equals(Right(null)));
+      });
+
+      test(
+        'should return CacheFailure when call to local datasource is unsuccessful',
+        () async {
+          when(mockLocalDataSource.setCollegeID(tID))
+              .thenThrow(CacheException());
+
+          final result = await repository.setCollegeID(tID);
+
+          verify(mockLocalDataSource.setCollegeID(tID));
+          verifyZeroInteractions(mockRemoteDataSource);
+          expect(result, equals(Left(CacheFailure())));
+        },
+      );
+    });
   }
 
   void runOnlineTests() {
@@ -263,14 +331,49 @@ class _SubjectsRepositoryTests {
         },
       );
     });
-  }
-}
 
-@GenerateMocks([
-  SubjectsLocalDataSourceContract,
-  SubjectsRemoteDataSourceContract,
-  NetworkInfo,
-])
-void main() {
-  _SubjectsRepositoryTests().run();
+    group('getColleges', () {
+      test(
+          'should return list of Colleges when call to remote datasource is successful',
+          () async {
+        final tCollegeModels = [getTestCollegeModel];
+
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockRemoteDataSource.getColleges())
+            .thenAnswer((_) async => tCollegeModels);
+
+        final result = await repository.getColleges();
+
+        verify(mockRemoteDataSource.getColleges());
+        verifyZeroInteractions(mockLocalDataSource);
+        expect(result, Right(tCollegeModels));
+      });
+
+      test(
+          'should return ServerFailure when call to remote datasource is unsuccessful',
+          () async {
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockRemoteDataSource.getColleges()).thenThrow(ServerException());
+
+        final result = await repository.getColleges();
+
+        verify(mockRemoteDataSource.getColleges());
+        verifyZeroInteractions(mockLocalDataSource);
+        expect(result, Left(ServerFailure()));
+      });
+
+      test(
+        'should return NoInternetFailure when device is offline',
+        () async {
+          when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+
+          final result = await repository.getColleges();
+
+          verifyZeroInteractions(mockRemoteDataSource);
+          verifyZeroInteractions(mockLocalDataSource);
+          expect(result, equals(Left(NoInternetFailure())));
+        },
+      );
+    });
+  }
 }

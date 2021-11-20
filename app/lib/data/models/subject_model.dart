@@ -16,6 +16,15 @@ class SubjectModel extends Subject {
     );
   }
 
+  factory SubjectModel.fromCsv(Iterable<dynamic> list) {
+    const code = 0;
+    const name = 1;
+    return SubjectModel(
+      name: list.elementAt(name),
+      code: list.elementAt(code),
+    );
+  }
+
   factory SubjectModel.fromEntity(Subject subject) {
     return SubjectModel(
       name: subject.name,

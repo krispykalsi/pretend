@@ -95,7 +95,6 @@ class _SetupSubjectsState extends State<SetupSubjects> {
         ? NoSubjectsInListSection(
             onAddNewSubject: _onAddNewSubject,
             onSubjectListUpdate: widget.onSubjectListUpdate,
-            onCollegeNotConfigured: () {},
           )
         : _buildSubjectSearchSection;
   }

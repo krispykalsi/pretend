@@ -37,19 +37,17 @@ void main() {
     <dynamic>["IT-504", "Theory of Computing"],
   ];
   final tSubjectModels = getTestSubjectModels;
+
   test('should successfully extract SubjectModels from csv via remote source',
       () async {
-    when(mockClient.read(tUrl)).thenAnswer((_) async => tCsv);
-    when(mockCsvParser.convert(tCsv,
-            csvSettingsDetector: anyNamed("csvSettingsDetector")))
-        .thenAnswer((_) => tCsvList);
+    when(mockClient.read(any)).thenAnswer((_) async => tCsv);
+    when(mockCsvParser.convert(any)).thenAnswer((_) => tCsvList);
 
     final actualSubjects = await dataSource.getSubjects(tCollegeID);
 
     expect(actualSubjects, tSubjectModels);
     verify(mockClient.read(tUrl));
-    verify(mockCsvParser.convert(tCsv,
-        csvSettingsDetector: anyNamed("csvSettingsDetector")));
+    verify(mockCsvParser.convert(tCsv));
   });
 
   test('should throw ServerException when the url is incorrect', () async {

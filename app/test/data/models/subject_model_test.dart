@@ -70,4 +70,17 @@ void main() {
       expect(result, expectedJsonMap);
     },
   );
+
+  test('should return a valid CollegeModel', () async {
+    final expectedSubjectModel = SubjectModel(
+      name: "International Trade",
+      code: "HU-351a",
+    );
+    final csvList = [
+      ["code", "name"],
+      ["HU-351a", "International Trade"]
+    ];
+    final result = SubjectModel.fromCsv(csvList.elementAt(1));
+    expect(result, expectedSubjectModel);
+  });
 }

@@ -4,6 +4,7 @@ import 'package:core/network.dart';
 import 'package:pretend/data/data_sources/subjects_local_datasource.dart';
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart';
 import 'package:pretend/data/models/subject_model.dart';
+import 'package:pretend/domain/entities/college.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 
@@ -29,8 +30,7 @@ class SubjectsRepository implements SubjectsRepositoryContract {
             if (collegeID == null) {
               return Left(CollegeNotConfiguredFailure());
             }
-            final subjects =
-                await remoteDataSource.getSubjects(collegeID);
+            final subjects = await remoteDataSource.getSubjects(collegeID);
             await localDataSource.addSubjects(subjects);
             return Right(subjects);
           } on ServerException {
@@ -73,6 +73,30 @@ class SubjectsRepository implements SubjectsRepositoryContract {
       return const Right(null);
     } on CacheException {
       return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> setCollegeID(String id) async {
+    try {
+      await localDataSource.setCollegeID(id);
+      return const Right(null);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<College>>> getColleges() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final colleges = await remoteDataSource.getColleges();
+        return Right(colleges);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NoInternetFailure());
     }
   }
 }

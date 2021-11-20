@@ -4,12 +4,13 @@
 
 import 'dart:async' as _i3;
 
-import 'package:core/src/network/network_info.dart' as _i6;
+import 'package:core/src/network/network_info.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:pretend/data/data_sources/subjects_local_datasource.dart'
     as _i2;
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart'
     as _i5;
+import 'package:pretend/data/models/college_model.dart' as _i6;
 import 'package:pretend/data/models/subject_model.dart' as _i4;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -61,6 +62,11 @@ class MockSubjectsLocalDataSourceContract extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#getCollegeID, []),
           returnValue: Future<String?>.value()) as _i3.Future<String?>);
   @override
+  _i3.Future<void> setCollegeID(String? id) =>
+      (super.noSuchMethod(Invocation.method(#setCollegeID, [id]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+  @override
   String toString() => super.toString();
 }
 
@@ -80,13 +86,19 @@ class MockSubjectsRemoteDataSourceContract extends _i1.Mock
                   Future<List<_i4.SubjectModel>>.value(<_i4.SubjectModel>[]))
           as _i3.Future<List<_i4.SubjectModel>>);
   @override
+  _i3.Future<List<_i6.CollegeModel>> getColleges() =>
+      (super.noSuchMethod(Invocation.method(#getColleges, []),
+              returnValue:
+                  Future<List<_i6.CollegeModel>>.value(<_i6.CollegeModel>[]))
+          as _i3.Future<List<_i6.CollegeModel>>);
+  @override
   String toString() => super.toString();
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

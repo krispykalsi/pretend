@@ -3,25 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
 import 'package:pretend/injection_container.dart';
 
+import 'set_college_dialog.dart';
+
 class NoSubjectsInListSection extends StatelessWidget {
   final VoidCallback _onAddNewSubject;
   final VoidCallback _onSubjectListUpdate;
-  final VoidCallback _onCollegeNotConfigured;
 
   final _fetchSubjectsOnlineBloc = sl<FetchSubjectsOnlineBloc>();
 
-  NoSubjectsInListSection(
-      {Key? key,
-      required VoidCallback onAddNewSubject,
-      required VoidCallback onSubjectListUpdate,
-      required VoidCallback onCollegeNotConfigured})
-      : _onAddNewSubject = onAddNewSubject,
+  NoSubjectsInListSection({
+    Key? key,
+    required VoidCallback onAddNewSubject,
+    required VoidCallback onSubjectListUpdate,
+  })  : _onAddNewSubject = onAddNewSubject,
         _onSubjectListUpdate = onSubjectListUpdate,
-        _onCollegeNotConfigured = onCollegeNotConfigured,
         super(key: key);
 
   void _onFetchSubjectsTapped() {
     _fetchSubjectsOnlineBloc.add(const FetchSubjectsEvent());
+  }
+
+  void _setCollege(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      showSetCollegeDialog(context).then((successful) {
+        if (successful) {
+          _fetchSubjectsOnlineBloc.add(const FetchSubjectsEvent());
+        }
+      });
+    });
   }
 
   @override
@@ -29,7 +38,7 @@ class NoSubjectsInListSection extends StatelessWidget {
     return Center(
       child: BlocBuilder<FetchSubjectsOnlineBloc, FetchSubjectsOnlineState>(
         bloc: _fetchSubjectsOnlineBloc,
-        builder: (context, state) {
+        builder: (blocContext, state) {
           if (state is FetchSubjectsOnlineInitial) {
             return _buildFetchSubjectsButton;
           } else if (state is Loading) {
@@ -47,10 +56,20 @@ class NoSubjectsInListSection extends StatelessWidget {
           } else if (state is NoInternet) {
             return _buildNoInternetState;
           } else if (state is CollegeNotConfigured) {
-            Future.delayed(const Duration(seconds: 1), _onCollegeNotConfigured);
-            return const Text(
-              "College not configured",
-              style: TextStyle(color: Colors.redAccent),
+            _setCollege(context);
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "College not configured",
+                  style: TextStyle(color: Colors.redAccent),
+                ),
+                SizedBox(height: 15),
+                ElevatedButton(
+                  onPressed: () => _setCollege(context),
+                  child: Text("Retry"),
+                )
+              ],
             );
           } else if (state is Error) {
             return _buildUnexpectedErrorState(state.msg);
