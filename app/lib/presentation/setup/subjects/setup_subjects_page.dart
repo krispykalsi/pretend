@@ -24,6 +24,10 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
   late List<Subject> _selectedSubjects = widget._selectedSubjects;
   final _subjectsBloc = sl<SubjectsBloc>()..add(const GetAllSubjectsEvent());
 
+  void _reloadSubjects() {
+    _subjectsBloc.add(const GetAllSubjectsEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -53,6 +57,11 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
                       style: TextStyle(color: Colors.redAccent),
                     ),
                     Text(state.msg),
+                    const SizedBox(height: 15),
+                    ElevatedButton(
+                      child: const Text("Retry"),
+                      onPressed: _reloadSubjects,
+                    ),
                   ],
                 ),
               );
@@ -62,9 +71,7 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
             return Center(
               child: ElevatedButton(
                 child: const Text("Reload Subjects"),
-                onPressed: () {
-                  _subjectsBloc.add(const GetAllSubjectsEvent());
-                },
+                onPressed: _reloadSubjects,
               ),
             );
           },

@@ -7,11 +7,13 @@ class SubjectOptionList extends StatefulWidget {
   final Iterable<Subject> _subjects;
   final Function(Subject, bool) onOptionTap;
   final Iterable<Subject> _previouslySelected;
+  final ValueNotifier<Subject> selectedListRemovalNotifier;
 
   const SubjectOptionList(
     this._subjects, {
     Key? key,
     required this.onOptionTap,
+    required this.selectedListRemovalNotifier,
     Iterable<Subject> previousState = const [],
   })  : _previouslySelected = previousState,
         super(key: key);
@@ -24,6 +26,25 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
   late final Map<String, bool> _selectionState = {
     for (var sub in widget._previouslySelected) sub.code: true
   };
+
+  void _onRemoveFromSelectedList() {
+    final removedSubject = widget.selectedListRemovalNotifier.value;
+    setState(() {
+      _selectionState[removedSubject.code] = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.selectedListRemovalNotifier.addListener(_onRemoveFromSelectedList);
+  }
+
+  @override
+  void dispose() {
+    widget.selectedListRemovalNotifier.removeListener(_onRemoveFromSelectedList);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

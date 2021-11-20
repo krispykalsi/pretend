@@ -8,10 +8,12 @@ import 'selected_subject_list_tile.dart';
 class SelectedSubjectList extends StatefulWidget {
   final ValueNotifier<AnimatedListModel<Subject>?> listModelNotifier;
   final List<Subject> previouslySelected;
+  final Function(Subject) onRemove;
 
   const SelectedSubjectList({
     Key? key,
     required this.listModelNotifier,
+    required this.onRemove,
     this.previouslySelected = const [],
   }) : super(key: key);
 
@@ -27,14 +29,18 @@ class _SelectedSubjectListState extends State<SelectedSubjectList> {
     initialItems: widget.previouslySelected,
   );
 
-  Widget _buildRemovedItem(
-      Subject subject, BuildContext context, Animation<double> animation) {
+  Widget _buildRemovedItem(Subject subject, BuildContext context,
+      Animation<double> animation) {
     return SizeTransition(
       sizeFactor: CurvedAnimation(
         parent: animation,
         curve: Curves.easeInExpo,
       ),
-      child: SelectedSubjectListTile(subject, animation: animation),
+      child: SelectedSubjectListTile(
+        subject,
+        animation: animation,
+        onRemove: () {},
+      ),
     );
   }
 
@@ -59,14 +65,13 @@ class _SelectedSubjectListState extends State<SelectedSubjectList> {
     );
   }
 
-  Widget _buildItem(
-      BuildContext context, int index, Animation<double> animation) {
+  Widget _buildItem(BuildContext context, int index,
+      Animation<double> animation) {
+    final subject = listModel[index];
     return SelectedSubjectListTile(
-      listModel[index],
+      subject,
       animation: animation,
-      onTap: (subject) {
-        print(subject);
-      },
+      onRemove: () => widget.onRemove(subject),
     );
   }
 }

@@ -46,7 +46,7 @@ dependencies:
   auto_route: ^3.0.4
   # Datetime
   intl: ^0.17.0
-  #Formatted Strings
+  # Formatted Strings
   sprintf: ^6.0.0
   csv: ^5.0.0
   core:
@@ -57,6 +57,8 @@ dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  # Text scroller
+  marquee: ^2.2.0
 
 dev_dependencies:
   auto_route_generator: ^3.0.1

@@ -35,6 +35,11 @@ class AnimatedListModel<E> {
     return removedItem;
   }
 
+  void remove(E item) {
+    final index = items.indexOf(item);
+    removeAt(index);
+  }
+
   int get length => _items.length;
 
   E operator [](int index) => _items[index];

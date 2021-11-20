@@ -35,6 +35,7 @@ class SetupSubjects extends StatefulWidget {
 class _SetupSubjectsState extends State<SetupSubjects> {
   final _selectedListNotifier =
       ValueNotifier<AnimatedListModel<Subject>?>(null);
+  final _selectedListRemovalNotifier = ValueNotifier<Subject>(Subject("", ""));
   final _textEditingController = TextEditingController();
   Iterable<Subject> _subjectOptions = const Iterable.empty();
   final _newSubjectBloc = sl<NewSubjectBloc>();
@@ -45,8 +46,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
   }
 
   void _removeFromSelectedSubjects(Subject subject) {
-    final index = _selectedListNotifier.value!.indexOf(subject);
-    _selectedListNotifier.value!.removeAt(index);
+    _selectedListNotifier.value!.remove(subject);
   }
 
   void _onOptionTap(Subject subject, bool isSelected) {
@@ -59,6 +59,13 @@ class _SetupSubjectsState extends State<SetupSubjects> {
     }
   }
 
+  void _onRemoveTapInSelectedList(Subject subject) {
+    _selectedListRemovalNotifier.value = subject;
+    _removeFromSelectedSubjects(subject);
+    final subjects = _selectedListNotifier.value!.items;
+    widget.onSelectedSubjectsUpdate(subjects);
+  }
+
   void _onAddNewSubject() async {
     final subject = await showAddNewSubjectDialog(context);
     if (subject != null) {
@@ -67,18 +74,20 @@ class _SetupSubjectsState extends State<SetupSubjects> {
     }
   }
 
+  void _updateSubjectOptionsList(String searchText) {
+    _subjectOptions = widget.allSubjects.where(
+      (subject) =>
+          subject.name.containsAnywhere(searchText) ||
+          subject.code.containsAnywhere(searchText),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
     _textEditingController.addListener(() {
       final fieldText = _textEditingController.text;
-      setState(() {
-        _subjectOptions = widget.allSubjects.where(
-          (element) =>
-              element.name.containsAnywhere(fieldText) ||
-              element.code.containsAnywhere(fieldText),
-        );
-      });
+      setState(() => _updateSubjectOptionsList(fieldText));
     });
   }
 
@@ -117,6 +126,8 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                         _subjectOptions,
                         previousState: widget.previouslySelected,
                         onOptionTap: _onOptionTap,
+                        selectedListRemovalNotifier:
+                            _selectedListRemovalNotifier,
                       ),
                     ),
                     _buildAddNewSubjectSection,
@@ -132,6 +143,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 child: SelectedSubjectList(
                   listModelNotifier: _selectedListNotifier,
                   previouslySelected: widget.previouslySelected,
+                  onRemove: _onRemoveTapInSelectedList,
                 ),
               )
             ],
