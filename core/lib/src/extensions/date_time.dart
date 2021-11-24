@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:sprintf/sprintf.dart';
 
 extension ModifiableDateTime on DateTime {
@@ -42,4 +43,9 @@ extension TimeComparison on DateTime {
   bool isTimeEqualTo(DateTime other) {
     return compareToTimeOnly(other) == 0;
   }
+}
+
+extension DateTimeStrings on DateTime {
+  String get weekdayString => DateFormat.EEEE().format(this);
+  String get monthString => DateFormat.MMMM().format(this);
 }

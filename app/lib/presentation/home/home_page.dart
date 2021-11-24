@@ -1,3 +1,4 @@
+import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
@@ -12,7 +13,9 @@ import 'package:pretend/injection_container.dart';
 import 'package:core/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
 
+import 'settings_section.dart';
 import 'subject_list_tile.dart';
+import 'corner_date_time.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,69 +33,91 @@ class _HomePageState extends State<HomePage> {
     )));
   late Map<String, Subject> _subjects;
 
-  void _onEditPressed(Timetable timetable) {
-    context.router.push(
-      TimetableSetupStatusRoute(
-        subjects: _subjects.values.toList(growable: false),
-        timetable: timetable,
-      ),
-    );
+  void _editTimetable(Timetable timetable) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      context.router.push(
+        TimetableSetupStatusRoute(
+          subjects: _subjects.values.toList(growable: false),
+          timetable: timetable,
+        ),
+      );
+    });
+  }
+
+  void _changeThemeColor() {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      context.router.push(ThemeSetupRoute());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.DARK,
-      child: Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: BlocBuilder<HomeBloc, HomeState>(
-          bloc: _homeBloc,
-          builder: (context, state) {
-            if (state is TimetableLoaded) {
-              _subjects = state.subjects;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  _buildOngoingSection(
-                      state.filteredSchedule[Filters.onGoing]!),
-                  const SizedBox(height: 50),
-                  _buildLaterTodaySection(
-                      state.filteredSchedule[Filters.laterToday]!),
-                  const Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      _onEditPressed(state.timetable);
-                    },
-                    child: const Text("Edit"),
-                  ),
-                ],
-              );
-            } else if (state is TimetableLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is TimetableNotFound) {
-              context.router
-                  .replace(TimetableSetupStatusRoute(subjects: const []));
-            } else if (state is TimetableError) {
-              return Text(
-                state.message,
-                style: const TextStyle(color: Colors.redAccent),
-              );
-            }
+      child: BlocBuilder<HomeBloc, HomeState>(
+        bloc: _homeBloc,
+        builder: (context, state) {
+          if (state is TimetableLoaded) {
+            _subjects = state.subjects;
+            return _buildLoadedState(state);
+          } else if (state is TimetableLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is TimetableNotFound) {
+            context.router
+                .replace(TimetableSetupStatusRoute(subjects: const []));
+          } else if (state is TimetableError) {
+            return Text(
+              state.message,
+              style: const TextStyle(color: Colors.redAccent),
+            );
+          }
 
-            return const SizedBox.shrink();
-          },
-        ),
+          return const SizedBox.shrink();
+        },
       ),
     );
   }
 
+  Widget _buildLoadedState(TimetableLoaded state) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: CornerDateTime(),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(48.0),
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              _buildOngoingSection(state.filteredSchedule[Filters.onGoing]!),
+              const SizedBox(height: 50),
+              Expanded(
+                child: _buildLaterTodaySection(
+                    state.filteredSchedule[Filters.laterToday]!),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: SettingsSection(
+            onThemeChangeTap: _changeThemeColor,
+            onTimetableEditTap: () => _editTimetable(state.timetable),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget _buildLaterTodaySection(Map<Timeslots, Timeslot> laterToday) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionHeading("Later today"),
-          Expanded(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionHeading("Later today"),
+        Expanded(
+          child: FadedEdgeBox(
             child: ListView(
               children: laterToday.values.map<Widget>((timeslot) {
                 final subject = _subjects[timeslot.subjectCode] ??
@@ -101,8 +126,8 @@ class _HomePageState extends State<HomePage> {
               }).toList(growable: false),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -111,8 +136,8 @@ class _HomePageState extends State<HomePage> {
     late Subject subject;
     if (onGoing.isNotEmpty) {
       timeslot = onGoing.values.elementAt(0);
-      subject =
-          _subjects[timeslot.subjectCode] ?? const Subject("NOT FOUND", "NOT FOUND");
+      subject = _subjects[timeslot.subjectCode] ??
+          const Subject("NOT FOUND", "NOT FOUND");
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
