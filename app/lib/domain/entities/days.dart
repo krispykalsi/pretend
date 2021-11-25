@@ -7,13 +7,15 @@ class Days {
   static const saturday = "saturday";
   static const sunday = "sunday";
 
-  static List<String> get values => const [
+  static List<String> get all => const [
         monday,
         tuesday,
         wednesday,
         thursday,
         friday,
-        // SATURDAY,
-        // SUNDAY,
+        saturday,
+        sunday,
       ];
+
+  static List<String> get withoutSunday => all.sublist(0, 6);
 }

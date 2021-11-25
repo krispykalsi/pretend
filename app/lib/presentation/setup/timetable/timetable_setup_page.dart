@@ -33,8 +33,8 @@ class _TimetableSetupPageState extends State<TimetableSetupPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: widget.subject.name,
-      subtitle: "tap on timeslots for this subject",
+      title: "Configure Timetable",
+      subtitle: "Subject: " + widget.subject.name,
       body: WillPopScope(
         onWillPop: () => _isDonePressed
             ? Future.value(true)

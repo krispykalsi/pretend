@@ -17,13 +17,16 @@ import 'extensions.dart';
 class TimetableSetupStatusPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
   final Timetable? _timetable;
+  final bool _canGoBack;
 
   const TimetableSetupStatusPage({
     Key? key,
     Timetable? timetable,
+    bool canGoBack = true,
     required List<Subject> subjects,
   })  : _selectedSubjects = subjects,
         _timetable = timetable,
+        _canGoBack = canGoBack,
         super(key: key);
 
   @override
@@ -84,7 +87,9 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
       title: "Timetable",
       subtitle: "configure timetable for your subjects",
       body: WillPopScope(
-        onWillPop: () => context.showConfirmationDialog(),
+        onWillPop: () => widget._canGoBack
+            ? context.showConfirmationDialog()
+            : Future.value(false),
         child: Stack(
           children: [
             Align(
@@ -103,7 +108,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
                 ],
               ),
             ),
-            _buildBackButton,
+            widget._canGoBack ? _buildBackButton : SizedBox(),
             _buildDoneOrContinueButton,
           ],
         ),

@@ -63,8 +63,10 @@ class _HomePageState extends State<HomePage> {
           } else if (state is TimetableLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TimetableNotFound) {
-            context.router
-                .replace(TimetableSetupStatusRoute(subjects: const []));
+            context.router.replace(TimetableSetupStatusRoute(
+              subjects: const [],
+              canGoBack: false,
+            ));
           } else if (state is TimetableError) {
             return Text(
               state.message,
@@ -88,10 +90,9 @@ class _HomePageState extends State<HomePage> {
         Padding(
           padding: const EdgeInsets.all(48.0),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildOngoingSection(state.filteredSchedule[Filters.onGoing]!),
-              const SizedBox(height: 50),
               Expanded(
                 child: _buildLaterTodaySection(
                     state.filteredSchedule[Filters.laterToday]!),
@@ -119,6 +120,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           child: FadedEdgeBox(
             child: ListView(
+              physics: BouncingScrollPhysics(),
               children: laterToday.values.map<Widget>((timeslot) {
                 final subject = _subjects[timeslot.subjectCode] ??
                     const Subject("NOT FOUND", "NOT FOUND");
@@ -138,6 +140,8 @@ class _HomePageState extends State<HomePage> {
       timeslot = onGoing.values.elementAt(0);
       subject = _subjects[timeslot.subjectCode] ??
           const Subject("NOT FOUND", "NOT FOUND");
+    } else {
+      return SizedBox.shrink();
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,6 +158,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.all(32.0),
                 child: Text("Nothing to see here!"),
               ),
+        const SizedBox(height: 50),
       ],
     );
   }

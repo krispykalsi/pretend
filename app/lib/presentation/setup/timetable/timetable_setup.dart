@@ -51,21 +51,17 @@ class _TimetableSetupState extends State<TimetableSetup> {
                 padding: const EdgeInsets.all(12.0),
                 child: ButtonDone(onTap: widget.onDone),
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Flexible(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _timeslotGrid,
-                        _classCategoryChoiceChips,
-                      ],
-                    ),
-                  ),
-                  _dayChoiceChips,
-                ],
-                // mainAxisSize: MainAxisSize.max,
+              Flexible(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    _classCategoryChoiceChips,
+                    _timeslotGrid,
+                    _dayChoiceChips,
+                  ],
+                  // mainAxisSize: MainAxisSize.max,
+                ),
               ),
             ],
           ),
@@ -77,7 +73,7 @@ class _TimetableSetupState extends State<TimetableSetup> {
   Widget get _timeslotGrid {
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        maxHeight: _chipHeight * 6,
+        maxHeight: _chipHeight * 4,
       ),
       child: TimeslotGrid(
         selectionState: widget.selectionStateNotifier,
@@ -92,43 +88,42 @@ class _TimetableSetupState extends State<TimetableSetup> {
       children: ClassCategory.colors.entries.map<Widget>((entry) {
         final classCategory = entry.key;
         final categoryColor = entry.value;
-        final chip = CustomChoiceChip(
-          labelText: classCategory.toUpperCase(),
-          selected: _selectionColorNotifier.value == categoryColor,
-          selectedColor: categoryColor,
-          unselectedLabelColor: categoryColor,
-          onSelected: (isSelected) {
-            setState(() {
-              _selectionColorNotifier.value = categoryColor;
-            });
-          },
-          height: _chipHeight,
-          expandWidth: classCategory == ClassCategories.lab,
+        return Expanded(
+          flex: classCategory == ClassCategories.lab ? 2 : 3,
+          child: CustomChoiceChip(
+            labelText: classCategory.toUpperCase(),
+            selected: _selectionColorNotifier.value == categoryColor,
+            selectedColor: categoryColor,
+            unselectedLabelColor: categoryColor,
+            onSelected: (isSelected) {
+              setState(() {
+                _selectionColorNotifier.value = categoryColor;
+              });
+            },
+            height: _chipHeight,
+            expandWidth: true,
+          ),
         );
-
-        if (classCategory == ClassCategories.lab) {
-          return Expanded(child: chip);
-        } else {
-          return chip;
-        }
       }).toList(growable: false),
     );
   }
 
   Widget get _dayChoiceChips {
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
-      children: Days.values.map<Widget>((day) {
-        return CustomChoiceChip(
-          labelText: day[0].toUpperCase() + day[1] + day[2],
-          selected: _selectedDayNotifier.value == day,
-          onSelected: (isSelected) {
-            setState(() {
-              _selectedDayNotifier.value = day;
-            });
-          },
-          width: 50,
-          height: _chipHeight,
+      children: Days.withoutSunday.map<Widget>((day) {
+        return Expanded(
+          child: CustomChoiceChip(
+            labelText: day[0].toUpperCase(),
+            selected: _selectedDayNotifier.value == day,
+            onSelected: (isSelected) {
+              setState(() {
+                _selectedDayNotifier.value = day;
+              });
+            },
+            expandWidth: true,
+            height: _chipHeight,
+          ),
         );
       }).toList(growable: false),
     );

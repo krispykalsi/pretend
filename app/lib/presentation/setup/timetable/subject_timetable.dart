@@ -44,7 +44,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: Days.values.map<Widget>((day) {
+      children: Days.withoutSunday.map<Widget>((day) {
         _selectionState.putIfAbsent(day, () => DaySelectionState());
         final timeslots = _selectionState[day]!.keys.where((timeslot) {
           return _selectionState[day]![timeslot]?.isSelected ?? false;
@@ -55,7 +55,7 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _horizontalDivider,
-              _buildDayHeading(day),
+              _buildDayHeading(day.substring(0, 3)),
               _horizontalDivider,
               _buildSelectedTimeslots(sortedTimeslots, day)
             ],
@@ -75,15 +75,17 @@ class _SubjectTimetableState extends State<SubjectTimetable> {
         final category = getClassCategoryFromColor(color);
         var categoryInitial = category[0].toUpperCase();
         if (categoryInitial == "T") categoryInitial += category[1];
+        else categoryInitial += "  ";
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
                 timeslot.dashed,
                 style: const TextStyle(color: AppColors.PRIMARY),
               ),
+              SizedBox(width: 2),
               Text(
                 categoryInitial,
                 style: TextStyle(

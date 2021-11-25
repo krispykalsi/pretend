@@ -30,7 +30,7 @@ class GenerateScheduleForToday extends UseCase<GenerateScheduleForTodayOutput,
           await _getSubjectsOfTimetable(timetable.subjectCodes);
       return subjectsEither.fold((failure) => Left(failure), (subjects) {
         try {
-          final day = Days.values[params.now.weekday - 1];
+          final day = Days.withoutSunday[params.now.weekday - 1];
           final scheduleForToday = _getScheduleForToday(timetable, day);
           final filteredSchedule = _filterSchedule(scheduleForToday, params.now);
           return Right(GenerateScheduleForTodayOutput(

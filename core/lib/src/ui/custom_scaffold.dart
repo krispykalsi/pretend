@@ -27,10 +27,12 @@ class CustomScaffold extends StatelessWidget {
           children: [
             Text(
               title,
+              overflow: TextOverflow.fade,
               style: Theme.of(context).textTheme.headline2,
             ),
             Text(
               subtitle,
+              overflow: TextOverflow.fade,
               style: Theme.of(context).textTheme.headline3,
             ),
           ],

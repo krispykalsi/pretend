@@ -15,8 +15,8 @@ import '../../domain/entities/subject.dart' as _i9;
 import '../../domain/entities/timeslots.dart' as _i11;
 import '../../domain/entities/timetable.dart' as _i10;
 import '../../presentation/home/home_page.dart' as _i1;
-import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i2;
 import '../../presentation/initial_page.dart' as _i6;
+import '../../presentation/setup/subjects/setup_subjects_page.dart' as _i2;
 import '../../presentation/setup/theme/theme_setup_page.dart' as _i5;
 import '../../presentation/setup/timetable/timeslot_grid_tile_state.dart'
     as _i12;
@@ -58,6 +58,7 @@ class AppRouter extends _i7.RootStackRouter {
           child: _i3.TimetableSetupStatusPage(
               key: args.key,
               timetable: args.timetable,
+              canGoBack: args.canGoBack,
               subjects: args.subjects),
           transitionsBuilder: _i7.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
@@ -142,22 +143,31 @@ class TimetableSetupStatusRoute
   TimetableSetupStatusRoute(
       {_i8.Key? key,
       _i10.Timetable? timetable,
+      bool canGoBack = true,
       required List<_i9.Subject> subjects})
       : super(name,
             path: '/timetable-setup-status-page',
             args: TimetableSetupStatusRouteArgs(
-                key: key, timetable: timetable, subjects: subjects));
+                key: key,
+                timetable: timetable,
+                canGoBack: canGoBack,
+                subjects: subjects));
 
   static const String name = 'TimetableSetupStatusRoute';
 }
 
 class TimetableSetupStatusRouteArgs {
   const TimetableSetupStatusRouteArgs(
-      {this.key, this.timetable, required this.subjects});
+      {this.key,
+      this.timetable,
+      this.canGoBack = true,
+      required this.subjects});
 
   final _i8.Key? key;
 
   final _i10.Timetable? timetable;
+
+  final bool canGoBack;
 
   final List<_i9.Subject> subjects;
 }
