@@ -25,9 +25,7 @@ extension DayWise on Timetable {
         return MapEntry(
           timeslot.dashed,
           Timeslot(
-            start: timeslot.start,
-            end: timeslot.end,
-            duration: 1,
+            slot: timeslot,
             classCategory: classCategory,
             subjectCode: subjectCode,
           ),

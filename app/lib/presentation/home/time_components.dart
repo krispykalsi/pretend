@@ -25,7 +25,7 @@ class _TimeComponentState extends State<TimeComponent> {
     return Column(
       children: [
         widget._showTimeLeft
-            ? const _TimeRow(_timeLeft, "1h 06m")
+            ? _TimeRow(_timeLeft, "1h 06m")
             : _TimeRow(_startsAt, widget._timeslot.start),
         _TimeRow(_finishesAt, widget._timeslot.end),
       ],

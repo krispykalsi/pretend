@@ -2,30 +2,22 @@
   "timetable": {
     "friday": {
       "8-9": {
-        "start": "8 AM",
-        "end": "9 AM",
-        "duration": 2,
+        "slot": "8-9",
         "classCategory": "theory",
         "subjectCode": "HU-351a"
       },
       "9-10": {
-        "start": "9 AM",
-        "end": "10 AM",
-        "duration": 2,
+        "slot": "9-10",
         "classCategory": "theory",
         "subjectCode": "HU-351a"
       },
       "1-2": {
-        "start": "1 PM",
-        "end": "2 PM",
-        "duration": 1,
+        "slot": "1-2",
         "classCategory": "lab",
         "subjectCode": "IT-502"
       },
       "11-12": {
-        "start": "11 AM",
-        "end": "12 PM",
-        "duration": 1,
+        "slot": "11-12",
         "classCategory": "theory",
         "subjectCode": "IT-504"
       }

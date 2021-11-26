@@ -34,30 +34,22 @@ void main() {
         TimetableModel.keyTimetable: {
           Days.friday: {
             Timeslots.t8AM.dashed: {
-              TimeslotModel.keyStart: "8 AM",
-              TimeslotModel.keyEnd: "9 AM",
-              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keySlot: Timeslots.t8AM.dashed,
               TimeslotModel.keyClassCategory: ClassCategories.theory,
               TimeslotModel.keySubjectCode: "HU-351a",
             },
             Timeslots.t9AM.dashed: {
-              TimeslotModel.keyStart: "9 AM",
-              TimeslotModel.keyEnd: "10 AM",
-              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keySlot: Timeslots.t9AM.dashed,
               TimeslotModel.keyClassCategory: ClassCategories.theory,
               TimeslotModel.keySubjectCode: "HU-351a",
             },
             Timeslots.t1PM.dashed: {
-              TimeslotModel.keyStart: "1 PM",
-              TimeslotModel.keyEnd: "2 PM",
-              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keySlot: Timeslots.t1PM.dashed,
               TimeslotModel.keyClassCategory: ClassCategories.lab,
               TimeslotModel.keySubjectCode: "IT-502",
             },
             Timeslots.t11AM.dashed: {
-              TimeslotModel.keyStart: "11 AM",
-              TimeslotModel.keyEnd: "12 PM",
-              TimeslotModel.keyDuration: 1,
+              TimeslotModel.keySlot: Timeslots.t11AM.dashed,
               TimeslotModel.keyClassCategory: ClassCategories.theory,
               TimeslotModel.keySubjectCode: "IT-504",
             },

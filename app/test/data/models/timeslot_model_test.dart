@@ -2,14 +2,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pretend/data/models/timeslot_model.dart';
 import 'package:pretend/domain/entities/class_category_enum.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
   const tTimeslotModel = TimeslotModel(
-    start: "8 AM",
-    end: "10 AM",
-    duration: 2,
+    slot: Timeslots.t8AM,
     classCategory: ClassCategories.theory,
     subjectCode: "HU-351a",
   );
@@ -32,9 +31,7 @@ void main() {
         () async {
       final result = tTimeslotModel.toJson();
       final expectedJsonMap = {
-        TimeslotModel.keyStart: "8 AM",
-        TimeslotModel.keyEnd: "10 AM",
-        TimeslotModel.keyDuration: 2,
+        TimeslotModel.keySlot: Timeslots.t8AM.dashed,
         TimeslotModel.keyClassCategory: ClassCategories.theory,
         TimeslotModel.keySubjectCode: "HU-351a",
       };

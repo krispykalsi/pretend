@@ -1,7 +1,5 @@
 {
-  "start": "8 AM",
-  "end": "10 AM",
-  "duration": 2,
+  "slot": "8-9",
   "classCategory": "theory",
   "subjectCode": "HU-351a"
 }

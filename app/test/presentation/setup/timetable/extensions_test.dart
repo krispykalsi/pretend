@@ -28,9 +28,7 @@ void main() {
       {
         Days.friday: {
           Timeslots.t1PM.dashed: Timeslot(
-            start: Timeslots.t1PM.start,
-            end: Timeslots.t1PM.start,
-            duration: 1,
+            slot: Timeslots.t1PM,
             classCategory: ClassCategories.tutorial,
             subjectCode: "HU-351a",
           )
@@ -47,9 +45,7 @@ void main() {
       {
         Days.monday: {
           Timeslots.t3PM.dashed: Timeslot(
-            start: Timeslots.t3PM.start,
-            end: Timeslots.t3PM.start,
-            duration: 1,
+            slot: Timeslots.t3PM,
             classCategory: ClassCategories.tutorial,
             subjectCode: "xyz-subject-code",
           )

@@ -1,27 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 
 class TimeslotModel extends Timeslot {
   @visibleForTesting
   const TimeslotModel({
-    required String start,
-    required String end,
-    required int duration,
+    required Timeslots slot,
     required String classCategory,
     required String subjectCode,
   }) : super(
-          start: start,
-          end: end,
-          duration: duration,
+          slot: slot,
           classCategory: classCategory,
           subjectCode: subjectCode,
         );
 
   factory TimeslotModel.fromEntity(Timeslot timeslot) {
     return TimeslotModel(
-      start: timeslot.start,
-      end: timeslot.end,
-      duration: timeslot.duration,
+      slot: timeslot.slot,
       subjectCode: timeslot.subjectCode,
       classCategory: timeslot.classCategory,
     );
@@ -29,9 +24,7 @@ class TimeslotModel extends Timeslot {
 
   factory TimeslotModel.fromJson(Map<String, dynamic> json) {
     return TimeslotModel(
-      start: json[keyStart],
-      end: json[keyEnd],
-      duration: json[keyDuration],
+      slot: getTimeslotFromDashed(json[keySlot]),
       classCategory: json[keyClassCategory],
       subjectCode: json[keySubjectCode],
     );
@@ -39,9 +32,7 @@ class TimeslotModel extends Timeslot {
 
   Timeslot toEntity() {
     return Timeslot(
-      start: start,
-      end: end,
-      duration: duration,
+      slot: slot,
       subjectCode: subjectCode,
       classCategory: classCategory,
     );
@@ -49,17 +40,13 @@ class TimeslotModel extends Timeslot {
 
   Map<String, dynamic> toJson() {
     return {
-      keyStart: start,
-      keyEnd: end,
-      keyDuration: duration,
+      keySlot: slot.dashed,
       keyClassCategory: classCategory,
       keySubjectCode: subjectCode,
     };
   }
 
-  static const keyStart = "start";
-  static const keyEnd = "end";
-  static const keyDuration = "duration";
+  static const keySlot = "slot";
   static const keyClassCategory = "classCategory";
   static const keySubjectCode = "subjectCode";
 }
