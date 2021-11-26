@@ -47,5 +47,11 @@ extension TimeComparison on DateTime {
 
 extension DateTimeStrings on DateTime {
   String get weekdayString => DateFormat.EEEE().format(this);
+
   String get monthString => DateFormat.MMMM().format(this);
+
+  String get timeLeftFromNextHour {
+    int minutes = 60 - this.minute;
+    return sprintf("%02i min", [minutes]);
+  }
 }

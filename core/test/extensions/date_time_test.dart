@@ -12,6 +12,15 @@ class _TestValues {
   String toString() => "$a $expectedComparison $b";
 }
 
+class _Test2Values {
+  final DateTime input;
+  final String output;
+
+  _Test2Values(this.input, this.output);
+
+  String toString() => "$input -> $output";
+}
+
 enum _is {
   lessThan,
   greaterThan,
@@ -46,5 +55,23 @@ void main() {
         }
       });
     });
+  });
+
+  group('should return correct minutes left from the end of hour', () {
+    final tData = [
+      _Test2Values(DateTime(1, 1, 1, 12, 15), "45 min"),
+      _Test2Values(DateTime(1, 1, 1, 2, 24), "36 min"),
+      _Test2Values(DateTime(1, 1, 1, 4, 0), "60 min"),
+      _Test2Values(DateTime(1, 1, 1, 1, 59), "01 min"),
+      _Test2Values(DateTime(1, 1, 1, 9, 61), "59 min"),
+      _Test2Values(DateTime(1, 1, 1, 8, 55), "05 min"),
+    ];
+
+    for (final data in tData) {
+      test(data.toString(), () {
+        final timeLeft = data.input.timeLeftFromNextHour;
+        expect(timeLeft, data.output);
+      });
+    }
   });
 }
