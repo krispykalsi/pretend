@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
+import 'package:pretend/application/bloc/home/time_row/time_row_bloc.dart';
 import 'package:pretend/application/bloc/settings/settings_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/college/college_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
@@ -65,6 +66,9 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => CollegeBloc(getColleges: sl(), setCollegeID: sl()),
+  );
+  sl.registerFactory(
+    () => TimeRowBloc(),
   );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
