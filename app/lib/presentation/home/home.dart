@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pretend/application/bloc/home/schedule_status/schedule_status_bloc.dart';
 import 'package:pretend/domain/entities/filters.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
+import 'package:pretend/injection_container.dart';
 
 import 'corner_date_time.dart';
 import 'later_today_section.dart';
@@ -17,7 +20,10 @@ class Home extends StatelessWidget {
   final VoidCallback changeThemeColor;
   final Function(Timetable, List<Subject>) editTimetable;
 
-  const Home({
+  late final _scheduleStatusBloc = sl<ScheduleStatusBloc>()
+    ..add(GetStatusEvent(filteredSchedule));
+
+  Home({
     Key? key,
     required this.timetable,
     required this.subjects,
@@ -36,21 +42,22 @@ class Home extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(48.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OngoingSection(
-                onGoing: filteredSchedule[Filters.onGoing]!,
-                subjects: subjects,
-              ),
-              Expanded(
-                child: LaterTodaySection(
-                  laterToday: filteredSchedule[Filters.laterToday]!,
-                  subjects: subjects,
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
+          child: BlocBuilder(
+            bloc: _scheduleStatusBloc,
+            builder: (context, state) {
+              if (state is DoneForToday) {
+                return Center(
+                  child: Text("All classes finished! Yayyy ^~^"),
+                );
+              } else if (state is NoClassToday) {
+                return Center(
+                  child: Text("No class today! Wuhuu :D"),
+                );
+              } else if (state is LastClassGoingOn || state is ClassesPending) {
+                return _buildNormalState;
+              }
+              return SizedBox.shrink();
+            },
           ),
         ),
         Align(
@@ -63,6 +70,29 @@ class Home extends StatelessWidget {
             ),
           ),
         )
+      ],
+    );
+  }
+
+  Widget get _buildNormalState {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OngoingSection(
+          onGoing: filteredSchedule[Filters.onGoing]!,
+          subjects: subjects,
+        ),
+        Expanded(
+          child: _scheduleStatusBloc.state is LastClassGoingOn
+              ? Center(
+                  child: Text("Last class for the day!!"),
+                )
+              : LaterTodaySection(
+                  laterToday: filteredSchedule[Filters.laterToday]!,
+                  subjects: subjects,
+                ),
+        ),
+        const SizedBox(height: 10),
       ],
     );
   }
