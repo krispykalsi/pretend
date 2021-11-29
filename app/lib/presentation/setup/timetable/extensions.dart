@@ -1,6 +1,5 @@
 import 'package:pretend/domain/entities/class_category_enum.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
-import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/presentation/setup/timetable/timeslot_grid_tile_state.dart';
 
@@ -23,7 +22,7 @@ extension DayWise on Timetable {
       final newTimeslots = daySelectionState.map((timeslot, tileState) {
         final classCategory = getClassCategoryFromColor(tileState.color);
         return MapEntry(
-          timeslot.dashed,
+          timeslot,
           Timeslot(
             slot: timeslot,
             classCategory: classCategory,
@@ -60,13 +59,12 @@ extension SubjectWise on Timetable {
     for (var subjectCode in subjectCodes) {
       swTimetable[subjectCode] = {};
       timetable.forEach((day, timeslots) {
-        timeslots.forEach((slotDashed, timeslot) {
+        timeslots.forEach((slot, timeslot) {
           if (timeslot.subjectCode == subjectCode) {
-            final timeslotEnum = getTimeslotFromDashed(slotDashed);
             final color = ClassCategory.colors[timeslot.classCategory]!;
             final selectionState = TimeslotGridTileState(true, color);
             swTimetable[subjectCode]!.putIfAbsent(day, () => {});
-            swTimetable[subjectCode]![day]![timeslotEnum] = selectionState;
+            swTimetable[subjectCode]![day]![slot] = selectionState;
           }
         });
       });

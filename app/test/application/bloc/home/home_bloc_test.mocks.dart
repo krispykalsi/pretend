@@ -5,9 +5,14 @@
 import 'dart:async' as _i4;
 
 import 'package:core/error.dart' as _i5;
+import 'package:core/usecase.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pretend/domain/usecases/generate_schedule_for_today.dart'
+import 'package:pretend/domain/entities/filters.dart' as _i8;
+import 'package:pretend/domain/entities/timeslot.dart' as _i10;
+import 'package:pretend/domain/entities/timeslots.dart' as _i9;
+import 'package:pretend/domain/usecases/filter_timetable.dart' as _i7;
+import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart'
     as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -20,24 +25,43 @@ import 'package:pretend/domain/usecases/generate_schedule_for_today.dart'
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-/// A class which mocks [GenerateScheduleForToday].
+/// A class which mocks [GetTimetableWithSubjects].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGenerateScheduleForToday extends _i1.Mock
-    implements _i3.GenerateScheduleForToday {
-  MockGenerateScheduleForToday() {
+class MockGetTimetableWithSubjects extends _i1.Mock
+    implements _i3.GetTimetableWithSubjects {
+  MockGetTimetableWithSubjects() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i3.GenerateScheduleForTodayOutput>> call(
-          _i3.GenerateScheduleForTodayParams? params) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i3.TimetableWithSubjects>> call(
+          _i6.NoParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue:
-              Future<_i2.Either<_i5.Failure, _i3.GenerateScheduleForTodayOutput>>.value(
-                  _FakeEither_0<_i5.Failure,
-                      _i3.GenerateScheduleForTodayOutput>())) as _i4
-          .Future<_i2.Either<_i5.Failure, _i3.GenerateScheduleForTodayOutput>>);
+              returnValue: Future<
+                      _i2.Either<_i5.Failure, _i3.TimetableWithSubjects>>.value(
+                  _FakeEither_0<_i5.Failure, _i3.TimetableWithSubjects>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i3.TimetableWithSubjects>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [FilterTimetable].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFilterTimetable extends _i1.Mock implements _i7.FilterTimetable {
+  MockFilterTimetable() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>> call(
+          _i7.FilterTimetableParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+          returnValue: Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>>.value(
+              _FakeEither_0<_i5.Failure,
+                  Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>())) as _i4
+          .Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>>);
   @override
   String toString() => super.toString();
 }

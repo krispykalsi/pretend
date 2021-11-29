@@ -27,7 +27,7 @@ void main() {
     final timetable = Timetable(
       {
         Days.friday: {
-          Timeslots.t1PM.dashed: Timeslot(
+          Timeslots.t1PM: Timeslot(
             slot: Timeslots.t1PM,
             classCategory: ClassCategories.tutorial,
             subjectCode: "HU-351a",
@@ -44,7 +44,7 @@ void main() {
     final timetable = Timetable(
       {
         Days.monday: {
-          Timeslots.t3PM.dashed: Timeslot(
+          Timeslots.t3PM: Timeslot(
             slot: Timeslots.t3PM,
             classCategory: ClassCategories.tutorial,
             subjectCode: "xyz-subject-code",

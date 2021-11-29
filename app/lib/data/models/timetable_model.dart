@@ -1,5 +1,6 @@
 import 'package:core/error.dart';
 import 'package:pretend/data/models/timeslot_model.dart';
+import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 
 typedef TimetableJSONMap = Map<String, Map<String, Map<String, dynamic>>>;
@@ -20,10 +21,11 @@ class TimetableModel extends Timetable {
     final timetableJson = Map<String, Map>.from(json[keyTimetable]);
     for (String day in timetableJson.keys) {
       timetable[day] = {};
-      for (String timeslot in timetableJson[day]!.keys) {
+      for (String slotDashed in timetableJson[day]!.keys) {
+        final slot = getTimeslotFromDashed(slotDashed);
         final timeslotJson =
-            Map<String, dynamic>.from(timetableJson[day]![timeslot]);
-        timetable[day]![timeslot] = TimeslotModel.fromJson(timeslotJson).toEntity();
+            Map<String, dynamic>.from(timetableJson[day]![slotDashed]);
+        timetable[day]![slot] = TimeslotModel.fromJson(timeslotJson).toEntity();
       }
     }
     final subjectCodes = List<String>.from(json[keySubjects]);
@@ -34,9 +36,10 @@ class TimetableModel extends Timetable {
     TimetableJSONMap timetable = {};
     for (String day in this.timetable.keys) {
       timetable[day] = {};
-      for (String timeslot in this.timetable[day]!.keys) {
+      for (Timeslots timeslot in this.timetable[day]!.keys) {
         final entity = this.timetable[day]![timeslot]!;
-        timetable[day]![timeslot] = TimeslotModel.fromEntity(entity).toJson();
+        timetable[day]![timeslot.dashed] =
+            TimeslotModel.fromEntity(entity).toJson();
       }
     }
     final timetableWithSubjects = {

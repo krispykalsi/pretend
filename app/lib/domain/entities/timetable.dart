@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:pretend/domain/entities/timeslot.dart';
 
-typedef TimetableMap = Map<String, Map<String, Timeslot>>;
+import 'timeslot.dart';
+import 'timeslots.dart';
+
+typedef TimetableMap = Map<String, Map<Timeslots, Timeslot>>;
 
 class Timetable extends Equatable {
   final TimetableMap timetable;

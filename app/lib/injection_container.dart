@@ -25,12 +25,11 @@ import 'package:pretend/domain/repositories/settings_repository_contract.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
 import 'package:pretend/domain/usecases/add_subject.dart';
-import 'package:pretend/domain/usecases/generate_schedule_for_today.dart';
+import 'package:pretend/domain/usecases/filter_timetable.dart';
+import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 import 'package:pretend/domain/usecases/get_app_settings.dart';
 import 'package:pretend/domain/usecases/get_colleges.dart';
-import 'package:pretend/domain/usecases/get_subjects_of_timetable.dart';
-import 'package:pretend/domain/usecases/get_timetable.dart';
 import 'package:pretend/domain/usecases/mark_app_visited_first_time.dart';
 import 'package:pretend/domain/usecases/set_app_theme_color.dart';
 import 'package:pretend/domain/usecases/set_college_id.dart';
@@ -49,7 +48,10 @@ Future<void> init() async {
     () => TimetableSetupBloc(setTimetable: sl()),
   );
   sl.registerFactory(
-    () => HomeBloc(generateScheduleForToday: sl()),
+    () => HomeBloc(
+      getTimetableWithSubjects: sl(),
+      filterTimetable: sl(),
+    ),
   );
   sl.registerFactory(
     () => NewSubjectBloc(sl()),
@@ -72,10 +74,9 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
-  sl.registerLazySingleton(() => GetTimetable(sl()));
   sl.registerLazySingleton(() => SetTimetable(sl()));
-  sl.registerLazySingleton(() => GetSubjectsOfTimetable(sl()));
-  sl.registerLazySingleton(() => GenerateScheduleForToday(sl(), sl()));
+  sl.registerLazySingleton(() => GetTimetableWithSubjects(sl(), sl()));
+  sl.registerLazySingleton(() => FilterTimetable());
   sl.registerLazySingleton(() => AddSubject(sl()));
   sl.registerLazySingleton(() => GetAppSettings(sl()));
   sl.registerLazySingleton(() => MarkAppVisitedFirstTime(sl()));

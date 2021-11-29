@@ -7,22 +7,22 @@ import 'package:pretend/domain/entities/timetable.dart';
 
 final _tTimetableMap = {
   Days.friday: {
-    Timeslots.t8AM.dashed: const Timeslot(
+    Timeslots.t8AM: const Timeslot(
       slot: Timeslots.t8AM,
       classCategory: ClassCategories.theory,
       subjectCode: "HU-351a",
     ),
-    Timeslots.t9AM.dashed: const Timeslot(
+    Timeslots.t9AM: const Timeslot(
       slot: Timeslots.t9AM,
       classCategory: ClassCategories.theory,
       subjectCode: "HU-351a",
     ),
-    Timeslots.t1PM.dashed: const Timeslot(
+    Timeslots.t1PM: const Timeslot(
       slot: Timeslots.t1PM,
       classCategory: ClassCategories.lab,
       subjectCode: "IT-502",
     ),
-    Timeslots.t11AM.dashed: const Timeslot(
+    Timeslots.t11AM: const Timeslot(
       slot: Timeslots.t11AM,
       classCategory: ClassCategories.theory,
       subjectCode: "IT-504",

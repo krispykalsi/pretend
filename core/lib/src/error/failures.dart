@@ -34,8 +34,8 @@ class CacheFailure extends Failure {
   String get message => "Cache Failure";
 }
 
-class GenerateScheduleFailure extends Failure {
-  GenerateScheduleFailure(String msg) : super(msg);
+class FilterTimetableFailure extends Failure {
+  FilterTimetableFailure(String msg) : super(msg);
 }
 
 class CollegeNotConfiguredFailure extends Failure {
