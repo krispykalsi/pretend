@@ -1,21 +1,14 @@
-import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
-import 'package:core/extensions.dart';
-import 'package:pretend/domain/entities/filters.dart';
 import 'package:pretend/domain/entities/subject.dart';
-import 'package:pretend/domain/entities/timeslot.dart';
-import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:core/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
 
-import 'settings_section.dart';
-import 'subject_list_tile.dart';
-import 'corner_date_time.dart';
+import 'home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,22 +17,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final _homeBloc = sl<HomeBloc>()
-    ..add(GetTimetableEvent(DateTime.now().update(
-      hour: 11,
-      minute: 5,
-      day: DateTime.friday,
-    )));
-  late Map<String, Subject> _subjects;
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent(DateTime.now()));
 
-  void _editTimetable(Timetable timetable) {
+  void _editTimetable(Timetable timetable, List<Subject> subjects) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       context.router.push(
-        TimetableSetupStatusRoute(
-          subjects: _subjects.values.toList(growable: false),
-          timetable: timetable,
-        ),
+        TimetableSetupStatusRoute(subjects: subjects, timetable: timetable),
       );
     });
   }
@@ -51,6 +35,36 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    _homeBloc.add(const CancelTimetableRefreshTimerEvent());
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _homeBloc.add(RefreshScheduleEvent(DateTime.now()));
+        break;
+      case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.paused:
+        _homeBloc.add(const CancelTimetableRefreshTimerEvent());
+        break;
+      case AppLifecycleState.detached:
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.DARK,
@@ -58,8 +72,13 @@ class _HomePageState extends State<HomePage> {
         bloc: _homeBloc,
         builder: (context, state) {
           if (state is TimetableLoaded) {
-            _subjects = state.subjects;
-            return _buildLoadedState(state);
+            return Home(
+              timetable: state.timetable,
+              subjects: state.subjects,
+              filteredSchedule: state.filteredSchedule,
+              changeThemeColor: _changeThemeColor,
+              editTimetable: _editTimetable,
+            );
           } else if (state is TimetableLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TimetableNotFound) {
@@ -73,100 +92,9 @@ class _HomePageState extends State<HomePage> {
               style: const TextStyle(color: Colors.redAccent),
             );
           }
-
           return const SizedBox.shrink();
         },
       ),
-    );
-  }
-
-  Widget _buildLoadedState(TimetableLoaded state) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: CornerDateTime(),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(48.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildOngoingSection(state.filteredSchedule[Filters.onGoing]!),
-              Expanded(
-                child: _buildLaterTodaySection(
-                    state.filteredSchedule[Filters.laterToday]!),
-              ),
-              const SizedBox(height: 10),
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SettingsSection(
-            onThemeChangeTap: _changeThemeColor,
-            onTimetableEditTap: () => _editTimetable(state.timetable),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildLaterTodaySection(Map<Timeslots, Timeslot> laterToday) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionHeading("Later today"),
-        Expanded(
-          child: FadedEdgeBox(
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: laterToday.values.map<Widget>((timeslot) {
-                final subject = _subjects[timeslot.subjectCode] ??
-                    const Subject("NOT FOUND", "NOT FOUND");
-                return SubjectListTile(subject, timeslot);
-              }).toList(growable: false),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOngoingSection(Map<Timeslots, Timeslot> onGoing) {
-    late Timeslot timeslot;
-    late Subject subject;
-    if (onGoing.isNotEmpty) {
-      timeslot = onGoing.values.elementAt(0);
-      subject = _subjects[timeslot.subjectCode] ??
-          const Subject("NOT FOUND", "NOT FOUND");
-    } else {
-      return SizedBox.shrink();
-    }
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionHeading("Ongoing"),
-        const SizedBox(height: 10),
-        onGoing.isNotEmpty
-            ? SubjectListTile(
-                subject,
-                timeslot,
-                isOnGoing: true,
-              )
-            : const Padding(
-                padding: EdgeInsets.all(32.0),
-                child: Text("Nothing to see here!"),
-              ),
-        const SizedBox(height: 50),
-      ],
-    );
-  }
-
-  Text _buildSectionHeading(String text) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.headline2,
     );
   }
 }

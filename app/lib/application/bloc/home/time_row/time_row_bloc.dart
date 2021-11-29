@@ -21,7 +21,7 @@ class TimeRowBloc extends Bloc<TimeRowEvent, TimeRowState> {
       yield MinuteChanged();
       _timer?.cancel();
       _timer = Timer.periodic(
-        const Duration(seconds: 1),
+        const Duration(minutes: 1),
         (_) => add(const _TickEvent()),
       );
     } else if (event is CancelTimerEvent) {

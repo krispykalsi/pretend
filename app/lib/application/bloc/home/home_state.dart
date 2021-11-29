@@ -26,7 +26,7 @@ class TimetableLoaded extends HomeState {
   const TimetableLoaded(this.timetable, this.subjects, this.filteredSchedule);
 
   @override
-  List<Object?> get props => [timetable];
+  List<Object?> get props => [timetable, filteredSchedule];
 }
 
 class TimetableNotFound extends HomeState {

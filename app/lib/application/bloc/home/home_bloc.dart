@@ -17,6 +17,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTimetableWithSubjects _getTimetableWithSubjects;
   final FilterTimetable _filterTimetable;
 
+  late TimetableWithSubjects _timetableWithSubjects;
+  Timer? _timer;
+  bool _timerInitialisationInProgress = false;
+
   HomeBloc({
     required GetTimetableWithSubjects getTimetableWithSubjects,
     required FilterTimetable filterTimetable,
@@ -37,19 +41,47 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               : TimetableError(failure.message);
         },
         (output) async* {
-          final filteredScheduleEither = await _filterTimetable(
-            FilterTimetableParams(event._now, output.timetable),
-          );
-          yield filteredScheduleEither.fold(
-            (failure) => TimetableError(failure.message),
-            (filteredSchedule) => TimetableLoaded(
-              output.timetable,
-              output.subjects,
-              filteredSchedule,
-            ),
-          );
+          _timetableWithSubjects = output;
+          add(RefreshScheduleEvent(event._now));
         },
       );
+    } else if (event is RefreshScheduleEvent) {
+      yield await _filterSchedule(event._now);
+      if (!_timerInitialisationInProgress) {
+        initialiseTimer(event._now);
+      }
+    } else if (event is _TickEvent) {
+      yield await _filterSchedule(DateTime.now());
+    } else if (event is CancelTimetableRefreshTimerEvent) {
+      _timer?.cancel();
     }
+  }
+
+  void initialiseTimer(DateTime now) async {
+    _timerInitialisationInProgress = true;
+    final minutesLeftUntilNextHour = 59 - now.minute;
+    final secondsLeftUntilNextHour = 60 - now.second;
+    await Future.delayed(Duration(
+      minutes: minutesLeftUntilNextHour,
+      seconds: secondsLeftUntilNextHour,
+    ));
+    add(_TickEvent());
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(hours: 1), (_) => add(_TickEvent()));
+    _timerInitialisationInProgress = false;
+  }
+
+  Future<HomeState> _filterSchedule(DateTime now) async {
+    final filteredScheduleEither = await _filterTimetable(
+      FilterTimetableParams(now, _timetableWithSubjects.timetable),
+    );
+    return filteredScheduleEither.fold(
+      (failure) => TimetableError(failure.message),
+      (filteredSchedule) => TimetableLoaded(
+        _timetableWithSubjects.timetable,
+        _timetableWithSubjects.subjects,
+        filteredSchedule,
+      ),
+    );
   }
 }
