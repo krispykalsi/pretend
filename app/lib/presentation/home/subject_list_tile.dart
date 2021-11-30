@@ -30,6 +30,8 @@ class SubjectListTile extends StatelessWidget {
         children: [
           Text(
             subject.name,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.headline3,
           ),
           Row(

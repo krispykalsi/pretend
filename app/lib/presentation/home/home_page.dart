@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   void _changeThemeColor() {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      context.router.push(ThemeSetupRoute());
+      context.router.push(ThemeSetupRoute()).then((_) => setState(() {}));
     });
   }
 

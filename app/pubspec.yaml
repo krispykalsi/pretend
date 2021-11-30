@@ -57,8 +57,8 @@ dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  # Text scroller
-  marquee: ^2.2.0
+  # Extra icons
+  material_design_icons_flutter: ^5.0.6295
 
 dev_dependencies:
   flutter_native_splash: ^1.3.2

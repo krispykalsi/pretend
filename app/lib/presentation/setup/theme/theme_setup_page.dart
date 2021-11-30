@@ -83,6 +83,9 @@ class _ThemeSetupPageState extends State<ThemeSetupPage> {
     return ElevatedButton(
       onPressed: () => _settingsBloc.add(SetThemeColorEvent(_color!)),
       child: Text(text),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(AppColors.PRIMARY),
+      ),
     );
   }
 
