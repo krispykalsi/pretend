@@ -1,6 +1,9 @@
 import 'package:core/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:pretend/application/router/router.gr.dart';
 
 import 'settings_item_button.dart';
 
@@ -38,8 +41,8 @@ class _SettingsSectionState extends State<SettingsSection> {
       ),
       curve: Curves.easeOutCubic,
       constraints: BoxConstraints.tightFor(
-        width: _areSettingsOpen ? 178 : 54,
-        height: _areSettingsOpen ? 144 : 54,
+        width: _areSettingsOpen ? 170 : 54,
+        height: _areSettingsOpen ? 184 : 54,
       ),
       padding: const EdgeInsets.all(12),
       duration: const Duration(milliseconds: 300),
@@ -55,8 +58,14 @@ class _SettingsSectionState extends State<SettingsSection> {
           _buildSettingsItem(
             Icons.palette,
             "Change Theme",
-            Alignment.center,
+            Alignment(0, -0.33),
             onTap: widget.onThemeChangeTap,
+          ),
+          _buildSettingsItem(
+            FontAwesomeIcons.info,
+            "About App",
+            Alignment(0, 0.33),
+            onTap: () => context.router.push(const AboutRoute()),
           ),
           _buildSettingsItem(
             Icons.settings,

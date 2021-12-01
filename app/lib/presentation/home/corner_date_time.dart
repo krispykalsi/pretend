@@ -1,6 +1,7 @@
 import 'package:core/app_colors.dart';
 import 'package:core/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:sprintf/sprintf.dart';
 
 class CornerDateTime extends StatelessWidget {
   const CornerDateTime({
@@ -10,7 +11,7 @@ class CornerDateTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    final date = "${now.day}";
+    final date = sprintf("%02i", [now.day]);
     final month = now.monthString.toUpperCase();
     final day = now.weekdayString.toUpperCase();
     const textStyle = TextStyle(
