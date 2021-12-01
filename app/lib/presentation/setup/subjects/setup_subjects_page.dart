@@ -52,11 +52,10 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
-                      "Cache Failure",
-                      style: TextStyle(color: Colors.redAccent),
+                    ErrorPuu(
+                      title: "Failure in database",
+                      body: state.msg,
                     ),
-                    Text(state.msg),
                     const SizedBox(height: 15),
                     ElevatedButton(
                       child: const Text("Retry"),

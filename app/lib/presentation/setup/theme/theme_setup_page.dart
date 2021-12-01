@@ -1,5 +1,6 @@
 import 'package:core/app_colors.dart';
 import 'package:core/dynamic_theme_app.dart';
+import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/settings/settings_bloc.dart';
@@ -68,11 +69,7 @@ class _ThemeSetupPageState extends State<ThemeSetupPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "Couldn't change :(",
-          style: TextStyle(color: Colors.redAccent),
-        ),
-        Text(errorMsg),
+        ErrorPuu(title: "Couldn't change :(", body: errorMsg),
         SizedBox(height: 15),
         _buildButton("Retry"),
       ],

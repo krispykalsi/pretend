@@ -221,9 +221,15 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
             ],
           );
         } else if (state is TimetableNotSavedError) {
-          return Text(
-            state.message,
-            style: const TextStyle(color: Colors.redAccent),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Failed to save",
+                style: const TextStyle(color: Colors.redAccent),
+              ),
+              Text(state.message),
+            ],
           );
         } else {
           return const SizedBox.shrink();

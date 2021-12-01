@@ -111,15 +111,15 @@ class _CollegesAutocompleteState extends State<_CollegesAutocomplete> {
     if (state is DownloadingColleges) {
       return const CircularProgressIndicator();
     } else if (state is CouldNotDownloadColleges || state is NoInternet) {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          state is NoInternet
-              ? "Bad internet connection"
-              : "Failed to download college data",
-          style: TextStyle(color: Colors.redAccent),
-        ),
-      );
+      return state is NoInternet
+          ? ErrorPuu(
+              title: "Bad internet connection",
+              body: "Can't fetch data with these peasant speeds",
+            )
+          : ErrorPuu(
+              title: "Failed to get colleges",
+              body: "Please check again later, or not?",
+            );
     }
 
     final screenW = MediaQuery.of(context).size.width;

@@ -1,4 +1,5 @@
 import 'package:core/extensions.dart';
+import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:core/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
@@ -28,7 +29,7 @@ class _SetCollegeDialogBodyState extends State<SetCollegeDialogBody> {
     }
   }
 
-  void _onOnCollegeSuccessfully() {
+  void _onCollegeSuccessfully() {
     context.router.pop(true);
   }
 
@@ -55,7 +56,7 @@ class _SetCollegeDialogBodyState extends State<SetCollegeDialogBody> {
         if (state is CollegeIDSetSuccessfully) {
           Future.delayed(
             const Duration(milliseconds: 700),
-            _onOnCollegeSuccessfully,
+            _onCollegeSuccessfully,
           );
           return Text(
             "College successfully set!",
@@ -64,6 +65,8 @@ class _SetCollegeDialogBodyState extends State<SetCollegeDialogBody> {
           );
         } else if (state is SettingCollegeID) {
           return CircularProgressIndicator();
+        } else if (state is CouldNotSetCollegeID) {
+          return _buildErrorState;
         }
 
         return Column(
@@ -81,6 +84,16 @@ class _SetCollegeDialogBodyState extends State<SetCollegeDialogBody> {
           ],
         );
       },
+    );
+  }
+
+  Widget get _buildErrorState {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      child: ErrorPuu(
+        title: "Something went wrong",
+        body: "Try doing it again (Tap anywhere to continue)",
+      ),
     );
   }
 

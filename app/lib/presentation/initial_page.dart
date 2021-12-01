@@ -1,4 +1,5 @@
 import 'package:core/dynamic_theme_app.dart';
+import 'package:core/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,13 +45,14 @@ class _InitialPageState extends State<InitialPage> {
             opacity: opacity,
             duration: const Duration(milliseconds: 200),
             child: state is AppSettingsError
-                ? _buildErrorMessage(state.message)
+                ? ErrorPuu(
+                    title: "Error loading settings",
+                    body: state.message,
+                  )
                 : CircularProgressIndicator(),
           ),
         );
       },
     );
   }
-
-  Widget _buildErrorMessage(String message) => Center(child: Text(message));
 }

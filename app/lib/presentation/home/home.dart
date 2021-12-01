@@ -1,3 +1,4 @@
+import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/schedule_status/schedule_status_bloc.dart';
@@ -46,13 +47,9 @@ class Home extends StatelessWidget {
             bloc: _scheduleStatusBloc,
             builder: (context, state) {
               if (state is DoneForToday) {
-                return Center(
-                  child: Text("All classes finished! Yayyy ^~^"),
-                );
+                return _happyPuu;
               } else if (state is NoClassToday) {
-                return Center(
-                  child: Text("No class today! Wuhuu :D"),
-                );
+                return _sleepingPuu;
               } else if (state is LastClassGoingOn || state is ClassesPending) {
                 return _buildNormalState;
               }
@@ -84,9 +81,7 @@ class Home extends StatelessWidget {
         ),
         Expanded(
           child: _scheduleStatusBloc.state is LastClassGoingOn
-              ? Center(
-                  child: Text("Last class for the day!!"),
-                )
+              ? _readingPuu
               : LaterTodaySection(
                   laterToday: filteredSchedule[Filters.laterToday]!,
                   subjects: subjects,
@@ -96,4 +91,13 @@ class Home extends StatelessWidget {
       ],
     );
   }
+
+  Widget get _happyPuu =>
+      const Center(child: Puu(Puus.happy, "All done for today! yay"));
+
+  Widget get _readingPuu =>
+      const Center(child: Puu(Puus.reading, "Last class for the day!!"));
+
+  Widget get _sleepingPuu =>
+      const Center(child: Puu(Puus.sleeping, "No class today. Wuhuu :D"));
 }

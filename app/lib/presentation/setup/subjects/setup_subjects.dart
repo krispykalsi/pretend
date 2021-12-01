@@ -172,12 +172,9 @@ class _SetupSubjectsState extends State<SetupSubjects> {
             ),
           );
         } else if (state is CouldNotAddNewSubject) {
-          return const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              "Failed to add subject",
-              style: TextStyle(color: Colors.redAccent),
-            ),
+          return ErrorPuu(
+            title: "Failed to add subject",
+            body: "Try reinstalling the app",
           );
         } else {
           return const SizedBox.shrink();

@@ -1,3 +1,4 @@
+import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
@@ -84,11 +85,7 @@ class NoSubjectsInListSection extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          "Something went wrong",
-          style: TextStyle(color: Colors.redAccent),
-        ),
-        Text(msg),
+        ErrorPuu(title: "Something went wrong", body: msg),
         const SizedBox(height: 10),
         _buildFetchSubjectsButton,
       ],
@@ -99,9 +96,9 @@ class NoSubjectsInListSection extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          "Please check your internet connection",
-          style: TextStyle(color: Colors.redAccent),
+        ErrorPuu(
+          title: "Bad internet connection",
+          body: "Can't fetch data with these peasant speeds",
         ),
         const SizedBox(height: 10),
         _buildFetchSubjectsButton,
