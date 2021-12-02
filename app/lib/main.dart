@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       buildChild: (themeData) {
         return MaterialApp.router(
           theme: themeData,
+          themeMode: ThemeMode.dark,
           routerDelegate: _appDelegate.delegate(),
           routeInformationParser: _appDelegate.defaultRouteParser(),
         );
