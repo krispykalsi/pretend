@@ -15,10 +15,10 @@ void main() {
   final tTimetable = getTestTimetable;
   final tFilteredSchedule = getTestFilteredSchedule;
 
-  final tDateTime = DateTime.now().update(
+  final tDateTime = DateTime.now().updateByWeekday(
     hour: 11,
     minute: 5,
-    day: DateTime.friday,
+    weekday: DateTime.friday,
   );
   final tParams = FilterTimetableParams(tDateTime, tTimetable);
 

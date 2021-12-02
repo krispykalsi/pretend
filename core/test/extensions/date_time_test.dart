@@ -28,21 +28,30 @@ enum _is {
 }
 
 void main() {
-  group('should only consider hour, minute and second while comparison between two DateTime objects', () {
+  group(
+      'should only consider hour, minute and second while comparison between two DateTime objects',
+      () {
     [
-      _TestValues(DateTime(2, 2, 2, 2, 2, 2), _is.lessThan, DateTime(1, 1, 1, 3, 3, 3)),
-      _TestValues(DateTime(1, 1, 1, 2, 2, 2), _is.lessThan, DateTime(2, 2, 2, 3, 3, 3)),
-      _TestValues(DateTime(1, 1, 1, 11, 5, 27), _is.lessThan, DateTime(2, 2, 2, 14, 0, 0)),
+      _TestValues(
+          DateTime(2, 2, 2, 2, 2, 2), _is.lessThan, DateTime(1, 1, 1, 3, 3, 3)),
+      _TestValues(
+          DateTime(1, 1, 1, 2, 2, 2), _is.lessThan, DateTime(2, 2, 2, 3, 3, 3)),
+      _TestValues(DateTime(1, 1, 1, 11, 5, 27), _is.lessThan,
+          DateTime(2, 2, 2, 14, 0, 0)),
       _TestValues(DateTime(2, 2, 2), _is.equalTo, DateTime(2, 2, 2)),
       _TestValues(DateTime(1, 2, 3), _is.equalTo, DateTime(4, 5, 6)),
       _TestValues(DateTime(4, 5, 6), _is.equalTo, DateTime(1, 2, 3)),
-      _TestValues(DateTime(4, 5, 6, 7, 8, 9), _is.equalTo, DateTime(1, 2, 3, 7, 8, 9)),
-      _TestValues(DateTime(1, 1, 1, 23, 0, 0), _is.greaterThan, DateTime(2, 2, 2, 14, 15, 16)),
-      _TestValues(DateTime(1, 1, 1, 2, 2, 2), _is.greaterThan, DateTime(2, 2, 2, 2, 1, 2)),
-      _TestValues(DateTime(2, 2, 2, 2, 2, 2), _is.greaterThan, DateTime(1, 1, 1, 2, 1, 2)),
+      _TestValues(
+          DateTime(4, 5, 6, 7, 8, 9), _is.equalTo, DateTime(1, 2, 3, 7, 8, 9)),
+      _TestValues(DateTime(1, 1, 1, 23, 0, 0), _is.greaterThan,
+          DateTime(2, 2, 2, 14, 15, 16)),
+      _TestValues(DateTime(1, 1, 1, 2, 2, 2), _is.greaterThan,
+          DateTime(2, 2, 2, 2, 1, 2)),
+      _TestValues(DateTime(2, 2, 2, 2, 2, 2), _is.greaterThan,
+          DateTime(1, 1, 1, 2, 1, 2)),
     ].forEach((value) {
       test("$value", () {
-        switch(value.expectedComparison) {
+        switch (value.expectedComparison) {
           case _is.lessThan:
             expect(value.a.compareToTimeOnly(value.b), -1);
             break;
@@ -73,5 +82,38 @@ void main() {
         expect(timeLeft, data.output);
       });
     }
+  });
+
+  group(
+      'should should correctly return new DateTime object with updated values',
+      () {
+    test('update with year/month/day', () {
+      final tDateTime = DateTime(2021, 25).updateByDate(
+        year: 2019,
+        month: 10,
+        day: 27,
+        hour: 12,
+        minute: 37,
+        second: 58,
+        millisecond: 100,
+        microsecond: 10,
+      );
+      final expectedDateTime = DateTime(2019, 10, 27, 12, 37, 58, 100, 10);
+      expect(tDateTime, expectedDateTime);
+    });
+
+    test('update with weekday', () {
+      final tDateTime = DateTime(2021, 25).updateByWeekday(
+        weekday: DateTime.friday,
+        hour: 12,
+        minute: 37,
+        second: 58,
+        millisecond: 100,
+        microsecond: 10,
+      );
+      final expectedDateTime = DateTime(2021, 11, 5, 12, 37, 58, 100, 10);
+      expect(tDateTime, expectedDateTime);
+      expect(tDateTime.weekday, DateTime.friday);
+    });
   });
 }
