@@ -4,16 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fetch_subjects_online_bloc.dart';
 import 'package:pretend/injection_container.dart';
 
-import 'set_college_dialog.dart';
+import 'college/set_college_dialog.dart';
 
 class NoSubjectsInListSection extends StatelessWidget {
   final VoidCallback _onAddNewSubject;
   final VoidCallback _onSubjectListUpdate;
+  final bool alreadyFetchedOnce;
 
   final _fetchSubjectsOnlineBloc = sl<FetchSubjectsOnlineBloc>();
 
   NoSubjectsInListSection({
     Key? key,
+    this.alreadyFetchedOnce = false,
     required VoidCallback onAddNewSubject,
     required VoidCallback onSubjectListUpdate,
   })  : _onAddNewSubject = onAddNewSubject,
@@ -41,7 +43,9 @@ class NoSubjectsInListSection extends StatelessWidget {
         bloc: _fetchSubjectsOnlineBloc,
         builder: (blocContext, state) {
           if (state is FetchSubjectsOnlineInitial) {
-            return _buildFetchSubjectsButton;
+            return alreadyFetchedOnce
+                ? _addAndRefreshButtons
+                : _fetchSubjectsButton;
           } else if (state is Loading) {
             return CircularProgressIndicator();
           } else if (state is Loaded) {
@@ -75,7 +79,7 @@ class NoSubjectsInListSection extends StatelessWidget {
           } else if (state is Error) {
             return _buildUnexpectedErrorState(state.msg);
           }
-          return _buildAddNewSubjectButton;
+          return _addManuallyButton;
         },
       ),
     );
@@ -87,7 +91,7 @@ class NoSubjectsInListSection extends StatelessWidget {
       children: [
         ErrorPuu(title: "Something went wrong", body: msg),
         const SizedBox(height: 10),
-        _buildFetchSubjectsButton,
+        _fetchSubjectsButton,
       ],
     );
   }
@@ -101,7 +105,7 @@ class NoSubjectsInListSection extends StatelessWidget {
           body: "Can't fetch data with these peasant speeds",
         ),
         const SizedBox(height: 10),
-        _buildFetchSubjectsButton,
+        _addAndRefreshButtons,
       ],
     );
   }
@@ -112,37 +116,57 @@ class NoSubjectsInListSection extends StatelessWidget {
       children: [
         const Text("No subjects found for your college"),
         const SizedBox(height: 10),
-        _buildAddNewSubjectButton,
+        _addManuallyButton,
       ],
     );
   }
 
-  Widget get _buildFetchSubjectsButton {
+  Widget get _addAndRefreshButtons {
+    return Column(
+      children: [
+        _addManuallyButton,
+        const SizedBox(height: 8),
+        _refreshButton,
+      ],
+    );
+  }
+
+  Widget get _refreshButton {
+    return ElevatedButton(
+      onPressed: _onFetchSubjectsTapped,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.cloud_download),
+          const SizedBox(width: 10),
+          Text("Update"),
+        ],
+      ),
+    );
+  }
+
+  Widget get _fetchSubjectsButton {
     return ElevatedButton(
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [
           Icon(Icons.download),
           SizedBox(width: 10),
-          Text(
-            "Fetch Subjects",
-          ),
+          Text("Fetch Subjects"),
         ],
       ),
       onPressed: _onFetchSubjectsTapped,
     );
   }
 
-  Widget get _buildAddNewSubjectButton {
+  Widget get _addManuallyButton {
     return ElevatedButton(
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [
           Icon(Icons.add),
           SizedBox(width: 10),
-          Text(
-            "Add Subject Manually",
-          ),
+          Text("Add Manually"),
         ],
       ),
       onPressed: _onAddNewSubject,

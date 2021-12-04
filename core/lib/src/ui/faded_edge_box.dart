@@ -11,7 +11,7 @@ class FadedEdgeBox extends StatelessWidget {
     this.intensity = 0.3,
     this.offsetFromBottom = 0,
   })  : assert(intensity > 0 && intensity <= 2),
-        assert(offsetFromBottom > 0 && offsetFromBottom < 2),
+        assert(offsetFromBottom >= 0 && offsetFromBottom < 2),
         super(key: key);
 
   @override

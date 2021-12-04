@@ -2,6 +2,8 @@ part of 'dynamic_theme_app.dart';
 
 ThemeData get _getThemeData {
   return ThemeData(
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark(primary: AppColors.accent),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all(GoogleFonts.ptSansNarrow(

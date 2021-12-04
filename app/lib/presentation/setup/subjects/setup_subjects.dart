@@ -121,15 +121,21 @@ class _SetupSubjectsState extends State<SetupSubjects> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(
-                      child: SubjectOptionList(
-                        _subjectOptions,
-                        previousState: widget.previouslySelected,
-                        onOptionTap: _onOptionTap,
-                        selectedListRemovalNotifier:
-                            _selectedListRemovalNotifier,
-                      ),
-                    ),
+                    _subjectOptions.isEmpty
+                        ? NoSubjectsInListSection(
+                            alreadyFetchedOnce: true,
+                            onAddNewSubject: _onAddNewSubject,
+                            onSubjectListUpdate: widget.onSubjectListUpdate,
+                          )
+                        : Flexible(
+                            child: SubjectOptionList(
+                              _subjectOptions,
+                              previousState: widget.previouslySelected,
+                              onOptionTap: _onOptionTap,
+                              selectedListRemovalNotifier:
+                                  _selectedListRemovalNotifier,
+                            ),
+                          ),
                     _buildAddNewSubjectSection,
                   ],
                 ),

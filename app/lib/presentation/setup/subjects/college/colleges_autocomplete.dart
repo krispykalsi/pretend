@@ -17,11 +17,9 @@ class _CollegesAutocomplete extends StatefulWidget {
 class _CollegesAutocompleteState extends State<_CollegesAutocomplete> {
   List<College>? _colleges;
 
-  static const _noCollegeEquivalent = [College("", "", "noCollege")];
-
-  bool _isThereNoCollege(Iterable<College> options) {
-    return options.length == 1 && options == _noCollegeEquivalent;
-  }
+  static const _noCollegeEquivalent = [
+    College("0", "<College not in List>", "Select this if not found")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -130,20 +128,8 @@ class _CollegesAutocompleteState extends State<_CollegesAutocomplete> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: leftPadding),
-          _isThereNoCollege(options)
-              ? _buildNoOptionsView()
-              : _buildListView(context, onSelected, options),
+          _buildListView(context, onSelected, options),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNoOptionsView() {
-    return Material(
-      color: AppColors.DARK,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Text("Huh?"),
       ),
     );
   }
