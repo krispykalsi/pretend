@@ -8,6 +8,7 @@ class SubjectOptionList extends StatefulWidget {
   final Function(Subject, bool) onOptionTap;
   final Iterable<Subject> _previouslySelected;
   final ValueNotifier<Subject> selectedListRemovalNotifier;
+  final ValueNotifier<Subject> newSubjectAddedNotifier;
 
   const SubjectOptionList(
     this._subjects, {
@@ -15,6 +16,7 @@ class SubjectOptionList extends StatefulWidget {
     required this.onOptionTap,
     required this.selectedListRemovalNotifier,
     Iterable<Subject> previousState = const [],
+    required this.newSubjectAddedNotifier,
   })  : _previouslySelected = previousState,
         super(key: key);
 
@@ -29,19 +31,25 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
 
   void _onRemoveFromSelectedList() {
     final removedSubject = widget.selectedListRemovalNotifier.value;
-    setState(() {
-      _selectionState[removedSubject.code] = false;
-    });
+    setState(() => _selectionState[removedSubject.code] = false);
+  }
+
+  void _onNewSubjectAdded() {
+    final newSubject = widget.newSubjectAddedNotifier.value;
+    // not calling set state here because it will be called by parent
+    _selectionState[newSubject.code] = true;
   }
 
   @override
   void initState() {
     super.initState();
     widget.selectedListRemovalNotifier.addListener(_onRemoveFromSelectedList);
+    widget.newSubjectAddedNotifier.addListener(_onNewSubjectAdded);
   }
 
   @override
   void dispose() {
+    widget.newSubjectAddedNotifier.removeListener(_onNewSubjectAdded);
     widget.selectedListRemovalNotifier.removeListener(_onRemoveFromSelectedList);
     super.dispose();
   }
@@ -62,18 +70,20 @@ class _SubjectOptionListState extends State<SubjectOptionList> {
         child: ScrollConfiguration(
           behavior: const ScrollBehavior().copyWith(overscroll: false),
           child: ListView.builder(
+            addAutomaticKeepAlives: false,
             physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.all(0),
             itemBuilder: (ctx, idx) {
               final subject = widget._subjects.elementAt(idx);
+              final isSelected = _selectionState[subject.code] ?? false;
               return SubjectOptionListTile(
                 subject,
-                key: ValueKey(subject.code),
+                key: ValueKey("${subject.code}$isSelected"),
                 onTap: (isSelected) {
                   _selectionState[subject.code] = isSelected;
                   widget.onOptionTap(subject, isSelected);
                 },
-                selected: _selectionState[subject.code] ?? false,
+                selected: isSelected,
               );
             },
             itemCount: widget._subjects.length,

@@ -19,6 +19,7 @@ class LaterTodaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sortedLaterToday = laterToday.values.toList(growable: false)..sort();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,7 +28,7 @@ class LaterTodaySection extends StatelessWidget {
           child: FadedEdgeBox(
             child: ListView(
               physics: BouncingScrollPhysics(),
-              children: laterToday.values.map<Widget>((timeslot) {
+              children: sortedLaterToday.map<Widget>((timeslot) {
                 final subject = subjects[timeslot.subjectCode] ??
                     const Subject("NOT FOUND", "NOT FOUND");
                 return SubjectListTile(subject, timeslot);

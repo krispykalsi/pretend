@@ -8,6 +8,7 @@ import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
+import 'package:tap_canvas/tap_canvas.dart';
 
 import 'corner_date_time.dart';
 import 'later_today_section.dart';
@@ -35,39 +36,41 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: CornerDateTime(),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(48.0),
-          child: BlocBuilder(
-            bloc: _scheduleStatusBloc,
-            builder: (context, state) {
-              if (state is DoneForToday) {
-                return _happyPuu;
-              } else if (state is NoClassToday) {
-                return _sleepingPuu;
-              } else if (state is LastClassGoingOn || state is ClassesPending) {
-                return _buildNormalState;
-              }
-              return SizedBox.shrink();
-            },
+    return TapCanvas(
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: CornerDateTime(),
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SettingsSection(
-            onThemeChangeTap: changeThemeColor,
-            onTimetableEditTap: () => editTimetable(
-              timetable,
-              subjects.values.toList(growable: false),
+          Padding(
+            padding: const EdgeInsets.all(48.0),
+            child: BlocBuilder(
+              bloc: _scheduleStatusBloc,
+              builder: (context, state) {
+                if (state is DoneForToday) {
+                  return _happyPuu;
+                } else if (state is NoClassToday) {
+                  return _sleepingPuu;
+                } else if (state is LastClassGoingOn || state is ClassesPending) {
+                  return _buildNormalState;
+                }
+                return SizedBox.shrink();
+              },
             ),
           ),
-        )
-      ],
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SettingsSection(
+              onThemeChangeTap: changeThemeColor,
+              onTimetableEditTap: () => editTimetable(
+                timetable,
+                subjects.values.toList(growable: false),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 

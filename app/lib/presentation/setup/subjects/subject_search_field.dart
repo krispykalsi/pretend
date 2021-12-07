@@ -16,11 +16,8 @@ class _SubjectSearchFieldState extends State<SubjectSearchField> {
 
   void _onTextChange() {
     if (_showCross != widget.controller.text.isNotEmpty) {
-      setState(() {
-        _showCross = widget.controller.text.isNotEmpty;
-      });
+      setState(() => _showCross = widget.controller.text.isNotEmpty);
     }
-    ;
   }
 
   @override
@@ -37,45 +34,60 @@ class _SubjectSearchFieldState extends State<SubjectSearchField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
       children: [
-        TextField(
-          scrollPadding: const EdgeInsets.all(0),
-          cursorColor: Colors.white,
-          controller: widget.controller,
-          onEditingComplete: () {
-            var text = widget.controller.text;
-            print(text);
-            widget.controller.text = text;
-            FocusScope.of(context).unfocus();
-          },
-          style: Theme.of(context).textTheme.bodyText1,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(
-              Icons.search,
-              color: AppColors.SECONDARY,
-            ),
-            suffixIcon: _showCross
-                ? IconButton(
-                    enableFeedback: false,
-                    onPressed: widget.controller.clear,
-                    icon: Icon(
-                      Icons.backspace,
-                      color: AppColors.accent,
-                    ),
-                  )
-                : null,
-            hintText: "Search by name or code",
-            hintStyle: Theme.of(context).textTheme.bodyText2,
-            border: InputBorder.none,
-          ),
-        ),
         Container(
-          height: 1,
-          color: AppColors.SECONDARY,
+          color: AppColors.accent.withOpacity(0.05),
+          constraints: BoxConstraints.expand(height: 50),
+        ),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _searchField,
+            _horizontalDivider,
+          ],
         ),
       ],
+    );
+  }
+
+  TextField get _searchField {
+    return TextField(
+      scrollPadding: const EdgeInsets.all(0),
+      cursorColor: Colors.white,
+      controller: widget.controller,
+      onEditingComplete: () {
+        var text = widget.controller.text;
+        print(text);
+        widget.controller.text = text;
+        FocusScope.of(context).unfocus();
+      },
+      style: Theme.of(context).textTheme.bodyText1,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search, color: AppColors.SECONDARY),
+        suffixIcon: _showCross ? _clearButton : null,
+        hintText: "Search by name or code",
+        hintStyle: Theme.of(context).textTheme.bodyText2,
+        border: InputBorder.none,
+      ),
+    );
+  }
+
+  IconButton get _clearButton {
+    return IconButton(
+      enableFeedback: false,
+      onPressed: widget.controller.clear,
+      icon: Icon(
+        Icons.backspace,
+        color: AppColors.accent,
+      ),
+    );
+  }
+
+  Container get _horizontalDivider {
+    return Container(
+      height: 1,
+      color: AppColors.SECONDARY,
     );
   }
 }

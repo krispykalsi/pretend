@@ -36,6 +36,7 @@ class _SetupSubjectsState extends State<SetupSubjects> {
   final _selectedListNotifier =
       ValueNotifier<AnimatedListModel<Subject>?>(null);
   final _selectedListRemovalNotifier = ValueNotifier<Subject>(Subject("", ""));
+  final _newSubjectAddedNotifier = ValueNotifier<Subject>(Subject("", ""));
   final _textEditingController = TextEditingController();
   Iterable<Subject> _subjectOptions = const Iterable.empty();
   final _newSubjectBloc = sl<NewSubjectBloc>();
@@ -61,16 +62,13 @@ class _SetupSubjectsState extends State<SetupSubjects> {
 
   void _onRemoveTapInSelectedList(Subject subject) {
     _selectedListRemovalNotifier.value = subject;
-    _removeFromSelectedSubjects(subject);
-    final subjects = _selectedListNotifier.value!.items;
-    widget.onSelectedSubjectsUpdate(subjects);
+    _onOptionTap(subject, false);
   }
 
   void _onAddNewSubject() async {
     final subject = await showAddNewSubjectDialog(context);
     if (subject != null) {
       _newSubjectBloc.add(AddNewSubjectEvent(subject));
-      widget.onSubjectListUpdate();
     }
   }
 
@@ -118,32 +116,9 @@ class _SetupSubjectsState extends State<SetupSubjects> {
             children: [
               Expanded(
                 flex: 2,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _subjectOptions.isEmpty
-                        ? NoSubjectsInListSection(
-                            alreadyFetchedOnce: true,
-                            onAddNewSubject: _onAddNewSubject,
-                            onSubjectListUpdate: widget.onSubjectListUpdate,
-                          )
-                        : Flexible(
-                            child: SubjectOptionList(
-                              _subjectOptions,
-                              previousState: widget.previouslySelected,
-                              onOptionTap: _onOptionTap,
-                              selectedListRemovalNotifier:
-                                  _selectedListRemovalNotifier,
-                            ),
-                          ),
-                    _buildAddNewSubjectSection,
-                  ],
-                ),
+                child: _optionsSection,
               ),
-              Container(
-                width: 1,
-                color: AppColors.SECONDARY,
-              ),
+              _verticalDivider,
               Expanded(
                 flex: 1,
                 child: SelectedSubjectList(
@@ -159,7 +134,53 @@ class _SetupSubjectsState extends State<SetupSubjects> {
     );
   }
 
-  Widget get _buildAddNewSubjectSection {
+  Column get _optionsSection {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BlocConsumer<NewSubjectBloc, NewSubjectState>(
+          bloc: _newSubjectBloc,
+          listenWhen: (previous, current) => current is NewSubjectAdded,
+          listener: (context, state) {
+            if (state is NewSubjectAdded) {
+              widget.onSubjectListUpdate();
+              _newSubjectAddedNotifier.value = state.subject;
+              _onOptionTap(state.subject, true);
+            }
+          },
+          buildWhen: (prevous, current) => current is NewSubjectInitial,
+          builder: (context, state) {
+            return _subjectOptions.isEmpty &&
+                    _textEditingController.text.isEmpty
+                ? NoSubjectsInListSection(
+                    alreadyFetchedOnce: true,
+                    onAddNewSubject: _onAddNewSubject,
+                    onSubjectListUpdate: widget.onSubjectListUpdate,
+                  )
+                : Flexible(
+                    child: SubjectOptionList(
+                      _subjectOptions,
+                      previousState: widget.previouslySelected,
+                      onOptionTap: _onOptionTap,
+                      selectedListRemovalNotifier: _selectedListRemovalNotifier,
+                      newSubjectAddedNotifier: _newSubjectAddedNotifier,
+                    ),
+                  );
+          },
+        ),
+        _addNewSubjectSection,
+      ],
+    );
+  }
+
+  Container get _verticalDivider {
+    return Container(
+      width: 1,
+      color: AppColors.SECONDARY,
+    );
+  }
+
+  Widget get _addNewSubjectSection {
     return BlocBuilder(
       bloc: _newSubjectBloc,
       builder: (context, state) {

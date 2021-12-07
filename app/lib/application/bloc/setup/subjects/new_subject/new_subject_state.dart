@@ -19,10 +19,12 @@ class NewSubjectBeingAdded extends NewSubjectState {
 }
 
 class NewSubjectAdded extends NewSubjectState {
-  const NewSubjectAdded();
+  final Subject subject;
+
+  const NewSubjectAdded(this.subject);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [subject];
 }
 
 class CouldNotAddNewSubject extends NewSubjectState {

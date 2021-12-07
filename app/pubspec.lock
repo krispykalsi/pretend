@@ -686,6 +686,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  tap_canvas:
+    dependency: "direct main"
+    description:
+      name: tap_canvas
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.3"
   term_glyph:
     dependency: transitive
     description:

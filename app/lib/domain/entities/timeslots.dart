@@ -46,6 +46,8 @@ Timeslots getTimeslotFromDashed(String dashed) {
   }
 }
 
+enum _TimeslotHour { starting, ending }
+
 extension ParseToString on Timeslots {
   String get dashed {
     switch (this) {
@@ -76,53 +78,62 @@ extension ParseToString on Timeslots {
     }
   }
 
-  String get start {
-    return _appendMeridiem(_extractPart(1));
+  String get startHour12 {
+    return _convertToHour12(startHour24);
   }
 
-  String get end {
-    return _appendMeridiem(_extractPart(2));
+  String get endHour12 {
+    return _convertToHour12(endHour24);
   }
 
-  String _extractPart(int part) {
+  String _extractHour12(_TimeslotHour part) {
     final regex = RegExp(r'(\d+)-(\d+)');
     final match = regex.firstMatch(dashed)!;
-    final slot = match.group(part)!;
+    late String slot;
+    switch (part) {
+      case _TimeslotHour.starting:
+        slot = match.group(1)!;
+        break;
+      case _TimeslotHour.ending:
+        slot = match.group(2)!;
+        break;
+    }
     return slot;
   }
 
-  String _appendMeridiem(String slot) {
-    final slotInt = int.parse(slot);
-    if (slotInt > 7 && slotInt != 12) {
-      return slot + " AM";
+  String _convertToHour12(int hour24) {
+    if (hour24 < 12) {
+      return "$hour24" + " AM";
+    } else if (hour24 == 12) {
+      return "$hour24" + " PM";
     } else {
-      return slot + " PM";
+      return "${hour24 - 12}" + " PM";
     }
   }
 }
 
 extension Comparison on Timeslots {
-  int get startInt {
-    final hour12 = int.parse(_extractPart(1));
+  int get startHour24 {
+    final hour12 = int.parse(_extractHour12(_TimeslotHour.starting));
     return hour12 < 8 ? hour12 + 12 : hour12;
   }
 
-  int get endInt {
-    final hour12 = int.parse(_extractPart(2));
-    return hour12 < 8 ? hour12 + 12 : hour12;
+  int get endHour24 {
+    final hour12 = int.parse(_extractHour12(_TimeslotHour.ending));
+    return hour12 < 9 ? hour12 + 12 : hour12;
   }
 
   int compareTo(Timeslots other) {
-    return startInt.compareTo(other.startInt);
+    return startHour24.compareTo(other.startHour24);
   }
 }
 
 extension MapperToDateTime on Timeslots {
   DateTime get startTime {
-    return DateFormat("h a").parse(start);
+    return DateFormat("h a").parse(startHour12);
   }
 
   DateTime get endTime {
-    return DateFormat("h a").parse(end);
+    return DateFormat("h a").parse(endHour12);
   }
 }

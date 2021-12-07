@@ -124,26 +124,30 @@ class NoSubjectsInListSection extends StatelessWidget {
   Widget get _addAndRefreshButtons {
     return Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Text("If your subject didn't show up in the search then..."),
+        ),
         _addManuallyButton,
-        const SizedBox(height: 8),
-        _refreshButton,
+        // const SizedBox(height: 8),
+        // _refreshButton,
       ],
     );
   }
 
-  Widget get _refreshButton {
-    return ElevatedButton(
-      onPressed: _onFetchSubjectsTapped,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.cloud_download),
-          const SizedBox(width: 10),
-          Text("Update"),
-        ],
-      ),
-    );
-  }
+  // Widget get _refreshButton {
+  //   return ElevatedButton(
+  //     onPressed: _onFetchSubjectsTapped,
+  //     child: Row(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         Icon(Icons.cloud_download),
+  //         const SizedBox(width: 10),
+  //         Text("Update"),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget get _fetchSubjectsButton {
     return ElevatedButton(

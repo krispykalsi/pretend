@@ -22,7 +22,7 @@ class NewSubjectBloc extends Bloc<NewSubjectEvent, NewSubjectState> {
           await _addSubject(AddSubjectParams(event.subject));
       yield eitherAddedOrNot.fold(
         (failure) => CouldNotAddNewSubject(failure.message),
-        (_) => const NewSubjectAdded(),
+        (_) => NewSubjectAdded(event.subject),
       );
       yield await Future.delayed(
         const Duration(seconds: 2),

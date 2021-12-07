@@ -29,6 +29,15 @@ class TimetableSetupStatus extends StatefulWidget {
 class _TimetableSetupStatusState extends State<TimetableSetupStatus> {
   final _isConfigured = Map<String, bool>();
 
+  @override
+  void initState() {
+    super.initState();
+    for (final subject in widget._subjects) {
+      final selectionState = widget._timetableNotifier.value[subject.code];
+      _isConfigured[subject.code] = selectionState != null;
+    }
+  }
+
   void _onSubjectTap(int index) async {
     final subject = widget._subjects[index];
     final selectionState = await context.router.push(TimetableSetupRoute(

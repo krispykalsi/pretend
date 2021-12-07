@@ -84,7 +84,7 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
       children: [
         SetupSubjects(
           allSubjects: subs,
-          previouslySelected: widget._selectedSubjects,
+          previouslySelected: _selectedSubjects,
           onSubjectListUpdate: () {
             _subjectsBloc.add(const GetAllSubjectsEvent());
           },

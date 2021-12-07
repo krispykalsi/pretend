@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:pretend/application/router/router.gr.dart';
+import 'package:tap_canvas/tap_canvas.dart';
 
 import 'settings_item_button.dart';
 
@@ -26,56 +27,65 @@ class _SettingsSectionState extends State<SettingsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(12)),
-        color: AppColors.accent,
-        boxShadow: [
-          const BoxShadow(
-            color: AppColors.DARK,
-            offset: Offset(-7, 0),
-            blurRadius: 10,
-            spreadRadius: 3,
-          )
-        ],
-      ),
-      curve: Curves.easeOutCubic,
-      constraints: BoxConstraints.tightFor(
-        width: _areSettingsOpen ? 170 : 54,
-        height: _areSettingsOpen ? 184 : 54,
-      ),
-      padding: const EdgeInsets.all(12),
-      duration: const Duration(milliseconds: 300),
-      child: Stack(
-        clipBehavior: Clip.hardEdge,
-        children: [
-          _buildSettingsItem(
-            MdiIcons.calendarEdit,
-            "Edit Timetable",
-            Alignment.topCenter,
-            onTap: widget.onTimetableEditTap,
-          ),
-          _buildSettingsItem(
-            Icons.palette,
-            "Change Theme",
-            Alignment(0, -0.33),
-            onTap: widget.onThemeChangeTap,
-          ),
-          _buildSettingsItem(
-            FontAwesomeIcons.info,
-            "About App",
-            Alignment(0, 0.33),
-            onTap: () => context.router.push(const AboutRoute()),
-          ),
-          _buildSettingsItem(
-            Icons.settings,
-            "Settings",
-            Alignment.bottomCenter,
-            isGearIcon: true,
-          ),
-        ],
+    return TapOutsideDetectorWidget(
+      onTappedOutside: () {
+        if (_areSettingsOpen) setState(() => _areSettingsOpen = false);
+      },
+      child: AnimatedContainer(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(12)),
+          color: AppColors.accent,
+          boxShadow: [
+            const BoxShadow(
+              color: AppColors.DARK,
+              offset: Offset(-7, 0),
+              blurRadius: 10,
+              spreadRadius: 3,
+            )
+          ],
+        ),
+        curve: Curves.easeOutCubic,
+        constraints: BoxConstraints.tightFor(
+          width: _areSettingsOpen ? 170 : 54,
+          height: _areSettingsOpen ? 184 : 54,
+        ),
+        padding: const EdgeInsets.all(12),
+        duration: const Duration(milliseconds: 300),
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: _items,
+        ),
       ),
     );
+  }
+
+  List<Widget> get _items {
+    return [
+      _buildSettingsItem(
+        MdiIcons.calendarEdit,
+        "Edit Timetable",
+        Alignment.topCenter,
+        onTap: widget.onTimetableEditTap,
+      ),
+      _buildSettingsItem(
+        Icons.palette,
+        "Change Theme",
+        Alignment(0, -0.33),
+        onTap: widget.onThemeChangeTap,
+      ),
+      _buildSettingsItem(
+        FontAwesomeIcons.info,
+        "About App",
+        Alignment(0, 0.33),
+        onTap: () => context.router.push(const AboutRoute()),
+      ),
+      _buildSettingsItem(
+        Icons.settings,
+        "Settings",
+        Alignment.bottomCenter,
+        isGearIcon: true,
+      ),
+    ];
   }
 
   Widget _buildSettingsItem(IconData icon, String text, Alignment alignment,

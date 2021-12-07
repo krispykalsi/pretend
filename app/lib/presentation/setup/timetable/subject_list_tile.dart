@@ -1,3 +1,4 @@
+import 'package:core/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
@@ -21,7 +22,7 @@ class SubjectListTile extends StatelessWidget {
         )
       : const Icon(
           Icons.cancel,
-          color: Colors.red,
+          color: Colors.transparent,
         );
 
   @override
@@ -54,8 +55,20 @@ class SubjectListTile extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          _rightArrow,
         ],
+      ),
+    );
+  }
+
+  Padding get _rightArrow {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Icon(
+        Icons.arrow_right_rounded,
+        color: AppColors.accent,
+        size: 32,
       ),
     );
   }
