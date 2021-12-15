@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:core/app_colors.dart';

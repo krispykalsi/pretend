@@ -1,5 +1,4 @@
 import 'package:core/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pretend/domain/entities/subject.dart';
 
