@@ -6,6 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:core/error.dart';
+import 'package:pretend/domain/entities/timetable_with_subjects.dart';
 import 'package:pretend/domain/usecases/filter_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 

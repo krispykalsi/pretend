@@ -5,13 +5,14 @@
 import 'dart:async' as _i4;
 
 import 'package:core/error.dart' as _i5;
-import 'package:core/usecase.dart' as _i6;
+import 'package:core/usecase.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pretend/domain/entities/filters.dart' as _i8;
-import 'package:pretend/domain/entities/timeslot.dart' as _i10;
-import 'package:pretend/domain/entities/timeslots.dart' as _i9;
-import 'package:pretend/domain/usecases/filter_timetable.dart' as _i7;
+import 'package:pretend/domain/entities/filters.dart' as _i9;
+import 'package:pretend/domain/entities/timeslot.dart' as _i11;
+import 'package:pretend/domain/entities/timeslots.dart' as _i10;
+import 'package:pretend/domain/entities/timetable_with_subjects.dart' as _i6;
+import 'package:pretend/domain/usecases/filter_timetable.dart' as _i8;
 import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart'
     as _i3;
 
@@ -35,13 +36,13 @@ class MockGetTimetableWithSubjects extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i3.TimetableWithSubjects>> call(
-          _i6.NoParams? params) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.TimetableWithSubjects>> call(
+          _i7.NoParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
               returnValue: Future<
-                      _i2.Either<_i5.Failure, _i3.TimetableWithSubjects>>.value(
-                  _FakeEither_0<_i5.Failure, _i3.TimetableWithSubjects>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i3.TimetableWithSubjects>>);
+                      _i2.Either<_i5.Failure, _i6.TimetableWithSubjects>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.TimetableWithSubjects>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.TimetableWithSubjects>>);
   @override
   String toString() => super.toString();
 }
@@ -49,19 +50,19 @@ class MockGetTimetableWithSubjects extends _i1.Mock
 /// A class which mocks [FilterTimetable].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilterTimetable extends _i1.Mock implements _i7.FilterTimetable {
+class MockFilterTimetable extends _i1.Mock implements _i8.FilterTimetable {
   MockFilterTimetable() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>> call(
-          _i7.FilterTimetableParams? params) =>
+  _i4.Future<_i2.Either<_i5.Failure, Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>> call(
+          _i8.FilterTimetableParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue: Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>>.value(
+          returnValue: Future<_i2.Either<_i5.Failure, Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>>.value(
               _FakeEither_0<_i5.Failure,
-                  Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>())) as _i4
-          .Future<_i2.Either<_i5.Failure, Map<_i8.Filters, Map<_i9.Timeslots, _i10.Timeslot>>>>);
+                  Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>())) as _i4
+          .Future<_i2.Either<_i5.Failure, Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>>);
   @override
   String toString() => super.toString();
 }
