@@ -11,7 +11,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'timetable_notifier.dart';
 import 'timetable_setup_status.dart';
-import 'extensions.dart';
+import 'timetable_extensions.dart';
 
 class TimetableSetupStatusPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
