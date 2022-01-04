@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:core/error.dart';
 import 'package:core/usecase.dart';
 import 'package:pretend/domain/entities/subject.dart';
-import 'package:pretend/domain/entities/timetable.dart';
+import 'package:pretend/domain/entities/timetable_with_subjects.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
 
@@ -30,17 +29,4 @@ class GetTimetableWithSubjects
       List<String> subjectCodes) async {
     return await _subjectsRepo.getSubjectsFromKeys(subjectCodes);
   }
-}
-
-class TimetableWithSubjects extends Equatable {
-  final Timetable timetable;
-  final Map<String, Subject> subjects;
-
-  const TimetableWithSubjects(
-    this.timetable,
-    this.subjects,
-  );
-
-  @override
-  List<Object?> get props => [timetable, subjects];
 }
