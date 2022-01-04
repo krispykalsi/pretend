@@ -4,7 +4,7 @@ import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
-import 'package:pretend/presentation/setup/timetable/extensions.dart';
+import 'package:pretend/presentation/setup/timetable/timetable_extensions.dart';
 
 import '../../../fixtures/subject_wise_timetable.dart';
 import '../../../fixtures/timetable.dart';
