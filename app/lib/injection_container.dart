@@ -1,3 +1,4 @@
+import 'package:core/network.dart';
 import 'package:csv/csv.dart';
 import 'package:csv/csv_settings_autodetection.dart';
 import 'package:get_it/get_it.dart';
@@ -5,6 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pretend/application/bloc/deep_link/deep_link_bloc.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/bloc/home/schedule_status/schedule_status_bloc.dart';
 import 'package:pretend/application/bloc/home/time_row/time_row_bloc.dart';
@@ -14,7 +16,6 @@ import 'package:pretend/application/bloc/setup/subjects/fetch_subjects_online/fe
 import 'package:pretend/application/bloc/setup/subjects/new_subject/new_subject_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
 import 'package:pretend/application/bloc/setup/timetable/timetable_setup_bloc.dart';
-import 'package:core/network.dart';
 import 'package:pretend/data/data_sources/settings_local_datasource.dart';
 import 'package:pretend/data/data_sources/subjects_local_datasource.dart';
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart';
@@ -27,14 +28,15 @@ import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
 import 'package:pretend/domain/usecases/add_subject.dart';
 import 'package:pretend/domain/usecases/filter_timetable.dart';
-import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 import 'package:pretend/domain/usecases/get_app_settings.dart';
 import 'package:pretend/domain/usecases/get_colleges.dart';
+import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 import 'package:pretend/domain/usecases/mark_app_visited_first_time.dart';
 import 'package:pretend/domain/usecases/set_app_theme_color.dart';
 import 'package:pretend/domain/usecases/set_college_id.dart';
 import 'package:pretend/domain/usecases/set_timetable.dart';
+import 'package:uni_links/uni_links.dart';
 
 final sl = GetIt.instance;
 
@@ -75,6 +77,9 @@ Future<void> init() async {
   );
   sl.registerFactory(
     () => ScheduleStatusBloc(),
+  );
+  sl.registerFactory(
+    () => DeepLinkBloc(getInitialLink, linkStream),
   );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
