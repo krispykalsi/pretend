@@ -7,7 +7,7 @@ abstract class SubjectsLocalDataSourceContract {
   Future<List<SubjectModel>> getAllSubjects();
   Future<Map<String, SubjectModel>> getSubjects(List<String> keys);
   Future<void> clearSubjects();
-  Future<void> addSubjects(List<SubjectModel> subjects);
+  Future<void> addSubjects(Iterable<SubjectModel> subjects);
   Future<void> addSubject(SubjectModel subject);
   Future<String?> getCollegeID();
   Future<void> setCollegeID(String id);
@@ -30,7 +30,7 @@ class SubjectsLocalDataSource extends HiveDataSource implements SubjectsLocalDat
   }
 
   @override
-  Future<void> addSubjects(List<SubjectModel> subjects) async {
+  Future<void> addSubjects(Iterable<SubjectModel> subjects) async {
     try {
       final subjectBox = await openBox(_subjects);
       for (final subject in subjects) {

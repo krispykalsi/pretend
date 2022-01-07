@@ -54,6 +54,11 @@ dependencies:
   # Deep links
   uni_links: ^0.5.1
   uri_to_file: ^0.2.0
+  # Show loading stuff
+  loader_overlay: ^2.0.4+3
+  # Share stuff
+  share_plus: ^3.0.4
+  fluttertoast: ^8.0.8
   core:
     path: ../core
   # The "flutter_lints" package below contains a set of recommended lints to

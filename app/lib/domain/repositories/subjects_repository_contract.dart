@@ -9,5 +9,6 @@ abstract class SubjectsRepositoryContract {
   Future<Either<Failure, List<College>>> getColleges();
   Future<Either<Failure, Map<String, Subject>>> getSubjectsFromKeys(List<String> keys);
   Future<Either<Failure, void>> addSubject(Subject subject);
+  Future<Either<Failure, void>> addSubjects(Iterable<Subject> subjects);
   Future<Either<Failure, void>> setCollegeID(String id);
 }

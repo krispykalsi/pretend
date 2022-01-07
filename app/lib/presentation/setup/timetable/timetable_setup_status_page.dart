@@ -41,12 +41,18 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   final _timetableSetupBloc = sl<TimetableSetupBloc>();
 
   @override
+  void initState() {
+    super.initState();
+    _checkIfAllSubjectsConfigured();
+  }
+
+  @override
   void dispose() {
     _timetableNotifier.dispose();
     super.dispose();
   }
 
-  void _onSetupStatusChanged() {
+  void _checkIfAllSubjectsConfigured() {
     var allSubjectsConfigured = true;
     for (var subject in widget._selectedSubjects) {
       allSubjectsConfigured &= _timetableNotifier.value[subject.code] != null;
@@ -99,7 +105,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
                   _buildHelperMessage,
                   const SizedBox(height: 40),
                   TimetableSetupStatus(
-                    onSetupStatusChanged: _onSetupStatusChanged,
+                    onSetupStatusChanged: _checkIfAllSubjectsConfigured,
                     subjects: widget._selectedSubjects,
                     notifier: _timetableNotifier,
                   ),

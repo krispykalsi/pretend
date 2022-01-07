@@ -1,13 +1,16 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:core/app_colors.dart';
 import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
-import 'package:core/app_colors.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'home.dart';
 
@@ -19,7 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  final _homeBloc = sl<HomeBloc>()..add(GetTimetableEvent(DateTime.now()));
+  final _homeBloc = sl<HomeBloc>();
 
   void _editTimetable(Timetable timetable, List<Subject> subjects) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
@@ -35,9 +38,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     });
   }
 
+  void _exportTimetable() {
+    _homeBloc.add(const ExportTimetableEvent());
+  }
+
   @override
   void initState() {
     super.initState();
+    _homeBloc.add(GetTimetableEvent(DateTime.now()));
     WidgetsBinding.instance!.addObserver(this);
   }
 
@@ -69,32 +77,50 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.DARK,
-      child: BlocBuilder<HomeBloc, HomeState>(
-        bloc: _homeBloc,
-        builder: (context, state) {
-          if (state is TimetableLoaded) {
-            return Home(
-              timetable: state.timetable,
-              subjects: state.subjects,
-              filteredSchedule: state.filteredSchedule,
-              changeThemeColor: _changeThemeColor,
-              editTimetable: _editTimetable,
-            );
-          } else if (state is TimetableLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is TimetableNotFound) {
-            context.router.replace(TimetableSetupStatusRoute(
-              subjects: const [],
-              canGoBack: false,
-            ));
-          } else if (state is TimetableError) {
-            return ErrorPuu(
-              title: "Couldn't load timetable",
-              body: state.message,
-            );
-          }
-          return const SizedBox.shrink();
-        },
+      child: LoaderOverlay(
+        child: BlocConsumer<HomeBloc, HomeState>(
+          bloc: _homeBloc,
+          listener: (context, state) {
+            if (state is ExportInProgress) {
+              context.loaderOverlay.show();
+            } else {
+              if (state is ExportSuccessful) {
+                Share.shareFiles([state.pathToFile]);
+              } else if (state is ExportFailed) {
+                Fluttertoast.showToast(msg: state.message);
+              }
+
+              if (context.loaderOverlay.visible) {
+                context.loaderOverlay.hide();
+              }
+            }
+          },
+          builder: (context, state) {
+            if (state is TimetableLoaded) {
+              return Home(
+                timetable: state.timetable,
+                subjects: state.subjects,
+                filteredSchedule: state.filteredSchedule,
+                changeThemeColor: _changeThemeColor,
+                editTimetable: _editTimetable,
+                exportTimetable: _exportTimetable,
+              );
+            } else if (state is TimetableLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is TimetableNotFound) {
+              context.router.replace(TimetableSetupStatusRoute(
+                subjects: const [],
+                canGoBack: false,
+              ));
+            } else if (state is TimetableError) {
+              return ErrorPuu(
+                title: "Couldn't load timetable",
+                body: state.message,
+              );
+            }
+            return const SizedBox.shrink();
+          },
+        ),
       ),
     );
   }

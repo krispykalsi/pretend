@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 abstract class Failure extends Equatable {
   final String message;
 
-  Failure([String? msg]) : message = msg ?? "Unexpected error occurred";
+  const Failure([String? msg]) : message = msg ?? "Unexpected error occurred";
 
   @override
   List<Object?> get props => [message];
@@ -41,4 +41,18 @@ class FilterTimetableFailure extends Failure {
 class CollegeNotConfiguredFailure extends Failure {
   @override
   String get message => "College not selected";
+}
+
+class FileIOFailure extends Failure {
+  const FileIOFailure(String msg) : super(msg);
+}
+
+class InvalidFileExtensionFailure extends Failure {
+  const InvalidFileExtensionFailure(String ext)
+      : super("Expected extension: .pretend.json\nGot: $ext");
+}
+
+class CorruptedDataFailure extends Failure {
+  const CorruptedDataFailure(String msg, dynamic data)
+      : super("Error: $msg\nData: $data");
 }

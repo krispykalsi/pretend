@@ -1,6 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:core/error.dart';
 import 'package:core/network.dart';
+import 'package:dartz/dartz.dart';
 import 'package:pretend/data/data_sources/subjects_local_datasource.dart';
 import 'package:pretend/data/data_sources/subjects_remote_datasource.dart';
 import 'package:pretend/data/models/subject_model.dart';
@@ -70,6 +70,17 @@ class SubjectsRepository implements SubjectsRepositoryContract {
     try {
       final subjectModel = SubjectModel.fromEntity(subject);
       await localDataSource.addSubject(subjectModel);
+      return const Right(null);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addSubjects(Iterable<Subject> subjects) async {
+    try {
+      final subjectModels = subjects.map((sub) => SubjectModel.fromEntity(sub));
+      await localDataSource.addSubjects(subjectModels);
       return const Right(null);
     } on CacheException {
       return Left(CacheFailure());

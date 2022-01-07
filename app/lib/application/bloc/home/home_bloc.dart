@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:core/error.dart';
 import 'package:core/usecase.dart';
 import 'package:equatable/equatable.dart';
-import 'package:core/error.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/domain/entities/timetable_with_subjects.dart';
+import 'package:pretend/domain/usecases/export_timetable.dart';
 import 'package:pretend/domain/usecases/filter_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 
@@ -17,6 +18,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetTimetableWithSubjects _getTimetableWithSubjects;
   final FilterTimetable _filterTimetable;
+  final ExportTimetable _exportTimetable;
 
   late TimetableWithSubjects _timetableWithSubjects;
   Timer? _timer;
@@ -25,32 +27,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required GetTimetableWithSubjects getTimetableWithSubjects,
     required FilterTimetable filterTimetable,
+    required ExportTimetable exportTimetable,
   })  : _getTimetableWithSubjects = getTimetableWithSubjects,
         _filterTimetable = filterTimetable,
+        _exportTimetable = exportTimetable,
         super(const HomeInitial());
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is GetTimetableEvent) {
-      yield const TimetableLoading();
-      final timetableWithSubjectsEither =
-          await _getTimetableWithSubjects(NoParams());
-      yield* timetableWithSubjectsEither.fold(
-        (failure) async* {
-          yield failure is NoLocalDataFailure
-              ? const TimetableNotFound()
-              : TimetableError(failure.message);
-        },
-        (output) async* {
-          _timetableWithSubjects = output;
-          add(RefreshScheduleEvent(event._now));
-        },
-      );
+      yield* _handleGetTimetableEvent(event._now);
     } else if (event is RefreshScheduleEvent) {
       yield await _filterSchedule(event._now);
       if (!_timerInitialisationInProgress) {
-        initialiseTimer(event._now);
+        _initialiseTimer(event._now);
       }
+    } else if (event is ExportTimetableEvent) {
+      yield* _handleExportTimetableEvent();
     } else if (event is _TickEvent) {
       yield await _filterSchedule(DateTime.now());
     } else if (event is CancelTimetableRefreshTimerEvent) {
@@ -58,7 +51,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  void initialiseTimer(DateTime now) async {
+  Stream<HomeState> _handleExportTimetableEvent() async* {
+    yield const ExportInProgress();
+    final params = ExportTimetableParams(_timetableWithSubjects);
+    final exportEither = await _exportTimetable(params);
+    yield exportEither.fold(
+      (failure) => ExportFailed(failure.message),
+      (filePath) => ExportSuccessful(filePath),
+    );
+  }
+
+  Stream<HomeState> _handleGetTimetableEvent(DateTime now) async* {
+    yield const TimetableLoading();
+    final timetableWithSubjectsEither =
+        await _getTimetableWithSubjects(NoParams());
+    yield* timetableWithSubjectsEither.fold(
+      (failure) async* {
+        yield failure is NoLocalDataFailure
+            ? const TimetableNotFound()
+            : TimetableError(failure.message);
+      },
+      (tws) async* {
+        _timetableWithSubjects = tws;
+        add(RefreshScheduleEvent(now));
+      },
+    );
+  }
+
+  void _initialiseTimer(DateTime now) async {
     _timerInitialisationInProgress = true;
     final minutesLeftUntilNextHour = 59 - now.minute;
     final secondsLeftUntilNextHour = 60 - now.second;

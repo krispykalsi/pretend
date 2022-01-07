@@ -1,16 +1,13 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:core/app_colors.dart';
 import 'package:core/dynamic_theme_app.dart';
 import 'package:core/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pretend/application/bloc/deep_link/deep_link_bloc.dart';
+import 'package:pretend/application/bloc/initial/deep_link/deep_link_bloc.dart';
 import 'package:pretend/application/bloc/settings/settings_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/injection_container.dart';
-import 'package:uri_to_file/uri_to_file.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);
@@ -24,14 +21,8 @@ class _InitialPageState extends State<InitialPage> {
   final _deepLinkBloc = sl<DeepLinkBloc>();
 
   @override
-  void initState() {
-    super.initState();
-    _deepLinkBloc.add(CheckForDeepLinksEvent());
-  }
-
-  @override
   void dispose() {
-    _deepLinkBloc.add(DisposeDeepLinksEvent());
+    _deepLinkBloc.add(const DisposeDeepLinksEvent());
     super.dispose();
   }
 
@@ -46,58 +37,71 @@ class _InitialPageState extends State<InitialPage> {
   }
 
   Widget _checkIfCameFromDeepLink() {
-    return BlocBuilder(
+    return BlocConsumer(
       bloc: _deepLinkBloc,
-      builder: (context, state) {
+      listener: (context, state) {
         if (state is DeepLinkNotFound) {
           context.router.replace(const HomeRoute());
-        } else if (state is DeepLinkFound) {
-          toFile(state.uri).then((file) {
-            print(_getFileNameString(file));
-            file.readAsString().then((value) => print(value));
-          });
-        } else if (state is DeepLinkError) {
-          return ErrorPuu(title: "Error loading settings", body: state.msg);
+        } else if (state is ImportSuccessful) {
+          final subjects = state.tws.subjects.values.toList();
+          context.router.replace(
+            TimetableSetupStatusRoute(
+              subjects: subjects,
+              timetable: state.tws.timetable,
+            ),
+          );
         }
-        return CircularProgressIndicator();
+      },
+      builder: (context, state) {
+        if (state is DeepLinkError) {
+          return ErrorPuu(title: "Error with deeplink", body: state.msg);
+        } else if (state is ImportFailed) {
+          return ErrorPuu(title: "Import failed", body: state.msg);
+        } else if (state is ImportInProgress) {
+          return _importingProgressIndicator;
+        } else {
+          if (state is DeepLinkInitial) {
+            _deepLinkBloc.add(const CheckForDeepLinksEvent());
+          }
+          return const CircularProgressIndicator();
+        }
       },
     );
   }
 
-  String _getFileNameString(File _file) {
-    return _file.path
-        .substring((_file.path.lastIndexOf(Platform.pathSeparator)) + 1);
+  Widget get _importingProgressIndicator {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: const [
+        Text("Importing..."),
+        SizedBox(height: 20),
+        CircularProgressIndicator(),
+      ],
+    );
   }
 
   Widget _setAppThemeColor() {
-    return BlocBuilder(
+    return BlocConsumer(
       bloc: _settingsBloc,
-      builder: (context, state) {
+      listener: (context, state) async {
         if (state is AppSettingsLoaded) {
           final settings = state.settings;
           if (settings.themeColor == null) {
-            context.router.push(const ThemeSetupRoute()).then((_) {
-              _settingsBloc.add(const GetAppSettingsEvent());
-            });
+            await context.router.push(const ThemeSetupRoute());
+            _settingsBloc.add(const GetAppSettingsEvent());
           } else {
             ThemeChanger.of(context)!.accentColor = settings.themeColor!;
-            return _checkIfCameFromDeepLink();
           }
-        } else if (state is AppSettingsError) {
-          return _buildErrorWidget("Error loading settings", state.message);
         }
-        return CircularProgressIndicator();
       },
-    );
-  }
-
-  Widget _buildErrorWidget(String title, String msg) {
-    return Material(
-      color: AppColors.DARK,
-      child: ErrorPuu(
-        title: title,
-        body: msg,
-      ),
+      builder: (context, state) {
+        if (state is AppSettingsLoaded && state.settings.themeColor != null) {
+          return _checkIfCameFromDeepLink();
+        } else if (state is AppSettingsError) {
+          return ErrorPuu(title: "Error loading settings", body: state.message);
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
 }

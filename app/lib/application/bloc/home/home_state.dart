@@ -2,20 +2,17 @@ part of 'home_bloc.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();
+
+  @override
+  List<Object?> get props => const [];
 }
 
 class HomeInitial extends HomeState {
   const HomeInitial();
-
-  @override
-  List<Object> get props => [];
 }
 
 class TimetableLoading extends HomeState {
   const TimetableLoading();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class TimetableLoaded extends HomeState {
@@ -31,15 +28,34 @@ class TimetableLoaded extends HomeState {
 
 class TimetableNotFound extends HomeState {
   const TimetableNotFound();
-
-  @override
-  List<Object?> get props => const [];
 }
 
 class TimetableError extends HomeState {
   final String message;
 
   const TimetableError(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class ExportInProgress extends HomeState {
+  const ExportInProgress();
+}
+
+class ExportSuccessful extends HomeState {
+  final String pathToFile;
+
+  const ExportSuccessful(this.pathToFile);
+
+  @override
+  List<Object?> get props => [pathToFile];
+}
+
+class ExportFailed extends HomeState {
+  final String message;
+
+  const ExportFailed(this.message);
 
   @override
   List<Object?> get props => [message];

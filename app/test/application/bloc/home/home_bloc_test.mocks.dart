@@ -12,6 +12,7 @@ import 'package:pretend/domain/entities/filters.dart' as _i9;
 import 'package:pretend/domain/entities/timeslot.dart' as _i11;
 import 'package:pretend/domain/entities/timeslots.dart' as _i10;
 import 'package:pretend/domain/entities/timetable_with_subjects.dart' as _i6;
+import 'package:pretend/domain/usecases/export_timetable.dart' as _i12;
 import 'package:pretend/domain/usecases/filter_timetable.dart' as _i8;
 import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart'
     as _i3;
@@ -63,6 +64,25 @@ class MockFilterTimetable extends _i1.Mock implements _i8.FilterTimetable {
               _FakeEither_0<_i5.Failure,
                   Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>())) as _i4
           .Future<_i2.Either<_i5.Failure, Map<_i9.Filters, Map<_i10.Timeslots, _i11.Timeslot>>>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [ExportTimetable].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockExportTimetable extends _i1.Mock implements _i12.ExportTimetable {
+  MockExportTimetable() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, String>> call(
+          _i12.ExportTimetableParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i2.Either<_i5.Failure, String>>.value(
+                  _FakeEither_0<_i5.Failure, String>()))
+          as _i4.Future<_i2.Either<_i5.Failure, String>>);
   @override
   String toString() => super.toString();
 }

@@ -63,6 +63,13 @@ class MockSubjectsRepositoryContract extends _i1.Mock
                   _FakeEither_0<_i5.Failure, void>()))
           as _i4.Future<_i2.Either<_i5.Failure, void>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> addSubjects(
+          Iterable<_i6.Subject>? subjects) =>
+      (super.noSuchMethod(Invocation.method(#addSubjects, [subjects]),
+              returnValue: Future<_i2.Either<_i5.Failure, void>>.value(
+                  _FakeEither_0<_i5.Failure, void>()))
+          as _i4.Future<_i2.Either<_i5.Failure, void>>);
+  @override
   _i4.Future<_i2.Either<_i5.Failure, void>> setCollegeID(String? id) =>
       (super.noSuchMethod(Invocation.method(#setCollegeID, [id]),
               returnValue: Future<_i2.Either<_i5.Failure, void>>.value(

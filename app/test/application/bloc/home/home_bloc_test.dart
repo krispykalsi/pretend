@@ -7,6 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
 import 'package:core/error.dart';
 import 'package:pretend/domain/entities/timetable_with_subjects.dart';
+import 'package:pretend/domain/usecases/export_timetable.dart';
 import 'package:pretend/domain/usecases/filter_timetable.dart';
 import 'package:pretend/domain/usecases/get_timetable_with_subjects.dart';
 
@@ -15,18 +16,21 @@ import '../../../fixtures/timetable.dart';
 import '../../../fixtures/timetable_subjects.dart';
 import 'home_bloc_test.mocks.dart';
 
-@GenerateMocks([GetTimetableWithSubjects, FilterTimetable])
+@GenerateMocks([GetTimetableWithSubjects, FilterTimetable, ExportTimetable])
 void main() {
   late MockGetTimetableWithSubjects mockGenerateScheduleForToday;
   late MockFilterTimetable mockFilterTimetable;
+  late MockExportTimetable mockExportTimetable;
   late HomeBloc bloc;
 
   setUp(() {
     mockGenerateScheduleForToday = MockGetTimetableWithSubjects();
     mockFilterTimetable = MockFilterTimetable();
+    mockExportTimetable = MockExportTimetable();
     bloc = HomeBloc(
       getTimetableWithSubjects: mockGenerateScheduleForToday,
       filterTimetable: mockFilterTimetable,
+      exportTimetable: mockExportTimetable,
     );
   });
 
