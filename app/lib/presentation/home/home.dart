@@ -21,6 +21,7 @@ class Home extends StatelessWidget {
   final Map<Filters, Map<Timeslots, Timeslot>> filteredSchedule;
   final VoidCallback changeThemeColor;
   final Function(Timetable, List<Subject>) editTimetable;
+  final VoidCallback exportTimetable;
 
   late final _scheduleStatusBloc = sl<ScheduleStatusBloc>()
     ..add(GetStatusEvent(filteredSchedule));
@@ -32,6 +33,7 @@ class Home extends StatelessWidget {
     required this.filteredSchedule,
     required this.changeThemeColor,
     required this.editTimetable,
+    required this.exportTimetable,
   }) : super(key: key);
 
   @override
@@ -67,6 +69,7 @@ class Home extends StatelessWidget {
                 timetable,
                 subjects.values.toList(growable: false),
               ),
+              onExportTimetableTap: exportTimetable,
             ),
           )
         ],

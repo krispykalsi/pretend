@@ -2,6 +2,9 @@ part of 'home_bloc.dart';
 
 abstract class HomeEvent extends Equatable {
   const HomeEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class GetTimetableEvent extends HomeEvent {
@@ -15,9 +18,6 @@ class GetTimetableEvent extends HomeEvent {
 
 class _TickEvent extends HomeEvent {
   const _TickEvent();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class RefreshScheduleEvent extends HomeEvent {
@@ -31,7 +31,8 @@ class RefreshScheduleEvent extends HomeEvent {
 
 class CancelTimetableRefreshTimerEvent extends HomeEvent {
   const CancelTimetableRefreshTimerEvent();
+}
 
-  @override
-  List<Object?> get props => const [];
+class ExportTimetableEvent extends HomeEvent {
+  const ExportTimetableEvent();
 }

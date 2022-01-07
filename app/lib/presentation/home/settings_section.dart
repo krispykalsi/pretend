@@ -11,11 +11,13 @@ import 'settings_item_button.dart';
 class SettingsSection extends StatefulWidget {
   final VoidCallback onThemeChangeTap;
   final VoidCallback onTimetableEditTap;
+  final VoidCallback onExportTimetableTap;
 
   const SettingsSection({
     Key? key,
     required this.onThemeChangeTap,
     required this.onTimetableEditTap,
+    required this.onExportTimetableTap,
   }) : super(key: key);
 
   @override
@@ -47,7 +49,7 @@ class _SettingsSectionState extends State<SettingsSection> {
         curve: Curves.easeOutCubic,
         constraints: BoxConstraints.tightFor(
           width: _areSettingsOpen ? 170 : 54,
-          height: _areSettingsOpen ? 184 : 54,
+          height: _areSettingsOpen ? 220 : 54,
         ),
         padding: const EdgeInsets.all(12),
         duration: const Duration(milliseconds: 300),
@@ -68,15 +70,21 @@ class _SettingsSectionState extends State<SettingsSection> {
         onTap: widget.onTimetableEditTap,
       ),
       _buildSettingsItem(
+        FontAwesomeIcons.fileCode,
+        "Export Timetable",
+        Alignment(0, -0.5),
+        onTap: widget.onExportTimetableTap,
+      ),
+      _buildSettingsItem(
         Icons.palette,
         "Change Theme",
-        Alignment(0, -0.33),
+        Alignment.center,
         onTap: widget.onThemeChangeTap,
       ),
       _buildSettingsItem(
         FontAwesomeIcons.info,
         "About App",
-        Alignment(0, 0.33),
+        Alignment(0, 0.5),
         onTap: () => context.router.push(const AboutRoute()),
       ),
       _buildSettingsItem(

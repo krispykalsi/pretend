@@ -48,7 +48,7 @@ class MockSubjectsLocalDataSourceContract extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
-  _i3.Future<void> addSubjects(List<_i4.SubjectModel>? subjects) =>
+  _i3.Future<void> addSubjects(Iterable<_i4.SubjectModel>? subjects) =>
       (super.noSuchMethod(Invocation.method(#addSubjects, [subjects]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
