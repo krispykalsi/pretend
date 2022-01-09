@@ -15,7 +15,7 @@ class FilterTimetable extends UseCase<FilteredSchedule, FilterTimetableParams> {
   @override
   Future<Either<Failure, FilteredSchedule>> call(FilterTimetableParams params) {
     try {
-      final day = Days.withoutSunday[params.now.weekday - 1];
+      final day = Days.all[params.now.weekday - 1];
       final scheduleForToday = params.timetable.timetable[day] ?? {};
       final FilteredSchedule filteredSchedule = {};
       for (final division in Filters.values) {
