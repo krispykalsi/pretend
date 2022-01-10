@@ -38,11 +38,11 @@ class PretendDotJsonCoder implements PretendDotJsonCoderContract {
   }
 
   @override
-  Future<Either<Failure, File>> encode(TimetableWithSubjects tws) async {
+  Future<Either<Failure, File>> encode(
+      String name, TimetableWithSubjects tws) async {
     final twsJson = TimetableWithSubjectsModel.fromEntity(tws).toJson();
     final twsJsonString = await _jsonCoder.encode(twsJson);
-    final filename = DateTime.now().toUtc().microsecondsSinceEpoch.toString() +
-        pretendDotJsonFileExtension;
+    final filename = name + pretendDotJsonFileExtension;
     return await _fileHandler.writeNew(filename, twsJsonString);
   }
 

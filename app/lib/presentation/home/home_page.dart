@@ -10,6 +10,7 @@ import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/subject.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
+import 'package:pretend/presentation/home/enter_filename_dialog.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'home.dart';
@@ -38,8 +39,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     });
   }
 
-  void _exportTimetable() {
-    _homeBloc.add(const ExportTimetableEvent());
+  void _exportTimetable() async {
+    final name = await showEnterFilenameDialog(context);
+    if (name != null) {
+      _homeBloc.add(ExportTimetableEvent(name));
+    }
   }
 
   @override

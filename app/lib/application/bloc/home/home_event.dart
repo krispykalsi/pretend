@@ -34,5 +34,10 @@ class CancelTimetableRefreshTimerEvent extends HomeEvent {
 }
 
 class ExportTimetableEvent extends HomeEvent {
-  const ExportTimetableEvent();
+  final String name;
+
+  const ExportTimetableEvent(this.name);
+
+  @override
+  List<Object?> get props => [name];
 }
