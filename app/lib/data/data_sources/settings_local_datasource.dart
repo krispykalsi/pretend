@@ -9,6 +9,8 @@ abstract class SettingsLocalDatasourceContract {
   Future<void> setFirstTimeFlag(bool flag);
 
   Future<void> setThemeColor(int color);
+
+  Future<void> setNotificationStatus(bool flag);
 }
 
 const _appSettings = "app-settings";
@@ -42,6 +44,16 @@ class SettingsLocalDatasource extends HiveDataSource
     try {
       final box = await openBox(_appSettings);
       await box.put(AppSettingsModel.keyThemeColor, color);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<void> setNotificationStatus(bool flag) async {
+    try {
+      final box = await openBox(_appSettings);
+      await box.put(AppSettingsModel.keyShowNotifications, flag);
     } catch (e) {
       throw CacheException();
     }

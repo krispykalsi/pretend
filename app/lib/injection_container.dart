@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:core/network.dart';
 import 'package:csv/csv.dart';
 import 'package:csv/csv_settings_autodetection.dart';
@@ -7,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretend/application/bloc/home/home_bloc.dart';
+import 'package:pretend/application/bloc/home/notifications/notifications_cubit.dart';
 import 'package:pretend/application/bloc/home/schedule_status/schedule_status_bloc.dart';
 import 'package:pretend/application/bloc/home/time_row/time_row_bloc.dart';
 import 'package:pretend/application/bloc/initial/deep_link/deep_link_bloc.dart';
@@ -25,10 +27,12 @@ import 'package:pretend/data/repositories/subjects_repository.dart';
 import 'package:pretend/data/repositories/timetable_repository.dart';
 import 'package:pretend/data/services/file_handler.dart';
 import 'package:pretend/data/services/json_coder.dart';
+import 'package:pretend/data/services/notification_service.dart';
 import 'package:pretend/data/services/pretend_dot_json_coder.dart';
 import 'package:pretend/domain/repositories/settings_repository_contract.dart';
 import 'package:pretend/domain/repositories/subjects_repository_contract.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
+import 'package:pretend/domain/services/notification_service_contract.dart';
 import 'package:pretend/domain/services/pretend_dot_json_coder_contract.dart';
 import 'package:pretend/domain/usecases/add_subject.dart';
 import 'package:pretend/domain/usecases/export_timetable.dart';
@@ -42,6 +46,7 @@ import 'package:pretend/domain/usecases/mark_app_visited_first_time.dart';
 import 'package:pretend/domain/usecases/set_app_theme_color.dart';
 import 'package:pretend/domain/usecases/set_college_id.dart';
 import 'package:pretend/domain/usecases/set_timetable.dart';
+import 'package:pretend/domain/usecases/toggle_notifications.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:uri_to_file/uri_to_file.dart';
 
@@ -91,6 +96,9 @@ Future<void> init() async {
   sl.registerFactory(
     () => DeepLinkBloc(getInitialLink, linkStream, importTimetable: sl()),
   );
+  sl.registerFactory(
+    () => NotificationsCubit(sl(), sl()),
+  );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
   sl.registerLazySingleton(() => SetTimetable(sl()));
@@ -113,6 +121,7 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => ExportTimetable(fileHandler: sl(), pretendDotJsonCoder: sl()),
   );
+  sl.registerLazySingleton(() => ToggleNotifications(sl(), sl(), sl()));
 
   sl.registerLazySingleton<SubjectsRepositoryContract>(
     () => SubjectsRepository(
@@ -134,6 +143,9 @@ Future<void> init() async {
   sl.registerLazySingleton<JsonCoderContract>(() => JsonCoder());
   sl.registerLazySingleton<PretendDotJsonCoderContract>(
     () => PretendDotJsonCoder(sl(), sl()),
+  );
+  sl.registerLazySingleton<NotificationServiceContract>(
+    () => NotificationService(AwesomeNotifications()),
   );
 
   sl.registerLazySingleton<SubjectsLocalDataSourceContract>(

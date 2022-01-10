@@ -59,6 +59,8 @@ dependencies:
   # Share stuff
   share_plus: ^3.0.4
   fluttertoast: ^8.0.8
+  # Local notifications
+  awesome_notifications: ^0.6.20
   core:
     path: ../core
   # The "flutter_lints" package below contains a set of recommended lints to

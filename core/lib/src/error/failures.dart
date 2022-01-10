@@ -56,3 +56,7 @@ class CorruptedDataFailure extends Failure {
   const CorruptedDataFailure(String msg, dynamic data)
       : super("Error: $msg\nData: $data");
 }
+
+class UserDeclinedNotificationAccessFailure extends Failure {
+  const UserDeclinedNotificationAccessFailure();
+}

@@ -5,11 +5,13 @@ import 'package:pretend/domain/entities/app_settings.dart';
 const _tAppSettings = AppSettings(
   firstTimeStartup: false,
   themeColor: Color(0xffffc2c2),
+  showNotifications: false,
 );
 
 const _tAppSettingsModel = AppSettingsModel(
   firstTimeStartup: false,
   themeColor: Color(0xffffc2c2),
+  showNotifications: false
 );
 
 AppSettings get getTestAppSettings => _tAppSettings;

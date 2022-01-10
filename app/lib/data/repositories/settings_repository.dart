@@ -41,4 +41,14 @@ class SettingsRepository implements SettingsRepositoryContract {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> setNotificationStatus(bool flag) async {
+    try {
+      await _localDatasource.setNotificationStatus(flag);
+      return const Right(null);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }

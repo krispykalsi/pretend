@@ -18,4 +18,6 @@ class Days {
       ];
 
   static List<String> get withoutSunday => all.sublist(0, 6);
+
+  static int weekday(String name) => all.indexOf(name);
 }
