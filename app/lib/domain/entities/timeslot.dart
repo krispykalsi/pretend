@@ -16,6 +16,14 @@ class Timeslot extends Equatable implements Comparable<Timeslot> {
 
   String get end => slot.endHour12;
 
+  bool isAdjacentTo(Timeslot other) {
+    if (subjectCode == other.subjectCode &&
+        classCategory == other.classCategory) {
+      return end == other.start || start == other.end;
+    }
+    return false;
+  }
+
   @override
   List<Object?> get props => [slot, subjectCode, classCategory];
 

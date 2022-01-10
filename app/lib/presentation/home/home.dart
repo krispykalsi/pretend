@@ -1,4 +1,5 @@
 import 'package:core/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/home/schedule_status/schedule_status_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
+import 'package:pretend/presentation/home/notification_button.dart';
 import 'package:tap_canvas/tap_canvas.dart';
 
 import 'corner_date_time.dart';
@@ -43,7 +45,14 @@ class Home extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.bottomLeft,
-            child: CornerDateTime(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NotificationButton(),
+                CornerDateTime(),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(48.0),
@@ -55,7 +64,7 @@ class Home extends StatelessWidget {
                 } else if (state is NoClassToday) {
                   return _sleepingPuu;
                 } else if (state is LastClassGoingOn || state is ClassesPending) {
-                  return _buildNormalState;
+                  return _normalState;
                 }
                 return SizedBox.shrink();
               },
@@ -77,7 +86,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget get _buildNormalState {
+  Widget get _normalState {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

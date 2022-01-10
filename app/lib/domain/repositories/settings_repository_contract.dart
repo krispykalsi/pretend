@@ -8,4 +8,5 @@ abstract class SettingsRepositoryContract {
   Future<Either<Failure, AppSettings>> getAppSettings();
   Future<Either<Failure, void>> setFirstTimeFlag(bool flag);
   Future<Either<Failure, void>> setThemeColor(Color color);
+  Future<Either<Failure, void>> setNotificationStatus(bool flag);
 }
