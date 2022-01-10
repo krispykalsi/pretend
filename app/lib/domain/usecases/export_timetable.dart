@@ -18,7 +18,8 @@ class ExportTimetable extends UseCase<String, ExportTimetableParams> {
 
   @override
   Future<Either<Failure, String>> call(ExportTimetableParams params) async {
-    final encodedEither = await _pretendDotJsonCoder.encode(params.tws);
+    final encodedEither =
+        await _pretendDotJsonCoder.encode(params.name, params.tws);
     return await encodedEither.fold(
       (failure) => Left(failure),
       (file) async => await _fileHandler.getPath(file),
@@ -27,9 +28,10 @@ class ExportTimetable extends UseCase<String, ExportTimetableParams> {
 }
 
 class ExportTimetableParams extends Equatable {
+  final String name;
   final TimetableWithSubjects tws;
 
-  const ExportTimetableParams(this.tws);
+  const ExportTimetableParams(this.name, this.tws);
 
   @override
   List<Object> get props => [tws];

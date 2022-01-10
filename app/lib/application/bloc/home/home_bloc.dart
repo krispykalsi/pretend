@@ -43,7 +43,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _initialiseTimer(event._now);
       }
     } else if (event is ExportTimetableEvent) {
-      yield* _handleExportTimetableEvent();
+      yield* _handleExportTimetableEvent(event.name);
     } else if (event is _TickEvent) {
       yield await _filterSchedule(DateTime.now());
     } else if (event is CancelTimetableRefreshTimerEvent) {
@@ -51,9 +51,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Stream<HomeState> _handleExportTimetableEvent() async* {
+  Stream<HomeState> _handleExportTimetableEvent(String name) async* {
     yield const ExportInProgress();
-    final params = ExportTimetableParams(_timetableWithSubjects);
+    final params = ExportTimetableParams(name, _timetableWithSubjects);
     final exportEither = await _exportTimetable(params);
     yield exportEither.fold(
       (failure) => ExportFailed(failure.message),
