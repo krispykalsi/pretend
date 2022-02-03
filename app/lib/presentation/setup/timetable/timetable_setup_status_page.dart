@@ -57,7 +57,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
     for (var subject in widget._selectedSubjects) {
       allSubjectsConfigured &= _timetableNotifier.value[subject.code] != null;
     }
-    if (allSubjectsConfigured == true) {
+    if (allSubjectsConfigured == true && widget._selectedSubjects.isNotEmpty) {
       _timetableSetupBloc.add(const AllSubjectsConfiguredEvent());
     } else {
       _timetableSetupBloc.add(const ResetSetupEvent());

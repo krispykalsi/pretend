@@ -26,6 +26,7 @@ class AppSettingsModel extends AppSettings {
     final appSettings = <String, dynamic>{};
     appSettings[keyFirstTimeStartup] = firstTimeStartup;
     appSettings[keyThemeColor] = themeColor?.value;
+    appSettings[keyShowNotifications] = showNotifications;
     return appSettings;
   }
 

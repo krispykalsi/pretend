@@ -33,7 +33,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   void toggleNotificationStatus() async {
     if (state is Loading) return;
     emit(const Loading());
-    final toggleEither = await _toggleNotifications(NoParams());
+    final params = ToggleNotificationsParams(Notifications.TOGGLE);
+    final toggleEither = await _toggleNotifications(params);
     toggleEither.fold(
       (failure) => emit(Failed(failure.message)),
       (_) {

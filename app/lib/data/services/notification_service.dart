@@ -1,9 +1,13 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:core/error.dart';
+import 'package:core/extensions.dart';
 import 'package:core/src/error/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:intl/intl.dart';
+import 'package:pretend/domain/entities/class_category_enum.dart';
 import 'package:pretend/domain/entities/days.dart';
 import 'package:pretend/domain/entities/subject.dart';
+import 'package:pretend/domain/entities/timeslot.dart';
 import 'package:pretend/domain/entities/timeslots.dart';
 import 'package:pretend/domain/entities/timetable_with_subjects.dart';
 import 'package:pretend/domain/services/notification_service_contract.dart';
@@ -41,7 +45,7 @@ class NotificationService implements NotificationServiceContract {
         final subject = tws.subjects[timeslots[i].subjectCode]!;
         await _scheduleNotification(
           weekday,
-          timeslots[i].slot.startTime,
+          timeslots[i],
           subject,
         );
       }
@@ -49,7 +53,7 @@ class NotificationService implements NotificationServiceContract {
         final subject = tws.subjects[timeslots[0].subjectCode]!;
         await _scheduleNotification(
           weekday,
-          timeslots[0].slot.startTime,
+          timeslots[0],
           subject,
         );
       }
@@ -64,26 +68,29 @@ class NotificationService implements NotificationServiceContract {
   }
 
   Future<void> _scheduleNotification(
-      int weekday, DateTime time, Subject subject) async {
+      int weekday, Timeslot slot, Subject subject) async {
+    final time = slot.slot.startTime;
+    final category = slot.classCategory;
     final fiveMinutesBeforeTime = time.subtract(const Duration(minutes: 5));
     await _awesomeNotifications.createNotification(
       content: NotificationContent(
         id: int.parse("$weekday${time.hour}${time.minute}"),
         channelKey: 'default_channel',
-        title: "Your class is about to start",
-        body: "${subject.name} @ ${time.hour}",
+        color: ClassCategory.colors[category],
+        title: "${subject.name}",
+        body: "${DateFormat.jm().format(time)} (${category.toTitleCase()})",
         wakeUpScreen: true,
-        category: NotificationCategory.Alarm
+        category: NotificationCategory.Reminder
       ),
       schedule: NotificationCalendar(
         weekday: weekday,
         hour: fiveMinutesBeforeTime.hour,
-        minute: fiveMinutesBeforeTime.minute - 5,
+        minute: fiveMinutesBeforeTime.minute,
         second: fiveMinutesBeforeTime.second,
         millisecond: fiveMinutesBeforeTime.millisecond,
         repeats: true,
         allowWhileIdle: true,
-        preciseAlarm: true,
+        preciseAlarm: true
       ),
     );
   }

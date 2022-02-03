@@ -26,7 +26,7 @@ void main() {
     test('should return valid data from local datasource', () async {
       final tAppSettingsModel = getTestAppSettingsModel;
       final Map<String, dynamic> tAppSettingsJson =
-          fixture('notifications.json');
+          fixture('app_settings.json');
       when(mockDatasource.getAppSettings())
           .thenAnswer((_) => Future.value(tAppSettingsJson));
       final actual = await repo.getAppSettings();
