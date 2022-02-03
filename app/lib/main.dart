@@ -8,16 +8,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   await AwesomeNotifications().initialize(
-    null,
+    "resource://drawable/ic_notification",
     [
       NotificationChannel(
         channelKey: 'default_channel',
         channelName: 'All notifications',
         channelDescription: 'For all class notifications',
         ledColor: Colors.white,
+        channelShowBadge: false,
+        importance: NotificationImportance.Max,
+        soundSource: "resource://raw/res_sound_notification"
       )
     ],
-    debug: true,
   );
   runApp(MyApp());
 }

@@ -4,15 +4,25 @@ import 'package:core/error.dart';
 import 'package:core/usecase.dart';
 import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/domain/repositories/timetable_repository_contract.dart';
+import 'package:pretend/domain/usecases/toggle_notifications.dart';
 
 class SetTimetable extends UseCase<void, SetTimetableParams> {
   final TimetableRepositoryContract repository;
+  final ToggleNotifications toggleNotifications;
 
-  SetTimetable(this.repository);
+  SetTimetable(this.repository, this.toggleNotifications);
 
   @override
   Future<Either<Failure, void>> call(SetTimetableParams params) async {
-    return await repository.setTimetable(params.timetable);
+    final either = await repository.setTimetable(params.timetable);
+    return either.fold(
+      (failure) => Left(failure),
+      (_) async {
+        final params = ToggleNotificationsParams(Notifications.REFRESH);
+        await toggleNotifications(params);
+        return either;
+      },
+    );
   }
 }
 

@@ -101,7 +101,7 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton(() => GetAllSubjects(sl()));
-  sl.registerLazySingleton(() => SetTimetable(sl()));
+  sl.registerLazySingleton(() => SetTimetable(sl(), sl()));
   sl.registerLazySingleton(() => GetTimetableWithSubjects(sl(), sl()));
   sl.registerLazySingleton(() => FilterTimetable());
   sl.registerLazySingleton(() => AddSubject(sl()));

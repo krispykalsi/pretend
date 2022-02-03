@@ -13,14 +13,14 @@ void main() {
   });
 
   test('should return a valid AppSettingsModel', () async {
-    final Map<String, dynamic> jsonMap = fixture("notifications.json");
+    final Map<String, dynamic> jsonMap = fixture("app_settings.json");
     final result = AppSettingsModel.fromJson(jsonMap);
     expect(result, tAppSettingsModel);
   });
 
   test('should return a JSON map containing proper data', () async {
     final result = tAppSettingsModel.toJson();
-    final expectedJsonMap = fixture("notifications.json");
+    final expectedJsonMap = fixture("app_settings.json");
     expect(result, expectedJsonMap);
   });
 }

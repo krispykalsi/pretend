@@ -41,5 +41,10 @@ class MockSettingsLocalDatasourceContract extends _i1.Mock
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
+  _i3.Future<void> setNotificationStatus(bool? flag) =>
+      (super.noSuchMethod(Invocation.method(#setNotificationStatus, [flag]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+  @override
   String toString() => super.toString();
 }
