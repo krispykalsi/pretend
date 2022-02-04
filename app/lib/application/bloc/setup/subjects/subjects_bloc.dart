@@ -44,14 +44,18 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
   }
 
   void reviseTimetable(Iterable<Subject> selectedSubjects, Timetable timetable) {
+    final toRemove = <String>[];
     for (final code in timetable.subjectCodes) {
       final found = selectedSubjects.any((subject) => subject.code == code);
       if (!found) {
         for (final day in timetable.timetable.values) {
           day.removeWhere((_, timeslot) => timeslot.subjectCode == code);
         }
-        timetable.subjectCodes.remove(code);
+        toRemove.add(code);
       }
+    }
+    for (final code in toRemove) {
+      timetable.subjectCodes.remove(code);
     }
   }
 }
