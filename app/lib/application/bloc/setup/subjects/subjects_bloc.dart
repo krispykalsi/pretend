@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:core/error.dart';
 import 'package:core/network.dart';
 import 'package:pretend/domain/entities/subject.dart';
+import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/domain/usecases/get_all_subjects.dart';
 
 part 'subjects_event.dart';
@@ -39,6 +40,18 @@ class SubjectsBloc extends Bloc<SubjectsEvent, SubjectsState> {
       yield OneOrMoreSubjectsSelected(subjects: _subjects);
     } else if (event is NoSubjectsSelectedEvent) {
       yield Loaded(subjects: _subjects);
+    }
+  }
+
+  void reviseTimetable(Iterable<Subject> selectedSubjects, Timetable timetable) {
+    for (final code in timetable.subjectCodes) {
+      final found = selectedSubjects.any((subject) => subject.code == code);
+      if (!found) {
+        for (final day in timetable.timetable.values) {
+          day.removeWhere((_, timeslot) => timeslot.subjectCode == code);
+        }
+        timetable.subjectCodes.remove(code);
+      }
     }
   }
 }

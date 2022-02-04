@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pretend/application/bloc/setup/subjects/subjects_bloc.dart';
 import 'package:pretend/application/router/router.gr.dart';
 import 'package:pretend/domain/entities/subject.dart';
+import 'package:pretend/domain/entities/timetable.dart';
 import 'package:pretend/injection_container.dart';
 import 'package:core/widgets.dart';
 
@@ -11,9 +12,14 @@ import 'setup_subjects.dart';
 
 class SetupSubjectsPage extends StatefulWidget {
   final List<Subject> _selectedSubjects;
+  final Timetable? _timetable;
 
-  const SetupSubjectsPage({Key? key, List<Subject> selectedSubjects = const []})
-      : _selectedSubjects = selectedSubjects,
+  const SetupSubjectsPage({
+    Key? key,
+    List<Subject> selectedSubjects = const [],
+    Timetable? timetable,
+  })  : _selectedSubjects = selectedSubjects,
+        _timetable = timetable,
         super(key: key);
 
   @override
@@ -26,6 +32,15 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
 
   void _reloadSubjects() {
     _subjectsBloc.add(const GetAllSubjectsEvent());
+  }
+
+  void _onNextTap() {
+    if (widget._timetable != null) {
+      _subjectsBloc.reviseTimetable(_selectedSubjects, widget._timetable!);
+    }
+    context.router.replace(
+      TimetableSetupStatusRoute(subjects: _selectedSubjects, timetable: widget._timetable),
+    );
   }
 
   @override
@@ -111,9 +126,7 @@ class _SetupSubjectsPageState extends State<SetupSubjectsPage> {
           right: state is OneOrMoreSubjectsSelected ? 0 : -100,
           bottom: 100,
           child: NextAccentButton(
-            onTap: () => context.router.replace(
-              TimetableSetupStatusRoute(subjects: _selectedSubjects),
-            ),
+            onTap: _onNextTap,
           ),
         );
       },

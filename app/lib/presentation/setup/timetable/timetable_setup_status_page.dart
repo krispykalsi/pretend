@@ -27,7 +27,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
         _timetable = timetable,
         _canGoBack = canGoBack,
         super(key: key);
-
+/**/
   @override
   State<TimetableSetupStatusPage> createState() =>
       _TimetableSetupStatusPageState();
@@ -36,7 +36,7 @@ class TimetableSetupStatusPage extends StatefulWidget {
 class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   late final _timetableNotifier =
       TimetableNotifier(widget._timetable?.subjectWise());
-  final _timetable = Timetable({}, []);
+  late final _timetable = Timetable({}, [])..update(_timetableNotifier.value);
 
   final _timetableSetupBloc = sl<TimetableSetupBloc>();
 
@@ -83,6 +83,7 @@ class _TimetableSetupStatusPageState extends State<TimetableSetupStatusPage> {
   void _addOrRemoveSubjectsTap() async {
     context.router.replace(SetupSubjectsRoute(
       selectedSubjects: widget._selectedSubjects,
+      timetable: _timetable
     ));
   }
 

@@ -46,7 +46,9 @@ class AppRouter extends _i8.RootStackRouter {
       return _i8.CustomPage<dynamic>(
           routeData: routeData,
           child: _i2.SetupSubjectsPage(
-              key: args.key, selectedSubjects: args.selectedSubjects),
+              key: args.key,
+              selectedSubjects: args.selectedSubjects,
+              timetable: args.timetable),
           transitionsBuilder: _i8.TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 200,
           opaque: true,
@@ -133,25 +135,32 @@ class HomeRoute extends _i8.PageRouteInfo<void> {
 /// [_i2.SetupSubjectsPage]
 class SetupSubjectsRoute extends _i8.PageRouteInfo<SetupSubjectsRouteArgs> {
   SetupSubjectsRoute(
-      {_i9.Key? key, List<_i10.Subject> selectedSubjects = const []})
+      {_i9.Key? key,
+      List<_i10.Subject> selectedSubjects = const [],
+      _i11.Timetable? timetable})
       : super(SetupSubjectsRoute.name,
             path: '/setup-subjects-page',
             args: SetupSubjectsRouteArgs(
-                key: key, selectedSubjects: selectedSubjects));
+                key: key,
+                selectedSubjects: selectedSubjects,
+                timetable: timetable));
 
   static const String name = 'SetupSubjectsRoute';
 }
 
 class SetupSubjectsRouteArgs {
-  const SetupSubjectsRouteArgs({this.key, this.selectedSubjects = const []});
+  const SetupSubjectsRouteArgs(
+      {this.key, this.selectedSubjects = const [], this.timetable});
 
   final _i9.Key? key;
 
   final List<_i10.Subject> selectedSubjects;
 
+  final _i11.Timetable? timetable;
+
   @override
   String toString() {
-    return 'SetupSubjectsRouteArgs{key: $key, selectedSubjects: $selectedSubjects}';
+    return 'SetupSubjectsRouteArgs{key: $key, selectedSubjects: $selectedSubjects, timetable: $timetable}';
   }
 }
 
