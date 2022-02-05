@@ -79,7 +79,9 @@ class NotificationService implements NotificationServiceContract {
         color: ClassCategory.colors[category],
         title: "${subject.name}",
         body: "${DateFormat.jm().format(time)} (${category.toTitleCase()})",
-        wakeUpScreen: true,
+        autoDismissible: true,
+        showWhen: true,
+        customSound: "resource://raw/res_sound_notification",
         category: NotificationCategory.Reminder
       ),
       schedule: NotificationCalendar(

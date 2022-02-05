@@ -16,7 +16,9 @@ void main() async {
         channelDescription: 'For all class notifications',
         ledColor: Colors.white,
         channelShowBadge: false,
+        defaultPrivacy: NotificationPrivacy.Public,
         importance: NotificationImportance.Max,
+        playSound: true,
         soundSource: "resource://raw/res_sound_notification"
       )
     ],
