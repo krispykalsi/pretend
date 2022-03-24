@@ -7,12 +7,12 @@ import 'package:pretend/presentation/home/section_heading.dart';
 import 'subject_list_tile.dart';
 
 class OngoingSection extends StatelessWidget {
-  final Map<Timeslots, Timeslot> onGoing;
+  final Map<Timeslots, Timeslot> schedule;
   final Map<String, Subject> subjects;
 
   const OngoingSection({
     Key? key,
-    required this.onGoing,
+    required this.schedule,
     required this.subjects,
   }) : super(key: key);
 
@@ -20,8 +20,8 @@ class OngoingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     late Timeslot timeslot;
     late Subject subject;
-    if (onGoing.isNotEmpty) {
-      timeslot = onGoing.values.elementAt(0);
+    if (schedule.isNotEmpty) {
+      timeslot = schedule.values.elementAt(0);
       subject = subjects[timeslot.subjectCode] ??
           const Subject("NOT FOUND", "NOT FOUND");
     } else {
@@ -32,7 +32,7 @@ class OngoingSection extends StatelessWidget {
       children: [
         const SectionHeading("Ongoing"),
         const SizedBox(height: 10),
-        onGoing.isNotEmpty
+        schedule.isNotEmpty
             ? SubjectListTile(
                 subject,
                 timeslot,

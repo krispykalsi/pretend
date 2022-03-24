@@ -91,14 +91,14 @@ class Home extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OngoingSection(
-          onGoing: filteredSchedule[Filters.onGoing]!,
+          schedule: filteredSchedule[Filters.onGoing]!,
           subjects: subjects,
         ),
         Expanded(
           child: _scheduleStatusBloc.state is LastClassGoingOn
               ? _readingPuu
               : LaterTodaySection(
-                  laterToday: filteredSchedule[Filters.laterToday]!,
+                  schedule: filteredSchedule[Filters.laterToday]!,
                   subjects: subjects,
                 ),
         ),

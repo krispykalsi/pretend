@@ -8,18 +8,18 @@ import 'section_heading.dart';
 import 'subject_list_tile.dart';
 
 class LaterTodaySection extends StatelessWidget {
-  final Map<Timeslots, Timeslot> laterToday;
+  final Map<Timeslots, Timeslot> schedule;
   final Map<String, Subject> subjects;
 
   const LaterTodaySection({
     Key? key,
-    required this.laterToday,
+    required this.schedule,
     required this.subjects,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final sortedLaterToday = laterToday.values.toList(growable: false)..sort();
+    final sortedLaterToday = schedule.values.toList(growable: false)..sort();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
